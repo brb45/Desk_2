@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Docker_AWS/Docker_proj_11_26/Docker_AWS/Code/docker-in-aws" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Docker_AWS/Docker_proj_11_26/Docker_AWS/proj_1/todobackend" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_API/API_project/Pyrebase" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_API/API_project/Tableau" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_API/Load/locust_k8s" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_Slen/Pytest_proj/12_mock/mock_prj_2/psichatbot-server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_Slen/test_proj/pytest-mock-examples" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Test_Slen/test_proj/zeroBank" vcs="Git" />
+  </component>
+</project>
