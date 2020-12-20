@@ -1,0 +1,18 @@
+			<measurementType name="EVM" type = "802.11ag">
+				<result name = "dataRate" unit = "Mbps" helpText = "Data rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "evmAll" unit = "dB" helpText = "EVM for entire frame" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "rmsPowerNoGap" unit = "dBm" helpText = "Power RMS No Gap" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "freqErr" unit = "ppm" helpText = "Frequency Error in Hz" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ampErrDb" unit = "dB" helpText = "IQ Match Amplitude Error in dB" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "phaseErr" unit = "Degree" helpText = "IQ Match Phase Error" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "rmsPhaseNoise" unit = "Degree" helpText = "Frequency RMS Phase Noise" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "LO_LEAKAGE_DBR_VSA1" unit = "dBr" helpText = "LO leakage of the transmitter connected to VSA1" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "VALUE_DB_LO_A_VSA1" unit = "dB" helpText = "The marginal value in lower section A for the spectral flatness test" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "VALUE_DB_LO_B_VSA1" unit = "dB" helpText = "The marginal value in lower section B for the spectral flatness test" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "VALUE_DB_UP_A_VSA1" unit = "dB" helpText = "The marginal value in upper section A for the spectral flatness test" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "VALUE_DB_UP_B_VSA1" unit = "dB" helpText = "The marginal value in upper section B for the spectral flatness test" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SUBCARRIER_LO_A_VSA1" unit = "" helpText = "The sub carrier with least margin in lower section A for the spectral flatness test" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "SUBCARRIER_LO_B_VSA1" unit = "" helpText = "The sub carrier with least margin in lower section B for the spectral flatness test" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "SUBCARRIER_UP_A_VSA1" unit = "" helpText = "The sub carrier with least margin in upper section A for the spectral flatness test" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "SUBCARRIER_UP_B_VSA1" unit = "" helpText = "The sub carrier with least margin in upper section B for the spectral flatness test" dataType = "integer" upperLimit = "" lowerLimit = "" />
+			</measurementType>

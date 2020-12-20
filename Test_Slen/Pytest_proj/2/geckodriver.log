@@ -1,0 +1,296 @@
+1605514795162	geckodriver	INFO	Listening on 127.0.0.1:56731
+1605514798181	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileSxeOn3"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605514802080	Marionette	INFO	Listening on port 56740
+1605514802364	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605514807322	Marionette	INFO	Stopped listening on port 56740
+[Parent 3008, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605514815609	geckodriver	INFO	Listening on 127.0.0.1:56804
+1605514818620	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileaYcPDD"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605514821865	Marionette	INFO	Listening on port 56812
+1605514822266	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605514830076	Marionette	INFO	Stopped listening on port 56812
+[Parent 23524, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515025838	geckodriver	INFO	Listening on 127.0.0.1:56907
+1605515028861	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofilevXmyxE"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515032115	Marionette	INFO	Listening on port 56916
+1605515032497	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515038701	Marionette	INFO	Stopped listening on port 56916
+[Parent 23396, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515051392	geckodriver	INFO	Listening on 127.0.0.1:56984
+1605515054411	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileGbHoIO"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515057635	Marionette	INFO	Listening on port 56992
+1605515058050	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515079037	Marionette	INFO	Stopped listening on port 56992
+[Parent 21908, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515261218	geckodriver	INFO	Listening on 127.0.0.1:57075
+1605515264239	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofile0ef6JC"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515267272	Marionette	INFO	Listening on port 57084
+1605515267378	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515273592	Marionette	INFO	Stopped listening on port 57084
+[Parent 11224, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515284731	geckodriver	INFO	Listening on 127.0.0.1:57145
+1605515287743	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileVbwypR"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515290893	Marionette	INFO	Listening on port 57153
+1605515291377	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515297789	Marionette	INFO	Stopped listening on port 57153
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515493560	geckodriver	INFO	Listening on 127.0.0.1:57244
+1605515496569	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofile0ylhws"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515499689	Marionette	INFO	Listening on port 57252
+1605515500201	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515506154	Marionette	INFO	Stopped listening on port 57252
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515523065	geckodriver	INFO	Listening on 127.0.0.1:57313
+1605515526075	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofilevg0ktN"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515529099	Marionette	INFO	Listening on port 57321
+1605515529217	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515540329	Marionette	INFO	Stopped listening on port 57321
+[Parent 5284, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515646942	geckodriver	INFO	Listening on 127.0.0.1:57399
+1605515649964	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofile0Nr6Du"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515652893	Marionette	INFO	Listening on port 57407
+1605515653113	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515661813	Marionette	INFO	Stopped listening on port 57407
+[Parent 6112, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605515674226	geckodriver	INFO	Listening on 127.0.0.1:57477
+1605515677238	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileAD826G"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605515680193	Marionette	INFO	Listening on port 57485
+1605515680383	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605515687673	Marionette	INFO	Stopped listening on port 57485
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605516125559	geckodriver	INFO	Listening on 127.0.0.1:57626
+1605516128569	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileDzt7jZ"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605516131825	Marionette	INFO	Listening on port 57634
+1605516132207	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605516141525	Marionette	INFO	Stopped listening on port 57634
+[Parent 5164, Gecko_IOThread] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc, line 166
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1605516153444	geckodriver	INFO	Listening on 127.0.0.1:57688
+1605516156462	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jsun\\AppData\\Local\\Temp\\rust_mozprofileA05mI7"
+Can't find symbol 'eglSwapBuffersWithDamageEXT'.
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605516159626	Marionette	INFO	Listening on port 57696
+1605516160102	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+JavaScript error: https://blazedemo.com/assets/bootstrap.min.js, line 7: TypeError: a is not a function
+JavaScript error: https://blazedemo.com/assets/bootstrap-table.js, line 1126: ReferenceError: jQuery is not defined
+1605516167911	Marionette	INFO	Stopped listening on port 57696
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

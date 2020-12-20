@@ -1,0 +1,35 @@
+litepoint@litepoint-Latitude-E6440:~/Desktop/Docker_files/dock3$ docker build -t sun:hello_python ../../practical_docker/docker_hello_world/
+Sending build context to Docker daemon  3.072kB
+Step 1/6 : FROM python:3-alpine
+3-alpine: Pulling from library/python
+e7c96db7181b: Pull complete 
+799a5534f213: Pull complete 
+913b50bbe755: Pull complete 
+11154abc6081: Pull complete 
+c805e63f69fe: Pull complete 
+Digest: sha256:006edc76c0cfcd946a35353d3ad58336623b4c4228b71ad2a3c6ce8a90fb0414
+Status: Downloaded newer image for python:3-alpine
+ ---> fe3ef29c73f3
+Step 2/6 : LABEL author="sathyabhat"
+ ---> Running in 308b9df29d70
+Removing intermediate container 308b9df29d70
+ ---> 948155b591f6
+Step 3/6 : LABEL description="Dockerfile for Python script which prints Hello, Name"
+ ---> Running in 3a594c73e06f
+Removing intermediate container 3a594c73e06f
+ ---> 41ef21b9f24d
+Step 4/6 : COPY hello-world.py /app/
+ ---> d16fbaaa8e83
+Step 5/6 : ENV NAME=Sathya
+ ---> Running in 364b71887afd
+Removing intermediate container 364b71887afd
+ ---> f706453b9368
+Step 6/6 : CMD python3 /app/hello-world.py
+ ---> Running in 1f84e24e51a1
+Removing intermediate container 1f84e24e51a1
+ ---> 0be43883a41e
+Successfully built 0be43883a41e
+Successfully tagged sun:hello_python
+litepoint@litepoint-Latitude-E6440:~/Desktop/Docker_files/dock3$ 
+
+

@@ -1,0 +1,22 @@
+		<testItem type = "Tx Test" name = "%%sub getvalue("rate")%%">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "%%sub getvalue("bw","HT20")%%" />
+			<param name = "count" value = "1000" />
+			<param name = "evmAnalysisEnable" value = "%%sub gettest("evm","Disable")%%" />
+			<param name = "evm_avg_count" value = "3" />
+			<param name = "freq" value = "%%sub getvalue("freq","2412")%%" />
+			<param name = "id" value = "%%sub getid()%%" />
+			<param name = "length" value = "255" />
+			<param name = "maskAnalysisEnable" value = "%%sub gettest("mask","Disable")%%" />
+			<param name = "mask_avg_count" value = "1" />
+			<param name = "power" value = "%%sub getvalue("power","15.000000")%%" />
+			<param name = "powerAnalysisEnable" value = "%%sub gettest("power","Disable")%%" />
+			<param name = "power_avg_count" value = "0" />
+			<param name = "preamble" value = "%%sub getvalue("preamble","Long")%%" />
+			<param name = "rampAnalysisEnable" value = "%%sub gettest("ramp","Disable")%%" />
+			<param name = "ramp_avg_count" value = "0" />
+			<param name = "rate" value = "%%sub getvalue("rate","???")%%" />
+		</testItem>

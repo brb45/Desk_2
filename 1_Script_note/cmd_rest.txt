@@ -1,0 +1,1130 @@
+HTTP:
+
+1.)  Safe methods are HTTP methods that do not modify resources. 
+    For instance, using GET or HEAD on a resource URL, should NEVER change the resource.
+    Since PUT request (so does PATCH for that matter) updates the resource, 
+    so it can't be cached and hence it's not SAFE
+
+2.) Idempotent
+An idempotent HTTP method is a HTTP method that can be called many times without different outcomes. 
+It would not matter if the method is called only once, or ten times over. 
+The result should be the same. Again, this only applies to the result, not the resource itself.
+
+The idea behind PUT request being idempotent is that if an update call on a resource fails, 
+a client can make the same call again without causing any undesirable or inconsistent state. 
+PUT request should always be preceded by a GET request to the resource, 
+and should succeed if and if only resource hasn't changed since. 
+
+
+    It's not safe because in general you can't safely execute a PATCH request without changing a resource (That's what it's for).
+So why is PATCH not idempotent compared to PUT? 
+It's because it matters how you apply your changes. If you'd like to change the name property of a resource, 
+you might send something like {"name": "foo"} as a payload and that would indeed be idempotent 
+since executing this request any number of times would yield the same result: The resources name attribute is now "foo".
+    But PATCH is much more general in how you can change a resource (check this definition on how to apply a JSON patch). 
+It could also, for example, mean to move the resource and would look something like this: 
+{ "op": "move", "from": "/a/b/c", "path": "/a/b/d" }. This operation is obviously not idempotent 
+since calling at a second time would result in an error.
+So while most PATCH operations might be idempotent, there are some that aren't.
+    Idempotence is defined by repeating an operation multiple times in a row. 
+Saying that something is not idempotent because the effect is different 
+if some other operation was executed in between or in parallel just isn't a valid argument 
+(no operation would be idempotent in general if that was the case).
+ Mathematically, an idempotent transformation is one that yields the same result, 
+ no matter how often you apply it (like rotating something 360 degrees). 
+ Of course two 360 deg rotation might yield different results if you apply any other operation in between.
+    A PATCH request that is not idempotent would be for instance appending items to an array: using JSON Patch format, 
+{"op": "add", "path": "/-", "value": "foo"} transforms [] to ["foo"] the 1st time, then to ["foo", "foo"] the 2nd time, 
+then to ["foo", "foo", "foo"] the 3rd time, etc.
+
+    I recently started looking if Patch is idempotent or not and after reading about the JSON patch format, 
+i understood that if the add operation is applied using the Patch method its completely possible that the request is non-idempotent 
+as it could add the new values to an existing resource if the same request is made multiple times.
+{ "op": "add", "path": "/a/b/c", "value": [ "foo", "bar" ] }
+ 
+3.) Cachable
+
+4.) stateless and uniform interface  and client-server architecture
+
+Safe: GET, HEAD, OPTION
+NOT-safe: put
+Idempotent: Put, Delete
+Not-Idempotent:  Post, Patch
+
+
+#v1 10/9/2019
+
+pip freeze > requirements.txt
+
+Username (leave blank to use 'jsun'): jsun
+Email address: sunusd@yahoo.com
+Password: Django2!
+
+#1. Create venv @ \HillarDjangoREST\01, not need to create separate folder, . is important
+# folder \HillarDjangoREST\01 is created by running "python -m venv .\HillarDjangoREST\01"
+C:\Users\jsun\Documents\Py_projects>python -m venv .\HillarDjangoREST\01
+
+#2. Before installing any third party package, first Activate virtual evn (01)
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01>pip list
+Package    Version
+---------- -------
+pip        18.1
+setuptools 40.6.2
+You are using pip version 18.1, however version 19.1.1 is available.
+You should consider upgrading via the 'python -m pip install --upgrade pip' command.
+
+#3. Install Django
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01>pip install django==1.11.5
+
+#4 Install Django REST framework
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01>pip install djangorestframework==3.6.4
+
+#5 Create a Django project
+python Scripts\django-admin.exe startproject restful01
+
+#6 create a new Django app
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>python manage.py startapp toys
+
+#7. install curl
+#8 install HTTPie
+pip install --upgrade httpie
+#9. install postman
+#10 install Stoplight
+
+#11 testing
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01>pip install pytest
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01>pip install pytest-django
+
+#12.
+
+#url
+http://localhost:8000/toys/
+http://localhost:8000/toys/5
+
+#12.1 Create first model: 
+/01/restful01/toys/models.py
+#12.2 First migrations
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>python manage.py makemigrations toys
+Migrations for 'toys':
+  toys\migrations\0001_initial.py
+    - Create model Toy
+#11.2 Apply Migration
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, toys
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying sessions.0001_initial... OK
+  Applying toys.0001_initial... OK
+
+#12.3 Download sqlite3.exe command-line utility
+#12.4 check database
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>sqlite3 db.sqlite3 ".tables"
+auth_group                  django_admin_log
+auth_group_permissions      django_content_type
+auth_permission             django_migrations
+auth_user                   django_session
+auth_user_groups            toys_toy
+auth_user_user_permissions
+
+#12.5
+#sqlite3 query
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>sqlite3 db.sqlite3 "SELECT * FROM toys_toy ORDER BY name;"
+#
+sqlite3 db.sqlite3 ".schema toys_toy"
+
+CREATE TABLE IF NOT EXISTS "toys_toy" 
+    (
+        "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+        "created" datetime NOT NULL, 
+        "name" varchar(150) NOT NULL, 
+        "description" varchar(250) NOT NULL, 
+        "toy_category" varchar(200) NOT NULL, 
+        "release_date" datetime NOT NULL, 
+        "was_included_in_home" bool NOT NULL
+    );
+#12.6
+# python interactive shell
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+
+>>> from datetime import datetime
+>>> from django.utils import timezone
+>>> from django.utils.six import BytesIO
+>>> from rest_framework.renderers import JSONRenderer
+>>> from rest_framework.parsers import JSONParser
+>>> from toys.models import Toy
+>>> from toys.serializers import ToySerializer
+
+>>> toy_release_date = timezone.make_aware(datetime.now(), timezone.get_current_timezone())
+
+>>> toy1 = Toy(name='Snoopy talking action figure', description='Snoopy speaks five languages', release_date=toy_release_date, toy_category='Action figures', was_included_in_home=False)
+>>> toy1.save()
+
+>>> toy2 = Toy(name='Hawaiian Barbie', description='Barbie loves Hawaii', release_date=toy_release_date, toy_category='Dolls', was_included_in_home=True)
+>>> toy2.save()
+
+#13. Start Server
+#python manage.py runserver 0.0.0.0:8000
+#192.168.2.103:8000
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>python manage.py runserver
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 16, 2019 - 10:31:58
+Django version 1.11.17, using settings 'restful01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+#13. HTTP request through curl: GET localhost:8000/toys/
+C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>curl X GET localhost:8000/toys/
+curl: (6) Could not resolve host: X
+curl: (6) Could not resolve host: GET
+
+[{"pk":3,"name":"Clash Royale play set","description":"6 figures from Clash Royale","release_date":"2017-10-09T12:0:00.776594Z",
+"toy_category":"Playset","was_included_in_home":false},
+{"pk":2,"name":"Hawaiian Barbie","description" :"Barbie loves Hawaii",
+"release_date":"2019-05-14T17:42:13.029376Z","toy_category":"Dolls","was_included_in_home":true},
+{"pk":1,"name":"Snoopy talking action figure","description":"Snoopy speaks five languages","release_date":"2019-05-14T17:42:13.029376Z",
+"toy_category":"Action figures","was_included_in_home":false}]
+
+# i option to show HTTP header
+C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>curl -iX GET localhost:8000/toys/
+HTTP/1.0 200 OK
+Date: Thu, 16 May 2019 18:30:53 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+Content-Length: 548
+
+[{"pk":3,"name":"Clash Royale play set","description":"6 figures from Clash Royale","release_date":"2017-10-09T12:10:00.776594Z","toy_category":"Playset","was_included_in_home":false},{"pk":2,"name":"Hawaiian Barbie","description":"Barbie loves Hawaii","release_date":"2019-05-14T17:42:13.029376Z","toy_category":"Dolls","was_included_in_home":true},{"pk":1,"name":"Snoopy talking action figure","description":"Snoopy speaks five languages","release_date":"2019-05-14T17:42:13.029376Z","toy_category":"Action figures","was_included_in_home":false}]
+
+#14. Use HTTPie utility
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http localhost:8000/toys/
+HTTP/1.0 200 OK
+Content-Length: 548
+Content-Type: application/json
+Date: Thu, 16 May 2019 19:00:41 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+[
+    {
+        "description": "6 figures from Clash Royale",
+        "name": "Clash Royale play set",
+        "pk": 3,
+        "release_date": "2017-10-09T12:10:00.776594Z",
+        "toy_category": "Playset",
+        "was_included_in_home": false
+    },
+    {
+        "description": "Barbie loves Hawaii",
+        "name": "Hawaiian Barbie",
+        "pk": 2,
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Dolls",
+        "was_included_in_home": true
+    },
+    {
+        "description": "Snoopy speaks five languages",
+        "name": "Snoopy talking action figure",
+        "pk": 1,
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Action figures",
+        "was_included_in_home": false
+    }
+]
+## ignore header with -b option
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http  -b :8000/toys/
+[
+    {
+        "description": "6 figures from Clash Royale",
+        "name": "Clash Royale play set",
+        "pk": 3,
+        "release_date": "2017-10-09T12:10:00.776594Z",
+        "toy_category": "Playset",
+        "was_included_in_home": false
+    },
+    {
+        "description": "Barbie loves Hawaii",
+        "name": "Hawaiian Barbie",
+        "pk": 2,
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Dolls",
+        "was_included_in_home": true
+    },
+    {
+        "description": "Snoopy speaks five languages",
+        "name": "Snoopy talking action figure",
+        "pk": 1,
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Action figures",
+        "was_included_in_home": false
+    }
+]
+
+## GET http://localhost:8000/toys/3
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http :8000/toys/3
+HTTP/1.0 200 OK
+Content-Length: 182
+Content-Type: application/json
+Date: Thu, 16 May 2019 19:15:56 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+{
+    "description": "6 figures from Clash Royale",
+    "name": "Clash Royale play set",
+    "pk": 3,
+    "release_date": "2017-10-09T12:10:00.776594Z",
+    "toy_category": "Playset",
+    "was_included_in_home": false
+}
+## curl
+C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>curl -iX GET localhost:8000/toys/3
+HTTP/1.0 200 OK
+Date: Thu, 16 May 2019 19:18:36 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+X-Frame-Options: SAMEORIGIN
+Content-Length: 182
+
+{"pk":3,"name":"Clash Royale play set","description":"6 figures from Clash Royale","release_date":"2017-10-09T12:10:00.776594Z","toy_category":"Playset","was_included_in_home":false}
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http :8000/toys/90
+HTTP/1.0 404 Not Found
+Content-Length: 0
+Content-Type: text/html; charset=utf-8
+Date: Thu, 16 May 2019 19:40:35 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+## POST command
+
+http POST :8000/toys/ name="PvZ 2 puzzle" description="Plants vs Zombies 2 puzzle" toy_category="Puzzle" was_included_in_home=false  release_date="2017-10-08T01:01:00.776594Z"
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http POST :8000/toys/ name="PvZ 2 puzzle" description="Plants vs Zombies 2 puzzle" toy_category="Puzzle" was_included_in_home=false  release_date="2017-10-08T01:01:00.776594Z"
+
+HTTP/1.0 201 Created
+Content-Length: 171
+Content-Type: application/json
+Date: Thu, 16 May 2019 19:52:07 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+{
+    "description": "Plants vs Zombies 2 puzzle",
+    "name": "PvZ 2 puzzle",
+    "pk": 4,
+    "release_date": "2017-10-08T01:01:00.776594Z",
+    "toy_category": "Puzzle",
+    "was_included_in_home": false
+}
+
+## PUT command
+http POST :8000/toys/  name="PvZ 2 puzzle" description="Plants vs Zombies 2 puzzle" toy_category="Puzzle" was_included_in_home=false  release_date="2017-10-08T01:01:00.776594Z"
+http PUT  :8000/toys/4 name="PvZ 3 puzzle" description="Plants vs Zombies 3 puzzle" toy_category="Puzzles & Games" was_included_in_home=false release_date="2017-10-08T01:01:00.776594Z"
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http PUT :8000/toys/4 name="PvZ 3 puzzle" description="Plants vs Zombies 3 puzzle" toy_category="Puzzles & Games" was_included_in_home=false release_date="2017-10-08T01:01:00.776594Z"
+HTTP/1.0 200 OK
+Content-Length: 180
+Content-Type: application/json
+Date: Thu, 16 May 2019 21:47:11 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+{
+    "description": "Plants vs Zombies 3 puzzle",
+    "name": "PvZ 3 puzzle",
+    "pk": 4,
+    "release_date": "2017-10-08T01:01:00.776594Z",
+    "toy_category": "Puzzles & Games",
+    "was_included_in_home": false
+}
+ 
+##As we didn't provide all the required values for a Toy instance, the toy_serializer.is_valid() method will return False 
+and the function will return an HTTP 400 Bad Request status code
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http PUT :8000/toys/4 name="PvZ 4 puzzle"
+HTTP/1.0 400 Bad Request
+Content-Length: 129
+Content-Type: application/json
+Date: Thu, 16 May 2019 22:02:23 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+{
+    "description": [
+        "This field is required."
+    ],
+    "release_date": [
+        "This field is required."
+    ],
+    "toy_category": [
+        "This field is required."
+    ]
+}
+##
+When we want our API to be able to update a single field for an existing resource, in this case, an existing toy, 
+we should provide an implementation for the PATCH method. The PUT method is meant to replace an entire resource 
+and the PATCH method is meant to apply a delta to an existing resource. 
+
+## DELETE command
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http DELETE :8000/toys/4
+HTTP/1.0 204 No Content
+Content-Length: 0
+Content-Type: text/html; charset=utf-8
+Date: Thu, 16 May 2019 22:16:52 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+##
+#curl -H "Accept: text/html" -iX GET localhost:8000/toys/
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful01>http :8000/toys/ Accept:text/html
+HTTP/1.0 200 OK
+Content-Length: 919
+Content-Type: application/json
+Date: Thu, 30 May 2019 00:27:14 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+X-Frame-Options: SAMEORIGIN
+
+[
+    {
+        "description": "6 figures from Clash Royale",
+        "id": 3,
+        "name": "Clash Royale play set",
+        "release_date": "2017-10-09T12:10:00.776594Z",
+        "toy_category": "Playset",
+        "was_included_in_home": false
+    },
+    {
+        "description": "detailed test plan and coverage",
+        "id": 6,
+        "name": "Formal QA process",
+        "release_date": "2019-05-29T01:01:00.776594Z",
+        "toy_category": "Noise Figure",
+        "was_included_in_home": false
+    },
+    {
+        "description": "Barbie loves Hawaii",
+        "id": 2,
+        "name": "Hawaiian Barbie",
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Dolls",
+        "was_included_in_home": true
+    },
+    {
+        "description": "Snoopy speaks five languages",
+        "id": 1,
+        "name": "Snoopy talking action figure",
+        "release_date": "2019-05-14T17:42:13.029376Z",
+        "toy_category": "Action figures",
+        "was_included_in_home": false
+    },
+    {
+        "description": "The Dragon's Trap puzzle",
+        "id": 5,
+        "name": "Wonderboy puzzle",
+        "release_date": "2017-10-03T01:01:00.776594Z",
+        "toy_category": "Puzzles & Games",
+        "was_included_in_home": false
+    }
+]
+
+##
+http OPTIONS :8000/toys/
+
+We have to compose and send an HTTP request with the GET HTTP verb and http://localhost:8000/toys/{id} request URL
+to retrieve the toy whose ID matches the specified numeric value in {id}. For example, if we use the request
+URL http://localhost:8000/toys/25, the server will retrieve the toy whose ID matches 25. As a result of the request,
+the server will retrieve a toy with the specified ID from the database and create the appropriate toy object in Python.
+If a toy is found, the server will serialize the toy object into JSON, return a 200 OK status code, and return a JSON
+body with the serialized toy object. If no toy matches the specified ID, the server will return only a
+404 Not Found status:
+
+Django automatically adds an auto-increment integer primary key column named id when it creates the database
+table related to the model. It is very important to notice that the model maps the underlying id column in
+an attribute named pk for the model
+
+Django REST framework uses a two-phase process for serialization. The serializers are mediators between
+the model instances and Python primitives. Parser and renderers handle as mediators between Python primitives and
+HTTP requests and responses
+
+http POST :8000/drone-categories/ name="Quadcopter"
+http POST :8000/pilots/ name="Penelope Pitstop" gender="F" races_count=0
+curl -iX POST -H "Content-Type: application/json" -d   '{"name":"Bill Rudulf", "gender":"F", "races_count": 0}' localhost:8000/pilots/
+
+http GET :8000/drones/
+curl -iX GET localhost:8000/drones/
+
+http GET ":8000/drones/?offset=0"
+http GET ":8000/drones/?limit=4&offset=0"
+
+http GET ":8000/drones/?limit=4&offset=4"
+
+# Filtering______________________________________________________________________________________________________
+#14.  Install , configure filter backend classes
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>pip install django-filter
+
+# Filtering
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>http ":8000/drone-categories/?name=Quadcopter"
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 306
+Content-Type: application/json
+Date: Sun, 07 Jul 2019 08:09:36 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "drones": [
+                "http://localhost:8000/drones/9",
+                "http://localhost:8000/drones/5",
+                "http://localhost:8000/drones/7",
+                "http://localhost:8000/drones/3",
+                "http://localhost:8000/drones/11"
+            ],
+            "name": "Quadcopter",
+            "pk": 4,
+            "url": "http://localhost:8000/drone-categories/4"
+        }
+    ]
+}
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>curl -iX GET "localhost:8000/drone-categories/?name=Quadcopter"
+HTTP/1.0 200 OK
+Date: Sun, 07 Jul 2019 08:10:17 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 306
+
+{"count":1,"next":null,"previous":null,"results":[{"url":"http://localhost:8000/drone-categories/4","pk":4,"name":"Quadcopter","drones":["http://localhost:8000/drones/9","http://localhost:8000/drones/5","http://localhost:8000/drones/7","http://localhost:8000/drones/3","http://localhost:8000/drones/11"]}]}
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>
+http ":8000/drones/?drone_category=1&has_it_competed=False&ordering=-name"
+
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 919
+Content-Type: application/json
+Date: Sun, 07 Jul 2019 08:20:13 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 4,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "drone_category": "Octocopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:48:03.040470Z",
+            "manufacturing_date": "2017-08-18T02:02:00.716312Z",
+            "name": "Ripslinger",
+            "url": "http://localhost:8000/drones/10"
+        },
+        {
+            "drone_category": "Octocopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:48:00.130489Z",
+            "manufacturing_date": "2017-06-18T02:02:00.716312Z",
+            "name": "RV-3",
+            "url": "http://localhost:8000/drones/8"
+        },
+        {
+            "drone_category": "Octocopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:47:54.379074Z",
+            "manufacturing_date": "2017-02-18T02:02:00.716312Z",
+            "name": "Eclipse",
+            "url": "http://localhost:8000/drones/4"
+        },
+        {
+            "drone_category": "Octocopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:47:57.253841Z",
+            "manufacturing_date": "2017-04-18T02:02:00.716312Z",
+            "name": "Dassault Falcon 7X",
+            "url": "http://localhost:8000/drones/6"
+        }
+    ]
+}
+
+# Searching______________________________________________________________________________________________________
+## Searching
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>http ":8000/drones/?search=G"
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 706
+Content-Type: application/json
+Date: Sun, 07 Jul 2019 22:47:29 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "drone_category": "Heavy Duty",
+            "has_it_competed": true,
+            "inserted_timestamp": "2019-07-07T04:20:31.819838Z",
+            "manufacturing_date": "2019-05-04T12:59:00Z",
+            "name": "Golden Armor",
+            "url": "http://localhost:8000/drones/2"
+        },
+        {
+            "drone_category": "Quadcopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:47:55.789031Z",
+            "manufacturing_date": "2017-03-20T02:02:00.716312Z",
+            "name": "Gossamer Albatross",
+            "url": "http://localhost:8000/drones/5"
+        },
+        {
+            "drone_category": "Quadcopter",
+            "has_it_competed": false,
+            "inserted_timestamp": "2019-07-07T06:47:58.691312Z",
+            "manufacturing_date": "2017-05-20T02:02:00.716312Z",
+            "name": "Gulfstream I",
+            "url": "http://localhost:8000/drones/7"
+        }
+    ]
+}
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful02>curl -iX GET "localhost:8000/drones/?search=G"
+HTTP/1.0 200 OK
+Date: Sun, 07 Jul 2019 22:48:56 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 706
+
+{"count":3,"next":null,"previous":null,"results":[{"url":"http://localhost:8000/drones/2","name":"Golden Armor","drone_category":"Heavy Duty","manufacturing_date":"2019-05-04T12:59:00Z","has_it_competed":true,"inserted_timestamp":"2019-07-07T04:20:31.819838Z"},{"url":"http://localhost:8000/drones/5","name":"Gossamer Albatross","drone_category":"Quadcopter","manufacturing_date":"2017-03-20T02:02:00.716312Z","has_it_competed":false,"inserted_timestamp":"2019-07-07T06:47:55.789031Z"},{"url":"http://localhost:8000/drones/7","name":"Gulfstream I","drone_category":"Quadcopter","manufacturing_date":"2017-05-20T02:02:00.716312Z","has_it_competed":false,"inserted_timestamp":"2019-07-07T06:47:58.691312Z"}]}
+
+# Authentication______________________________________________________________________________________________________
+##Add Authentication
+
+We want each drone to have an owner. Only an authenticated user will be able to create a drone and
+it will automatically become the owner of this new drone.
+
+Any authenticated user that isn't the owner of a specific drone resource will have read-only access to this drone.
+In addition, unauthenticated requests will also have read-only access to drones.
+
+We will combine authentication with specific permissions.
+Permissions use the authentication information included in the request.user and request.auth attributes
+to determine whether the request should be granted or denied access.
+Permissions allow us to control which types of users will be granted or denied access to the different features,
+methods, resources, or resource collections of our RESTful Web Service.
+
+#@ Basic authentication: user/passwd based
+### Add user/owner of drone
+from django.contrib.auth.models import User
+
+class Drone(models.Model):
+    name = models.CharField(max_length=250, unique=True)
+    drone_category = models.ForeignKey(
+        DroneCategory,
+        related_name='drones',
+        on_delete=models.CASCADE)
+    manufacturing_date = models.DateTimeField()
+    has_it_competed = models.BooleanField(default=False)
+    inserted_timestamp = models.DateTimeField(auto_now_add=True)
+
+    owner = models.ForeignKey(
+        'auth.User',
+        related_name='drones',
+        on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+The highlighted lines declare a new owner field for the Drone model. The new field uses the
+django.db.models.ForeignKey class to provide a many-to-one relationship to the django.contrib.auth.User model.
+
+This User model persists the users for the Django authentication system. Now, we are using this authentication
+system for our RESTful Web Service. The 'drones' value specified for the related_name argument creates a
+backward relation from the User to the Drone model. Remember that this value indicates the name to use for
+the relation from the related User object back to a Drone object. This way, we will be able to access all the drones
+owned by a specific user.
+
+Whenever we delete a User, we want all drones owned by this user to be deleted too, and therefore,
+we specified the models.CASCADE value for the on_delete argument.
+
+# Create superuser
+python manage.py createsuperuser
+# Create a user / create user
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from django.contrib.auth.models import User
+
+In [2]: user = User.objects.create_user('user01', 'user01@example.com', 'user01password')
+
+In [3]: user.save()
+
+### failed due to no authentication credential
+http POST :8000/drones/ name="Python Drone" drone_category="Quadcopter" manufacturing_date="2017-07-16T02:03:00.716312Z" has_it_competed=false
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http POST :8000/drones/ name="Python Drone" drone_category="Quadcopter" manufacturing_date="2017-07-16T02:03:00.716312Z" has_it_competed=false
+HTTP/1.0 401 Unauthorized
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 58
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 04:23:28 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+WWW-Authenticate: Basic realm="api"
+X-Frame-Options: SAMEORIGIN
+
+{
+    "detail": "Authentication credentials were not provided."
+}
+
+
+#### we need to provide authentication credentials by using HTTP authentication.
+# http  -a 
+http -a "djangosuper":"passwordforsuper" POST :8000/drones/ name="Python Drone" drone_category="Quadcopter" manufacturing_date="2017-07-16T02:03:00.716312Z" has_it_competed=false
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http -a "jsun":"Django2!" POST :8000/drones/ name="Python Drone" drone_category="Quadcopter" manufacturing_date="2017-07-16T02:03:00.716312Z" has_it_competed=false
+http -a "jsun":"Django2!" POST :8000/drones/ name="Python Drone" drone_category="Quadcopter" manufacturing_date="2017-07-16T02:03:00.716312Z" has_it_competed=false
+
+HTTP/1.0 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 233
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 04:27:30 GMT
+Location: http://localhost:8000/drones/1
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drone_category": "Quadcopter",
+    "has_it_competed": false,
+    "inserted_timestamp": "2019-07-08T04:27:30.510528Z",
+    "manufacturing_date": "2017-07-16T02:03:00.716312Z",
+    "name": "Python Drone",
+    "owner": "jsun",
+    "url": "http://localhost:8000/drones/1"
+}
+
+
+### Non-owner user can't  modify
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http -a "user01":"user01password" PATCH :8000/drones/1 has_it_competed=true
+http -a "user01":"user01password" PATCH :8000/drones/1 has_it_competed=true
+
+HTTP/1.0 403 Forbidden
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 63
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 04:34:39 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "detail": "You do not have permission to perform this action."
+}
+
+### Non-owner is read-only
+http -a "user01":"user01password" GET :8000/drones/1
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http -a "user01":"user01password" GET :8000/drones/1
+HTTP/1.0 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 233
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 04:39:42 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drone_category": "Quadcopter",
+    "has_it_competed": false,
+    "inserted_timestamp": "2019-07-08T04:27:30.510528Z",
+    "manufacturing_date": "2017-07-16T02:03:00.716312Z",
+    "name": "Python Drone",
+    "owner": "jsun",
+    "url": "http://localhost:8000/drones/1"
+}
+
+#_____________________________________________________________________________________________
+### Token-based authentication
+## create Token: token.key
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from rest_framework.authtoken.models import Token
+   ...: from django.contrib.auth.models import User
+
+In [2]: user = User.objects.get(username="user01")
+   ...: token = Token.objects.create(user=user)
+   ...: print(token.key)
+6cf441304a876e856bc841f1544e3e21feb1efbd
+
+##
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http :8000/pilots/
+HTTP/1.0 401 Unauthorized
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 58
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 18:56:32 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+WWW-Authenticate: Token
+X-Frame-Options: SAMEORIGIN
+
+{
+    "detail": "Authentication credentials were not provided."
+}
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>curl -iX GET localhost:8000/pilots/
+HTTP/1.0 401 Unauthorized
+Date: Mon, 08 Jul 2019 18:57:59 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+WWW-Authenticate: Token
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 58
+
+{"detail":"Authentication credentials were not provided."}
+
+
+http POST :8000/pilots/ name="Penelope Pitstop" gender="F" races_count=0
+##
+http :8000/pilots/ "Authorization: Token PASTE-TOKEN-HERE"
+http :8000/pilots/ "Authorization: Token 6cf441304a876e856bc841f1544e3e21feb1efbd"
+#http POST :8000/pilots/ "Authorization: Token 48c0ca940e2aabbd57030794b6748a5a3717786d" name="Penelope Pitstop" gender="F" races_count=0
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http :8000/pilots/ "Authorization: Token 6cf441304a876e856bc841f1544e3e21feb1efbd"
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 52
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 20:08:31 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+}
+##
+curl -iX GET http://localhost:8000/pilots/ -H "Authorization: Token 6cf441304a876e856bc841f1544e3e21feb1efbd"
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>curl -iX GET http://localhost:8000/pilots/ -H "Authorization: Token 6cf441304a876e856bc841f1544e3e21feb1efbd"
+HTTP/1.0 200 OK
+Date: Mon, 08 Jul 2019 20:10:00 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 52
+
+{"count":0,"next":null,"previous":null,"results":[]}
+
+#______________________________________________________________________________
+## Throttling to limit amount of requests
+Throttles control the rate of requests that users can make to our RESTful Web Service.
+The Django REST framework makes it easy to configure throttling rules.
+We will use throttling rules to configure the following limitations to the usage of our RESTful Web Service:
+
+# 429 Too Many Requests
+
+A maximum of 3 requests per hour for unauthenticated users
+A maximum of 10 requests per hour for authenticated users
+A maximum of 20 requests per hour for the drones related views
+A maximum of 15 requests per hour for the pilots related views
+
+##  Anonymous user
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http :8000/competitions/
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 52
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 22:22:24 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+}
+
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http :8000/competitions/
+HTTP/1.0 429 Too Many Requests
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 71
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 22:22:30 GMT
+Retry-After: 3587
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "detail": "Request was throttled. Expected available in 3587 seconds."
+}
+## Authenticated users
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>http -a "user01":"user01password" :8000/competitions/
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 52
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 22:27:25 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+}
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful03>curl --user "user01":"user01password" -iX GET localhost:8000/competitions/
+HTTP/1.0 200 OK
+Date: Mon, 08 Jul 2019 22:34:53 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Vary: Accept
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 52
+
+{"count":0,"next":null,"previous":null,"results":[]}
+
+########################## restful04
+# Version control
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful04>http -a "jsun":"Django2!" :8000/v1/
+HTTP/1.0 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Length: 209
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 23:48:09 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "competitions": "http://localhost:8000/v1/competitions/",
+    "drone-categories": "http://localhost:8000/v1/drone-categories/",
+    "drones": "http://localhost:8000/v1/drones/",
+    "pilots": "http://localhost:8000/v1/pilots/"
+}
+
+
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful04>http -a "jsun":"Django2!" :8000/v2/
+HTTP/1.0 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Length: 217
+Content-Type: application/json
+Date: Mon, 08 Jul 2019 23:48:25 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "competitions": "http://localhost:8000/v2/competitions/",
+    "pilots": "http://localhost:8000/v2/pilots/",
+    "vehicle-categories": "http://localhost:8000/v2/vehicle-categories/",
+    "vehicles": "http://localhost:8000/v2/vehicles/"
+}
+
+############################### rest05 pyTest######################
+pip install pytest
+pip install pytest-django
+
+In [1]: from rest_framework.authtoken.models import Token
+   ...: from django.contrib.auth.models import User
+
+In [2]: user = User.objects.get(username="user01")
+
+In [3]: token = Token.objects.create(user=user)
+
+In [4]: print(token.key)
+9fd172d6532f96dbe4ce73c3c21808d4bb4fcdc2
+
+##
+In [5]: user = User.objects.get(username="user02")
+
+In [6]: token = Token.objects.create(user=user)
+
+In [7]: print(token.key)
+48c0ca940e2aabbd57030794b6748a5a3717786d
+
+curl -X POST -H "Authorization: Token 48c0ca940e2aabbd57030794b6748a5a3717786d" -d '{name="Mark Oswald" gender="F" races_count=0}' localhost:8000/pilots/
+
+##
+http POST :8000/pilots/ "Authorization: Token 48c0ca940e2aabbd57030794b6748a5a3717786d" name="Penelope Pitstop" gender="F" races_count=0
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest>http POST :8000/pilots/ "Authorization: Token 48c0ca940e2aabbd57030794b6748a5a3717786d" name="Penelope Pitstop" gender="F" races_count=0
+HTTP/1.0 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 194
+Content-Type: application/json
+Date: Tue, 09 Jul 2019 20:56:22 GMT
+Location: http://localhost:8000/pilots/1
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept
+X-Frame-Options: SAMEORIGIN
+
+{
+    "competitions": [],
+    "gender": "F",
+    "gender_description": "Female",
+    "inserted_timestamp": "2019-07-09T20:56:22.547627Z",
+    "name": "Penelope Pitstop",
+    "races_count": 0,
+    "url": "http://localhost:8000/pilots/1"
+}
+
+## Check test.py
+pytest -v
+The pytest command and the Django REST framework will perform the following actions:
+
+Create a clean test database name test_drones.
+Run all the migrations required for the database.
+Discover the tests that have to be executed based on the settings specified in the pytest.ini file.
+Run all the methods whose name starts with the test_ prefix in the DroneCategoryTests class and display the results.
+We declared this class in the tests.py file and it matches the pattern specified for the python_files setting
+in the pytest.ini file.
+Drop the test database named test_drones.
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest>pytest -v
+================================================================= test session starts =================================================================
+platform win32 -- Python 3.7.2, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 -- c:\users\jsun\documents\py_projects\hillardjangorest\01\scripts\python.exe
+cachedir: .pytest_cache
+Django settings: restful05_pytest.settings (from ini file)
+rootdir: C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest, inifile: pytest.ini
+plugins: django-3.5.1
+collected 6 items
+
+drones/tests.py::DroneCategoryTests::test_filter_drone_category_by_name PASSED                                                                   [ 16%]
+drones/tests.py::DroneCategoryTests::test_get_drone_categories_collection PASSED                                                                 [ 33%]
+drones/tests.py::DroneCategoryTests::test_get_drone_category PASSED                                                                              [ 50%]
+drones/tests.py::DroneCategoryTests::test_post_and_get_drone_category PASSED                                                                     [ 66%]
+drones/tests.py::DroneCategoryTests::test_post_existing_drone_category_name PASSED                                                               [ 83%]
+drones/tests.py::DroneCategoryTests::test_update_drone_category PASSED
+
+##
+(01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest>pytest -vs
+================================================================= test session starts =================================================================
+platform win32 -- Python 3.7.2, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 -- c:\users\jsun\documents\py_projects\hillardjangorest\01\scripts\python.exe
+cachedir: .pytest_cache
+Django settings: restful05_pytest.settings (from ini file)
+rootdir: C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest, inifile: pytest.ini
+plugins: django-3.5.1
+collected 6 items
+
+drones/tests.py::DroneCategoryTests::test_filter_drone_category_by_name Creating test database for alias 'default'...
+url is  /drone-categories/
+url is  /drone-categories/
+/drone-categories/?name=Hexacopter
+<Response status_code=200, "application/json">
+PASSED
+drones/tests.py::DroneCategoryTests::test_get_drone_categories_collection url is  /drone-categories/
+PASSED
+drones/tests.py::DroneCategoryTests::test_get_drone_category url is  /drone-categories/
+PASSED
+drones/tests.py::DroneCategoryTests::test_post_and_get_drone_category url is  /drone-categories/
+PK 1
+PASSED
+drones/tests.py::DroneCategoryTests::test_post_existing_drone_category_name url is  /drone-categories/
+url is  /drone-categories/
+<Response status_code=400, "application/json">
+PASSED
+drones/tests.py::DroneCategoryTests::test_update_drone_category url is  /drone-categories/
+PASSEDDestroying test database for alias 'default'...
+
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

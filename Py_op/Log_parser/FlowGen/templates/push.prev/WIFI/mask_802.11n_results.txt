@@ -1,0 +1,20 @@
+			<measurementType name="MASK" type = "802.11n">
+				<result name = "VIOLATION_PERCENT_VSA1" unit = "%" helpText = "Returns the percentage of points that violate the defined spectral mask for each of the transmitted signals." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "OBW_MHZ_VSA1" unit = "MHz" helpText = "Returns the occupied BW for each VSA (transmitter)" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_LO_A_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for lower section A" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_LO_B_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for lower section B" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_LO_C_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for lower section C" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_LO_D_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for lower section D" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_UP_A_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for upper section A" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_UP_B_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for upper section B" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_UP_C_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for upper section C" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "FREQ_MHZ_UP_D_VSA1" unit = "MHz" helpText = "Returns the point where the least margin to the specified mask occurs , for upper section D" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_LO_A_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for lower section A" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_LO_B_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for lower section B" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_LO_C_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for lower section C" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_LO_D_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for lower section D" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_UP_A_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for upper section A" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_UP_B_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for upper section B" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_UP_C_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for upper section C" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "MARGIN_DB_UP_D_VSA1" unit = "dB" helpText = "Returns the marginal value to the specified mask occurs , for upper section D" dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>

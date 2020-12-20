@@ -1,0 +1,48 @@
+{
+ "version": 8,
+ "sprite": "... url ...",
+ "glyphs": {
+     "esri": {
+         "type": "vector",
+         "url": "... url ..."
+     }
+ },
+ "layers": [
+     {
+         "id": "Urban area",
+         "type": "fill",
+         "source": "esri",
+         "source-layer": "Urban area",
+         "minzoom": 5,
+         "maxzoom": 15,
+         "layout": {},
+         "paint": {
+             "fill-color": {
+                 "stops": [
+                     [ 5, "#e3dfdc" ],
+                     [ 10, "#ECE8E3" ],
+                     [ 15, "#f2eee9" ]
+                 ]
+             }
+         }
+     }
+    ],
+   "metadata": {
+       "arcgisStyleUrl": ".../root.json",
+       "arcgisOriginalItemTitle": "My own stylized basemap",
+       "arcgisEditorExtents": [
+           {
+               "spatialReference": {
+                   "wkid": 102100
+               },
+               "xmin": -13752117.134841962,
+               "ymin": 5660215.840424524,
+               "xmax": -13560260.193846097,
+               "ymax": 5744755.193707961
+           }
+
+           /* plus some other extents */
+       ],
+       "arcgisMinimapVisibility": true
+   }
+}

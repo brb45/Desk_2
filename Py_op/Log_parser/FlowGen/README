@@ -1,0 +1,83 @@
+
+See doc\flowGen_UserGuide.docx for more information.
+
+Prerequisite
+-----------------------------------------
+To use flowgen you must first have python installed on your computer.
+I recommend version 2.7, which you can download from www.python.org.
+
+Description of flowGen files:
+-----------------------------------------
+
+UserGuide.txt           ->  user documentation; how to use flowGen
+input/                  ->  folder containing sample input csv files
+output/                 ->  folder containing sample output files
+templates/              ->  templates files used by flowGen to generate output flow files
+test/                   ->  input csv and output files used/created by regression tests
+runTests.bat            ->  script to run all regression tests
+flowGen.py, records.py, limits.py  	->  source code for flowGen
+flow_datarate.py, readtemplate.py	->	experimental files, not in use
+setup.py				->	used to create and executable, flowgen.exe
+
+Quick Start
+------------------------------------------
+The simplest way to use flowgen is to run from the source code:
+
+	python flowGen.py input\example1_wifi.csv -o output\example1_wifi_out.txt
+
+All the other py files must exist in the current folder.  The .csv file is the input,
+the output flow file is specified with the "-o" option.
+
+Regression Tests
+------------------------------------------
+The regression tests are in the .\test folder.  The script .\runTests.bat runs all the
+regression tests and compares each result with a golden file.
+
+To generate an executable, flowgen.exe
+------------------------------------------
+It is possible to create an flowgen.exe windows executable.
+We use the py2exe program to create an .exe file from the python files.
+You must first download and install py2exe.
+
+Simple to use to start with, download and install, create a 'setup.py' file
+as described in the py2exe doc, and run.  It will create 'build' and 'dist' folders.
+The 'dist' folder is the one you need to use.  However it contains several distinct
+files you need.  We need to collect it into a single .exe as much as we can.
+
+setup.py file, using "bundle_files = 1' option and 'zipfile = None' to create a
+single executable:
+
+    setup(
+        console=['flowGen.py'],
+        options = {'py2exe': {'bundle_files': 1,
+                              'dll_excludes': ['w9xpopen.exe']}},
+        zipfile = None,
+        )
+
+To run py2exe to create flowgen.exe:
+
+    python setup.py py2exe
+
+Files in ./dist folder: (w9xpopen.exe isn't needed for Win XP and later)
+
+    flowGen.exe
+    MSVCR71.dll      <- need to make sure we are legally able to distribute 
+                        this file (probably)
+
+To run flowgen.exe (example):
+
+	copy dist\flowgen.exe .
+	flowgen.exe example_wifi.csv
+
+Notes:
+	The py file specified is used to begin a search by py2exe to locate all the dependencies
+	of this file, which are then included in the .exe file.
+	
+	The flowgen.exe which is created by py2exe seems to run significantly slower than
+	running from the python....
+
+Useful Info:
+	List of Options:					http://www.py2exe.org/index.cgi/ListOfOptions
+	Single File Executable example:		http://www.py2exe.org/index.cgi/SingleFileExecutable
+	Generate single executable file:	http://stackoverflow.com/questions/112698/py2exe-generate-single-executable-file
+

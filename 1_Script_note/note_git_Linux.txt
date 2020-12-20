@@ -1,0 +1,1624 @@
+#1/24/2019
+#####1. git . __________________________________________#
+git init
+git clone https://github.com/brb45/sampleproject 
+git add b_file_op1.py b_file_op2.py
+git add .
+
+git rm --cached b_file_op2.py
+git commit -m "b_file_1 draft1" b_file_op1.py
+git commit -am "Second Line" 3.txt
+
+git log
+git status -s
+
+git branch
+git branch demoBranch
+git checkout demoBranch
+git log --oneline
+
+git clean
+git reset
+git revert
+
+git remote -v
+git remote remove origin
+git remote add origin https://github.com/brb45/repo2  
+
+#strace –p <pid> 
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git version
+git version 2.16.1.windows.4
+git push -u origin master
+git pull origin master
+
+#####2. Linux . __________________________________________#
+Linux:
+nmap:10.0.2.15
+awk, sed,
+ps aux
+/usr/share?/usr/local  #software installed path
+
+apt --version
+apt 1.6.8 (amd64)
+
+ssh root@192.168.4.62 rm -fr /root/Documents/test_d
+scp -r test_d/ root@192.168.4.62:/root/Documents
+
+
+uname -a
+
+sudo apt-get install build-essential checkinstall
+sudo apt-get install build-essential
+sudo wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
+sudo tar xzf Python-3.7.2.tgz
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+sudo apt install -y python3-pip
+
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --config python3
+There are 2 choices for the alternative python3 (providing /usr/bin/python3).
+
+  Selection    Path                Priority   Status
+------------------------------------------------------------
+* 0            /usr/bin/python3.6   1         auto mode
+  1            /usr/bin/python3.6   1         manual mode
+  2            /usr/bin/python3.7   1         manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 2
+
+sudo apt install python3-venv
+
+python3 -m venv env
+$ source env/bin/activate
+
+mkdir -p /just/one/dir
+mkdir -p -- a/foo b/bar a/baz
+
+######3. Python
+
+sudo apt install python-pip
+sudo apt-get install tcpdump graphviz imagemagick python-gnuplot python-cryptography python-pyx
+
+python -V
+python --version
+
+pip install --user --upgrade pip
+pip install xlrd  #excel
+
+C:\Users\jsun\Documents\django\bookmarks_test\bookmarks>python -m venv bookmarks_env
+pip list
+
+##Setup virtualenv
+wuding@wuding-VirtualBox:~/Documents$ mkdir env
+wuding@wuding-VirtualBox:~/Documents$ cd env/
+wuding@wuding-VirtualBox:~/Documents/env$ virtualenv gmapenv
+wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ ls
+bin  include  lib
+wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ . bin/activate
+(gmapenv) wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ ls bin
+activate       activate.ps1      easy_install      pip3    python3        wheel
+activate.csh   activate_this.py  easy_install-3.6  pip3.6  python3.6
+activate.fish  activate.xsh      pip               python  python-config
+(gmapenv) wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ 
+
+######4. networking . __________________________________________#
+10.*.*.*, 172.16–31.*.*, 192.168.*.*
+ping , nmap , ip route, iptables, traceroute
+
+
+#
+File handling
+String handling
+Buffer handling
+Variable handling
+Database access
+Logging utilities
+System\Environment handling
+Application mapping functions
+System messaging or system API enhancements and wrappers
+
+######5. Py test . __________________________________________#
+#Python module
+subprocess.Popen
+from prettytable import PrettyTable
+import pytest
+
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local bra
+nch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help -a
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+
+available git commands in 'C:\Program Files\Git\mingw64/libexec/git-core'
+
+  add                     gc                      receive-pack
+  add--interactive        get-tar-commit-id       reflog
+  am                      grep                    remote
+  annotate                gui                     remote-ext
+  apply                   gui--askpass            remote-fd
+  archimport              gui--askyesno           remote-ftp
+  archive                 gui.tcl                 remote-ftps
+  askpass                 hash-object             remote-http
+  bisect                  help                    remote-https
+  bisect--helper          http-backend            repack
+  blame                   http-fetch              replace
+  branch                  http-push               request-pull
+  bundle                  imap-send               rerere
+  cat-file                index-pack              reset
+  check-attr              init                    rev-list
+  check-ignore            init-db                 rev-parse
+  check-mailmap           instaweb                revert
+  check-ref-format        interpret-trailers      rm
+  checkout                log                     send-email
+  checkout-index          ls-files                send-pack
+  cherry                  ls-remote               sh-i18n--envsubst
+  cherry-pick             ls-tree                 shortlog
+  citool                  mailinfo                show
+  clean                   mailsplit               show-branch
+  clone                   merge                   show-index
+  column                  merge-base              show-ref
+  commit                  merge-file              stage
+  commit-tree             merge-index             stash
+  config                  merge-octopus           status
+  count-objects           merge-one-file          stripspace
+  credential              merge-ours              submodule
+  credential-manager      merge-recursive         submodule--helper
+  credential-store        merge-resolve           subtree
+  credential-wincred      merge-subtree           svn
+  cvsexportcommit         merge-tree              symbolic-ref
+  cvsimport               mergetool               tag
+  daemon                  mktag                   unpack-file
+  describe                mktree                  unpack-objects
+  diff                    mv                      update
+  diff-files              name-rev                update-git-for-windows
+  diff-index              notes                   update-index
+  diff-tree               p4                      update-ref
+  difftool                pack-objects            update-server-info
+  difftool--helper        pack-redundant          upload-archive
+  fast-export             pack-refs               upload-pack
+  fast-import             patch-id                var
+  fetch                   prune                   verify-commit
+  fetch-pack              prune-packed            verify-pack
+  filter-branch           pull                    verify-tag
+  fmt-merge-msg           push                    web--browse
+  for-each-ref            quiltimport             whatchanged
+  format-patch            read-tree               worktree
+  fsck                    rebase                  write-tree
+  fsck-objects            rebase--helper
+
+git commands available from elsewhere on your $PATH
+
+  flow
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help -g
+The common Git guides are:
+
+   attributes   Defining attributes per path
+   everyday     Everyday Git With 20 Commands Or So
+   glossary     A Git glossary
+   ignore       Specifies intentionally untracked files to ignore
+   modules      Defining submodule properties
+   revisions    Specifying revisions and ranges for Git
+   tutorial     A tutorial introduction to Git (for version 1.5.1 or newer)
+   workflows    An overview of recommended workflows with Git
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help init
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help add
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ ls | grep py
+Py_QA/                          pysql/
+pyProjects/                     Python Operator Precedence.pdf
+
+ 
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ mkdir git_repo
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ ls | grep git
+git_repo/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ cd git_repo/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test1/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1
+$ git init
+Initialized empty Git repository in C:/Users/jsun/Documents/git_repo/test1/.g
+it/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 .git/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ mkdir temp1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 11:53 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 11:53 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Aug 30 13:33 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Aug 29 13:15 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Aug 29 18:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Nov  7 22:09 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Aug 30 00:19 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Aug 30 17:01 b_file_op7.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test2
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cp test1/*.py test2/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test2
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2
+$ ls -al
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:45 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:44 ../
+-rw-r--r-- 1 jsun 1049089 1686 Jan  7 13:45 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Jan  7 13:45 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Jan  7 13:45 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Jan  7 13:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Jan  7 13:45 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Jan  7 13:45 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Jan  7 13:45 b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2
+$ pwd
+/c/Users/jsun/Documents/git_repo/test2
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2
+$ git init
+Initialized empty Git repository in C:/Users/jsun/Documents/git_repo/test2/.g
+it/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2 (master)
+$ ls -al
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:44 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:46 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Jan  7 13:45 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Jan  7 13:45 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Jan  7 13:45 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Jan  7 13:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Jan  7 13:45 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Jan  7 13:45 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Jan  7 13:45 b_file_op7.py
+
+
+#####
+__________________________________________________________________________________
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ../
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ git clone https://github.com/brb45/sampleproject
+Cloning into 'sampleproject'...
+remote: Enumerating objects: 12, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (12/12), done.
+Receiving objectsremote: Total 348 (delta 3), reused 3 (delta 0), pack-reused
+Receiving objects: 100% (348/348), 82.45 KiB | 6.34 MiB/s, done.
+
+Resolving deltas: 100% (169/169), done.
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 sampleproject/
+__________________________________________________________________________________
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al sampleproject/
+total 22
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 .git/
+-rw-r--r-- 1 jsun 1049089  145 Jan  7 14:09 .gitignore
+-rw-r--r-- 1 jsun 1049089  420 Jan  7 14:09 .travis.yml
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 data/
+-rw-r--r-- 1 jsun 1049089 1100 Jan  7 14:09 LICENSE.txt
+-rw-r--r-- 1 jsun 1049089  141 Jan  7 14:09 MANIFEST.in
+-rw-r--r-- 1 jsun 1049089 1742 Jan  7 14:09 README.md
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 sample/
+-rw-r--r-- 1 jsun 1049089  677 Jan  7 14:09 setup.cfg
+-rw-r--r-- 1 jsun 1049089 8501 Jan  7 14:09 setup.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 tests/
+-rw-r--r-- 1 jsun 1049089 1191 Jan  7 14:09 tox.ini
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ cd sampleproject/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3/sampleproject (master)
+$ ls
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3/sampleproject (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test4
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test4
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4
+$ touch 1.txt 2.txt 3 txt 4.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4
+$ ls
+1.txt  2.txt  3  4.txt  txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4
+$ git status -s
+fatal: Not a git repository (or any of the parent directories): .git
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4
+$ git init
+Initialized empty Git repository in C:/Users/jsun/Documents/git_repo/test4/.git/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls
+sampleproject/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ git status
+fatal: Not a git repository (or any of the parent directories): .git
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ cd ..
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ cd ../test2
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test2 (master)
+$ cd ..
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls
+note.txt  test1/  test2/  test3/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -r
+test3/  test2/  test1/  note.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -ral
+total 33
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 test3/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:46 test2/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:43 test1/
+-rw-r--r-- 1 jsun 1049089 59 Jan  7 14:18 note.txt
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:14 ../
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:17 ./
+
+ 
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -L
+note.txt  test1/  test2/  test3/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -LR
+.:
+note.txt  test1/  test2/  test3/
+
+./test1:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py  temp1/
+
+./test1/temp1:
+
+./test2:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py
+
+./test3:
+sampleproject/
+
+./test3/sampleproject:
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+./test3/sampleproject/data:
+data_file
+
+./test3/sampleproject/sample:
+__init__.py  package_data.dat
+
+./test3/sampleproject/tests:
+__init__.py  test_simple.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -R
+.:
+note.txt  test1/  test2/  test3/
+
+./test1:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py  temp1/
+
+./test1/temp1:
+
+./test2:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py
+
+./test3:
+sampleproject/
+
+./test3/sampleproject:
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+./test3/sampleproject/data:
+data_file
+
+./test3/sampleproject/sample:
+__init__.py  package_data.dat
+
+./test3/sampleproject/tests:
+__init__.py  test_simple.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -r
+test3/  test2/  test1/  note.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -R
+.:
+note.txt  test1/  test2/  test3/
+
+./test1:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py  temp1/
+
+./test1/temp1:
+
+./test2:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py
+
+./test3:
+sampleproject/
+
+./test3/sampleproject:
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+./test3/sampleproject/data:
+data_file
+
+./test3/sampleproject/sample:
+__init__.py  package_data.dat
+
+./test3/sampleproject/tests:
+__init__.py  test_simple.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -aRl
+.:
+total 33
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:17 ./
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:14 ../
+-rw-r--r-- 1 jsun 1049089 59 Jan  7 14:18 note.txt
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:43 test1/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:46 test2/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 test3/
+
+./test1:
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:17 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:29 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Aug 30 13:33 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Aug 29 13:15 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Aug 29 18:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Nov  7 22:09 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Aug 30 00:19 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Aug 30 17:01 b_file_op7.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+./test1/.git:
+total 3
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:29 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:43 ../
+-rw-r--r-- 1 jsun 1049089 130 Jan  7 11:53 config
+-rw-r--r-- 1 jsun 1049089  73 Jan  7 11:53 description
+-rw-r--r-- 1 jsun 1049089  23 Jan  7 11:53 HEAD
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 11:53 hooks/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 11:53 info/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 11:53 objects/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 11:53 refs/
+
+./test1/.git/hooks:
+total 27
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:29 ../
+-rwxr-xr-x 1 jsun 1049089  478 Jan  7 11:53 applypatch-msg.sample*
+-rwxr-xr-x 1 jsun 1049089  896 Jan  7 11:53 commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 3327 Jan  7 11:53 fsmonitor-watchman.sample*
+-rwxr-xr-x 1 jsun 1049089  189 Jan  7 11:53 post-update.sample*
+-rwxr-xr-x 1 jsun 1049089  424 Jan  7 11:53 pre-applypatch.sample*
+-rwxr-xr-x 1 jsun 1049089 1642 Jan  7 11:53 pre-commit.sample*
+-rwxr-xr-x 1 jsun 1049089 1492 Jan  7 11:53 prepare-commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 1348 Jan  7 11:53 pre-push.sample*
+-rwxr-xr-x 1 jsun 1049089 4898 Jan  7 11:53 pre-rebase.sample*
+-rwxr-xr-x 1 jsun 1049089  544 Jan  7 11:53 pre-receive.sample*
+-rwxr-xr-x 1 jsun 1049089 3610 Jan  7 11:53 update.sample*
+
+./test1/.git/info:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:29 ../
+-rw-r--r-- 1 jsun 1049089 240 Jan  7 11:53 exclude
+
+./test1/.git/objects:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:29 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 info/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 pack/
+
+./test1/.git/objects/info:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+
+./test1/.git/objects/pack:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+
+./test1/.git/refs:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:29 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 heads/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 tags/
+
+./test1/.git/refs/heads:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+
+./test1/.git/refs/tags:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+
+./test1/temp1:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:43 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:43 ../
+
+./test2:
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:17 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:30 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Jan  7 13:45 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Jan  7 13:45 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Jan  7 13:45 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Jan  7 13:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Jan  7 13:45 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Jan  7 13:45 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Jan  7 13:45 b_file_op7.py
+
+./test2/.git:
+total 3
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:30 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 ../
+-rw-r--r-- 1 jsun 1049089 130 Jan  7 13:46 config
+-rw-r--r-- 1 jsun 1049089  73 Jan  7 13:46 description
+-rw-r--r-- 1 jsun 1049089  23 Jan  7 13:46 HEAD
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 hooks/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 info/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 objects/
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 refs/
+
+./test2/.git/hooks:
+total 27
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:30 ../
+-rwxr-xr-x 1 jsun 1049089  478 Jan  7 13:46 applypatch-msg.sample*
+-rwxr-xr-x 1 jsun 1049089  896 Jan  7 13:46 commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 3327 Jan  7 13:46 fsmonitor-watchman.sample*
+-rwxr-xr-x 1 jsun 1049089  189 Jan  7 13:46 post-update.sample*
+-rwxr-xr-x 1 jsun 1049089  424 Jan  7 13:46 pre-applypatch.sample*
+-rwxr-xr-x 1 jsun 1049089 1642 Jan  7 13:46 pre-commit.sample*
+-rwxr-xr-x 1 jsun 1049089 1492 Jan  7 13:46 prepare-commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 1348 Jan  7 13:46 pre-push.sample*
+-rwxr-xr-x 1 jsun 1049089 4898 Jan  7 13:46 pre-rebase.sample*
+-rwxr-xr-x 1 jsun 1049089  544 Jan  7 13:46 pre-receive.sample*
+-rwxr-xr-x 1 jsun 1049089 3610 Jan  7 13:46 update.sample*
+
+./test2/.git/info:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:30 ../
+-rw-r--r-- 1 jsun 1049089 240 Jan  7 13:46 exclude
+
+./test2/.git/objects:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:30 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 info/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 pack/
+
+./test2/.git/objects/info:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ../
+
+./test2/.git/objects/pack:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ../
+
+./test2/.git/refs:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:30 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 heads/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 tags/
+
+./test2/.git/refs/heads:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ../
+
+./test2/.git/refs/tags:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 13:46 ../
+
+./test3:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:17 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 sampleproject/
+
+./test3/sampleproject:
+total 22
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:29 .git/
+-rw-r--r-- 1 jsun 1049089  145 Jan  7 14:09 .gitignore
+-rw-r--r-- 1 jsun 1049089  420 Jan  7 14:09 .travis.yml
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 data/
+-rw-r--r-- 1 jsun 1049089 1100 Jan  7 14:09 LICENSE.txt
+-rw-r--r-- 1 jsun 1049089  141 Jan  7 14:09 MANIFEST.in
+-rw-r--r-- 1 jsun 1049089 1742 Jan  7 14:09 README.md
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 sample/
+-rw-r--r-- 1 jsun 1049089  677 Jan  7 14:09 setup.cfg
+-rw-r--r-- 1 jsun 1049089 8501 Jan  7 14:09 setup.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 tests/
+-rw-r--r-- 1 jsun 1049089 1191 Jan  7 14:09 tox.ini
+
+./test3/sampleproject/.git:
+total 6
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:29 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089  301 Jan  7 14:09 config
+-rw-r--r-- 1 jsun 1049089   73 Jan  7 14:09 description
+-rw-r--r-- 1 jsun 1049089   23 Jan  7 14:09 HEAD
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 hooks/
+-rw-r--r-- 1 jsun 1049089 1188 Jan  7 14:29 index
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 info/
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 logs/
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 objects/
+-rw-r--r-- 1 jsun 1049089  114 Jan  7 14:09 packed-refs
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 refs/
+
+./test3/sampleproject/.git/hooks:
+total 27
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:29 ../
+-rwxr-xr-x 1 jsun 1049089  478 Jan  7 14:09 applypatch-msg.sample*
+-rwxr-xr-x 1 jsun 1049089  896 Jan  7 14:09 commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 3327 Jan  7 14:09 fsmonitor-watchman.sample*
+-rwxr-xr-x 1 jsun 1049089  189 Jan  7 14:09 post-update.sample*
+-rwxr-xr-x 1 jsun 1049089  424 Jan  7 14:09 pre-applypatch.sample*
+-rwxr-xr-x 1 jsun 1049089 1642 Jan  7 14:09 pre-commit.sample*
+-rwxr-xr-x 1 jsun 1049089 1492 Jan  7 14:09 prepare-commit-msg.sample*
+-rwxr-xr-x 1 jsun 1049089 1348 Jan  7 14:09 pre-push.sample*
+-rwxr-xr-x 1 jsun 1049089 4898 Jan  7 14:09 pre-rebase.sample*
+-rwxr-xr-x 1 jsun 1049089  544 Jan  7 14:09 pre-receive.sample*
+-rwxr-xr-x 1 jsun 1049089 3610 Jan  7 14:09 update.sample*
+
+./test3/sampleproject/.git/info:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:29 ../
+-rw-r--r-- 1 jsun 1049089 240 Jan  7 14:09 exclude
+
+./test3/sampleproject/.git/logs:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:29 ../
+-rw-r--r-- 1 jsun 1049089 175 Jan  7 14:09 HEAD
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 refs/
+
+./test3/sampleproject/.git/logs/refs:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 heads/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 remotes/
+
+./test3/sampleproject/.git/logs/refs/heads:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 175 Jan  7 14:09 master
+
+./test3/sampleproject/.git/logs/refs/remotes:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 origin/
+
+./test3/sampleproject/.git/logs/refs/remotes/origin:
+total 1
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 175 Jan  7 14:09 HEAD
+
+./test3/sampleproject/.git/objects:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:29 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 info/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 pack/
+
+./test3/sampleproject/.git/objects/info:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+
+./test3/sampleproject/.git/objects/pack:
+total 96
+drwxr-xr-x 1 jsun 1049089     0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089     0 Jan  7 14:09 ../
+-r--r--r-- 1 jsun 1049089 10816 Jan  7 14:09 pack-318c38e772cd69856978ab501ebc4aa569f125a3.idx
+-r--r--r-- 1 jsun 1049089 84432 Jan  7 14:09 pack-318c38e772cd69856978ab501ebc4aa569f125a3.pack
+
+./test3/sampleproject/.git/refs:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:29 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 heads/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 remotes/
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 tags/
+
+./test3/sampleproject/.git/refs/heads:
+total 1
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 41 Jan  7 14:09 master
+
+./test3/sampleproject/.git/refs/remotes:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 origin/
+
+./test3/sampleproject/.git/refs/remotes/origin:
+total 1
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 32 Jan  7 14:09 HEAD
+
+./test3/sampleproject/.git/refs/tags:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+
+./test3/sampleproject/data:
+total 1
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 9 Jan  7 14:09 data_file
+
+./test3/sampleproject/sample:
+total 2
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 116 Jan  7 14:09 __init__.py
+-rw-r--r-- 1 jsun 1049089   9 Jan  7 14:09 package_data.dat
+
+./test3/sampleproject/tests:
+total 2
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089   0 Jan  7 14:09 ../
+-rw-r--r-- 1 jsun 1049089 211 Jan  7 14:09 __init__.py
+-rw-r--r-- 1 jsun 1049089 253 Jan  7 14:09 test_simple.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -Rl
+.:
+total 1
+-rw-r--r-- 1 jsun 1049089 59 Jan  7 14:18 note.txt
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:43 test1/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 13:46 test2/
+drwxr-xr-x 1 jsun 1049089  0 Jan  7 14:09 test3/
+
+./test1:
+total 14
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Aug 30 13:33 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Aug 29 13:15 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Aug 29 18:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Nov  7 22:09 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Aug 30 00:19 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Aug 30 17:01 b_file_op7.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+./test1/temp1:
+total 0
+
+./test2:
+total 14
+-rw-r--r-- 1 jsun 1049089 1686 Jan  7 13:45 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Jan  7 13:45 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Jan  7 13:45 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Jan  7 13:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Jan  7 13:45 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Jan  7 13:45 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Jan  7 13:45 b_file_op7.py
+
+./test3:
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 sampleproject/
+
+./test3/sampleproject:
+total 20
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 data/
+-rw-r--r-- 1 jsun 1049089 1100 Jan  7 14:09 LICENSE.txt
+-rw-r--r-- 1 jsun 1049089  141 Jan  7 14:09 MANIFEST.in
+-rw-r--r-- 1 jsun 1049089 1742 Jan  7 14:09 README.md
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 sample/
+-rw-r--r-- 1 jsun 1049089  677 Jan  7 14:09 setup.cfg
+-rw-r--r-- 1 jsun 1049089 8501 Jan  7 14:09 setup.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 tests/
+-rw-r--r-- 1 jsun 1049089 1191 Jan  7 14:09 tox.ini
+
+./test3/sampleproject/data:
+total 1
+-rw-r--r-- 1 jsun 1049089 9 Jan  7 14:09 data_file
+
+./test3/sampleproject/sample:
+total 2
+-rw-r--r-- 1 jsun 1049089 116 Jan  7 14:09 __init__.py
+-rw-r--r-- 1 jsun 1049089   9 Jan  7 14:09 package_data.dat
+
+./test3/sampleproject/tests:
+total 2
+-rw-r--r-- 1 jsun 1049089 211 Jan  7 14:09 __init__.py
+-rw-r--r-- 1 jsun 1049089 253 Jan  7 14:09 test_simple.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ git status
+fatal: Not a git repository (or any of the parent directories): .git
+#--------------------------------------#
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op1.py b_file_op2.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   b_file_op1.py
+        new file:   b_file_op2.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git rm --cached b_file_op1.py
+rm 'b_file_op1.py'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   b_file_op2.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:17 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 15:46 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Aug 30 13:33 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Aug 29 13:15 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Aug 29 18:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Nov  7 22:09 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Aug 30 00:19 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Aug 30 17:01 b_file_op7.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git rm --cached b_file_op2.py
+rm 'b_file_op2.py'
+#-------------------------------------------------------------------#
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op1.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   b_file_op1.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git commit -m "b_file_1 draft1" b_file_op1.py
+[master (root-commit) 90b359b] b_file_1 draft1
+ 1 file changed, 43 insertions(+)
+ create mode 100644 b_file_op1.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 2
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 15:56 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:17 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 15:54 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git lpg
+git: 'lpg' is not a git command. See 'git --help'.
+
+The most similar command is
+        log
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git log
+commit 90b359b3c5b1b455113624000e3485f1543c8d94 (HEAD -> master)
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 15:54:16 2019 -0800
+
+    b_file_1 draft1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+?? b_file_op6.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op
+b_file_op6.py  b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op6.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   b_file_op6.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op7.py
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+A  b_file_op6.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git commit -m "b_file_op6, first draft" b_file_op6.py
+[master 214878c] b_file_op6, first draft
+ 1 file changed, 60 insertions(+)
+ create mode 100644 b_file_op6.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ vi b_file_op6.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+ M b_file_op6.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   b_file_op6.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op7.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git commit b_file_op6.py
+[master 6cd9c40] Second Draft
+ 1 file changed, 1 insertion(+)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git log
+commit 6cd9c40bdc5cbc5f2774df158a96fa9d065a28f9 (HEAD -> master)
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 16:40:56 2019 -0800
+
+    Second Draft
+
+commit 214878c64810e4d27a58ac5d31040f9113d20a37
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 16:39:12 2019 -0800
+
+    b_file_op6, first draft
+
+commit 90b359b3c5b1b455113624000e3485f1543c8d94
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 15:54:16 2019 -0800
+
+    b_file_1 draft1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ vi b_file_op6.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+ M b_file_op6.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op6.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+M  b_file_op6.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git commit -m "Third commit" b_file_op6.py
+[master 9c3a826] Third commit
+ 1 file changed, 1 insertion(+)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+?? b_file_op5.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op5.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+A  b_file_op5.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ vi b_file_op5.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+AM b_file_op5.py
+?? b_file_op7.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git add b_file_op5.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status -s
+A  b_file_op5.py
+?? b_file_op7.py
+
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test4
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ ls
+1.txt  2.txt  3  4.txt  txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ clear
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ ls
+1.txt  2.txt  3  4.txt  txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+A  1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm 1.txt
+error: the following file has changes staged in the index:
+    1.txt
+(use --cached to keep the file, or -f to force removal)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm --cached 1.txt
+rm '1.txt'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "First Draft" 1.txt
+[master (root-commit) 815daf7] First Draft
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm 1.txt
+rm '1.txt'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+D  1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm --cached 1
+fatal: pathspec '1' did not match any files
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm --cached 1.txt
+fatal: pathspec '1.txt' did not match any files
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+fatal: pathspec '1.txt' did not match any files
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ ls
+2.txt  3  4.txt  txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 2.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "First"
+[master 5134d16] First
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename 1.txt => 2.txt (100%)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ vi 2.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+ M 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "second"
+On branch master
+Changes not staged for commit:
+        modified:   2.txt
+
+Untracked files:
+        3
+        4.txt
+        txt
+
+no changes added to commit
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+ M 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -am "Second"
+warning: LF will be replaced by CRLF in 2.txt.
+The file will have its original line endings in your working directory.
+[master 2115bad] Second
+ 1 file changed, 2 insertions(+)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+##
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git add .
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+A  3
+A  4.txt
+A  txt
+
+$ git commit -m "All files committed"
+[master e033c2e] All files committed
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 3
+ create mode 100644 4.txt
+ create mode 100644 txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ rm 3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ rm txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ ls
+2.txt  4.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+ D 3
+ D txt
+
+$ git commit -am "Second Line" 3.txt
+warning: LF will be replaced by CRLF in 2.txt.
+The file will have its original line endings in your working directory.
+[master dc00991] Second Line
+ 3 files changed, 2 insertions(+)
+ delete mode 100644 3
+ delete mode 100644 txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+

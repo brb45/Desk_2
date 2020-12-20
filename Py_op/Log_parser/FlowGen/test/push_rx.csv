@@ -1,0 +1,4 @@
+TECHNOLOGY,TEST,freq,rate,power_range,bw,preamble
+WIFI,RX,2412,OFDM-6,"(-75,-65,2)",HT20,Short
+,,2417,OFDM-9,"(-60,-70,-2)",,Long
+,,2424,,,,

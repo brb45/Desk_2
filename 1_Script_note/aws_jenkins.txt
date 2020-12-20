@@ -1,0 +1,1328 @@
+rev: 4/12/2020
+
+sudo vs su vs su -
+hostname
+~/.bash_profile
+id
+useradd
+passwd
+usermod
+chown
+ssh-copy-id
+/etc/ssh/sshd_config
+
+
+1. run  on root
+sudo su -
+2 
+[root@ip-172-31-29-253 ~]# java -version
+java version "1.7.0_231"
+OpenJDK Runtime Environment (amzn-2.6.19.1.80.amzn1-x86_64 u231-b01)
+OpenJDK 64-Bit Server VM (build 24.231-b01, mixed mode)
+[root@ip-172-31-29-253 ~]# yum  remove  java-1.7.0*
+
+3.
+###
+
+/lib/modules/4.14.138-89.102.amzn1.x86_64/kernel/drivers/target
+/var/lib/jenkins/workspace/Deploy_on_Docker/server/target
+/var/lib/jenkins/workspace/Deploy_on_Docker/webapp/target
+/var/lib/jenkins/workspace/Deploy_on_Container_using_ansible_playbook/server/target
+/var/lib/jenkins/workspace/Deploy_on_Container_using_ansible_playbook/webapp/target
+/var/lib/jenkins/workspace/Deploy_on_Tomcat_Server/server/target
+/var/lib/jenkins/workspace/Deploy_on_Tomcat_Server/webapp/target
+/var/lib/jenkins/workspace/Deploy_on_Container_using_ansible/server/target
+/var/lib/jenkins/workspace/Deploy_on_Container_using_ansible/webapp/target
+/var/lib/jenkins/workspace/Build_app_Deploy_on_Docker/server/target
+/var/lib/jenkins/workspace/Build_app_Deploy_on_Docker/webapp/target
+/var/lib/jenkins/workspace/run_on_docker_with_dockerHub_by_Ansible/server/target
+/var/lib/jenkins/workspace/run_on_docker_with_dockerHub_by_Ansible/webapp/target
+/var/lib/jenkins/workspace/sanity_maven_build/server/target
+/var/lib/jenkins/workspace/sanity_maven_build/webapp/target
+/sys/devices/system/cpu/cpu0/hotplug/target
+[root@Jenkins jenkins]# cd /var/lib/jenkins/workspace/Deploy_on_Docker/webapp/target
+[root@Jenkins target]# ls -l
+total 16
+drwxr-xr-x 2 jenkins jenkins 4096 Dec  8 01:21 maven-archiver
+drwxr-xr-x 2 jenkins jenkins 4096 Dec  8 01:21 surefire
+drwxr-xr-x 4 jenkins jenkins 4096 Dec  8 01:21 webapp
+-rw-r--r-- 1 jenkins jenkins 2480 Dec  8 01:21 webapp.war
+[root@Jenkins target]# cd /var/lib/jenkins/workspace/run_on_docker_with_dockerHub_by_Ansible/webapp/target
+[root@Jenkins target]# ls -l
+total 16
+drwxr-xr-x 2 jenkins jenkins 4096 Dec 10 07:57 maven-archiver
+drwxr-xr-x 2 jenkins jenkins 4096 Dec 10 07:57 surefire
+drwxr-xr-x 4 jenkins jenkins 4096 Dec 10 07:57 webapp
+-rw-r--r-- 1 jenkins jenkins 2564 Dec 10 07:57 webapp.war
+[root@Jenkins target]# pwd
+/var/lib/jenkins/workspace/run_on_docker_with_dockerHub_by_Ansible/webapp/target
+[root@Jenkins target]#
+
+
+
+
+####
+[root@ip-172-31-29-253 ~]# yum remove java-1.7.0*
+Loaded plugins: priorities, update-motd, upgrade-helper
+Resolving Dependencies
+--> Running transaction check
+---> Package java-1.7.0-openjdk.x86_64 1:1.7.0.231-2.6.19.1.80.amzn1 will be erased
+--> Processing Dependency: jre >= 1.6.0 for package: aws-apitools-mon-1.0.20.0-1.0.amzn1.noarch
+--> Processing Dependency: jre >= 1.6.0 for package: aws-apitools-elb-1.0.35.0-1.0.amzn1.noarch
+--> Processing Dependency: jre >= 1.6.0 for package: aws-apitools-common-1.1.0-1.9.amzn1.noarch
+--> Processing Dependency: jre >= 1.6.0 for package: aws-apitools-ec2-1.7.3.0-1.0.amzn1.noarch
+--> Processing Dependency: jre >= 1.6.0 for package: aws-apitools-as-1.0.61.6-1.0.amzn1.noarch
+--> Running transaction check
+---> Package aws-apitools-as.noarch 0:1.0.61.6-1.0.amzn1 will be erased
+---> Package aws-apitools-common.noarch 0:1.1.0-1.9.amzn1 will be erased
+---> Package aws-apitools-ec2.noarch 0:1.7.3.0-1.0.amzn1 will be erased
+---> Package aws-apitools-elb.noarch 0:1.0.35.0-1.0.amzn1 will be erased
+---> Package aws-apitools-mon.noarch 0:1.0.20.0-1.0.amzn1 will be erased
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+========================================================================================================================
+ Package                        Arch              Version                                    Repository            Size
+========================================================================================================================
+Removing:
+ java-1.7.0-openjdk             x86_64            1:1.7.0.231-2.6.19.1.80.amzn1              installed             91 M
+Removing for dependencies:
+ aws-apitools-as                noarch            1.0.61.6-1.0.amzn1                         installed            7.1 M
+ aws-apitools-common            noarch            1.1.0-1.9.amzn1                            installed            915
+ aws-apitools-ec2               noarch            1.7.3.0-1.0.amzn1                          installed             17 M
+ aws-apitools-elb               noarch            1.0.35.0-1.0.amzn1                         installed            7.8 M
+ aws-apitools-mon               noarch            1.0.20.0-1.0.amzn1                         installed            6.9 M
+
+Transaction Summary
+========================================================================================================================
+Remove  1 Package (+5 Dependent packages)
+
+Installed size: 130 M
+Is this ok [y/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Erasing    : aws-apitools-mon-1.0.20.0-1.0.amzn1.noarch                                                                                                           1/6
+  Erasing    : aws-apitools-as-1.0.61.6-1.0.amzn1.noarch                                                                                                            2/6
+  Erasing    : aws-apitools-elb-1.0.35.0-1.0.amzn1.noarch                                                                                                           3/6
+  Erasing    : aws-apitools-ec2-1.7.3.0-1.0.amzn1.noarch                                                                                                            4/6
+  Erasing    : aws-apitools-common-1.1.0-1.9.amzn1.noarch                                                                                                           5/6
+  Erasing    : 1:java-1.7.0-openjdk-1.7.0.231-2.6.19.1.80.amzn1.x86_64                                                                                              6/6
+  Verifying  : aws-apitools-common-1.1.0-1.9.amzn1.noarch                                                                                                           1/6
+  Verifying  : aws-apitools-ec2-1.7.3.0-1.0.amzn1.noarch                                                                                                            2/6
+  Verifying  : 1:java-1.7.0-openjdk-1.7.0.231-2.6.19.1.80.amzn1.x86_64                                                                                              3/6
+  Verifying  : aws-apitools-elb-1.0.35.0-1.0.amzn1.noarch                                                                                                           4/6
+  Verifying  : aws-apitools-as-1.0.61.6-1.0.amzn1.noarch                                                                                                            5/6
+  Verifying  : aws-apitools-mon-1.0.20.0-1.0.amzn1.noarch                                                                                                           6/6
+
+Removed:
+  java-1.7.0-openjdk.x86_64 1:1.7.0.231-2.6.19.1.80.amzn1
+
+Dependency Removed:
+  aws-apitools-as.noarch 0:1.0.61.6-1.0.amzn1             aws-apitools-common.noarch 0:1.1.0-1.9.amzn1            aws-apitools-ec2.noarch 0:1.7.3.0-1.0.amzn1
+  aws-apitools-elb.noarch 0:1.0.35.0-1.0.amzn1            aws-apitools-mon.noarch 0:1.0.20.0-1.0.amzn1
+
+Complete!
+[root@ip-172-31-29-253 ~]#
+
+4. setup .bash_profile under /home directory
+
+5. Install Jenkins with Redhat/Fedora
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+[root@ip-172-31-29-253 ~]# yum install jenkins
+
+
+6. Start Jenkins
+[root@ip-172-31-29-253 ~]# service jenkins status
+jenkins is stopped
+[root@ip-172-31-29-253 ~]# service jenkins start
+Starting Jenkins                                           [  OK  ]
+[root@ip-172-31-29-253 ~]# service jenkins status
+jenkins (pid  3231) is running...
+[root@ip-172-31-29-253 ~]#
+7.
+
+[root@ip-172-31-29-253 ~]# hostname Jenkins
+[root@ip-172-31-29-253 ~]# sudo su -
+Last login: Sat Dec  7 00:06:56 UTC 2019 on pts/2
+[root@Jenkins ~]#
+
+8. Install git
+yum install git -y
+
+[root@Jenkins ~]# git --version
+git version 2.14.5
+
+9. Set up Maven
+# Install Maven
+[root@Jenkins ~]# cd /opt/
+[root@Jenkins opt]# ls -ltr
+total 4
+drwxr-xr-x 5 root root 4096 Dec  6 23:54 aws
+[root@Jenkins opt]# wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+
+
+[root@Jenkins opt]# ls
+apache-maven-3.6.3-bin.tar.gz  aws
+
+[root@Jenkins opt]# tar -xvzf apache-maven-3.6.3-bin.tar.gz
+
+vi ~/.bash_profile
+M2_HOME=/opt/maven/apache-maven-3.6.1
+M2=$M2_HOME/bin
+PAHT=<Existing_PATH>:$M2_HOME:$M2
+
+[root@Jenkins ~]# mvn --version
+Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)
+Maven home: /opt/maven
+Java version: 1.8.0_222, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222.b10-0.47.amzn1.x86_64/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "4.14.138-89.102.amzn1.x86_64", arch: "amd64", family: "unix"
+
+#_________________________________________________________________
+[root@Jenkins ~]# git clone https://github.com/brb45/hello-world.git
+Cloning into 'hello-world'...
+remote: Enumerating objects: 182, done.
+remote: Total 182 (delta 0), reused 0 (delta 0), pack-reused 182
+Receiving objects: 100% (182/182), 15.95 KiB | 3.19 MiB/s, done.
+Resolving deltas: 100% (39/39), done.
+[root@Jenkins ~]# pwd
+/root
+[root@Jenkins ~]# ls
+hello-world
+
+[root@Jenkins hello-world]# git pull
+Already up-to-date.
+
+[root@Jenkins webapp]# git config --global user.email sunusd@yahoo.com
+[root@Jenkins webapp]# git config --global user.name brb45
+[root@Jenkins webapp]# git commit -m "Modified webapp/index.jsp"
+[master a02613f] Modified webapp/index.jsp
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+## Docker
+
+[root@docker-host ~]# service docker status
+docker is stopped
+[root@docker-host ~]# service docker start
+Starting cgconfig service:                                 [  OK  ]
+Starting docker:        .                                  [  OK  ]
+[root@docker-host ~]# docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[root@docker-host ~]#
+
+##
+[root@docker-host ~]# service docker status
+docker (pid  2909) is running...
+[root@docker-host ~]#
+
+
+## tomcat docker image
+[root@docker-host ~]# docker image ls
+[root@docker-host ~]# docker images
+
+# pull tomcat image from docker hub
+[root@docker-host ~]# docker pull tomcat:latest
+# create docker tomcat container
+[root@docker-host ~]# docker run --name tomcat-container -p 8080:8080 tomcat:latest
+
+## remove docker container
+docker container ls -a
+The output should look something like this:
+
+CONTAINER ID        IMAGE                   COMMAND                  CREATED             STATUS                      PORTS               NAMES
+cc3f2ff51cab        centos                  "/bin/bash"              2 months ago        Created                                         competent_nightingale
+cd20b396a061        solita/ubuntu-systemd   "/bin/bash -c 'exec �"   2 months ago        Exited (137) 2 months ago                       systemd
+fb62432cf3c1        ubuntu                  "/bin/bash"              3 months ago        Exited (130) 3 months ago                       jolly_mirzakhani
+Once you know the CONTAINER ID of the containers you want to delete, pass it to the docker container rm command. For example, to remove the first two containers listed in the output above run:
+
+docker container rm cc3f2ff51cab cd20b396a061
+
+## Add a user
+[root@docker-host ~]# useradd dockeradmin
+[root@docker-host ~]# passwd dockeradmin
+Changing password for user dockeradmin. (help5tell)
+##
+[root@docker-host ~]# cat /etc/group
+[root@docker-host ~]# usermod -aG docker dockeradmin
+
+#
+[root@docker-host ~]# id dockeradmin
+uid=501(dockeradmin) gid=501(dockeradmin) groups=501(dockeradmin),497(docker)
+
+#
+[root@docker-host ~]# vim /etc/ssh/sshd_config
+change PasswordAuthentication no to yes
+[root@docker-host ~]# service sshd reload
+Reloading sshd:  
+
+##/var/lib/jenkins/workspace/Deploy_on_Tomcat_Server/webapp/target
+
+##
+[root@docker-host dockeradmin]# pwd
+/home/dockeradmin
+[root@docker-host dockeradmin]# su - dockeradmin
+[dockeradmin@docker-host ~]$
+##
+
+[dockeradmin@docker-host ~]$ whoami
+dockeradmin
+
+
+[dockeradmin@docker-host ~]$ ls webapp/target/
+webapp.war
+[dockeradmin@docker-host ~]$
+
+## build docker image with application
+
+[dockeradmin@docker-host ~]$ docker run -d --name devops-container -p 8080:8080 devops-project
+0962102bd53f9d061c70dd6854830fb1d95508f53ae2eebd34d92a0e814c5421
+
+# remove images:    docker rmi image_id
+# remove container: docker rm container_id
+
+
+### Ansible Server
+[root@Ansible ~]# mkdir /etc/ansible
+[root@Ansible ~]# useradd ansadmin
+[root@Ansible ~]# passwd ansadmin
+Changing password for user ansadmin.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+###
+visudo
+ansadmin ALL=(ALL)       NOPASSWD: ALL
+
+#
+[root@Ansible ~]# usermod -aG docker ansadmin
+[root@Ansible ~]# vi /etc/ssh/sshd_config
+#
+service sshd reload
+Reloading sshd:  
+
+# So ssh ansadmin@172.31.92.91 , doesn't need a passwd
+[root@Ansible ~]# hostname Ansible
+ssh-copy-id ansadmin@172.31.92.91
+
+ssh ansadmin@172.31.92.91
+/etc/ansible
+[ansadmin@Ansible ansible]$ sudo vim hosts
+
+[ansadmin@Ansible ansible]$ ssh-copy-id localhost
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansadmin/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ansadmin@localhost's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'localhost'"
+and check to make sure that only the key(s) you wanted were added.
+
+##
+[ansadmin@Ansible root]$ cd /opt/
+
+[ansadmin@Ansible opt]$ sudo mkdir docker
+[ansadmin@Ansible opt]$ sudo chown -R ansadmin:ansadmin /opt/docker/
+[ansadmin@Ansible opt]$ ls -l  /opt
+total 12
+drwxr-xr-x 5 root     root     4096 Aug 26 18:05 aws
+drwx--x--x 4 root     root     4096 Dec  8 04:41 containerd
+drwxr-xr-x 2 ansadmin ansadmin 4096 Dec  8 06:21 docker
+
+##
+[ansadmin@Ansible docker]$ ansible-playbook -i hosts simple-devops-image.yml
+
+PLAY [all] ******************************************************************************
+
+TASK [Gathering Facts] ******************************************************************
+Enter passphrase for key '/home/ansadmin/.ssh/id_rsa':
+ok: [localhost]
+
+TASK [build docker image using war file] ************************************************
+changed: [localhost]
+
+PLAY RECAP ******************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+##
+[ansadmin@Ansible docker]$ docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+simple-devops-image   latest              53a579bd0fa3        8 minutes ago       507MB
+tomcat                latest              6408fdc94212        2 weeks ago         507MB
+
+
+   
+## Set up Ansible to build and run docker
+
+[ec2-user@ip-172-31-84-27 ~]$
+#1.
+[ec2-user@ip-172-31-84-27 ~]$ sudo su -
+[root@ip-172-31-84-27 ~]#
+
+#2. 
+[root@ip-172-31-84-27 ~]# yum install python
+#
+[root@ip-172-31-84-27 ~]# yum install python
+Loaded plugins: priorities, update-motd, upgrade-helper
+amzn-main                                                                         | 2.1 kB  00:00:00
+amzn-updates                                                                      | 2.5 kB  00:00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package python26.x86_64 0:2.6.9-2.89.amzn1 will be installed
+--> Processing Dependency: libpython2.6.so.1.0()(64bit) for package: python26-2.6.9-2.89.amzn1.x86_64
+--> Running transaction check
+---> Package python26-libs.x86_64 0:2.6.9-2.89.amzn1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=========================================================================================================
+ Package                   Arch               Version                        Repository             Size
+=========================================================================================================
+Installing:
+ python26                  x86_64             2.6.9-2.89.amzn1               amzn-main             5.8 M
+Installing for dependencies:
+ python26-libs             x86_64             2.6.9-2.89.amzn1               amzn-main             697 k
+
+Transaction Summary
+=========================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 6.4 M
+Installed size: 21 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/2): python26-libs-2.6.9-2.89.amzn1.x86_64.rpm                                  | 697 kB  00:00:00
+(2/2): python26-2.6.9-2.89.amzn1.x86_64.rpm                                       | 5.8 MB  00:00:00
+---------------------------------------------------------------------------------------------------------
+Total                                                                    7.8 MB/s | 6.4 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : python26-libs-2.6.9-2.89.amzn1.x86_64                                                 1/2
+  Installing : python26-2.6.9-2.89.amzn1.x86_64                                                      2/2
+  Verifying  : python26-2.6.9-2.89.amzn1.x86_64                                                      1/2
+  Verifying  : python26-libs-2.6.9-2.89.amzn1.x86_64                                                 2/2
+
+Installed:
+  python26.x86_64 0:2.6.9-2.89.amzn1
+
+Dependency Installed:
+  python26-libs.x86_64 0:2.6.9-2.89.amzn1
+
+Complete!
+[root@ip-172-31-84-27 ~]#
+#######
+[root@ip-172-31-84-27 ~]# python -V
+Python 2.7.16
+[root@ip-172-31-84-27 ~]#
+
+#3.
+[root@ip-172-31-84-27 ~]# yum install python-pip
+
+[root@ip-172-31-84-27 ~]# pip -V
+pip 9.0.3 from /usr/lib/python2.7/dist-packages (python 2.7)
+
+# 4.
+[root@ip-172-31-84-27 ~]# pip install ansible
+[root@ip-172-31-84-27 ~]# ansible --version
+ansible 2.9.2
+  config file = None
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python2.7/site-packages/ansible
+  executable location = /usr/local/bin/ansible
+  python version = 2.7.16 (default, Jul 19 2019, 22:59:28) [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)]
+[root@ip-172-31-84-27 ~]#
+
+
+# 5.  Set up ansible
+[root@ip-172-31-84-27 ~]# mkdir /etc/ansible
+[root@ip-172-31-84-27 ~]# useradd ansadmin
+[root@ip-172-31-84-27 ~]# passwd  ansadmin
+Changing password for user ansadmin.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+%
+#6. grant sudo access to ansadmin
+[root@ip-172-31-84-27 ~]# visudo
+# ADD one line: 
+ansadmin  ALL=(ALL)       NOPASSWD: ALL
+
+# 7. install Docker
+[root@ip-172-31-84-27 ~]# yum install docker
+
+
+[root@ip-172-31-84-27 ~]# docker --version
+Docker version 18.09.9-ce, build 039a7df
+
+
+# 8. Start docker service
+[root@ip-172-31-84-27 ~]# service docker status
+docker is stopped
+[root@ip-172-31-84-27 ~]# service docker start
+Starting cgconfig service:                                 [  OK  ]
+Starting docker:        .                                  [  OK  ]
+[root@ip-172-31-84-27 ~]# service docker status
+docker (pid  3029) is running...
+
+#
+[root@ip-172-31-84-27 ~]# ps
+  PID TTY          TIME CMD
+ 2787 pts/0    00:00:00 sudo
+ 2788 pts/0    00:00:00 su
+ 2789 pts/0    00:00:00 bash
+ 3029 pts/0    00:00:00 dockerd
+ 3195 pts/0    00:00:00 ps
+
+
+# 9. Add ansadmin to docker group
+[root@ip-172-31-84-27 ~]# usermod -aG docker ansadmin
+
+# 10. user authentication: enble passwd authentication by EC2 user for remote access
+[root@ip-172-31-84-27 ~]# vim /etc/ssh/sshd_config
+
+CHAGNE line: PasswordAuthentication no
+To: PasswordAuthentication yes
+
+# 11. Need to reload to reflect changes on sshd_config
+[root@ip-172-31-84-27 ~]# service sshd reload
+Reloading sshd:                                            [  OK  ]
+[root@ip-172-31-84-27 ~]#
+
+__________________________________________________________________
+# 12. Switch to user ansadmin
+[root@ip-172-31-84-27 ~]# su - ansadmin
+[ansadmin@ip-172-31-84-27 ~]$
+
+[ansadmin@ip-172-31-84-27 ~]$ ip a
+ 
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 12:a1:85:61:ec:15 brd ff:ff:ff:ff:ff:ff
+    inet 172.31.84.27/20 brd 172.31.95.255 # 13scope global eth0
+ 
+# 13. Generate keys
+[ansadmin@ip-172-31-84-27 ~]$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/ansadmin/.ssh/id_rsa):
+Created directory '/home/ansadmin/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/ansadmin/.ssh/id_rsa.
+Your public key has been saved in /home/ansadmin/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:9Z89xUNHBJrmO4kmzongIj298H54EcH67Z0evOBHfJw ansadmin@ip-172-31-84-27
+The key's randomart image is:
++---[RSA 2048]----+
+|     .        .oo|
+|      o      o . |
+|     . .  . +  ..|
+|    . .  . +  ...|
+|     . oS. .o. .o|
+|      o ..o.E+ oo|
+| ..... ooo=o+ o..|
+|. ++o.o=.=+o .  .|
+| . +=+. =oo      |
++----[SHA256]-----+
+
+#
+
+[ansadmin@ip-172-31-84-27 ~]$ ls -l .ssh/
+total 8
+-rw------- 1 ansadmin ansadmin 1679 Dec  8 23:01 id_rsa
+-rw-r--r-- 1 ansadmin ansadmin  406 Dec  8 23:01 id_rsa.pub
+
+## 14 whoami
+[ec2-user@ip-172-31-84-27 ~]$ pwd
+/home/ec2-user
+[ec2-user@ip-172-31-84-27 ~]$ ls
+[ec2-user@ip-172-31-84-27 ~]$ ls -al
+total 24
+drwx------ 3 ec2-user ec2-user 4096 Dec  8 22:22 .
+drwxr-xr-x 4 root     root     4096 Dec  8 22:35 ..
+-rw-r--r-- 1 ec2-user ec2-user   18 Aug 30  2017 .bash_logout
+-rw-r--r-- 1 ec2-user ec2-user  193 Aug 30  2017 .bash_profile
+-rw-r--r-- 1 ec2-user ec2-user  124 Aug 30  2017 .bashrc
+drwx------ 2 ec2-user ec2-user 4096 Dec  8 22:22 .ssh
+[ec2-user@ip-172-31-84-27 ~]$ ls .ssh/
+authorized_keys
+
+[ec2-user@ip-172-31-84-27 ~]$ whoami
+ec2-user
+[ec2-user@ip-172-31-84-27 ~]$ sudo su -
+Last login: Sun Dec  8 22:26:29 UTC 2019 on pts/0
+[root@ip-172-31-84-27 ~]# whoami
+root
+[root@ip-172-31-84-27 ~]# ls -al .ssh/
+total 12
+drwx------ 2 root root 4096 Dec  8 22:22 .
+dr-xr-x--- 5 root root 4096 Dec  8 22:54 ..
+-rw------- 1 root root  553 Dec  8 22:22 authorized_keys
+
+[root@ip-172-31-84-27 ~]# su - ansadmin
+Last login: Sun Dec  8 22:57:08 UTC 2019 on pts/0
+[ansadmin@ip-172-31-84-27 ~]$ ls -l .ssh
+total 8
+-rw------- 1 ansadmin ansadmin 1679 Dec  8 23:01 id_rsa
+-rw-r--r-- 1 ansadmin ansadmin  406 Dec  8 23:01 id_rsa.pub
+
+## 15. change hostname under root
+[ansadmin@ip-172-31-84-27 ~]$ exit
+logout
+[root@ip-172-31-84-27 ~]# hostname ansible-control-node
+[root@ip-172-31-84-27 ~]# sudo su -
+Last login: Sun Dec  8 23:21:11 UTC 2019 on pts/1
+[root@ansible-control-node ~]#
+
+
+## 16. Go to EC2-instance docker-host, create anther user for ansadmin
+[ec2-user@docker-host ~]$ sudo su
+[root@docker-host ec2-user]#useradd ansadmin
+[root@docker-host ec2-user]#passwd  ansadmin
+
+
+## 17. copy keys to target system: EC2-instance docker-host 
+# should be at user: ansadmin, not root; since keys are located at
+/home/ansadmin/.ssh/id_rsa.pub
+
+[ansadmin@ansible-control-node /]$ ls -l /home/ansadmin/.ssh/
+total 8
+-rw------- 1 ansadmin ansadmin 1679 Dec  8 23:01 id_rsa
+-rw-r--r-- 1 ansadmin ansadmin  406 Dec  8 23:01 id_rsa.pub
+
+
+NOT in root
+[root@ansible-control-node ~]# ls -al .ssh/
+total 12
+drwx------ 2 root root 4096 Dec  8 22:22 .
+dr-xr-x--- 5 root root 4096 Dec  8 22:54 ..
+-rw------- 1 root root  553 Dec  8 22:22 authorized_keys
+
+## 18.
+## use docker.host machine ip 172.31.92.91; not public ip of docker.host system
+ssh-copy-id username-on-docker-host@dock-host-ip
+
+#
+[ansadmin@ansible-control-node ec2-user]$ ssh-copy-id ansadmin@172.31.92.91
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansadmin/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ansadmin@172.31.92.91's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'ansadmin@172.31.92.91'"
+and check to make sure that only the key(s) you wanted were added.
+
+# No need to provide password, after key is copied
+# ssh to docker-host machine from ansible machine
+[ansadmin@ansible-control-node ec2-user]$ ssh ansadmin@
+Last login: Mon Dec  9 00:44:12 2019 from ip-172-31-84-27.ec2.internal
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+13 package(s) needed for security, out of 25 available
+Run "sudo yum update" to apply all updates.
+[ansadmin@docker-host ~]$
+
+[ansadmin@docker-host ~]$ exit
+logout
+Connection to 172.31.92.91 closed.
+[ansadmin@ansible-control-node ec2-user]$
+
+
+# 18. Verify connectivity through ping test
+[ansadmin@ansible-control-node ec2-user]$ cd /etc/ansible/
+[ansadmin@ansible-control-node ansible]$ ls
+# create a file: hosts
+[ansadmin@ansible-control-node ansible]$ sudo vim hosts
+# Add
+172.31.92.91
+localhost
+# 172.31.92.91 is target system(docker-host) ip
+# localhost is ansible machine
+# so that ansible machine can ping both itself and docker-host
+
+# 
+
+[ansadmin@ansible-control-node ansible]$ ansible all -m ping
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:9VpSzv7/untG3rjg5ioUWPNDaKyPOctngOELUWFA2FE.
+ECDSA key fingerprint is MD5:f7:b8:6b:61:e3:25:89:e6:06:2c:e7:a0:fd:57:f6:8c.
+Are you sure you want to continue connecting (yes/no)? [WARNING]: Platform linux on host 172.31.92.91 is   using the discovered Python interpreter at
+/usr/bin/python, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more
+information.
+
+172.31.92.91 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+
+localhost | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: Host key verification failed.",
+    "unreachable": true
+}
+[ansadmin@ansible-control-node ansible]$
+
+## Not able to ping localhost, since we need to copy key to localhost
+
+
+[ansadmin@ansible-control-node ansible]$ ssh-copy-id localhost
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/ansadmin/.ssh/id_rsa.pub"
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:9VpSzv7/untG3rjg5ioUWPNDaKyPOctngOELUWFA2FE.
+ECDSA key fingerprint is MD5:f7:b8:6b:61:e3:25:89:e6:06:2c:e7:a0:fd:57:f6:8c.
+Are you sure you want to continue connecting (yes/no)? yes
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+ansadmin@localhost's password:
+Permission denied, please try again.
+ansadmin@localhost's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'localhost'"
+and check to make sure that only the key(s) you wanted were added.
+
+#
+
+[ansadmin@ansible-control-node ansible]$ ssh localhost
+Last failed login: Mon Dec  9 01:06:56 UTC 2019 from localhost on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Mon Dec  9 01:00:56 2019
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2018.03-release-notes/
+13 package(s) needed for security, out of 25 available
+Run "sudo yum update" to apply all updates.
+##
+
+[ansadmin@ansible-control-node ~]$ ansible all -m ping
+[WARNING]: Platform linux on host 172.31.92.91 is using the discovered Python interpreter at
+/usr/bin/python, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more
+information.
+
+172.31.92.91 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[WARNING]: Platform linux on host localhost is using the discovered Python interpreter at
+/usr/bin/python, but future installation of another Python interpreter could change this. See
+https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html for more
+information.
+
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+[ansadmin@ansible-control-node ~]$
+
+##______________________________________________________________________________________________________________##
+## 19. Jenkins/ansible/docker-host: Three PCs run the CI/CD.
+Jenkin push build to ansible machine, ansible push image to docker-host machine, and docker-host run the container
+
+## 20. 
+[ansadmin@ansible-control-node ec2-user]$ cd /opt
+[ansadmin@ansible-control-node opt]$ sudo mkdir docker
+[ansadmin@ansible-control-node opt]$ sudo chown -R ansadmin:ansadmin /opt/docker/
+[ansadmin@ansible-control-node opt]$ ls -l /opt/
+total 12
+drwxr-xr-x 5 root     root     4096 Aug 26 18:05 aws
+drwx--x--x 4 root     root     4096 Dec  8 22:46 containerd
+drwxr-xr-x 2 ansadmin ansadmin 4096 Dec  9 01:56 docker
+[ansadmin@ansible-control-node opt]$
+
+## 21 build result save @ "Remote directory"
+[ansadmin@ansible-control-node opt]$ ls -l /opt/docker/
+total 4
+-rw-rw-r-- 1 ansadmin ansadmin 2480 Dec  9 01:59 webapp.war
+
+## 22. Create Docker file
+[root@docker-host dockeradmin]# cat Dockerfile
+FROM tomcat:latest
+MAINTAINER J Sun
+COPY ./webapp.war /usr/local/tomcat/webapps
+
+##
+[ansadmin@ansible-control-node ec2-user]$ cd /opt/docker/
+[ansadmin@ansible-control-node docker]$ ls -l
+total 4
+-rw-rw-r-- 1 ansadmin ansadmin 2480 Dec  9 02:07 webapp.war
+[ansadmin@ansible-control-node docker]$ vim Dockerfile
+
+
+## 23. 
+[ansadmin@ansible-control-node docker]$ vim simple-devops-image.yml
+[ansadmin@ansible-control-node docker]$
+---
+- host: all
+  become: true
+
+  tasks:
+  - name: build docker image using war file
+    command: docker build -it -t simple-devops-image .
+    args:
+      chdir: /opt/docker
+
+## 24.
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+[ansadmin@ansible-control-node docker]$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+[ansadmin@ansible-control-node docker]$ ps
+  PID TTY          TIME CMD
+ 4710 pts/1    00:00:00 bash
+ 4788 pts/1    00:00:00 ps
+[ansadmin@ansible-control-node docker]$
+
+
+## 25.
+[ansadmin@ansible-control-node docker]$ ls
+Dockerfile  simple-devops-image.yml  webapp.war
+
+
+## 26. 
+[ansadmin@ansible-control-node docker]$ cat /etc/ansible/hosts
+172.31.92.91
+localhost
+[ansadmin@ansible-control-node docker]$
+
+@@ 27
+
+[ansadmin@ansible-control-node docker]$ ls
+Dockerfile  hosts  simple-devops-image.yml  webapp.war
+
+#hosts
+localhost
+
+##
+[ansadmin@ansible-control-node docker]$ vim simple-devops-image.yml
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: build docker image using war file
+    command: docker build -t simple-devops-image .
+    args:
+      chdir: /opt/docker
+
+##
+
+[ansadmin@ansible-control-node docker]$ vim Dockerfile
+
+FROM tomcat:latest
+MAINTAINER J Sun
+COPY ./webapp.war /usr/local/tomcat/webapps
+
+##
+
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts simple-devops-image.yml --check
+
+PLAY [all] ***********************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************
+ok: [localhost]
+
+TASK [build docker image using war file] *****************************************************************
+skipping: [localhost]
+
+PLAY RECAP ***********************************************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+[ansadmin@ansible-control-node docker]$
+
+
+## 28. manually run ansible-playbook to build a docker image.
+
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts simple-devops-image.yml
+
+PLAY [all] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [localhost]
+
+TASK [build docker image using war file] *********************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP ***************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+##
+
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+simple-devops-image   latest              dfd4e26cb6b9        5 minutes ago       507MB
+tomcat                latest              6408fdc94212        2 weeks ago         507MB
+
+## 29 create docker container in yml file
+[ansadmin@ansible-control-node docker]$ vim simple-devops-project.yml
+
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: build docker image using war file
+    command: docker build -t simple-devops-image .
+    args:
+      chdir: /opt/docker
+
+  - name: create container using simple-devops-image
+    command: docker run -d --name simple-devops-container -p 8080:8080 simple-devops-image
+
+# Create a docker image with "docker build"
+docker build -t image_name .
+# Create a docker container with "docker"
+docker run   -d --name container_name -p 8080:8080 image_name
+# ansible to run a container, "ansible-playbook"
+ansible-playbook -i hosts run_container.yml
+#30  run yml with starting a container
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts simple-devops-project.yml
+
+PLAY [all] ********************************************************************************************************************
+
+TASK [Gathering Facts] ********************************************************************************************************
+ok: [localhost]
+
+TASK [build docker image using war file] **************************************************************************************
+changed: [localhost]
+
+TASK [create container using simple-devops-image] *****************************************************************************
+changed: [localhost]
+
+PLAY RECAP ********************************************************************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+###
+## 31. docker container is running
+[ansadmin@ansible-control-node docker]$ docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                    NAMES
+44b56da8db1c        simple-devops-image   "catalina.sh run"   11 minutes ago      Up 11 minutes       0.0.0.0:8080->8080/tcp   simple-devops-container
+
+# 32. Run from Jenkins job
+nsadmin   10 Dec  9 03:32 hosts
+-rw-rw-r-- 1 ansadmin ansadmin  173 Dec  9 03:49 simple-devops-image.yml
+-rw-rw-r-- 1 ansadmin ansadmin  318 Dec  9 04:26 simple-devops-project.yml
+-rw-rw-r-- 1 ansadmin ansadmin 2480 Dec  9 02:07 webapp.war
+[ansadmin@ansible-control-node docker]$ ls -l
+total 20
+-rw-rw-r-- 1 ansadmin ansadmin   80 Dec  9 02:14 Dockerfile
+-rw-rw-r-- 1 ansadmin ansadmin   10 Dec  9 03:32 hosts
+-rw-rw-r-- 1 ansadmin ansadmin  173 Dec  9 03:49 simple-devops-image.yml
+-rw-rw-r-- 1 ansadmin ansadmin  318 Dec  9 04:26 simple-devops-project.yml
+-rw-rw-r-- 1 ansadmin ansadmin 2480 Dec  9 04:55 webapp.war
+[ansadmin@ansible-control-node docker]$ docker  images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+simple-devops-image   latest              8bb203ad6ddf        54 seconds ago      507MB
+tomcat                latest              6408fdc94212        2 weeks ago         507MB
+
+[ansadmin@ansible-control-node docker]$ docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED              STATUS              PORTS                    NAMES
+adb482a40df0        simple-devops-image   "catalina.sh run"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp   simple-devops-container
+
+###modify on Jenkins machine
+[root@Jenkins home]# cd ~
+[root@Jenkins ~]# pwd
+/root
+[root@Jenkins ~]# cd hello-world/
+[root@Jenkins hello-world]# ls -l
+total 24
+-rw-r--r-- 1 root root  133 Dec  7 06:06 Dockerfile
+-rw-r--r-- 1 root root 5969 Dec  7 06:06 pom.xml
+-rw-r--r-- 1 root root   38 Dec  7 06:06 README.md
+drwxr-xr-x 3 root root 4096 Dec  7 06:06 server
+drwxr-xr-x 3 root root 4096 Dec  7 06:06 webapp
+
+[root@Jenkins hello-world]# vim webapp/src/main/webapp/index.jsp
+
+## git modify
+
+[root@Jenkins /]# pwd
+/
+[root@Jenkins /]# cd root
+[root@Jenkins ~]# ls
+hello-world
+[root@Jenkins ~]# ls -al
+total 52
+dr-xr-x---  4 root root 4096 Dec  9 05:13 .
+dr-xr-xr-x 25 root root 4096 Dec  6 23:04 ..
+-rw-------  1 root root 2181 Dec  8 02:45 .bash_history
+-rw-r--r--  1 root root   18 Jan 15  2011 .bash_logout
+-rw-r--r--  1 root root  310 Dec  7 01:23 .bash_profile
+-rw-r--r--  1 root root  176 Jan 15  2011 .bashrc
+-rw-r--r--  1 root root  100 Jan 15  2011 .cshrc
+-rw-r--r--  1 root root   47 Dec  7 06:14 .gitconfig
+drwxr-xr-x  5 root root 4096 Dec  7 06:06 hello-world
+drwx------  2 root root 4096 Dec  6 23:04 .ssh
+-rw-r--r--  1 root root  129 Jan 15  2011 .tcshrc
+-rw-------  1 root root 5469 Dec  9 05:13 .viminfo
+[root@Jenkins ~]# cd hello-world/
+[root@Jenkins hello-world]# ls -al
+total 36
+drwxr-xr-x 5 root root 4096 Dec  7 06:06 .
+dr-xr-x--- 4 root root 4096 Dec  9 05:13 ..
+-rw-r--r-- 1 root root  133 Dec  7 06:06 Dockerfile
+drwxr-xr-x 8 root root 4096 Dec  7 06:14 .git
+-rw-r--r-- 1 root root 5969 Dec  7 06:06 pom.xml
+-rw-r--r-- 1 root root   38 Dec  7 06:06 README.md
+drwxr-xr-x 3 root root 4096 Dec  7 06:06 server
+drwxr-xr-x 3 root root 4096 Dec  7 06:06 webapp
+
+[root@Jenkins hello-world]# git status -s
+ M webapp/src/main/webapp/index.jsp
+[root@Jenkins hello-world]# git add .
+[root@Jenkins hello-world]# git commit -m "change index.jsp"
+[master 93158e3] change index.jsp
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+[root@Jenkins hello-world]# git push
+Username for 'https://github.com': brb45
+Password for 'https://brb45@github.com':
+Counting objects: 7, done.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (7/7), 628 bytes | 628.00 KiB/s, done.
+Total 7 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/brb45/hello-world.git
+   a02613f..93158e3  master -> master
+[root@Jenkins hello-world]#
+ 
+#@@ 33. Push image to docker hub
+[ansadmin@ansible-control-node ec2-user]$ cd /opt/docker/
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY            TAG                 IMAGE ID            CREATED             SIZE
+simple-devops-image   latest              39dcf2ac467b        11 minutes ago      507MB
+tomcat                latest              6408fdc94212        2 weeks ago         507MB
+[ansadmin@ansible-control-node docker]$ docker ps
+CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                    NAMES
+bf6a5630a0e5        simple-devops-image   "catalina.sh run"   11 minutes ago      Up 11 minutes       0.0.0.0:8080->8080/tcp   simple-devops-container
+[ansadmin@ansible-control-node docker]$
+
+## 33.1 tag image
+[ansadmin@ansible-control-node docker]$ docker tag simple-devops-image brb45/simple-devops-image
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+brb45/simple-devops-image   latest              39dcf2ac467b        14 minutes ago      507MB
+simple-devops-image         latest              39dcf2ac467b        14 minutes ago      507MB
+tomcat                      latest              6408fdc94212        2 weeks ago         507MB
+
+# 33.2 docker hub login
+[ansadmin@ansible-control-node docker]$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: brb45
+Password:
+WARNING! Your password will be stored unencrypted in /home/ansadmin/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[ansadmin@ansible-control-node docker]$
+
+
+# 33.3 push local image to docker hub
+[ansadmin@ansible-control-node docker]$ docker push brb45/simple-devops-image
+The push refers to repository [docker.io/brb45/simple-devops-image]
+12565b0db9ee: Pushed
+cd5b7e2631fa: Mounted from library/tomcat
+9f99f85da76a: Mounted from library/tomcat
+2c17ac16afc6: Mounted from library/tomcat
+2ee490fbc316: Mounted from library/tomcat
+b18043518924: Mounted from library/tomcat
+9a11244a7e74: Mounted from library/tomcat
+5f3a5adb8e97: Mounted from library/tomcat
+73bfa217d66f: Mounted from library/tomcat
+91ecdd7165d3: Mounted from library/tomcat
+e4b20fcc48f4: Mounted from library/tomcat
+latest: digest: sha256:511525cc3ad44c8e95b193ace03fd44ad51c3188a2233ae8398c03c7bf387d31 size: 2630
+
+# 
+
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+# 33.4 pull image from docker hub
+[ansadmin@ansible-control-node docker]$ docker pull brb45/simple-devops-image
+Using default tag: latest
+latest: Pulling from brb45/simple-devops-image
+844c33c7e6ea: Pull complete
+ada5d61ae65d: Pull complete
+f8427fdf4292: Pull complete
+f025bafc4ab8: Pull complete
+67b8714e1225: Pull complete
+64b12da521a3: Pull complete
+2e38df533772: Pull complete
+4144d55bbb47: Pull complete
+a767078bbe38: Pull complete
+81f4cc5808bc: Pull complete
+667bd6cd7e0a: Pull complete
+Digest: sha256:511525cc3ad44c8e95b193ace03fd44ad51c3188a2233ae8398c03c7bf387d31
+Status: Downloaded newer image for brb45/simple-devops-image:latest
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+brb45/simple-devops-image   latest              39dcf2ac467b        26 minutes ago      507MB
+
+## 33.5 switch to docker-host
+[ec2-user@docker-host ~]$ su ansadmin
+Password:
+[ansadmin@docker-host ec2-user]$ id
+uid=502(ansadmin) gid=502(ansadmin) groups=502(ansadmin)
+[ansadmin@docker-host ec2-user]$ exit
+exit
+[ec2-user@docker-host ~]$ sudo su
+[root@docker-host ec2-user]#
+## add ansadmin to docker group 
+[root@docker-host ec2-user]# usermod -aG docker ansadmin
+[root@docker-host ec2-user]# su - ansadmin
+Last login: Mon Dec  9 07:13:50 UTC 2019 on pts/0
+[ansadmin@docker-host ~]$ id
+uid=502(ansadmin) gid=502(ansadmin) groups=502(ansadmin),497(docker)
+
+## 33.6
+# pull image
+[ansadmin@docker-host ~]$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+devops-image        latest              e586e9cec0e6        29 hours ago        507MB
+tomcat              latest              6408fdc94212        2 weeks ago         507MB
+[ansadmin@docker-host ~]$ docker pull brb45/simple-devops-image:latest
+latest: Pulling from brb45/simple-devops-image
+844c33c7e6ea: Already exists
+ada5d61ae65d: Already exists
+f8427fdf4292: Already exists
+f025bafc4ab8: Already exists
+67b8714e1225: Already exists
+64b12da521a3: Already exists
+2e38df533772: Already exists
+4144d55bbb47: Already exists
+a767078bbe38: Already exists
+81f4cc5808bc: Already exists
+667bd6cd7e0a: Pull complete
+Digest: sha256:511525cc3ad44c8e95b193ace03fd44ad51c3188a2233ae8398c03c7bf387d31
+Status: Downloaded newer image for brb45/simple-devops-image:latest
+[ansadmin@docker-host ~]$ docker images
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+brb45/simple-devops-image   latest              39dcf2ac467b        34 minutes ago      507MB
+devops-image                latest              e586e9cec0e6        29 hours ago        507MB
+tomcat                      latest              6408fdc94212        2 weeks ago         507MB
+[ansadmin@docker-host ~]$
+
+  - name: push image to dockerhub
+    command: docker push brb45/simple-devops-image
+
+#@@ Ansible
+[ec2-user@docker-host ~]$ su dockeradmin
+Password:
+[dockeradmin@docker-host ec2-user]$ docker ps
+CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS
+ef9f69db0660        brb45/simple-devops-image:latest   "catalina.sh run"   49 seconds ago      Up 48 seconds       0.0.0.0:8080->808
+[dockeradmin@docker-host ec2-user]$
+
+#@@ 
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts create-simple-devops-project.yml
+
+PLAY [all] *************************************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************************
+ok: [172.31.92.91]
+ok: [localhost]
+
+TASK [stop current running container] **********************************************************************************************
+changed: [172.31.92.91]
+changed: [localhost]
+
+TASK [remove stopped container] ****************************************************************************************************
+changed: [172.31.92.91]
+changed: [localhost]
+
+TASK [remove docker image] *********************************************************************************************************
+changed: [172.31.92.91]
+changed: [localhost]
+
+TASK [pull image to dockerhub] *****************************************************************************************************
+changed: [172.31.92.91]
+changed: [localhost]
+
+TASK [create container using simple-devops-image] **********************************************************************************
+changed: [172.31.92.91]
+changed: [localhost]
+
+PLAY RECAP *************************************************************************************************************************
+172.31.92.91               : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansadmin@ansible-control-node docker]$ docker ps
+CONTAINER ID        IMAGE                              COMMAND             CREATED             STATUS              PORTS
+f61c859db4e5        brb45/simple-devops-image:latest   "catalina.sh run"   6 seconds ago       Up 5 seconds        0.0.0.0:8080->808
+[ansadmin@ansible-control-node docker]$
+
+
+#@@
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts create-simple-devops-image.yml --lim     it localhost
+
+PLAY [all] *******************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************
+ok: [localhost]
+
+TASK [create docker image using war file] ************************************************************
+changed: [localhost]
+
+TASK [create tag to image] ***************************************************************************
+changed: [localhost]
+
+TASK [push image to dockerhub] ***********************************************************************
+changed: [localhost]
+
+TASK [remove docker image from ansible server local filesystem] **************************************
+changed: [localhost]
+
+PLAY RECAP *******************************************************************************************
+localhost                  : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0         ignored=0
+
+[ansadmin@ansible-control-node docker]$ docker iamges
+docker: 'iamges' is not a docker command.
+See 'docker --help'
+[ansadmin@ansible-control-node docker]$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+tomcat              latest              6408fdc94212        2 weeks ago         507MB
+
+###
+
+[ansadmin@ansible-control-node docker]$ ansible-playbook -i hosts create-simple-devops-project.yml --limit 172.31.92.91
+
+PLAY [all] **********************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************
+ok: [172.31.92.91]
+
+TASK [stop current running container] *******************************************************************************
+fatal: [172.31.92.91]: FAILED! => {"changed": true, "cmd": ["docker", "stop", "simple-devops-container"], "delta": "0                                                                                                              :00:00.044901", "end": "2019-12-10 07:18:00.910127", "msg": "non-zero return code", "rc": 1, "start": "2019-12-10 07:                                                                                                              18:00.865226", "stderr": "Error response from daemon: No such container: simple-devops-container", "stderr_lines": ["                                                                                                              Error response from daemon: No such container: simple-devops-container"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [remove stopped container] *************************************************************************************
+fatal: [172.31.92.91]: FAILED! => {"changed": true, "cmd": ["docker", "rm", "simple-devops-container"], "delta": "0:0                                                                                                              0:00.045891", "end": "2019-12-10 07:18:01.393773", "msg": "non-zero return code", "rc": 1, "start": "2019-12-10 07:18                                                                                                              :01.347882", "stderr": "Error: No such container: simple-devops-container", "stderr_lines": ["Error: No such containe                                                                                                              r: simple-devops-container"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [remove docker image] ******************************************************************************************
+fatal: [172.31.92.91]: FAILED! => {"changed": true, "cmd": ["docker", "rmi", "brb45/simple-devops-image:latest"], "de                                                                                                              lta": "0:00:00.055148", "end": "2019-12-10 07:18:01.830754", "msg": "non-zero return code", "rc": 1, "start": "2019-1                                                                                                              2-10 07:18:01.775606", "stderr": "Error: No such image: brb45/simple-devops-image:latest", "stderr_lines": ["Error: N                                                                                                              o such image: brb45/simple-devops-image:latest"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [pull image to dockerhub] **************************************************************************************
+changed: [172.31.92.91]
+
+TASK [create container using simple-devops-image] *******************************************************************
+changed: [172.31.92.91]
+
+PLAY RECAP **********************************************************************************************************
+172.31.92.91               : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=3
+
+[ansadmin@ansible-control-node docker]$
+
+##Jenkins
+[ec2-user@Jenkins ~]$ pwd
+/home/ec2-user
+[ec2-user@Jenkins ~]$ cd ~
+[ec2-user@Jenkins ~]$ pwd
+/home/ec2-user
+[ec2-user@Jenkins ~]$ sudo su
+[root@Jenkins ec2-user]# pwd
+/home/ec2-user
+[root@Jenkins ec2-user]# cd ~
+[root@Jenkins ~]# pwd
+/root
+[root@Jenkins ~]# ls -al
+total 56
+dr-xr-x---  4 root root  4096 Dec 10 07:55 .
+dr-xr-xr-x 25 root root  4096 Dec  6 23:04 ..
+-rw-------  1 root root  3608 Dec 10 19:41 .bash_history
+-rw-r--r--  1 root root    18 Jan 15  2011 .bash_logout
+-rw-r--r--  1 root root   310 Dec  7 01:23 .bash_profile
+-rw-r--r--  1 root root   176 Jan 15  2011 .bashrc
+-rw-r--r--  1 root root   100 Jan 15  2011 .cshrc
+-rw-r--r--  1 root root    47 Dec  7 06:14 .gitconfig
+drwxr-xr-x  5 root root  4096 Dec  7 06:06 hello-world
+drwx------  2 root root  4096 Dec  6 23:04 .ssh
+-rw-r--r--  1 root root   129 Jan 15  2011 .tcshrc
+-rw-------  1 root root 10380 Dec 10 07:55 .viminfo
+[root@Jenkins ~]# cd hello-world/webapp/src/main/webapp/
+[root@Jenkins webapp]# pwd
+/root/hello-world/webapp/src/main/webapp
+[root@Jenkins webapp]# ls -l
+total 8
+-rw-r--r-- 1 root root  227 Dec 10 07:55 index.jsp
+drwxr-xr-x 2 root root 4096 Dec  7 06:06 WEB-INF
+[root@Jenkins webapp]#
+
+
+##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

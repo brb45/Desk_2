@@ -1,0 +1,86 @@
+            
+4.INITIALIZE_DUT  ____________________________________________________________
+Test Time = 0.539 s
+DUT_DRIVER_INFO                                   : wlm version: 7.10.31.0 (support 4335, 4345, 4350 and more ) 
+                              wl: wlm: 1.274 RC0.0 wl0: Aug 31 2018 15:47:09 version 18.10.282.6 (wlan
+                              r778633 WLTEST) FWID 01-9c4f8e62
+ 
+DUT_NAME                                          : 4377            
+ERROR_MESSAGE                                     :[Info] Function completed.
+            
+5.LOAD_PATH_LOSS_TABLE  ______________________________________________________
+RX_PATH_LOSS_FILE                                 : path_loss.csv         
+TX_PATH_LOSS_FILE                                 : path_loss.csv         
+Test Time = 0.120 s
+ERROR_MESSAGE                                     :[Info] Function completed.
+            
+6.DUT_SET_MODE  ______________________________________________________________
+DUT_MODE                                          :       RSDB         
+Test Time = 0.501 s
+ERROR_MESSAGE                                     :[Info] Function completed.
+          
+7.SEQ_TEST_BUILD  5180 BW-20 ANT1 ANT2 _______________________________________
+TEST_CATEGORY                                     : STA_RX_DL_SU         
+BSS_FREQ_MHZ_PRIMARY                              :       5180 MHz     
+CH_FREQ_MHZ                                       :       5180 MHz     
+BSS_BANDWIDTH                                     :      BW-20 MHz     
+CH_BANDWIDTH                                      :     CBW-20 MHz     
+ANT1                                              :          1         
+ANT2                                              :          1         
+ANT3                                              :          0         
+ANT4                                              :          0         
+ANT5                                              :          0         
+ANT6                                              :          0         
+ANT7                                              :          0         
+ANT8                                              :          0         
+ARRAY_HANDLING_METHOD                             :          0         
+BSS_FREQ_MHZ_SECONDARY                            :          0 MHz     
+CH_FREQ_MHZ_PRIMARY_20MHz                         :          0 MHz     
+VSA_SAVE_CAPTURE_ALWAYS                           :          0         
+CABLE_LOSS_DB1                                    :          0 dB      
+CABLE_LOSS_DB2                                    :          0 dB      
+CABLE_LOSS_DB3                                    :          0 dB      
+CABLE_LOSS_DB4                                    :          0 dB      
+CABLE_LOSS_DB5                                    :          0 dB      
+CABLE_LOSS_DB6                                    :          0 dB      
+CABLE_LOSS_DB7                                    :          0 dB      
+CABLE_LOSS_DB8                                    :          0 dB      
+STANDARD                                          :   802.11ax         
+ENABLE_AUTO_RLEV                                  :          0         
+Test Time = 0.044 s
+ERROR_MESSAGE                                     :[Info] Function completed.
+            
+8.ADD_SU_STEP SENS MCS0 HE_SU ________________________________________________
+DATA_RATE                                         :       MCS0         
+MEASUREMENTS                                      :       SENS         
+PACKET_FORMAT                                     :      HE_SU         
+NUM_STREAMS                                       :          2         
+START_POWER_LEVEL_DBM                             :        -80 dBm     
+STOP_POWER_LEVEL_DBM                              :        -95 dBm     
+SWEEP_STEP_DB                                     :         -1 dB      
+PSDU_LENGTH                                       :        200         
+STBC                                              :          0         
+USE_ALL_SIGNAL                                    :          1         
+FRAME_COUNT                                       :        100         
+PER_SENS_MAX_POWER_DBM                            :        -50 dBm     
+PER_TRGT_SENS_POWER_DBM                           :        -40 dBm     
+RX_ACK_POWER_DBM                                  :         15 dBm     
+PACKET_EXTENSION                                  :   1.6e-005         
+CODING_TYPE                                       :       LDPC         
+MAC_ADDRESS                                       :                    
+OPENLOOP_ACK_POWER_INDEX                          :                    
+STA_ID                                            :          1         
+NUM_VSA                                           :          2         
+CFO_ERROR                                         :          0 ppm     
+SYM_CLOCK_ERROR                                   :          0 ppm     
+TIMING_ERROR                                      :          0 ms      
+SPIKE_REMOVAL                                     :          1         
+SENS_PER_PERCENTAGE                               :         10 dB      
+OPTION_STRING                                     :                    
+DCM                                               :          0         
+GI_LTF_TYPE                                       :          1         
+OPENLOOP_ACK_TARGET_POWER                         :                    
+Test Time = 0.039 s
+ERROR_MESSAGE                                     :[Info] Function completed.
+
+############## END ###############################

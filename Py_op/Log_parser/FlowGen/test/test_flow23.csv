@@ -1,0 +1,6 @@
+TECHNOLOGY,  DATA_RATE,  FREQ_MHZ,  TEST,           TX_POWER_DBM,  ANTENNA
+WIFI,         OFDM-6,     2412,      TX_VERIFY_EVM,    15.0,         "(1,0,0,0)"
+WIFI,         OFDM-12,        ,                   ,      ,,,,
+WIFI,         OFDM-18,        ,                   ,      ,,,,
+WIFI,         OFDM-24,        ,                   ,      ,,,,
+WIFI,         DSSS-1,         ,                   ,      ,,,,

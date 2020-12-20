@@ -1,0 +1,12 @@
+PLINK v1.90b6.9 64-bit (4 Mar 2019)
+Options in effect:
+  --ssh root@192.168.13.51
+
+Hostname: JSUN-MBPW10
+Working directory: C:\Users\jsun\Documents\Py_projects\concur_log
+Start time: Mon Mar 11 13:56:18 2019
+
+Error: Unrecognized flag ('-ssh').
+For more information, try 'plink --help <flag name>' or 'plink --help | more'.
+
+End time: Mon Mar 11 13:56:18 2019

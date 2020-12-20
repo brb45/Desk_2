@@ -1,0 +1,28 @@
+	RX_VERIFY_PER
+		#Input Parameters:
+		>FRAME_COUNT [Integer]  = 0 
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2412")%% 
+		>RX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%% 
+		>RX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>RX3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>RX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>RX_POWER_DBM [Double]  = %%sub getvalue("RX_POWER_DBM", "-65.0")%%
+		>BANDWIDTH [String]  = HT20 
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-54")%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<GOOD_PACKETS [Integer]  = <,>
+		<TOTAL_PACKETS [Integer]  = <,>
+		<CABLE_LOSS_DB_1 [Double]  = <,>
+		<CABLE_LOSS_DB_2 [Double]  = <,>
+		<CABLE_LOSS_DB_3 [Double]  = <,>
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<PER [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

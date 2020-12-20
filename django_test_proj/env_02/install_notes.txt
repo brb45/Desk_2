@@ -1,0 +1,72 @@
+# 1. upgrade pip
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>python -m pip install --upgrade  pip
+Collecting pip
+  Using cached https://files.pythonhosted.org/packages/5c/e0/be401c003291b56efc55aeba6a80ab790d3d4cece2778288d65323009420/pip-19.1.1-py2.py3-none-any.whl
+Installing collected packages: pip
+  Found existing installation: pip 18.1
+    Uninstalling pip-18.1:
+      Successfully uninstalled pip-18.1
+Successfully installed pip-19.1.1
+
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>pip -V
+pip 19.1.1 from c:\users\jsun\documents\py_projects\django_test_proj\env_02\lib\site-packages\pip (python 3.7)
+
+# 2. install django
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>pip install django
+
+# 3. install mysql
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>pip install django-mysql
+
+# check
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>pip list
+Package      Version
+------------ -------
+Django       2.2.2
+django-mysql 3.2.0
+pip          19.1.1
+pytz         2019.1
+setuptools   40.6.2
+sqlparse     0.3.0
+
+# 4. Create project restful01
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02>Scripts\django-admin.exe startproject restful01
+
+# 5. Create an app: api
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02\restful01>python manage.py startapp api
+
+# 6. Add 'api' in INSTALLED_APPS from settings.py
+
+# 7. use djangorestframework to do api development, rather than uing django old way
+(env_02) C:\Users\jsun\Documents\Py_projects\django_test_proj\env_02\restful01>pip install djangorestframework
+
+# 8. Add rest_framework in settings.py
+
+# 9.views from Django, is function based.
+
+### moving forward, everything below is using rest_framework
+
+# 10. serializer and class based APIview or function-based APIview
+cons: we have to define similar fields on both serializer and model class
+
+# 11. ModelSerializer and Generic Views
+Model + Serializer = ModelSerializer
+
+ListCreateAPIView, RetrieveUpdateDestroyAPIView,
+ListAPIView, CreateAPIView, RetrieveAPIView,UpdateAPIView, DestroyAPIView
+
+# 12 ViewSet and ModelViewSet and Router,
+Benefit over generic views, is , now everything can be in one class.
+
+# A ViewSet works with the following methods:
+1.) list: list all the elements. serves GET to /api/subscriber
+2.) create: Create a new model instance. POST to /api/subscriber
+3.) retrieve: read one model instance. GET to /api/subscriber/1
+4.) update and partial_update: updates single element, PUT/PATCH to /api/subscriber/1
+5.) destroy: delete a single element. DELETE to /api/subscriber/1
+
+# Use Router for ViewSet
+
+
+
+
+

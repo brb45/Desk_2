@@ -1,0 +1,7 @@
+INFO:root:Informational message
+ERROR:root:An error has happened!
+ERROR:ex:Error!
+Traceback (most recent call last):
+  File "C:/Users/jsun/Documents/pyProjects/log_parse/logging_1.py", line 14, in <module>
+    raise RuntimeError
+RuntimeError

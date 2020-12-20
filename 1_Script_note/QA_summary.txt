@@ -1,0 +1,158 @@
+http://iqfactsrv01/Package%20List/index.html
+http://iqfactsrv01/Package%20List/index.html
+http://iqfactsrv01/
+
+IQfact+ Information System - Package / Test
+1 of 2
+IQfact+ Package List showAll
+Last updated: 2019-07-02 14:07:57
+Chipset	Solution Name	Package Parent Name	Type	Time Stamp	VS Version	Package Location
+
+
+1. Release/package info.
+version, location, features supported, target curstomers.
+2 Test - related.
+Test scripts all included in a .zip file with version attached.
+Test summary
+Issues found with Jira 
+Test Environment
+3. Website feature
+search, sort, export-csv
+4. How to update IQfact+ information system.
+use restAPI?,
+
+5. Form web-based iqfact-testing, and flow generation
+
+. Retrieve data from analysis
+. website
+.. Save logs, test summary, test environment,
+.. Run test, like IQ_vector.
+.. Web-based testing
+.. grab raw data, what kinda raw data
+... like measurement raw data: scpi commands, instumennt special command sequence,
+... output measurements, stream data.
+
+... Network Traffic and server Response
+
+DUT/PC through tester: client/server relatioins
+By inspecting both the network and application layers, a picture soon emerges, 
+enabling network administrators to quickly identify potential performance 
+bottlenecks that may be leading to a diminished user experience.
+
+6. Web-based
+host - server, both internally, and customer through login
+we have a small app: that can query rest API. need to install the endpoint app.
+
+test-suite is a web application.
+customer needs to deploy, reference by Derek
+
+key is database design, and what to put in database, since user
+will query those information
+
+Evaluate wireless or wired network
+1. General information: non-data related
+1) Application-related
+2) Device related
+3) Instrument related: as aceess point
+
+Endpoint app on device,
+tester has its own os, and app
+user console: running our application -- test suite
+
+internally litepoint, and certain clients , can run web-based testing, and save data in server.Started to see buissiness, and
+will move to cloud.
+
+front-end component , test and automation
+focus on functionality test, rest api testing.
+
+Here APIs play a big role, if you create APIs of the common business logic, then you just need to access 
+those APIs using URLs in your different applications.
+an Android application written in java can communicate with the API written using Django rest Framework
+And the same API can be used by your web application frontend to access this API using URL.
+
+? how to save stream data, how database manage stream data
+As for whether or not you need an API, it depends on if you have dynamic data you’d like to display on 
+your portfolio website. An API is usually used to make looking up, updating, and deleting data easier.
+
+> Dynamic data
+# Having api, got to have a server, or localhost, client can have access to historical data. why not database.
+# provide (web service) historic test data/results from different device, test scenario, and performance
+# rest-api provides web-service
+
+# django rest
+Here are some of the situations.
+
+. When you are building an application with a front-end framework like React or 
+Angular you will need to build your back-end using Django Rest Framework.
+
+. When you want to develop a back-end for a mobile application.
+. When you want to build a system that can be accessed from various platforms.
+
+When you’re developing some service it’s good to separate Frontend from Backend. 
+So you could use Rest Framework for Backend, but for Frontend use React or Angular. 
+They’re better for Frontend part.
+
+# Test mobile app with endpoint
+Configure the device, with either integrate test.lib to device
+, like controlling/communicating the device FW through USB/ethenet
+
+# Testing device network/wireless performance
+
+find and resolve all software problems: bugs, defects, design flaws, bad code check-ins, 
+test failures, environment instabilities, deployment hiccups, and even automation crashes.
+
+140/ 83/20
+
+
+
+
+C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE>MSTest.exe 
+/testcontainer:"C:\Program Files (x86)\Jenkins\jobs\Build.ExampleProj\workspace\source\ExampleProj \bin\Release\ExampleProj.Tests.dll" 
+/resultsfile:"C:\Program Files (x86)\Jenkins\jobs\Build.ExampleProj\workspace\source\Build\Tests.Results.trx"
+
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="ExecuteMSTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+    <PropertyGroup>
+        <MsTestExePath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\mstest.exe</MsTestExePath>
+        <MsTestResultPath>$(WORKSPACE)\MyResults.trx</MsTestResultPath>
+        <Configuration>Release</Configuration>
+    </PropertyGroup>
+
+    <Target Name="ExecuteMSTest">
+
+        <ItemGroup>
+            <MSTestAssemblies Include="$(WORKSPACE)\**\bin\$(Configuration)\*.Test.dll"/>
+        </ItemGroup>
+
+        <PropertyGroup>
+            <MsTestCommand>"$(MsTestExePath)" @(MSTestAssemblies->'/testcontainer:"%(FullPath)"', ' ') /resultsfile:"TestResults\Results.trx""</MsTestCommand>
+        </PropertyGroup>
+   
+        <Exec Command="$(MsTestCommand)" ContinueOnError="true" />
+
+    </Target>
+
+</Project>
+
+Obtain a clean copy of the source code from source control.
+Fetch any dependencies (preferably from an artifact repository).
+Version stamp any necessary code (may be a pre-compile or post-compile step, depending on the technology stack).
+Compile the source code and verify syntax.
+Execute unit tests (unit-based validation of objects, methods, and classes).
+Collate compiled objects, binaries, or deliverables into a common output directory.
+Create a package containing the binaries and deliverables.
+Publish a versioned deliverable to an artifact repository.
+
+Is the source control system accessible to the build machine and appropriate users?
+Does the code contained in source control meet basic structural standards?
+Does the source code committed to the code base compile at the time build was initiated, or does it have any obvious syntax errors?
+Is the build environment in a working state?
+Does the software pass basic unit test execution?
+Is the pre-production and production environments in a usable state
+Does the software project install?
+Does the software project meet quality assurance standards
+
+The final deployable package will contain everything necessary to install the component or software project onto a given environment (this can make disaster recovery easier)
+The final deployable package will contain all testing apparatuses and database schema scripts needed to pass quality control gates (this makes going back in time and running tests against an older package possible)
+The software project could be easily be rolled backwards or forwards (by simply executing the automation inside a versioned package)

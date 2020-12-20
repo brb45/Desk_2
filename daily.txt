@@ -1,0 +1,32 @@
+10/18/20
+1. import re
+1.1 exceptions: what kind of exceptions and how to handle
+1.2 Python assert
+2. itertool
+3. json files ops
+4. glob
+5. logging
+6. from pywinauto.application import Application
+7. panda
+8. IOError, OSError
+9. parse large json file
+11.simplejson
+12. jsonpath
+13. generator
+14. functools
+# Python Name convention
+# Variable/function names are lower_caseandseparated_with_underscores
+# Named constants are in ALL_CAPITAL_LETTERS
+# Classes are in CamelCase
+# topological sort
+# bucket sort
+# Block bucket: 307. Range Sum Query - Mutable
+# all, any, sum
+
+# itertools
+# itertools.izip_longest
+# functools.cmp_to_key(func)
+
+11/17/20
+pytest raise
+pytest monkeypatch

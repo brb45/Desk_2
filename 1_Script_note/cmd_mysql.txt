@@ -1,0 +1,1154 @@
+
+sudo mysql --defaults-file=/etc/mysql/debian.cnf
+ssqa@ssqa:$ mysql -u ssqa -pssqa
+
+## Cteate user
+CREATE USER IF NOT EXISTS 'ssqa'@'localhost' 
+IDENTIFIED WITH mysql_native_password 
+BY 'ssqa' 
+WITH MAX_QUERIES_PER_HOUR 5000 
+MAX_UPDATES_PER_HOUR 1000;
+#@@ Install percona toolkit
+## Fetch percona toolkit repository package
+wget https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+## Install the downloaded repository package with dpkg
+ sudo dpkg -i percona-release_latest.generic_all.deb
+## intstll
+sudo apt-get install percona-toolkit
+##
+# 1. inSTALL wget
+ssqa@ssqa:~$ sudo apt install wget
+[sudo] password for ssqa:
+Sorry, try again.
+[sudo] password for ssqa:
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+wget is already the newest version (1.19.4-1ubuntu2.2).
+wget set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 38 not upgraded.
+
+#2. Add mysql apt repository
+wget "https://repo.mysql.com//mysql-apt-config_0.8.9-1_all.deb"
+wget http://repo.mysql.com/mysql-apt-config_0.8.10-1_all.deb
+
+# 3. stall the downloaded release package
+sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
+
+#4. 
+ssqa@ssqa:~$ sudo apt update
+# 5. Install mysql 
+sudo apt install mysql-server
+
+#Verify packages. ii indicates that the package is installed
+dpkg -l | grep -i mysql
+
+# 6. Start mySQL
+sudo service mysql start (NOT working)
+
+# Start mySQL
+shell> sudo /etc/init.d/mysql start #working
+# Restart mySQL
+sudo /etc/init.d/mysql restart # for restarting mysql
+# Stop mySQL
+sudo /etc/init.d/mysql stop
+
+
+
+# log in mysql without using passwd
+sudo mysql --defaults-file=/etc/mysql/debian.cnf
+
+ssqa@ssqa:/var/log/mysql$ sudo cat /etc/mysql/debian.cnf
+# Automatically generated for Debian scripts. DO NOT TOUCH!
+[client]
+host     = localhost
+user     = debian-sys-maint
+password = nzexqzPlAj2cY7GC
+socket   = /var/run/mysqld/mysqld.sock
+[mysql_upgrade]
+host     = localhost
+user     = debian-sys-maint
+password = nzexqzPlAj2cY7GC
+socket   = /var/run/mysqld/mysqld.sock
+
+## 
+mysql -u debian-sys-maint -p
+#
+mysql> USE mysql
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT User, Host, plugin FROM mysql.user;
++------------------+-----------+-----------------------+
+| User             | Host      | plugin                |
++------------------+-----------+-----------------------+
+| root             | localhost | auth_socket           |
+| mysql.session    | localhost | mysql_native_password |
+| mysql.sys        | localhost | mysql_native_password |
+| debian-sys-maint | localhost | mysql_native_password |
++------------------+-----------+-----------------------+
+4 rows in set (0.00 sec)
+
+# mySQL status
+sudo /etc/init.d/mysql status
+
+# Install mysql utilities
+wget "https://cdn.mysql.com//Downloads/MySQLGUITools/mysql-utilities_1.6.5-1ubuntu16.10_all.deb"
+sudo dpkg -i mysql-utilities_1.6.5-1ubuntu16.10_all.deb
+sudo apt-get install -f
+
+# Connect mysql server
+mysql -h localhost -P 3306 -u <username> -p<password> #no space between -p and passwd
+mysql -h localhost -P 3306 -u debian-sys-maint -pnzexqzPlAj2cY7GC
+#____________________________________________________________________________________________
+# Create Database
+mysql> CREATE DATABASE company;
+mysql> CREATE DATABASE `my.contacts`;
+
+# Swictch Database
+mysql> USE company
+mysql> USE `my.contacts`
+
+#To find which database you are connected to
+mysql> SELECT DATABASE();
+
+#To find all the databases you have access to
+mysql> SHOW DATABASES;
+
+#mysql> SHOW VARIABLES LIKE 'datadir';
+
+# table datatypes
+
+Numeric: TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT, and BIT.
+Floating numbers: DECIMAL, FLOAT, and DOUBLE.
+Strings: CHAR, VARCHAR, BINARY, VARBINARY, BLOB, TEXT, ENUM, and SET.
+The JSON datatype 
+
+# Create a table
+mysql> CREATE TABLE IF NOT EXISTS `company`.`customers` (
+    -> `id` int unsigned AUTO_INCREMENT PRIMARY KEY,
+    -> `first_name` varchar(20),
+    -> `last_name` varchar(20),
+    -> `country` varchar(20)
+    -> ) ENGINE=InnoDB;
+Query OK, 0 rows affected (0.34 sec)
+
+##
+mysql> CREATE TABLE IF NOT EXISTS `company.payments`(
+    -> `customer_name` varchar(20) PRIMARY KEY,
+    -> payment float
+    -> );
+Query OK, 0 rows affected (0.50 sec)
+
+#
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_company |
++-------------------+
+| company.payments  |
+| customers         |
++-------------------+
+2 rows in set (0.00 sec)
+
+##
+mysql> DESC customers;
++------------+------------------+------+-----+---------+----------------+
+| Field      | Type             | Null | Key | Default | Extra          |
++------------+------------------+------+-----+---------+----------------+
+| id         | int(10) unsigned | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(20)      | YES  |     | NULL    |                |
+| last_name  | varchar(20)      | YES  |     | NULL    |                |
+| country    | varchar(20)      | YES  |     | NULL    |                |
++------------+------------------+------+-----+---------+----------------+
+
+#
+mysql> SHOW CREATE TABLE customers\G
+*************************** 1. row ***************************
+       Table: customers
+Create Table: CREATE TABLE `customers` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(20) DEFAULT NULL,
+  `last_name` varchar(20) DEFAULT NULL,
+  `country` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+1 row in set (0.00 sec)
+#
+CREATE TABLE payments (
+`customer_name`  varchar(20) PRIMARY KEY,
+`payment` float
+);
+
+# clone table
+mysql> CREATE TABLE `new_customers` LIKE customers;
+Query OK, 0 rows affected (0.35 sec)
+
+##  Data Manipulation Language (DML)
+# Insert
+# if the row exists and IGNORE is used, new data row is ignored; if IGNORE is not used, the
+INSERT statement -> an error
+Uniquesness of a row is determined by primary key.
+USE  company
+INSERT IGNORE INTO `customers` (first_name, last_name, country) VALUES
+( 'Mike', 'Christensen', 'USA'),
+('Andy', 'Hollands', 'Australia'),
+('Ravi', 'Vedantam', 'India'),
+('Rajiv', 'Perera', 'Sri Lanka');
+
+## SHOW WARINGS;
+
+## UPDATE
+#The WHERE clause is mandatory. Failing to give it will UPDATE the whole table.
+# It will update each row with the new row, if no WHERE is given.
+UPDATE customers SET first_name='Rajiv', country='UK' WHERE id=4;
+
+#@@ DELETE
+he WHERE clause is mandatory. Failing to give it will DELETE all the rows of the table.
+DELETE FROM customers WHERE id=1 AND first_name='Rajiv';
+
+#@@ Replace
+If a row already exists, REPLACE simply deletes the row and inserts the new row.
+So it is a 2-actions involved,  delete and insert;
+ If a row is not there, REPLACE behaves as INSERT. ONLY one action.
+REPLACE INTO customers VALUES (3, 'Mike', 'Christensen', 'America');
+REPLACE INTO customers VALUES (2, "Jack", "Soprano", "Russia");
+
+# ON DUPLICATE KEY UPDATE
+mysql> INSERT INTO payments VALUES('Ravi Vedantam',500) ON DUPLICATE KEY UPDATE payment=payment+VALUES(payment);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> Select * From payments;
++---------------+---------+
+| customer_name | payment |
++---------------+---------+
+| Ravi Vedantam |     500 |
++---------------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO payments VALUES('Ravi Vedantam',300) ON DUPLICATE KEY UPDATE payment=payment+VALUES(payment);
+Query OK, 2 rows affected (0.06 sec)
+
+mysql> Select * From payments;
++---------------+---------+
+| customer_name | payment |
++---------------+---------+
+| Ravi Vedantam |     800 |
++---------------+---------+
+1 row in set (0.00 sec)
+
+#@@ Trucate the table
+
+#@@ mysql sample data
+
+wget 'https://codeload.github.com/datacharmer/test_db/zip/master' -O master.zip
+unzip master.zip
+cd test_db-master
+
+## Load data
+ssqa@ssqa:~/Documents/test_db-master$ sudo mysql --defaults-file=/etc/mysql/debian.cnf < employees.sql
+[sudo] password for ssqa:
+INFO
+CREATING DATABASE STRUCTURE
+INFO
+storage engine: InnoDB
+INFO
+LOADING departments
+INFO
+LOADING employees
+INFO
+LOADING dept_emp
+INFO
+LOADING dept_manager
+INFO
+LOADING titles
+INFO
+LOADING salaries
+data_load_time_diff
+00:01:26
+
+#@@ Verify the data
+sudo mysql --defaults-file=/etc/mysql/debian.cnf employees -A
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_employees  |
++----------------------+
+| current_dept_emp     |
+| departments          |
+| dept_emp             |
+| dept_emp_latest_date |
+| dept_manager         |
+| employees            |
+| salaries             |
+| titles               |
++----------------------+
+8 rows in set (0.00 sec)
+
+##
+mysql> DESC employees\G
+*************************** 1. row ***************************
+  Field: emp_no
+   Type: int(11)
+   Null: NO
+    Key: PRI
+Default: NULL
+  Extra:
+*************************** 2. row ***************************
+  Field: birth_date
+   Type: date
+   Null: NO
+    Key:
+Default: NULL
+  Extra:
+*************************** 3. row ***************************
+  Field: first_name
+   Type: varchar(14)
+   Null: NO
+    Key:
+Default: NULL
+  Extra:
+*************************** 4. row ***************************
+  Field: last_name
+   Type: varchar(16)
+   Null: NO
+    Key:
+Default: NULL
+  Extra:
+*************************** 5. row ***************************
+  Field: gender
+   Type: enum('M','F')
+   Null: NO
+    Key:
+Default: NULL
+  Extra:
+*************************** 6. row ***************************
+  Field: hire_date
+   Type: date
+   Null: NO
+    Key:
+Default: NULL
+  Extra:
+6 rows in set (0.01 sec)
+
+#@@ SELECT
+Select all data from the departments table of the employee database.
+You can use an asterisk (*) to select all columns from a table.
+
+mysql> SELECT * FROM departments;
++---------+--------------------+
+| dept_no | dept_name          |
++---------+--------------------+
+| d009    | Customer Service   |
+| d005    | Development        |
+| d002    | Finance            |
+| d003    | Human Resources    |
+| d001    | Marketing          |
+| d004    | Production         |
+| d006    | Quality Management |
+| d008    | Research           |
+| d007    | Sales              |
++---------+--------------------+
+9 rows in set (0.00 sec)
+
+#@@
+mysql> SELECT * FROM dept_manager;
++--------+---------+------------+------------+
+| emp_no | dept_no | from_date  | to_date    |
++--------+---------+------------+------------+
+| 110022 | d001    | 1985-01-01 | 1991-10-01 |
+| 110039 | d001    | 1991-10-01 | 9999-01-01 |
+| 110085 | d002    | 1985-01-01 | 1989-12-17 |
+| 110114 | d002    | 1989-12-17 | 9999-01-01 |
+| 110183 | d003    | 1985-01-01 | 1992-03-21 |
+| 110228 | d003    | 1992-03-21 | 9999-01-01 |
+| 110303 | d004    | 1985-01-01 | 1988-09-09 |
+| 110344 | d004    | 1988-09-09 | 1992-08-02 |
+| 110386 | d004    | 1992-08-02 | 1996-08-30 |
+| 110420 | d004    | 1996-08-30 | 9999-01-01 |
+| 110511 | d005    | 1985-01-01 | 1992-04-25 |
+| 110567 | d005    | 1992-04-25 | 9999-01-01 |
+| 110725 | d006    | 1985-01-01 | 1989-05-06 |
+| 110765 | d006    | 1989-05-06 | 1991-09-12 |
+| 110800 | d006    | 1991-09-12 | 1994-06-28 |
+| 110854 | d006    | 1994-06-28 | 9999-01-01 |
+| 111035 | d007    | 1985-01-01 | 1991-03-07 |
+| 111133 | d007    | 1991-03-07 | 9999-01-01 |
+| 111400 | d008    | 1985-01-01 | 1991-04-08 |
+| 111534 | d008    | 1991-04-08 | 9999-01-01 |
+| 111692 | d009    | 1985-01-01 | 1988-10-17 |
+| 111784 | d009    | 1988-10-17 | 1992-09-08 |
+| 111877 | d009    | 1992-09-08 | 1996-01-03 |
+| 111939 | d009    | 1996-01-03 | 9999-01-01 |
++--------+---------+------------+------------+
+24 rows in set (0.01 sec)
+
+#@@ Select columns
+mysql> SELECT emp_no, dept_no FROM dept_manager;
++--------+---------+
+| emp_no | dept_no |
++--------+---------+
+| 110022 | d001    |
+| 110039 | d001    |
+| 110085 | d002    |
+| 110114 | d002    |
+| 110183 | d003    |
+| 110228 | d003    |
+| 110303 | d004    |
+| 110344 | d004    |
+| 110386 | d004    |
+| 110420 | d004    |
+| 110511 | d005    |
+| 110567 | d005    |
+| 110725 | d006    |
+| 110765 | d006    |
+| 110800 | d006    |
+| 110854 | d006    |
+| 111035 | d007    |
+| 111133 | d007    |
+| 111400 | d008    |
+| 111534 | d008    |
+| 111692 | d009    |
+| 111784 | d009    |
+| 111877 | d009    |
+| 111939 | d009    |
++--------+---------+
+24 rows in set (0.00 sec)
+
+#@@  count # of managers
+mysql> SELECT COUNT(*) FROM dept_manager;
++----------+
+| COUNT(*) |
++----------+
+|       24 |
++----------+
+1 row in set (0.00 sec)
+#@@ Filter based on conditions
+mysql> SELECT emp_no FROM employees  WHERE first_name="Georgi" AND last_name="Facello";
++--------+
+| emp_no |
++--------+
+|  10001 |
+|  55649 |
++--------+
+2 rows in set (0.07 sec)
+
+#@@ Operators for filtering results
+IN: Check whether a value is within a set of values.
+mysql> SELECT COUNT(*) FROM employees WHERE last_name IN ('Christ', 'Lamba', 'Baba');
++----------+
+| COUNT(*) |
++----------+
+|      626 |
++----------+
+1 row in set (0.06 sec)
+
+#@@
+BETWEEN...AND: Check whether a value is within a range of values.
+mysql> SELECT COUNT(*) FROM employees WHERE hire_date BETWEEN '1986-12-01' AND '1987-12-01';
++----------+
+| COUNT(*) |
++----------+
+|    33858 |
++----------+
+1 row in set (0.13 sec)
+
+#@@ NOT
+mysql> SELECT COUNT(*) FROM employees WHERE hire_date NOT BETWEEN '1986-12-01' AND '1986-12-31';
++----------+
+| COUNT(*) |
++----------+
+|   296943 |
++----------+
+1 row in set (0.09 sec)
+
+#@@ Simple Pattern Matching
+Use underscore (_) for matching exactly one character. 
+Use % for matching any number of characters.
+#first name starts with Christ:
+mysql> SELECT COUNT(*) FROM employees WHERE first_name LIKE 'christ%';
++----------+
+| COUNT(*) |
++----------+
+|     1157 |
++----------+
+1 row in set (0.06 sec)
+##
+mysql> SELECT COUNT(*) FROM employees WHERE first_name LIKE 'chris_';
++----------+
+| COUNT(*) |
++----------+
+|      715 |
++----------+
+1 row in set (0.06 sec)
+#@@ SELECT COUNT(*) FROM employees WHERE first_name LIKE 'christ%ed';
+#@@ SELECT COUNT(*) FROM employees WHERE first_name LIKE '%sri%';
+#@@  SELECT COUNT(*) FROM employees WHERE first_name LIKE '__ka%'; # Start with any two chars
+
+#@@ Regular expression by using RLIKE or REGEXP
+* zero or more repetions
++ one or more repetions
+? optional char
+. any char
+\. period
+^ Starts with
+$ ends with
+[abc] only a or b, or c
+[^abc] Neither a, b nor c
+[a-z] a to z
+[0-9]  0-9
+\d any digits
+\D any Non-digits
+\s any whitespace char
+\S any non-whitespace
+\w any alphanumeric chars
+\W any non-alphanumeric char
+{m} m repetions
+{m, n} m to n repetitions
+
+#@@
+mysql> SELECT COUNT(*) FROM employees WHERE  first_name RLIKE '^christ';
++----------+
+| COUNT(*) |
++----------+
+|     1157 |
++----------+
+1 row in set (0.17 sec)
+#@@
+mysql> SELECT COUNT(*) FROM employees WHERE  first_name REGEXP '^christ';
++----------+
+| COUNT(*) |
++----------+
+|     1157 |
++----------+
+1 row in set (0.16 sec)
+#@@
+mysql> SELECT COUNT(*) FROM employees WHERE last_name NOT REGEXP '[aeiou]';
++----------+
+| COUNT(*) |
++----------+
+|      148 |
++----------+
+1 row in set (0.10 sec)
+
+#@@  Limiting Results
+mysql> SELECT first_name, last_name FROM employees WHERE hire_date < '1986-01-01' LIMIT 5;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Bezalel    | Simmel    |
+| Sumant     | Peac      |
+| Eberhardt  | Terkki    |
+| Otmar      | Herbst    |
+| Florian    | Syrotiuk  |
++------------+-----------+
+5 rows in set (0.00 sec)
+
+#@@ SORTING
+mysql> SELECT emp_no, salary FROM salaries ORDER BY salary DESC LIMIT 5;
++--------+--------+
+| emp_no | salary |
++--------+--------+
+|  43624 | 158220 |
+|  43624 | 157821 |
+| 254466 | 156286 |
+|  47978 | 155709 |
+| 253939 | 155513 |
++--------+--------+
+5 rows in set (0.71 sec)
+
+## Aggregated query with GROUP BY
+
+mysql> SELECT gender, COUNT(*)  AS count FROM employees GROUP BY gender;
++--------+--------+
+| gender | count  |
++--------+--------+
+| M      | 179973 |
+| F      | 120051 |
++--------+--------+
+2 rows in set (0.14 sec)
+
+##
+mysql> SELECT first_name,  COUNT(first_name)  AS count FROM employees GROUP BY first_name LIMIT 5;
++------------+-------+
+| first_name | count |
++------------+-------+
+| Aamer      |   228 |
+| Aamod      |   216 |
+| Abdelaziz  |   227 |
+| Abdelghani |   247 |
+| Abdelkader |   222 |
++------------+-------+
+5 rows in set (0.16 sec)
+#
+mysql> SELECT first_name,  COUNT(first_name)  AS count FROM employees GROUP BY first_name ORDER BY count LIMIT 5;
++------------+-------+
+| first_name | count |
++------------+-------+
+| Lech       |   185 |
+| Renny      |   185 |
+| Ebbe       |   190 |
+| Jaroslava  |   193 |
+| Gladys     |   194 |
++------------+-------+
+5 rows in set (0.16 sec)
+
+## AVG()
+mysql> SELECT emp_no, AVG(salary) AS avg FROM salaries GROUP BY emp_no ORDER BY avg DESC LIMIT 10;
++--------+-------------+
+| emp_no | avg         |
++--------+-------------+
+| 109334 | 141835.3333 |
+| 205000 | 141064.6364 |
+|  43624 | 138492.9444 |
+| 493158 | 138312.8750 |
+|  37558 | 138215.8571 |
+| 276633 | 136711.7333 |
+| 238117 | 136026.2000 |
+|  46439 | 135747.7333 |
+| 254466 | 135541.0625 |
+| 253939 | 135042.2500 |
++--------+-------------+
+10 rows in set (1.09 sec)
+
+##
+mysql> SELECT YEAR(from_date), SUM(salary) AS sum FROM salaries GROUP BY YEAR(from_date) ORDER BY sum DESC LIMIT 5;
++-----------------+-------------+
+| YEAR(from_date) | sum         |
++-----------------+-------------+
+|            2000 | 17535667603 |
+|            2001 | 17507737308 |
+|            1999 | 17360258862 |
+|            1998 | 16220495471 |
+|            1997 | 15056011781 |
++-----------------+-------------+
+5 rows in set (1.81 sec)
+##
+mysql> SELECT * FROM titles LIMIT 5;
++--------+-----------------+------------+------------+
+| emp_no | title           | from_date  | to_date    |
++--------+-----------------+------------+------------+
+|  10001 | Senior Engineer | 1986-06-26 | 9999-01-01 |
+|  10002 | Staff           | 1996-08-03 | 9999-01-01 |
+|  10003 | Senior Engineer | 1995-12-03 | 9999-01-01 |
+|  10004 | Engineer        | 1986-12-01 | 1995-12-01 |
+|  10004 | Senior Engineer | 1995-12-01 | 9999-01-01 |
++--------+-----------------+------------+------------+
+5 rows in set (0.00 sec)
+
+
+##
+mysql> SELECT DISTINCT title FROM titles LIMIT 5;
++--------------------+
+| title              |
++--------------------+
+| Senior Engineer    |
+| Staff              |
+| Engineer           |
+| Senior Staff       |
+| Assistant Engineer |
++--------------------+
+5 rows in set (0.00 sec)
+
+## Filtering with HAVING
+SELECT emp_no, AVG(salary) AS avg FROM salaries GROUP BY emp_no HAVING avg > 140000 ORDER BY avg DESC;
+
+##
+mysql> SELECT emp_no, AVG(salary) AS avg FROM salaries GROUP BY emp_no HAVING avg > 140000 ORDER BY avg DESC;
++--------+-------------+
+| emp_no | avg         |
++--------+-------------+
+| 109334 | 141835.3333 |
+| 205000 | 141064.6364 |
++--------+-------------+
+2 rows in set (1.13 sec)
+
+##JOin tables
+mysql> SELECT * FROM employees LIMIT 4;
++--------+------------+------------+-----------+--------+------------+
+| emp_no | birth_date | first_name | last_name | gender | hire_date  |
++--------+------------+------------+-----------+--------+------------+
+|  10001 | 1953-09-02 | Georgi     | Facello   | M      | 1986-06-26 |
+|  10002 | 1964-06-02 | Bezalel    | Simmel    | F      | 1985-11-21 |
+|  10003 | 1959-12-03 | Parto      | Bamford   | M      | 1986-08-28 |
+|  10004 | 1954-05-01 | Chirstian  | Koblick   | M      | 1986-12-01 |
++--------+------------+------------+-----------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM departments LIMIT 4;
++---------+------------------+
+| dept_no | dept_name        |
++---------+------------------+
+| d009    | Customer Service |
+| d005    | Development      |
+| d002    | Finance          |
+| d003    | Human Resources  |
++---------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM dept_manager LIMIT 4;
++--------+---------+------------+------------+
+| emp_no | dept_no | from_date  | to_date    |
++--------+---------+------------+------------+
+| 110022 | d001    | 1985-01-01 | 1991-10-01 |
+| 110039 | d001    | 1991-10-01 | 9999-01-01 |
+| 110085 | d002    | 1985-01-01 | 1989-12-17 |
+| 110114 | d002    | 1989-12-17 | 9999-01-01 |
++--------+---------+------------+------------+
+4 rows in set (0.00 sec)
+
+##
+mysql> SELECT 
+    emp.emp_no, 
+    emp.first_name, 
+    emp.last_name, 
+    dept.dept_name 
+FROM 
+    employees AS emp 
+JOIN dept_manager AS dept_mgr 
+    ON emp.emp_no=dept_mgr.emp_no AND emp.emp_no=110022 
+JOIN departments AS dept 
+    ON dept_mgr.dept_no=dept.dept_no;
+
+| emp_no | first_name | last_name  | dept_name |
++--------+------------+------------+-----------+
+| 110022 | Margareta  | Markovitch | Marketing |
++--------+------------+------------+-----------+
+1 row in set (0.01 sec)
+
+## Stored procedures
+##
+
+##Trigger
+shell> vi before_insert_trigger.sql
+
+DROP TRIGGER IF EXISTS salary_round;
+DELIMITER $$
+CREATE TRIGGER salary_round BEFORE INSERT ON salaries
+FOR EACH ROW
+BEGIN   
+        SET NEW.salary=ROUND(NEW.salary);
+END
+$$
+DELIMITER ;
+
+mysql> SOURCE before_insert_trigger.sql;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT INTO salaries VALUES(10002, 100000.79, CURDATE(), '9999-01-01');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> SELECT * FROM salaries WHERE emp_no=10002 AND from_date=CURDATE();
++--------+--------+------------+------------+
+| emp_no | salary | from_date  | to_date    |
++--------+--------+------------+------------+
+|  10002 | 100001 | 2019-10-28 | 9999-01-01 |
++--------+--------+------------+------------+
+##
+SHOW TRIGGERS\G
+
+#@@ View
+mysql> CREATE ALGORITHM=UNDEFINED 
+DEFINER=`root`@`localhost` 
+SQL SECURITY DEFINER VIEW salary_view 
+AS 
+SELECT emp_no, salary FROM salaries WHERE from_date > '2002-01-01';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> SELECT emp_no, AVG(salary) as avg FROM salary_view GROUP BY emp_no ORDER BY avg DESC LIMIT 5;
++--------+-------------+
+| emp_no | avg         |
++--------+-------------+
+|  43624 | 158220.0000 |
+|  47978 | 155709.0000 |
+| 253939 | 155513.0000 |
+| 109334 | 155190.0000 |
+|  80823 | 154459.0000 |
++--------+-------------+
+5 rows in set (0.69 sec)
+##
+To list all views, execute:
+
+mysql> SHOW FULL TABLES WHERE TABLE_TYPE LIKE 'VIEW';
+To check the definition of the view, execute:
+
+mysql> SHOW CREATE VIEW salary_view\G
+
+## Event
+MySQL has EVENTS to handle the scheduled tasks. MySQL uses a special thread called the event 
+schedule thread to execute all scheduled events. By default, the event scheduler thread is not enabled 
+(version < 8.0.3), to enable it, execute:
+mysql> SET GLOBAL event_scheduler = ON;
+
+## Transaction
+Transaction means a set of SQL statements that should succeed or fail together. Transactions should also satisfy Atomicity,
+ Consistency, Isolation, and Durability(ACID) properties. Take a very basic example of a money transfer from account
+ A to account B. Assume that A has $600, B has $400, and B wishes to transfer $100 from A to itself.
+
+The bank would deduct $100 from A and add to B using the following SQL code (for illustration):
+
+mysql> SELECT balance INTO @a.bal FROM account WHERE account_number='A';
+Programmatically, check whether @a.bal is greater than or equal to 100:
+
+mysql> UPDATE account SET balance=@a.bal-100 WHERE account_number='A';
+mysql> SELECT balance INTO @b.bal FROM account WHERE account_number='B';
+Programmatically, check whether @b.bal is NOT NULL:
+
+mysql> UPDATE account SET balance=@b.bal+100 WHERE account_number='B';
+These four SQL lines should be part of a single transaction and satisfy the following ACID properties:
+
+Atomicity: Either all the SQLs should be successful or all should fail. There should not be any partial updates.
+ If this property is not obeyed and if the database crashes after running two SQLs, then A would lose 100.
+
+Consistency: A transaction must change affected data only in allowed ways. In this example, if account_number
+ with B does not exist, the whole transaction should be rolled back.
+
+Isolation: Transactions that occur at the same time (concurrent transactions) should not lead the database to
+ an inconsistent state. Each of the transactions should be executed as if it were the only transaction in the
+ system. No transaction should affect the existence of any other transaction. Suppose A transfers all of this
+ 600 exactly at the same time while transferring to B; both transactions should act independently, ensuring
+ the balance before transferring the amount.
+ 
+Durability: The data should be persistent on disk and should not be lost despite any database or system failure.
+
+mysql> CREATE DATABASE bank;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE bank;
+Database changed
+mysql> CREATE TABLE account(account_number varchar(10) PRIMARY KEY, balance int);
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> INSERT INTO account VALUES ('A', 600),('B', 400);
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+#
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT balance INTO @a.bal FROM account WHERE account_number='A';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE account SET balance=@a.bal-100 WHERE account_number='A';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT balance INTO @B.BAL FROM account WHERE account_number='B';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE account SET balance=@B.BAL+100 WHERE account_number='B';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT account_number, balance FROM account;
++----------------+---------+
+| account_number | balance |
++----------------+---------+
+| A              |     500 |
+| B              |     500 |
+##
+mysql> BEGIN;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT balance INTO @a.bal FROM account WHERE account_number='A';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE account SET balance=@a.bal-100 WHERE account_number='A';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT balance INTO @c.bal FROM account WHERE account_number='C';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> SHOW WARNINGS;
++---------+------+-----------------------------------------------------+
+| Level   | Code | Message                                             |
++---------+------+-----------------------------------------------------+
+| Warning | 1329 | No data - zero rows fetched, selected, or processed |
++---------+------+-----------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT @c.bal;
++--------+
+| @c.bal |
++--------+
+| NULL   |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT @b.bal;
++--------+
+| @b.bal |
++--------+
+|    400 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.04 sec)
+
+## SAVEPOINT
+mysql> BEGIN;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT balance INTO @a.bal FROM account WHERE account_number='A';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE account SET balance=@a.bal-100 WHERE account_number='A';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE account SET balance=balance+100 WHERE account_number='B';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>
+mysql> SAVEPOINT transfer_to_b;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE account SET balance=balance+100 WHERE account_number='C';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> ROLLBACK TO transfer_to_b;
+Query OK, 0 rows affected (0.00 sec)
+
+## Isolation Level
+The current transaction can read data written by another uncommitted transaction,
+ which is also called dirty read.
+
+Read committed
+The current transaction can read only the data committed by another  transaction, 
+which is also called non-repeatable read. 
+
+
+#@@
+CREATE TABLE index_ex(
+    col1  int PRIMARY KEY,
+    col2 char(10),
+    KEY col2(col1)
+);
+
+#@@
+
+
+##
+
+(env_01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\pip install -r requirements.txt
+
+(env_01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\Restful_Python\env_01\c05\games_service>python manage.py makemigrations games
+Migrations for 'games':
+  games\migrations\0001_initial.py
+    - Create model Game
+
+sqlite3 db.sqlite3 ".tables"
+
+(env_01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\Restful_Python\env_01\c05\games_service>
+sqlite3 db.sqlite3 ".schema games_game"
+CREATE TABLE IF NOT EXISTS "games_game"
+("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+"created_timestamp" datetime NOT NULL,
+"name" varchar(200) NOT NULL,
+"release_date" datetime NOT NULL,
+"esrb_rating" varchar(150) NOT NULL,
+"played_once" bool NOT NULL,
+"played_times" integer NOT NULL);
+
+#@@
+superuser: postgres
+#** 1.
+test_master@jsun-mbpw10:~$ psql -h localhost -p 5433 -U postgres
+Password for user postgres: wdF99
+psql (10.10 (Ubuntu 10.10-0ubuntu0.18.04.1), server 12.0)
+WARNING: psql major version 10, server major version 12.
+         Some psql features might not work.
+Type "help" for help.
+
+postgres=#
+
+#** 2.
+postgres=# CREATE DATABASE django_gametest;
+CREATE DATABASE
+#** 3.
+
+****create role template ****
+CREATE ROLE your_user_name WITH LOGIN PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE "flask_notifications" TO your_user_name;
+ALTER USER your_user_name CREATEDB;
+\q
+**** end _create role template ****
+postgres=# CREATE ROLE u01 WITH LOGIN PASSWORD 'u01';
+
+CREATE ROLE
+postgres=# GRANT ALL PRIVILEGES ON DATABASE "django_gametest" TO u01;
+GRANT
+postgres=# ALTER USER u01 CREATEDB;
+ALTER ROLE
+postgres=# \q
+test_master@jsun-mbpw10:~$
+
+#@@
+#______________________________________________________________________________
+#*********************
+$ psql -h localhost -p 5433 -U u01 -d django_gametest  --command="\d games_esrbrating"
+Password for user u01:
+                                      Table "public.games_esrbrating"
+   Column    |          Type          | Collation | Nullable |                   Default
+-------------+------------------------+-----------+----------+----------------------------------------------
+ id          | integer                |           | not null | nextval('games_esrbrating_id_seq'::regclass)
+ description | character varying(200) |           | not null |
+Indexes:
+    "games_esrbrating_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "games_game" CONSTRAINT "games_game_esrb_rating_id_59e5b261_fk_games_esrbrating_id"
+FOREIGN KEY (esrb_rating_id) REFERENCES games_esrbrating(id) DEFERRABLE INITIALLY DEFERRED
+#*********************
+
+$ psql -h localhost -p 5433 -U user01 -d django_gametest --command="SELECT * FROM games_esrbrating;"
+Password for user user01:
+ id | description
+----+-------------
+(0 rows)
+
+#*********************
+test_master@jsun-mbpw10:~$ http POST :8000/esrb-ratings/ description='T (Teen)'
+HTTP/1.1 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 90
+Content-Type: application/json
+Date: Mon, 21 Oct 2019 21:59:50 GMT
+Location: http://localhost:8000/esrb-ratings/1/
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "description": "T (Teen)",
+    "games": [],
+    "id": 1,
+    "url": "http://localhost:8000/esrb-ratings/1/"
+}
+#*********************
+test_master@jsun-mbpw10:~$ http POST :8000/games/ name='Battlefield V' esrb_rating='AO (Adults Only)' release_date='2017-05-01T01:02:00.776594
+Z'
+HTTP/1.1 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 178
+Content-Type: application/json
+Date: Mon, 21 Oct 2019 22:08:31 GMT
+Location: http://localhost:8000/games/1/
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "esrb_rating": "AO (Adults Only)",
+    "name": "Battlefield V",
+    "played_once": false,
+    "played_times": 0,
+    "release_date": "2017-05-01T01:02:00.776594Z",
+    "url": "http://localhost:8000/games/1/"
+
+#*********************
+http POST :8000/esrb-ratings/ description="T (Teen)"
+http POST :8000/esrb-ratings/ description="AO (Adults Only)"
+http POST :8000/esrb-ratings/ description="EC (Early Childhood)"
+
+#windows, needs to use double quotes ""
+http POST :8000/games/ name="Battlefield V" esrb_rating="AO (Adults Only)" release_date="2017-05-01T01:02:00.776594Z"
+#Linux
+http POST ":8000/games/" name='Mutant Football League: Dynasty Edition' esrb_rating='AO (Adults Only)' release_date='2018-10-20T03:02:00.776594Z'
+http POST ":8000/games/" name='LEGO DC Super-Villains' esrb_rating='EC (Early Childhood)' release_date='2018-01-10T03:02:00.776594Z'
+
+http POST ":8000/players/" name='Gaston Hillar' gender='M'
+http POST ":8000/players/" name='Enzo Scocco' gender='M'
+
+    http POST ":8000/player-scores/" score=17500 score_date='2019-01-01T03:02:00.776594Z' player='Gaston Hillar' game='Battlefield V'
+    http POST ":8000/player-scores/" score=3225 score_date='2019-01-01T01:02:00.776594Z' player='Gaston Hillar' game='Mutant Football League: Dynasty Edition'
+    http POST ":8000/player-scores/" score=43200 score_date='2019-01-01T03:02:00.776594Z' player='Enzo Scocco' game='Battlefield V'
+    http POST ":8000/player-scores/" score=17420 score_date='2019-01-01T05:02:00.776594Z' player='Enzo Scocco' game='Mutant Football League: Dynasty Edition'
+
+http POST ":8000/games/" name='Heavy Fire: Red Shadow' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='ARK: Survival Evolved' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='The Escapists 2' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Honor and Duty: D-Day' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Speed Brawl' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Unearthing Mars 2' esrb_rating='T (Teen)' release_date='2018-06-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Super Street: The Game' esrb_rating='T (Teen)' release_date='2019-01-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Valkyria Chronicles 4' esrb_rating='T (Teen)' release_date='2019-01-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Tales of Vesperia: Definitive Edition' esrb_rating='T (Teen)' release_date='2019-01-21T03:02:00.776594Z'
+http POST ":8000/games/" name='Moonfall Ultimate' esrb_rating='T (Teen)' release_date='2019-01-21T03:02:00.776594Z'
+
+
+
+
+http :8000/games/?offset=0
+
+#______________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#C:\PostgreSQL\pg96\bin>psql -U postgres -c "CREATE ROLE \"jsun\""
+#  createdb django_gametest   # NOT working
+
+##
+(env_01) C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\Restful_Python\env_01\c06\games_service>python manage.py makemigrations games
+Migrations for 'games':
+  games\migrations\0001_initial.py
+    - Create model EsrbRating
+    - Create model Game
+    - Create model Player
+    - Create model PlayerScore
+
+##
+    psql --username=your_games_user_name --dbname=django_games --
+    command="\dt"
+
+psql -p 5433 --username=user01 --dbname=django_gametest --command="\dt"
+
+psql -h localhost -p 5433 --username=user01 --dbname=django_gametest
+
+#Linux
+psql -h localhost -p 5433 --username=user01 --dbname=django_gametest --command="\dt"
+# access database, there is no need to start runserver
+test_master@jsun-mbpw10:~$ psql -h localhost -p 5433 -U user01 -d django_gametest
+
+
+
+
+
+
+
+
+
+
+
+
+
+

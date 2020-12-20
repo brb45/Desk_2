@@ -1,0 +1,1 @@
+WF_VERIFY_TX_ADD		%%sub getvalue("FREQ_MHZ", "2412")%%		%%sub getvalue("DATA_RATE", "OFDM-6")%%		%%sub getvalue("TX_POWER_DBM", "15.0")%%		%%sub getvalue("TEST", "E,M,P,S") %%

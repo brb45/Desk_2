@@ -1,0 +1,11 @@
+			<measurementType name="EVM" type = "802.11b">
+				<result name = "bitRateInMHz" unit = "Mbps" helpText = "Bit rate in MHz" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "evmAll" unit = "dB" helpText = "Average EVM for all symbols" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "evmPk" unit = "dB" helpText = "EVM peak value" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "rmsPowerNoGap" unit = "dBm" helpText = "Power RMS No Gap" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "freqErr" unit = "Hz" helpText = "Frequency Error in Hz" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ampErrDb" unit = "dB" helpText = "IQ Match Amplitude Error in dB" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "phaseErr" unit = "Degree" helpText = "IQ Match Phase Error" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "rmsPhaseNoise" unit = "Degree" helpText = "Frequency RMS Phase Noise" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "loLeakageDb" unit = "dB" helpText = "Lo leakage in dB" dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>

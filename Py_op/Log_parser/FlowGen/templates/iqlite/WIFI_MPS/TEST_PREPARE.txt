@@ -1,0 +1,14 @@
+	TEST_PREPARE
+		#Input Parameters:
+		>ANT1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%% 
+		>ANT2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>ANT3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>ANT4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2412")%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>BANDWIDTH [String]  = HT20 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>

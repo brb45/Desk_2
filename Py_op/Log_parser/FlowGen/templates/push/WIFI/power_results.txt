@@ -1,0 +1,4 @@
+			<measurementType name="POWER" >
+				<result name = "P_av_no_gap_all_dBm" unit = "dBm" helpText = "Average power, not counting gaps in dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "P_pk_each_burst_dBm" unit = "dBm" helpText = "Peak power of each burst in dBm" dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>

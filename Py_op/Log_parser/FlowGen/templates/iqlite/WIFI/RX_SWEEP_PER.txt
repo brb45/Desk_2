@@ -1,0 +1,30 @@
+RX_SWEEP_PER
+		#Input Parameters:
+		>ARRAY_HANDLING_METHOD [Integer]  = 1 
+		>FRAME_COUNT [Integer]  = 0 
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2412")%% 
+		>RX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%%  
+		>RX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>RX3 [Integer]  =  %%sub getvalue("ANTENNA", 2, "0")%% 
+		>RX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%%
+		>SPIKE_REMOVAL [Integer]  = 1 
+		>STOP_AT_PER_PERCENTAGE [Integer]  = 0 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>SENS_PER_PERCENTAGE [Double]  = 10.00 
+		>START_POWER_LEVEL_DBM [Double]  = %%sub getvalue("START_POWER_LEVEL_DBM", "-65.00")%% 
+		>STOP_POWER_LEVEL_DBM [Double]  = %%sub getvalue("STOP_POWER_LEVEL_DBM", "-75.00")%% 
+		>SWEEP_STEP_DB [Double]  = -1.00 
+		>BANDWIDTH [String]  = HT20 
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-54")%% 
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = %%sub getvalue("PREAMBLE", "LONG")%% 
+		#Return Values:
+		<NUMBER_OF_POWER_LEVELS [Integer]  = <,>
+		<SENS_POWER_LEVEL_DBM [Double]  = <,%%lmap(DATA_RATE) OFDM-6 = -82;%%>
+		<PER_VALUES [ArrayDouble]  = <,>
+		<POWER_LEVELS [ArrayDouble]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+

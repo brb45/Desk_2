@@ -1,0 +1,43 @@
+Headless Testing Cons
+
+Headless testing itself also has disadvantages.
+As it does not mimic real users interactions and workflows as well as regular chromeDriver mode,
+it’s difficult to catch bugs that are related to crashing images, because the UI isn’t displayed.
+In addition, headless is not the perfect solution for debugging purposes, since the test will not be visible to you.
+
+
+Headless Chrome Pros
+
+
+1. Resource usage is reduced
+
+
+Rendering and opening HTML, CSS, Javascript and images takes up a lot of resources. This is a huge problem especially when you are testing multiple browsers and a number of tabs. The big advantage of headless testing is that it starts performing functions even if your page hasn’t finished loading, taking up less resources. This will enable you to run more tests, and your tests to run faster and smoother.
+
+
+
+2. Headless browsers are faster
+
+
+For the same reason as the previous point, headless browsers are also quicker to start running tests. In my experience, this will not always be much faster, but it is faster than real browsers.
+
+
+
+3. Running headless tests is quicker for developers
+
+
+Being able to run tests straight from the command line can save a lot of time for developers who want to verify their code quickly and don’t need GUI intervention. This way, developers, can quickly feel confident that their code didn’t break the webpage’s functionality.
+
+
+
+4. Headless is ideal for HTML scraping
+
+
+If you wish to scrape the HTML of a webpage regardless of its CSS and JavaScripts, for example, if you want to scrape an HTML for future data that will be used later, headless browser testing can be a great solution. Since it’s just data you’re looking for, it doesn’t make sense to start up a full instance of a browser.
+
+
+
+5. Headless is ideal for monitoring your network application performance
+
+
+If you wish to monitor your network application performance, headless can be a good solution for you. You can use headless testing to automate the rendering and screen capturing of your website images and to perform layout checks in an automated fashion. Chrome headless API has recently developed another cool open source tool designed to handle these types of tests, called Puppeteer.

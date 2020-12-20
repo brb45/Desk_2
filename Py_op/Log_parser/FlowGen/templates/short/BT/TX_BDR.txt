@@ -1,0 +1,1 @@
+BT_VERIFY_TX        %%sub getvalue("FREQ_MHZ", "2402") %%  %%sub getvalue("PACKET_TYPE", "1DH1") %%

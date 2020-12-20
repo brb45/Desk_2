@@ -1,0 +1,47 @@
+
+<FlowGUI>
+  <Technology>WIFI
+    <Parameter>BANDWIDTH 
+      <Type>CheckBoxList</TYPE>
+      <Values>HT20,HT40</Values> </Parameter>
+      <DefaultValue>HT20</DefaultValue>
+    <Parameter>FREQUENCY
+      <Type>CheckBoxList</TYPE>
+      <Values>2412,2418</Values>
+    </Parameter>
+    <Parameter>DATA_RATE
+      <Type>CheckBoxList</TYPE>
+      <Values>OFDM_6,DSSS_1</Values>
+    </Parameter>
+    <Parameter>ANTENNA_CFG
+      <Type>Integer</TYPE>
+      <DefaultValue>1</DefaultValue>
+    </Parameter>
+    <Test>TX_VERIFY_EVM</Test>
+    <Test>TX_VERIFY_MASK</Test>
+    <Test>TX_VERIFY_POWER</Test>
+    <Test>TX_VERIFY_SPECTRUM</Test>
+    <Test>RX_VERIFY_PER</Test>
+  </Technology>
+  <Technology>Bluetooth
+  </Technology>
+  <Technology>Setup
+    <Test>CONNECT
+      <Parameter>CONNECTION_STRING
+        <Type>String</TYPE>
+      </Parameter>
+      <Parameter>RESOURCE_NAME
+        <Type>String</TYPE>
+      </Parameter>
+    </Test>
+    <Test>DISCONNECT
+      <Parameter>CONNECTION_STRING
+        <Type>String</TYPE>
+      </Parameter>
+      <Parameter>RESOURCE_NAME
+        <Type>String</TYPE>
+      </Parameter>
+    </Test>
+  </Technology>
+</FlowGUI>
+

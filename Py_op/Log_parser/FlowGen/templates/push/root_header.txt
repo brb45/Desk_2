@@ -1,0 +1,6 @@
+<!-- LitePoint Push Tests builder 1.0.29  -->
+<pushTestFlow version="1.0.0">
+	<dut technology = "WIFI" name="AR6003" version = "1.0">
+		<param name = "conTimeout" value = "100"/>
+		<param name = "mac" value = "01:00:00:C0:FF:EE"/>
+	</dut>

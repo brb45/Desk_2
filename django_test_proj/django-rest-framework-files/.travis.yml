@@ -1,0 +1,41 @@
+language: python
+
+python:
+    - "2.7"
+    - "3.5"
+    - "3.6"
+
+sudo: false
+
+env:
+    - TOX_ENV=django111-drf34
+    - TOX_ENV=django111-drf35
+    - TOX_ENV=django111-drf36
+    - TOX_ENV=django111-drf37
+    - TOX_ENV=django111-drf38
+    - TOX_ENV=django20-drf37
+    - TOX_ENV=django20-drf38
+
+matrix:
+    fast_finish: true
+    include:
+        - python: "2.7"
+          env: TOX_ENV="lint"
+    exclude:
+        - python: "2.7"
+          env: TOX_ENV=django20-drf37
+        - python: "2.7"
+          env: TOX_ENV=django20-drf38
+
+install:
+    - pip install tox-travis
+
+script:
+    - tox -e $TOX_ENV
+
+after_success:
+    - pip install codecov
+    - codecov -e TOX_ENV
+
+notifications:
+    email: false

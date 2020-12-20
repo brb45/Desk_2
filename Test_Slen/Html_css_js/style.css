@@ -1,0 +1,10 @@
+html {
+  background-color: grey;
+  font-size: 20px;
+}
+
+ul {
+  background: blue;
+  padding: 10px;
+  border: 1px solid black;
+}

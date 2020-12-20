@@ -1,0 +1,5 @@
+node log_parser.js log_file_name folder_path_for_output_files
+C:\Users\jsun\Documents\Log_parser>node log_parser.js Log_4355.txt ./parser_jason
+
+#Create Test flow
+C:\Users\jsun\Documents\Log_parser>node createTestFlowFile.js Log_4355.txt 4355_new_flow.txt

@@ -1,0 +1,231 @@
+
+
+### ===============  General set up ===========================================
+define!$WTS_ControlAgent_Support!1!
+define!$WTS_TrafficAgent_Support!0!
+
+
+### ===============   DUT info  ===============================================
+# DUT can be - STAUT or APUT, Device Under Test
+define!$DUT!STAUT!
+
+# DUT Control Agent, all left part of each line are reserved strings, they could 
+# not be changed. For APUT, if APUT do accept CAPI command, put its address here
+# if not, make it same as TestbedAPConfigServer setting
+
+if!$DUT!=!APUT!
+wfa_control_agent_dut!ipaddr=192.168.250.211,port=7000!
+
+# Wireless IP of DUT
+dut_wireless_ip!192.165.110.2!
+
+# Name of the APUT or STAUT
+define!$DUT_Name!Atheros11nAP!
+
+# Port number at which APUT is connected to in power switch, ignore it for STAUT
+define!$APUTPowerSwitchPort!4!
+
+# APUT login information, hostname is system prompt, ignore it for STAUT
+define!$APUT_uname!root!
+define!$APUT_pword!5up!
+define!$APUT_hostname!~!
+
+# APUT 2.4GHz MAC Address, ignore it for STAUT
+define!$DutMacAddress_24G!00:90:4C:09:00:BD!
+
+# APUT 5 GHz MAC Address, ignore it for STAUT
+define!$DutMacAddress_5G!00:90:4c:13:00:BD!
+endif
+
+if!$DUT!=!STAUT!
+# DUT parameters specific to STAUT
+wfa_control_agent_dut!ipaddr=192.168.250.93,port=9000!
+
+# Wireless IP of DUT
+dut_wireless_ip!192.165.100.93!
+## 8/23
+>>> Test Methodology / Flow :
+.. Agile, CI/CD on Jenkins.
+. code check in, Jenkins --> auto.unit test --> pass
+. Build package
+. release_RC test: mainly for full functionality test, takes about upto 1 hr
+*** maybe include code_coverage test.
+. Formal release test: add regression test.
+*** test for stability, CPU usage, Memory Usage( memory bloat or leak),
+ Throughput (measure load of system, data I/O bandwidth, 
+      , # con-current users, transaction time units) 
+
+*** Performance test: response Time
+
+>>> Testing:
+... data link / phy layer --> connectivity
+... (wireless) Network layer performance
+
+>>> desktop app vs web-interface app.
+In transition to web application.
+. customer - owned internal web application.
+. lp helps to deploy.
+. web-based : internal use for now
+. Goal: lp brings it to cloud and service as a platform.
+
+
+
+>>> Usage of database
+**** System:
+** front-end react on Nodejs, 
+** front-end-test, Selenium or manual
+
+** back-end Django
+* API - test
+
+** data-base: postPresql or mySql
+
+>>> details in testing
+... Unit testing, func_test( API + args), end to end
+
+
+## 8/16
+// 1. web - interface 
+...front end,
+provide UI: 
+. define/modify test cases, load test cases
+. Run pre-defined test cases
+. Monitor test status
+. save/load log files, csv/json results
+. search/sort/filter functionality for test cases/ logs
+
+...back end, 
+Django, pytest, Rest Api, 
+come up with endpoints
+database: store test cases,
+customer can update test cases in database,
+
+
+... database
+
+test_station, test_cases, test results
+
+
+... file_system
+
+
+**** System:
+** front-end react on Nodejs, 
+** front-end-test, Selenium or manual
+
+** back-end Django
+* API - test
+
+** data-base: postPresql or mySql
+
+
+
+___________________________________
+.manual/automate REST API test.
+How automate,-> pytest.
+. show a couple examples of APIs.
+. test get, post, put, delete
+1. test cases statistics: date, errors, pass/fail, release_versions.
+/test_case_name/
+/test_case_name/release_ver
+2. raw data stream, output as  json format
+3. user/test_station/devices/ test statistics, test_cases, packages.
+
+// 2. 
+... Desktop applicaton.
+. automation : pytest, call many test scripts, 
+. automation, how to do code coverage test.
+.. Start testharness, add new functions or library, build and run exe.
+test features:
+dll: DUT, tester-control, technology, IQlite
+. write test plans and test matrix and perfomr end to end IQfact connectivity test. , RF measurement
+. implement test coverage in c++ functions to perfomr end to end IQfact connectivity test
+. detailed functional test to verfy instrument control and measurement logic. 
+
+.. test cases
+test functions(implement functional test in C++ to verify instrument API, measurement logic.
+log analysis tools
+test lib for test suite
+
+.. open API for 
+. test case generation,
+. device traffic data analytics
+. instrument data analytics
+ 
+
+// 3.
+--DUT control:
+new DUT APIs, new calibration data structure/procedures, new memory management, 
+--IQfact+ test module dev:
+new analysis class,
+new logging, new iqmeasue feature
+Support for FW/driver
+--DUT FW/driver debug
+crash, RF measurements
+--
+--reduce test time, characterize DUT behavior/perfomance, fine tune / optimize parameters.
+
+Synchronous Parallel Test  to test simultaneously test multiple device.
+
+
+A typical API doc has all the information related to the API like its request format, 
+response, error codes, resource, mandatory parameters, optional parameters, headers, 
+etc. The doc can be maintained in various tools like Swagger which is open source.
+After that, try to write service-level cases for the API. For example, if an API 
+takes n parameters to get the response in which m are mandatory parameters and 
+others are optional, then one test case should be to try different combinations 
+of parameters and verify the response. Another test case might verify the headers 
+and try to run API without passing authentication and verify the error code.
+Next comes the step of integration testing, where you need to test the API and all 
+its dependent APIs or functions. This also includes testing API response, the data 
+it should return to another API or method and what happens if this API fails.
+Once the API is stable and functional testing is almost done, the tester can perform 
+load, security and performance testing.
+_____________________________________________________
+//3
+//Auto:
+...Connect DB
+...Check if new pkg is ready to test. if multiple new pkgs, check out the most recently one
+(check time stamp), set the test_flag to 1--> under test
+... download and install the pkg
+... run_console, xpcHost , build first, then run it. 
+.. 1. for new feature/functionality test
+   .. create new functions to test test
+   .. Add test cases to increase coverage
+   .. Need to verify our test functions and features.
+   2 Build test platform( testHarness) to generate XPChost.app to test.
+   << Fuji-> IQfuji_NUP_4.9.16_RC1.pkg  ++ IQXPC_4.9.17_RC1.zip
+    << IQXPC: include file for sanity or full test , file can be dll. find out
+    
+    >><< Deliver PKG && IQXPCHost.app
+        .. Provide a test-case generator (GUI tool) , to do the test.
+    >><< Provide API, library and exmaple code, customer integrate in their own test
+          platform.
+        .. Provide API so customer can build their own test cases using our soln.(sanity 
+      version)
+
+.
+. provide default example code or example flow (GUI to creat test cases), save in txt file, 
+run with txt file as an option.
+. testHarness with reading txt file of test flow.
+
+1. configuration files to set up 
+2. package, pkg, zip, setup.exe
+3. install the package.
+4. add functionality to XPC code, build XPC to an app, run the XPC
+5. Verify package
+1) use Xcode-> IQXPCHost
+. configuration parameters, DUT,Test scenario, Tester type, Tester IP
+, # of loops, config. file names, pathloss,
+? how to test, what to test
+? functions/functionality vs dlls and static library.
+
+2) test options:
+. exe + configuration parameters.
+** own C++ test framework. (MAC or Win)
+** Include all test functions and test cases in C++ test framework
+** Build and run test.
+** ? How to use XPCHost to test?
+** customer 1: provide test API and functions
+** exe + test flow generator.
+**

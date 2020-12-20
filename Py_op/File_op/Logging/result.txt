@@ -1,0 +1,12 @@
+counter: 1           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 2           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 3           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 4           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 5           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 6           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 7           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 8           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 9           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+counter: 10           , txt: DUT_DRIVER_INFO          :wl: 6.30 RC47.1
+POWER_AVERAGE_DBM EVM_AVG_DB CH_FREQ_MHZ
+03/02/2018 15:08:24

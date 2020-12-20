@@ -1,0 +1,34 @@
+ C:\Users\jsun\Documents\Py_projects\mul_process\ax_newtxt.txt has 5 lines and 52 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\logOutput.txt has 24817 lines and 1653186 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\log_all - Copy - Copy (2) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\log_all - Copy - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\log_all - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\log_all.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\new_res.txt has 1 lines and 1 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (10) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (11) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (12) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (13) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (2) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (2) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (2).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (3) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (3) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (3).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (4) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (4) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (4).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (5) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (5) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (5).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (6) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (6) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (7) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (7) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (8) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (8) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (9) - Copy - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy (9) - Copy.txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy - Copy (2).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy - Copy (3).txt has 462528 lines and 21772961 chars
+C:\Users\jsun\Documents\Py_projects\mul_process\rsults\log_all - Copy - Copy.txt has 462528 lines and 21772961 chars

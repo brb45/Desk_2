@@ -1,0 +1,183 @@
+# update: 12/16/2019
+# review 4/28/20
+# review 11/13/20
+
+#-----------------------------------------------------
+Since any change to the product needs to be verified prior to going to production, 
+the idea behind Continuous Testing is to make the whole workflow from a single commit to 
+publishing the new release, 100% automated, and as a result - unattended.
+
+#-----------------------------------------------------
+    An attribute in HTML defines the properties of the element. Attributes are made up of name-value pairs, i.e., 
+an attribute has a name and the corresponding value of the same. They are specified in the opening tag, and their values are enclosed in double-quotes. 
+Some of the examples of HTML attributes are:
+
+< a target=”_blank” href=”//www.phptravels.net” class=”btn btn-primary btn-lg btn-block” >
+< img src=”https://phptravels.com/assets/img/front.png” class=”well-sm icon-resources img100” alt=”homepage” >
+< input style="height:40px; width:300px;" class="form-control newsletter_email" type="text" placeholder="your@email.com" name="email" id="address" >
+< button onclick="if (!window.__cfRLUnblockHandlers) return false; subscribe_click()" class="btn btn-primary" value="" >SUBSCRIBE< /button >
+
+the HTML tags have different attributes and corresponding values, like, the input tag has multiple attributes 
+like style, class, type, placeholder, name, and id. Corresponding to each attribute, there is a value in double-quotes,
+ viz, height:40px; width:300px; form-control newsletter_email; text; your@email.com; email and address respectively.
+#-----------------------------------------------------
+Selenium WebDriver by default waits for the page to load completely before executing the next line of script or operation
+#-----------------------------------------------------
+Running headless selenium
+The importance of having “headless” tests is:
+
+- The majority of Linux server deployments don’t have GUI at all
+
+- The same applies to Windows Core Servers
+
+- When it’s not possible to open the browser in the foreground, for example when the build agent is being used for 
+desktop applications testing which require focus, or you would like to continue using your machine normally while Selenium tests are in progress
+#-----------------------------------------------------
+Browser extension test:
+browser extensions are embedded add-ons rather than regular HTML files. As the extension is out of scope, 
+you can’t simulate user clicks, inspect elements, or run other such activities
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+#-----------------------------------------------------
+
+
+
+#
+from selenium import webdriver
+driver = webdriver.Chrome(option="")
+driver.get(url)
+
+# find elements
+driver.find_element_by_name(name)
+driver.find_element_by_id(id)
+driver.find_element_by_class_name(class)
+driver.find_element_by_tag_name()
+
+driver.find_element_by_link_text()
+dirver.find_element_by_partial_link_text()
+
+
+driver.find_element_by_css_selector("input#'name'")
+driver.find_element_by_xpath("//input[@id='name']")
+
+#
+#@@
+driver = webdriver.Chrome()
+driver.get(url)
+
+driver.find_element_by_id("name")
+driver.find_element_by_name("show-hide")
+driver.find_element_by_xpath("//input[@id='name']")
+driver.find_element_by_css_selector("#didplayed-text")
+
+driver.find_element_by_class_name("displayed-class")
+driver.find_element_by_tag_name("a")
+
+self.search_field = self.driver.find_element_by_name("q")
+self.search_field.clear()
+# enter search keyword and submit
+self.search_field.send_keys("phones")
+self.search_field.submit()
+
+@classmethod
+def setUp(cls):
+# create a new Chrome session
+cls.driver = webdriver.Chrome()
+
+
+#
+cls.driver.implicitly_wait(30)
+cls.driver.maximize_window()
+
+# navigation to the application home page
+cls.driver.get("http://demo-store.seleniumacademy.com/")
+#don't know why need this title here
+cls.driver.title
+
+@classmethod
+def tearDown(cls):
+# close the browser window
+    cls.driver.quit()
+
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+
+self.assertTrue(self.is_element_present(By.NAME, "q"))
+
+#@@ run with runner
+unittest.TestLoader().loadTestsFromTestCase(SearchTest)
+
+smoke_test = unittest.TestSuite([])
+
+search_tests = unittest.TestLoader().loadTestsFromTestCase(SearchTest)
+home_page_tests = unittest.TestLoader().loadTestsFromTestCase(HomePageTest)
+
+# create a test suite combining search_test and home_page_test
+smoke_tests = unittest.TestSuite([search_tests, home_page_tests ])
+text_runner = unittest.TextTestRunner(verbosity=2)
+text_runner.run(smoke_tests)
+#@@
+
+#@@ html runner
+# get all tests from SearchProductTest and HomePageTest class
+search_tests = unittest.TestLoader().loadTestsFromTestCase(SearchTest)
+home_page_tests = unittest.TestLoader().loadTestsFromTestCase(HomePageTest)
+
+# create a test suite combining search_test and home_page_test
+smoke_tests = unittest.TestSuite([search_tests, home_page_tests ])
+
+# open the report file
+
+# configure HTMLTestRunner options
+# runner = HtmlTestRunner.HTMLTestRunner(
+#     output="report_folder" ## report_folder is created as a folder 
+# )
+import HtmlTestRunner
+# setting report name,  and combine reports to single file
+runner = HtmlTestRunner.HTMLTestRunner(combine_reports=True, output="test_results_dir", \
+    report_name="MyReport", add_timestamp=True)
+
+# run the suite using HTMLTestRunner
+runner.run(smoke_tests)
+
+#
+
+from selenium import webdriver
+browser = webdriver.Chrome() or webdriver.Firefox()
+self.browser.get(url)
+browser.implicitly_wait(50)
+browser.maxmize_window()
+
+ # click on Log In link to open Login page
+  driver.find_element_by_link_text("ACCOUNT").click()
+
+//html[@id='top']//form[@id='form-validate']//button/span/span[.='Register']
+.empty
+
+from selenium.webdriver.common.by import By
+
+random_link = driver.find_element(*WikipediaHomepage.random_link)
+
+

@@ -1,0 +1,33 @@
+{
+  "connection1": {
+    "DSN": "con1",
+    "UID": "abc",
+    "PWD": "1234",
+    "connection_string_python":"test1"
+  }
+  ,
+  "connection2": {
+    "DSN": "con2",
+    "UID": "def",
+    "PWD": "1234"
+  }
+
+,
+"maps": [
+            {
+                "id2": "DUT1",
+                "iscategorical": "0"
+            },
+            {
+                "id1": "DUT2",
+                "iscategorical": "0"
+            }
+        ],
+        "masks": [{
+            "id": "valore"
+        }],
+        "om_points": "value",
+        "parameters": [{
+            "id": "valore"
+        }]
+}

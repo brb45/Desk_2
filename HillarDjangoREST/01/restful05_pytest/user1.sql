@@ -1,0 +1,1 @@
+SELECT * FROM auth_user ORDER BY id

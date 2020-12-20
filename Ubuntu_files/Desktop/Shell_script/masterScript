@@ -1,0 +1,10 @@
+#!/bin/bash
+#example showing how sourcing works
+
+. /home/litepoint/Desktop/Shell_script/sourceme
+echo the value of the variable "$COLOR" is  $COLOR
+
+exit 0
+
+
+

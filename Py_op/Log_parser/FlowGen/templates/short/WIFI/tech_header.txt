@@ -1,0 +1,4 @@
+
+CONNECT_TESTER      IQ2010              127.0.0.1
+WF_CONNECT_DUT      BRCM_4329_WIFI      COM1
+

@@ -1,0 +1,16 @@
+	RX_BDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2402")%% 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BIT_NUMBER [Double]  = 1600000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = %%sub getvalue("PACKET_TYPE", "1DH1") %% 
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

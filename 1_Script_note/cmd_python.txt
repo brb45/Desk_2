@@ -1,0 +1,73 @@
+#@@ 1.
+## ssh
+sudo apt-get install openssh-server
+Enable the ssh service by typing sudo systemctl enable ssh
+Start the ssh service by typing sudo systemctl start ssh
+Test it by login into the system using ssh user@server-name
+
+# Update python
+1. sudo apt-get install python3.7
+2. 
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
+
+# check python installed
+apt list --installed | grep python
+
+# upgrade python
+sudo apt-get upgrade python3
+# Remove python3.7
+sudo apt remove python3.6
+
+##
+#create venv
+cd project_directory
+python -m venv env
+source env/bin/activate  # on Linux or macOS
+env/bin/activate.bat     # on Windows  
+
+python -i  point.py
+python -m 
+python -c
+
+sudo apt install python-pip
+sudo apt-get install tcpdump graphviz imagemagick python-gnuplot python-cryptography python-pyx
+
+python -V
+python --version
+
+pip install --user --upgrade pip
+pip install xlrd  #excel
+
+C:\Users\jsun\Documents\django\bookmarks_test\bookmarks>python -m venv bookmarks_env
+pip list
+
+
+# install mySQL
+pip install mysql-connector
+pip install pymysql
+
+# 
+pip install mock
+pip install pinocchio
+pip install mockito
+pip install lettuce
+
+##Setup virtualenv
+wuding@wuding-VirtualBox:~/Documents$ mkdir env
+wuding@wuding-VirtualBox:~/Documents$ cd env/
+wuding@wuding-VirtualBox:~/Documents/env$ virtualenv gmapenv
+wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ ls
+bin  include  lib
+wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ . bin/activate
+(gmapenv) wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ ls bin
+activate       activate.ps1      easy_install      pip3    python3        wheel
+activate.csh   activate_this.py  easy_install-3.6  pip3.6  python3.6
+activate.fish  activate.xsh      pip               python  python-config
+(gmapenv) wuding@wuding-VirtualBox:~/Documents/env/gmapenv$ 
+
+#@@ 2. 
+
+
+
+

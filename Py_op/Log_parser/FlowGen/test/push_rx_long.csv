@@ -1,0 +1,21 @@
+TECHNOLOGY,TEST,freq,rate,power_range,bw,preamble
+WIFI,RX,2412,OFDM-6,"(-75,-75,1)",HT20,OFDM
+,,2437,,,,
+,,2472,,,,
+,,5180,,,,
+,,5320,,,,
+,,5600,,,,
+,,5745,,,,
+,,5825,,,,
+,,,,,,
+TECHNOLOGY,TEST,freq,rate,power_range,bw,preamble
+WIFI,RX,2412,OFDM-9,"(-60,-60,1)",HT20,OFDM
+,,2437,,,,
+,,2472,,,,
+,,,,,,
+TECHNOLOGY,TEST,freq,rate,power_range,bw,preamble
+WIFI,RX,5180,MCS-0,"(-60,-50,1)",HT20,N Mixed
+,,5320,,,,
+,,5600,,,,
+,,5745,,,,
+,,5825,,,,

@@ -1,0 +1,49 @@
+Amazon Web Services (AWS) provides companies of all sizes with an infrastructure web services platform in the cloud. 
+With AWS, you can requisition compute power, storage, and other services paying as you go for only the resources you need. 
+Amazon Redshift is rapidly growing, fast and powerful, fully managed, petabyte-scale data warehouse service in the cloud. 
+It enables customers to dramatically increase their query performance when analyzing virtually any size data set 
+using the same SQL-based business intelligence tools they use today. 
+
+Amazon Redshift manages all the work needed to set up, operate, and scale a data warehouse, from provisioning capacity 
+and installing software to monitoring and backing up the cluster, to applying patches and upgrades. 
+By automating these labor-intensive tasks, Amazon Redshift enables customers to spend their time focusing on their data 
+and business insights, rather than on procuring and managing infrastructure.
+
+Joining the Amazon Redshift team gives you the opportunity to:
+� Solve challenging problems that will revolutionize database computing in the cloud
+� Build a quality product that will leverage the scale of resources available in the cloud
+� Work for a company thats a recognized leader in the cloud computing space
+� Be involved in the fast growing, big data space
+
+We are looking for candidates with expertise and passion for building high quality, large scale distributed database systems in the cloud. 
+
+In this role, you will have responsibility for:
+� Designing, developing and executing large scale functional, stress and performance tests
+� Execution and maintenance of existing test frameworks
+� Developing and deploying new test frameworks and monitoring systems
+� Reviewing new database technical requirements and assist in the development of a quality strategy for the new features
+� Gaining deep understanding of the AWS products and drive their quality
+� Working with other teams to deliver and operate large scale, distributed services in the cloud
+� Drive quality initiatives and point out areas that require attention.
+� Be able to define success criteria broadly and deeply within the system.
+
+
+Basic Qualifications
+
+
+� 8+ years experience testing large scale systems and/or databases
+� Good working knowledge of SQL and UNIX
+
+� Expert knowledge of one of the following programming languages: Java or Python
+
+� Experience designing and leading a team in building low-maintenance automation frameworks.
+� Experienced debugging, diagnosing, and troubleshooting complex, production software issues
+
+� Ability to run tests at large scale and filter out relevant information in large result sets.
+� Ability to lead projects and drive them to completion
+
+� Ability to work in a fast paced and agile development environment
+� Possess excellent communication, sharp analytical abilities, and proven design skills
+
+
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="1" hostname="jsun-mbpw10" name="pytest" skipped="0" tests="2" time="0.060" timestamp="2020-11-12T13:52:14.850720"><testcase classname="log_test" name="test_add[5-5-10]" time="0.001" /><testcase classname="log_test" name="test_add[3-5-12]" time="0.001"><failure message="AssertionError: Failed&#10;assert 8 == 12&#10;  +8&#10;  -12">input1 = 3, input2 = 5, output = 12
+
+    @pytest.mark.parametrize(test_string,test_matrix )
+    def test_add(input1, input2, output):
+&gt;       assert input1 + input2 == output, "Failed"
+E       AssertionError: Failed
+E       assert 8 == 12
+E         +8
+E         -12
+
+log_test.py:6: AssertionError</failure></testcase></testsuite></testsuites>

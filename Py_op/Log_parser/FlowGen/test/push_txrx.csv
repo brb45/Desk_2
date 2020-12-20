@@ -1,0 +1,5 @@
+TECHNOLOGY,TEST,freq,rate,bw,preamble,power_range
+WIFI,TX_EVM_POWER,2412,DSSS-1,HT20,Short,"(-75,-65,2)" 
+,TX_EVM_MASK,2417,OFDM-16,,Long,"(-60,-70,-2)"
+,TX_EVM_RAMP,,,,,
+,RX,,,,,

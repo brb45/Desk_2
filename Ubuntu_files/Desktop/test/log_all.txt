@@ -1,0 +1,6 @@
+wifi
+bt
+11ax
+11ac
+rsdb
+

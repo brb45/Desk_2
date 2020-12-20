@@ -1,0 +1,915 @@
+#@@ 10/4/19
+#@@ 11/22/19
+#@@ 12/13/19
+#@@ 1/7/20
+#@@ 10/28/20
+#@@ 11/9/20
+
+## Key points
+#1. How to provide input parameters to test functions.
+#2. How to verify output
+#3. Reporting and logging
+
+Pytest normally runs all tests in sequence even if some fail. If you want Pytest to stop on the first failing test, use option -x.
+
+##1.  Provide inputs to test functions
+Fixtures
+To parametrize a fixture you need pass an interable to the params keyword argument. 
+The built-in fixture request knows about the current parameter and if you don’t want to do anything fancy, 
+you can pass it right to the test via the return statement.
+
+import pytest
+
+
+@pytest.fixture(params=["apple", "banana", "plum"])
+def fruit(request):
+    return request.param
+
+
+def test_is_healthy(fruit):
+    assert is_healthy(fruit)
+
+# fixture function name is taken as input for test functions
+#----------------------------------------------------------------
+# ex1
+test_basic_fixture.py
+import pytest
+@pytest.fixture
+def supply_AA_BB_CC():
+	aa=25
+	bb =35
+	cc=45
+	return [aa,bb,cc]
+
+def test_comparewithAA(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[0]==zz,"aa and zz comparison failed"
+
+def test_comparewithBB(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[1]==zz,"bb and zz comparison failed"
+
+def test_comparewithCC(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[2]==zz,"cc and zz comparison failed"
+
+# fixture sits in the same module as test functions, so test functions
+# from other files can not use it.
+
+#The fixture method has a scope only within that test file it is defined. 
+#If we try to access the fixture in some other test file , we will get an error 
+#saying fixture 'supply_AA_BB_CC' not found for the test methods in other files.
+#To use the same fixture against multiple test files, we will create fixture methods in a file called conftest.py.
+#----------------------------------------------------------------
+# ex2
+import pytest
+@pytest.fixture
+def data_list():
+    return [10, 100]
+
+def test_fixture(data_list, a = 2, b = 3):
+    a, b = data_list
+    print(f"a is {a}")
+    assert a == b , f"{a} is not equal to b {b}"
+
+#----------------------------------------------------------------
+# ex 3
+
+set_1 = [ 5, 10, 15, 20]
+
+dic = {"a" : [1,2,3]}
+set_2 = dic["a"]#
+print(f"\nset_2 is {set_2}")
+def pass_fun(set_2):
+
+    set_2.append(10)
+    set_2.append(11)
+    print(f"set_2 is changed to {set_2}")
+
+pass_fun(dic['a'][:])
+print(f"dic['a'] is {dic['a']}")
+
+
+import pytest
+@pytest.fixture
+def data_list():
+    return [10, 100]
+
+def testfixture(data_list, a = 2, b = 3):
+    a, b = data_list
+    print(f"a is {a}")
+    assert a == b , f"{a} is not equal to b {b}"
+
+# error: E  fixture 'set_1' not found
+def test_regular(set_1):
+    print(f"set_1 is {set_1}")
+    assert set_1 == [ 5, 10, 15, 20]
+#----------------------------------------------------------------
+# ex4
+Create 3 files conftest.py, test_basic_fixture.py, test_basic_fixture2.py with the following code
+pytest will look for the fixture in the test file first and if not found it will look in the conftest.py
+#@
+conftest.py
+import pytest
+@pytest.fixture
+def supply_AA_BB_CC():
+	aa=25
+	bb =35
+	cc=45
+	return [aa,bb,cc]
+test_basic_fixture.py
+
+#@
+import pytest
+def test_comparewithAA(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[0]==zz,"aa and zz comparison failed"
+
+def test_comparewithBB(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[1]==zz,"bb and zz comparison failed"
+
+def test_comparewithCC(supply_AA_BB_CC):
+	zz=35
+	assert supply_AA_BB_CC[2]==zz,"cc and zz comparison failed"
+test_basic_fixture2.py
+
+#@
+import pytest
+def test_comparewithAA_file2(supply_AA_BB_CC):
+	zz=25
+	assert supply_AA_BB_CC[0]==zz,"aa and zz comparison failed"
+
+def test_comparewithBB_file2(supply_AA_BB_CC):
+	zz=25
+	assert supply_AA_BB_CC[1]==zz,"bb and zz comparison failed"
+
+def test_comparewithCC_file2(supply_AA_BB_CC):
+	zz=25
+	assert supply_AA_BB_CC[2]==zz,"cc and zz comparison failed"
+pytest will look for the fixture in the test file first and if not found it will look in the conftest.py
+
+Run the test by py.test -k test_comparewith -v to get the result as below
+
+test_basic_fixture.py::test_comparewithAA FAILED  
+test_basic_fixture.py::test_comparewithBB PASSED 
+test_basic_fixture.py::test_comparewithCC FAILED 
+test_basic_fixture2.py::test_comparewithAA_file2 PASSED 
+test_basic_fixture2.py::test_comparewithBB_file2 FAILED 
+test_basic_fixture2.py::test_comparewithCC_file2 FAILED
+#----------------------------------------------------------------
+# parameterized tests
+# @pytest.mark.parametrize
+import pytest
+@pytest.mark.parametrize("input1, input2, output", [(5,5,10), (3,5,12)])
+def test_add(input1, input2, output):
+    assert input1 + input2 == output, "Failed"
+    
+log_test.py .F                                                                                                                                       [100%]
+
+=== FAILURES ===
+___ test_add[3-5-12] ___
+
+input1 = 3, input2 = 5, output = 12
+
+    @pytest.mark.parametrize("input1, input2, output", [(5,5,10), (3,5,12)])
+    def test_add(input1, input2, output):
+>       assert input1 + input2 == output, "Failed"
+E       AssertionError: Failed
+E       assert (3 + 5) == 12
+
+log_test.py:4: AssertionError
+=== short test summary info ===
+FAILED log_test.py::test_add[3-5-12] - AssertionError: Failed
+==== 1 failed, 1 passed in 0.24s ==
+
+#----------------------------------------------------------------
+import pytest
+test_string = "input1, input2, output"
+test_matrix = [(5,5,10), (3,5,12)]
+@pytest.mark.parametrize(test_string,test_matrix )
+def test_add(input1, input2, output):
+    assert input1 + input2 == output, "Failed"
+
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+@pytest.mark.xfail
+#The xfailed test will be executed, but it will not be counted as part failed or passed tests. 
+#There will be no traceback displayed if that test fails.
+#----------------------------------------------------------------
+#Skipping a test means that the test will not be executed. We can skip tests using
+@pytest.mark.skip
+#----------------------------------------------------------------
+Results XML
+We can create test results in XML format which we can feed to Continuous Integration servers 
+for further processing and so. This can be done by
+
+py.test test_sample1.py -v --junitxml="result.xml"
+
+#----------------------------------------------------------------
+# simple API test
+conftest.py - have a fixture which will supply base url for all the test methods
+import pytest
+@pytest.fixture
+def supply_url():
+	return "https://reqres.in/api"
+#----------------------------------------------------------------
+import pytest
+import requests
+import json
+@pytest.mark.parametrize("userid, firstname",[(1,"George"),(2,"Janet")])
+def test_list_valid_user(supply_url,userid,firstname):
+	url = supply_url + "/users/" + str(userid)
+	resp = requests.get(url)
+	j = json.loads(resp.text)
+	assert resp.status_code == 200, resp.text
+	assert j['data']['id'] == userid, resp.text
+	assert j['data']['first_name'] == firstname, resp.text
+
+def test_list_invaliduser(supply_url):
+	url = supply_url + "/users/50"
+	resp = requests.get(url)
+	assert resp.status_code == 404, resp.text
+#----------------------------------------------------------------
+
+# Another examples
+test_login_user.py – contains test methods for testing login functionality.
+
+test_login_valid tests the valid login attempt with email and password
+test_login_no_password tests the invalid login attempt without passing password
+test_login_no_email tests the invalid login attempt without passing email.
+
+import pytest
+import requests
+import json
+
+def test_login_valid(supply_url):
+	url = supply_url + "/login/" 
+	data = {'email':'test@test.com','password':'something'}
+	resp = requests.post(url, data=data)
+	j = json.loads(resp.text)
+	assert resp.status_code == 200, resp.text
+	assert j['token'] == "QpwL5tke4Pnpja7X", resp.text
+
+def test_login_no_password(supply_url):
+	url = supply_url + "/login/" 
+	data = {'email':'test@test.com'}
+	resp = requests.post(url, data=data)
+	j = json.loads(resp.text)
+	assert resp.status_code == 400, resp.text
+	assert j['error'] == "Missing password", resp.text
+
+def test_login_no_email(supply_url):
+	url = supply_url + "/login/" 
+	data = {}
+	resp = requests.post(url, data=data)
+	j = json.loads(resp.text)
+	assert resp.status_code == 400, resp.text
+	assert j['error'] == "Missing email or username", resp.text
+#----------------------------------------------------------------
+To see all the available fixtures, run the following command:
+$ pytest --fixtures
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+Combining Test Fixtures and Parametrized Test Functions
+# test_wallet.py
+
+@pytest.fixture
+def my_wallet():
+    '''Returns a Wallet instance with a zero balance'''
+    return Wallet()
+
+@pytest.mark.parametrize("earned,spent,expected", [
+    (30, 10, 20),
+    (20, 2, 18),
+])
+def test_transactions(my_wallet, earned, spent, expected):
+    my_wallet.add_cash(earned)
+    my_wallet.spend_cash(spent)
+    assert my_wallet.balance == expected
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+pytest -k
+#1.
+pytest -k foobar 
+will only execute the test files having the substring 'foobar' in their name
+#----------------------------------------------------------------
+Such a marker can be used to select or deselect test functions. You can see the markers which exist for your test suite by typing
+ $ pytest --markers
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+@pytest.mark.openfiles_ignore: Indicate that open files should be ignored for this test
+
+@pytest.mark.remote_data: Apply to tests that require data from remote servers
+
+@pytest.mark.internet_off: Apply to tests that should only run when network access is deactivated
+
+@pytest.mark.filterwarnings(warning): add a warning filter to the given test. see https://docs.pytest.org/en/latest/warnings.html#pytest-mark-filterwarnings
+
+@pytest.mark.skip(reason=None): skip the given test function with an optional reason. Example: skip(reason="no way of currently testing this") skips the test.
+
+@pytest.mark.skipif(condition): skip the given test function if eval(condition) results in a True value.  Evaluation happens within the module global context. Example: skipif('sys.platform == "win32"') skips the test if we are on the win32 platform. see https://docs.pytest.org/en/latest/skipping.html
+
+@pytest.mark.xfail(condition, reason=None, run=True, raises=None, strict=False): mark the test function as an expected failure if eval(condition) has a True value. Optionally specify a reason for better reporting and run=False if you don't even want to execute the test function. If only specific exception(s) are expected, you can list them in raises, and if the test fails in other ways, it will be reported as a true failure. See https://docs.pytest.org/en/latest/skipping.html
+
+@pytest.mark.parametrize(argnames, argvalues): call a test function multiple times passing in different arguments in turn. argvalues generally needs to be a list of values if argnames specifies only one name or a list of tuples of values if argnames specifies multiple names. Example: @parametrize('arg1', [1,2]) would lead to two calls of the decorated test function, one with arg1=1 and another with arg1=2.see https://docs.pytest.org/en/latest/parametrize.html for more info and examples.
+
+@pytest.mark.usefixtures(fixturename1, fixturename2, ...): mark tests as needing all of the specified fixtures. see https://docs.pytest.org/en/latest/fixture.html#usefixtures
+
+@pytest.mark.tryfirst: mark a hook implementation function such that the plugin machinery will try to call it first/as early as possible.
+
+@pytest.mark.trylast: mark a hook implementation function such that the plugin machinery will try to call it last/as late as possible.
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+Command Line Options / Fixtures
+#----------------------------------------------------------------
+Three ways to use a fixture
+# name it from the test.
+Just like the top example
+
+#usefixtures decorator
+You can mark a test or a test class with ‘pytest.mark.usefixtures()’ and include a list of fixtures to be used with the test or class of tests.
+This is especially convenient when dealing with test classes.
+It also is useful when converting unittest classes to use pytest fixtures.
+I’ll give an example shortly.
+
+#autouse
+Powerful, but possibly dangerous.
+Covered in the next section.
+#----------------------------------------------------------------
+@pytest.fixture()
+def before():
+    print('\nbefore each test')
+ 
+def test_1(before):
+    print('test_1()')
+
+def test_2(before):
+    print('test_2()')
+#----------------------------------------------------------------
+@pytest.mark.usefixtures("before") 
+def test_1():
+    print('test_1()')
+
+@pytest.mark.usefixtures("before") 
+def test_2():
+    print('test_2()')
+
+Or, this:
+#----------------------------------------------------------------
+class Test:
+    @pytest.mark.usefixtures("before")
+    def test_1(self):
+        print('test_1()')
+
+    @pytest.mark.usefixtures("before")
+    def test_2(self):
+        print('test_2()')
+
+Or, this:
+#----------------------------------------------------------------
+@pytest.mark.usefixtures("before")
+class Test:
+    def test_1(self):
+        print('test_1()')
+
+    def test_2(self):
+        print('test_2()')
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+@pytest.fixture(scope='function', params=None, autouse=False)
+def before(request):
+    print('\nbefore()')
+    return None
+
+#
+In the fixture--> before, the fixture returns ‘None’.
+That’s becuase it’s just some code I want to run before my test, like traditional setup functions from nose or unittest.
+
+However, you can return anything you want from the fixture function.
+If your fixture is setting up some data, or reading a file, or opening a connection to a database, 
+then access to that data or resources is what you ought to return from the fixture.
+
+#----------------------------------------------------------------
+Returning a database object:
+
+@pytest.fixture()
+def cheese_db(request):
+    print('\n[setup] cheese_db, connect to db')
+    # code to connect to your db 
+    a_dictionary_for_now = {'Brie': 'No.', 'Camenbert': 'Ah! We have Camenbert, yessir.'}
+    def fin():
+        print('\n[teardown] cheese_db finalizer, disconnect from db')
+    request.addfinalizer(fin)
+    return a_dictionary_for_now
+
+def test_cheese_database(cheese_db):
+    print('in test_cheese_database()')
+    for variety in cheese_db.keys():
+        print('%s : %s' % (variety, cheese_db[variety]))
+
+def test_brie(cheese_db):
+    print('in test_brie()')
+    assert cheese_db['Brie'] == 'No.' 
+
+def test_camenbert(cheese_db):
+    print('in test_camenbert()')
+    assert cheese_db['Camenbert'] != 'No.' 
+
+the fixture includes a request parameter. You need the request parameter to a fixture to add a finilizer.
+The ‘fin’ function is acting as the ‘teardown’ for the fixture.
+There’s nothing special about the name.
+You can name it ‘teardown’ or ‘cheese_db_teardown’ or ‘something_else’.
+It doesn’t matter.
+#----------------------------------------------------------------
+Scope
+Scope controls how often a fixture gets called. The default is "function".
+Here are the options for scope:
+
+function	Run once per test
+class	Run once per class of tests
+module	Run once per module
+session	Run once per session
+#----------------------------------------------------------------
+@pytest.fixture()
+def my_fixture(request):
+    print('\n-----------------')
+    print('fixturename : %s' % request.fixturename)
+    print('scope       : %s' % request.scope)
+    print('function    : %s' % request.function.__name__)
+    print('cls         : %s' % request.cls)
+    print('module      : %s' % request.module.__name__)
+    print('fspath      : %s' % request.fspath)
+    print('-----------------')
+
+    if request.function.__name__ == 'test_three':
+        request.applymarker(pytest.mark.xfail)
+
+def test_one(my_fixture):
+    print('test_one():')
+
+class TestClass():
+    def test_two(self, my_fixture):
+        print('test_two()')
+
+def test_three(my_fixture):
+    print('test_three()')
+    assert False
+#----------------------------------------------------------------
+fixtures are a way of providing data to different test function
+#----------------------------------------------------------------
+Sharing pytest Fixtures Across Tests
+There might be cases where pytest fixtures have to be shared across different tests. 
+Sharing of pytest fixtures can be achieved by adding the pytest fixtures functions to be exposed in conftest.py. 
+It is a good practice to keep conftest.py in the root folder from where the Selenium test automation execution is performed.
+    We do not import conftest.py in the test code as the pytest framework 
+automatically checks its presence in the root directory when compilation is performed.
+#----------------------------------------------------------------
+Tests that skip, xpass, or xfail are reported separately in the test summary. 
+Detailed information about skipped/xfailed tests is not available by default in the summary and 
+can be enabled using the ‘–r’ option
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+#----------------------------------------------------------------
+
+
+
+
+
+
+
+##1. pytest only identifies the file names starting with test_ or ending with _test as the test files
+test_login.py - valid
+login_test.py - valid
+testlogin.py -invalid
+logintest.py -invalid
+
+##2. Pytest requires the test method names to start with "test"
+def test_file1_method1(): - valid
+def testfile1_method1(): - valid
+def file1_method1(): - invalid	
+
+##3. To run all the tests from all the files in the folder and subfolders we need to just run the pytest command.
+pytest
+
+##4.
+The py.test invocation is the old and busted joint. 
+pytest is the new hotness (since 3.0). 
+py.test and pytest invocations will coexist for a long time I guess, but at some point py.test might be deprecated.
+
+Use pytest ... or even better the python -m pytest
+##
+
+ pytest Summary
+ #_______________________________________________________________
+
+## 1. skip test: -m, -v, -k
+
+# @pytest.mark.skip("reason to skip")
+# @pytest.mark.skipif(a > 10, reason="Give a reason")
+
+## 2. run selected testes @mark
+# pytest -k 
+
+# 3. group tests
+# @pytest.mark.Group_name
+python -m pytest -v -s -k "test_group_1"
+
+# 4. run except test
+python -m pytest -v -s -k "not test_group_1"
+
+# 5. execute setup b4 or after each test.
+
+# @pytest.fixture(scope="module")
+# def setup()
+#     global driver
+#     driver = webdriver.Chrome()
+# Everything after yield executed after test is done 
+    #   yield
+    #   driver.close()
+
+# def test_reg(setup):
+#     pass
+
+# Tree-like: --collect-only
+#________________________________________________________________
+
+## 1.
+## pytest command
+pytest test_name.py
+pytest -v
+# Running one test item
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1>pytest -v tasks\test_four.py::test_asdict
+pytest -v tasks\test_four.py::test_asdict
+========================================================================================== test session starts ===========================================================================================
+platform win32 -- Python 3.7.2, pytest-5.1.2, py-1.8.0, pluggy-0.13.0 -- c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1
+collected 1 item
+
+tasks/test_four.py::test_asdict PASSED
+
+## 2. 
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1>pytest -v tasks\test_four.py::test_asdict  tasks\test_four.py::test_replace
+pytest -v tasks\test_four.py::test_asdict  tasks\test_four.py::test_replace
+========================================================================================== test session starts ===========================================================================================
+platform win32 -- Python 3.7.2, pytest-5.1.2, py-1.8.0, pluggy-0.13.0 -- c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1
+collected 2 items
+
+tasks/test_four.py::test_asdict PASSED                                                                                                                                                              [ 50%]
+tasks/test_four.py::test_replace PASSED
+
+## 3. 
+Show results tree-like
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1>pytest --collect-only
+========================================= test session starts =========================================
+platform win32 -- Python 3.7.2, pytest-5.1.2, py-1.8.0, pluggy-0.13.0
+rootdir: C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1
+collected 7 items
+<Module one_test.py>
+  <Function test_passing>
+<Module test_one.py>
+  <Function test_passing>
+<Module test_two.py>
+  <Function test_failing>
+<Module tasks/test_four.py>
+  <Function test_asdict>
+  <Function test_replace>
+<Module tasks/test_three.py>
+  <Function test_defaults>
+  <Function test_member_access>
+
+##
+pytest  -k "asdict or defaults" --collect-only
+
+## 4. -m group_name
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1>pytest -v -m run_these_please
+pytest -v -m run_these_please
+========================================================================================== test session starts ===========================================================================================
+platform win32 -- Python 3.7.2, pytest-5.1.2, py-1.8.0, pluggy-0.13.0 -- c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_1
+collected 7 items / 6 deselected / 1 selected
+
+tasks/test_four.py::test_asdict PASSED
+
+## 5. skip the rest if fail
+python -m pytest -x
+
+## 6.--maxfail
+python -m pytest -v --maxfail=1
+
+pytest -v --tb=no
+pytest --maxfail=1 --tb=no
+# --maxfail=1 , ends the test if there is one failure
+# --maxfail=0, disable maxfail
+
+## 6. output print statement
+pytest --capture=no
+pytest -s
+
+## 7. re-Run last failed tests
+pytest --lf
+
+## 8. re-run the first failed and the following tests.
+pytest --ff
+C:\Program Files\MongoDB\Server\4.2\data\
+## pip local install
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\code\tasks_proj>pip install .
+Processing c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\code\tasks_proj
+Requirement already satisfied: click in c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\lib\site-packages (from tasks==0.1.0) (7.0)
+Requirement already satisfied: tinydb in c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\lib\site-packages (from tasks==0.1.0) (3.14.1)
+Requirement already satisfied: six in c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\lib\site-packages (from tasks==0.1.0) (1.12.0)
+Installing collected packages: tasks
+  Running setup.py install for tasks ... done
+Successfully installed tasks-0.1.0
+
+
+## Run a selective tests using -k expression
+pytest -v -k "_raises and not delete"
+
+
+## 9.
+pytest -v test_add.py -k valid_id
+
+## 10.Run to show fixture process
+pytest --setup-show test_add.py -k valid_
+##
+(env_3.7) C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_3\tasks_proj\tests\func>pytest -v --setup-show test_add.py -k valid_id
+================================================================================ test session starts ================================================================================
+platform win32 -- Python 3.7.2, pytest-5.1.2, py-1.8.0, pluggy-0.13.0 -- c:\users\jsun\documents\py_projects\pytest_proj\pytest_02\env_3.7\scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\jsun\Documents\Py_projects\Pytest_proj\pytest_02\pytest_proj_3\tasks_proj\tests, inifile: pytest.ini
+collected 3 items / 2 deselected / 1 selected
+
+test_add.py::test_add_returns_valid_id
+SETUP    S tmp_path_factory
+        SETUP    F tmp_path (fixtures used: tmp_path_factory)
+        SETUP    F tmpdir (fixtures used: tmp_path)
+        SETUP    F tasks_db (fixtures used: tmpdir)
+        func/test_add.py::test_add_returns_valid_id (fixtures used: tasks_db, tmp_path, tmp_path_factory, tmpdir)PASSED
+        TEARDOWN F tasks_db
+        TEARDOWN F tmpdir
+        TEARDOWN F tmp_path
+TEARDOWN S tmp_path_factory
+
+####
+INSTALL FROM A LOCAL DIRECTORY
+You can keep a local stash of plugins (and other Python packages) in a local or shared directory in .tar.gz or .whl format 
+and use that instead of PyPI for installing plugins:
+
+mkdir?? ??some_plugins?
+cp pytest_cov-2.4.0-py2.py3-none-any.whl some_plugins/
+
+pip install --no-index --find-links=./some_plugins/ pytest-cov
+The --no-index tells pip to not connect to PyPI.
+The --find-links=./some_plugins/ tells pip to look in the directory called some_plugins.
+
+#### Note that with the local directory install method, you can install multiple versions
+and specify which version you want by adding == and the version number:
+pip install --no-index --find-links=./some_plugins/ pytest-cov==2.4.0
+
+### Install From A Git Repository
+pip install git+https://github.com/pytest-dev/pytest-cov@v2.4.0
+# specify a branch
+pip install git+https://github.com/pytest-dev/pytest-cov@master
+
+### Create your own plugin
+###In this section, we develop a small modification to pytest behavior,
+package it as a plugin, test it, and look into how to distribute it.
+
+###Plugins can include hook functions that alter pytest behavior.
+
+##_______________________________________________________________________________________
+Pytest syntax for writing tests-
+1. File names should start with “test_”, or end with "_test".
+2. If tests are defined as methods on a class, the class name should start with “Test".
+    The class should not have an __init__ method.
+3. Test method names or function names should start with “test_”.
+
+Methods with names that don’t match this pattern won’t be executed as tests.
+
+#@@ 1.
+1)
+python -m pytest -v
+
+2) Run tests by substring matching of test method
+pytest -k method2 -v
+
+3) Run tests by markers @pytest.mark
+pytest -m set1
+
+4) parallel test
+pytest -n 4 -v
+
+5) @pytest.fixture
+Fixtures can be used to share test data between tests, execute setup and teardown methods before
+and after test executions respectively.
+
+function defined in fixture will run once before each test function.
+
+import pytest
+@pytest.fixture
+def get_sum_test_data():
+        return [(3,5,8), (-2,-2,-4), (-1,5,4), (3,-5,-2), (0,5,5)]
+def test_sum(get_sum_test_data):
+        for data in get_sum_test_data:
+                num1 = data[0]
+                num2 = data[1]
+                expected = data[2]
+                assert sum(num1, num2) == expected
+
+** Scope of fixture- Scope controls how often a fixture gets called. 
+The default is function.
+Here are the options for scope:
+function: Run once per test
+class: Run once per class of tests
+module: Run once per module
+session: Run once per session
+autouse: default is False, if True, all the tests will run the fixture.
+
+scope="session"If we need to perform an action before and after for a set of methods
+in a folder or project we session scope (scope=“session”). 
+It creates single fixture for set of methods in a project or modules in some path.
+
+5.1) define @pytest.fixture in  conftest.py so multiple test_.py
+can use it
+
+6) Parameterized tests
+@pytest.mark.parametrize("input1, input2, output",[(5,5,10),(3,5,12)])
+
+@pytest.fixture(scope='session')
+def get_sum_test_data():
+        return [(3,5,8), (-2,-2,-4), (-1,5,4), (3,-5,-2), (0,5,5)]
+
+@pytest.fixture(autouse=True)
+def setup_and_teardown():
+        print '\nFetching data from db'
+        yield
+        print '\nSaving test run data in db'
+def test_sum(get_sum_test_data):
+        for data in get_sum_test_data:
+                num1 = data[0]
+                num2 = data[1]
+                expected = data[2]
+                assert sum(num1, num2) == expected
+
+7) Xfail / Skip tests
+
+execute tests with recording either pass or fail status
+@pytest.mark.xfail
+
+completely skip test
+@pytest.mark.skip
+
+****
+The builtin pytest.mark.parametrize decorator enables parametrization of arguments for a test function.
+We have passed following parameters to it-
+argnames — a comma-separated string denoting one or more argument names, or a list/tuple of argument strings.
+Here, we have passed num1, num2 and expected as 1st input , 2nd input and expected sum respectively.
+argvalues — The list of argvalues determines how often a test is invoked with different argument values.
+If only one argname was specified argvalues is a list of values. If N argnames were specified,
+argvalues must be a list of N-tuples, where each tuple-element specifies a value for its respective argname.
+Here, we have passed a tuple of (3,5,8) inside a list where 3 is num1,5 isnum2 and 8is expected sum.
+
+@pytest.mark.parametrize('num1, num2, expected',[(3,5,8), (-2,-2,-4), (-1,5,4), (3,-5,-2), (0,5,5)])
+def test_sum(num1, num2, expected):
+        assert sum(num1, num2) == expected
+
+In above code, we have passed the values of 2nd argument(which are actual test data) directly there.
+We can also make a function call to get those values.
+import pytest
+def get_sum_test_data():
+        return [(3,5,8), (-2,-2,-4), (-1,5,4), (3,-5,-2), (0,5,5)]
+@pytest.mark.parametrize('num1, num2, expected',get_sum_test_data())
+def test_sum(num1, num2, expected):
+        assert sum(num1, num2) == expected
+_____________________________________________________
+Summary
+
+Install pytest using
+pip install pytest=2.9.1
+
+Simple pytest program and run it with py.test command.
+Assertion statements, assert x==y, will return either True or False.
+
+How pytest identifies test files and methods.
+Test files starting with test_ or ending with _test
+Test methods starting with test
+
+pytest command will run all the test files in that folder and subfolders.
+
+To run a specific file, we can use the command pytest <filename>
+Run a subset of test methods
+Grouping of test names by substring matching.
+
+pytest -k <name> -v will run all the tests having <name> in its name.
+
+Run test by @pytest.mark the tests using @pytest.mark.<name> and run the tests using
+pytest -m <name> to run tests marked as <name>.
+@pytest.mark.set2
+def test_file1_method1():
+    x, y = 5, 6
+    assert x+1 == y, "x + 1 == y failed"
+    #assert x == y, "x==y failed"
+    assert x == y, "test failed because x=" + str(x) + " y=" + str(y)
+python -m pytest -m set1
+
+
+Run tests in parallel
+Install pytest-xdist using pip install pytest-xdist
+Run tests using pytest -n NUM where NUM is the number of workers
+
+Creating fixture methods to run code before every test by marking the method with @pytest.fixture
+The scope of a fixture method is within the file it is defined.
+A fixture method can be accessed across multiple test files by defining it in conftest.py file.
+A test method can access a fixture by using it as an input argument.
+Parametrizing tests to run it against multiple set of inputs.
+
+@pytest.mark.parametrize("input1, input2, output",[(5,5,10),(3,5,12)]) def test_add(input1, input2, output):
+assert input1+input2 == output,"failed"
+will run the test with inputs (5,5,10) and (3,5,12)
+Skip/xfail tests using @pytets.mark.skip and @pytest.mark.xfail
+Create test results in XML format which covers executed test details using py.test test_sample1.py -v --junitxml="result.xml"
+A sample pytest framework to test an API
+___________________________________________________________
+
+# keyword expressions
+# Run all tests with some string ‘validate’ in the name
+pytest -k “validate”
+# Exclude tests with ‘db’ in name but include 'validate'
+pytest -k “validate and not db”
+#Run all test files inside a folder demo_tests
+pytest demo_tests/
+
+# Run a single method test_method of a test class TestClassDemo
+pytest demo_tests/test_example.py::TestClassDemo::test_method
+# Run a single test class named TestClassDemo
+pytest demo_tests/test_example.py::TestClassDemo
+# Run a single test function named test_sum
+pytest demo_tests/test_example.py::test_sum
+# Run tests in verbose mode:
+pytest -v demo_tests/
+# Run tests including print statements:
+pytest -s demo_tests/
+# Only run tests that failed during the last run
+pytest — lf
+
+____________________________________________________________
+8) 
+Coverage Test
+# 
+pip install coverage
+coverage run test.py arg1 arg2
+coverage report -m
+coverage html
+
+9) conftest.py
+
+10) mock, mockito
+
+11) examples
+@pytest.fixture
+def supply_AA_BB_CC():
+    aa=25
+    bb =35
+    cc=45
+    return [aa,bb,cc]
+
+
+python -m pytest -v test_ex1.py -m set1
+test_ex1.py::test_file1_method2 PASSED
+@pytest.mark.set1
+def test_file1_method2():
+    x, y = 5, 6
+    assert x + 1 == y, "x + 1 == y Failed"
+
+
+@pytest.mark.parametrize("input1, input2, output",[(5,5,10),(3,5,12)])
+def test_add(input1, input2, output):
+	assert input1+input2 == output, "failed"
+
+@pytest.mark.skip
+def testadd_2():
+	assert 100+200 == 300,"failed"
+
+
+@pytest.mark.xfail
+def testadd_3():
+	assert 15+13 == 28,"failed"
+
+12)
+

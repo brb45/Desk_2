@@ -1,0 +1,8 @@
+{"name": "Ken",
+  "age": 45,
+  "married": true,
+  "children": ["Alice", "Bob"],
+  "pets": ["Dog"],
+  "cars": [{"model": "Audi A1", "mpg": 15.1}, {"model": "Zeep Compass", "mpg": 18.1}]
+}
+

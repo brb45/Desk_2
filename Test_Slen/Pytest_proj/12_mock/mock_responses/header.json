@@ -1,0 +1,18 @@
+{
+     "Date": "Tue, 24 Nov 2020 01:56:05 GMT",
+     "Content-Type": "application/json",
+     "Transfer-Encoding": "chunked",
+     "Connection": "keep-alive",
+     "Set-Cookie": "__cfduid=da7aa1d6573f1f9a44e3c9888d693d0e51606182965; expires=Thu, 24-Dec-20 01:56:05 GMT; path=/; domain=.zippopotam.us; HttpOnly; SameSite=Lax",
+     "X-Cache": "hit",
+     "Charset": "UTF-8",
+     "Vary": "Accept-Encoding",
+     "Access-Control-Allow-Origin": "*",
+     "CF-Cache-Status": "DYNAMIC",
+     "cf-request-id": "06999028b9000093ac2839e000000001",
+     "Report-To": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report?s=RwXONaP%2FO1%2BSZnmXpSwNjGv%2FPXnuUW3I6mACDt0ly%2Fq51MEQWLOAi5m9K5DTpO8nWmrmUubn7ILA5uB%2B0u70LsLtmW92LUVb0BqXDuuWI9Djh1dvT0JV%2FClxZsFApw%3D%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+     "NEL": "{\"report_to\":\"cf-nel\",\"max_age\":604800}",
+     "Server": "cloudflare",
+     "CF-RAY": "5f6f82edfb4f93ac-SJC",
+     "Content-Encoding": "gzip"
+}

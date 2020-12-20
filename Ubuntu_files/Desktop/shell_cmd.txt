@@ -1,0 +1,1298 @@
+##1. date & cal
+litepoint@litepoint-e6440:~$ date
+Sun Jun 16 12:29:04 PDT 2019
+litepoint@litepoint-e6440:~$ cal
+     June 2019        
+Su Mo Tu We Th Fr Sa  
+                   1  
+ 2  3  4  5  6  7  8  
+ 9 10 11 12 13 14 15  
+16 17 18 19 20 21 22  
+23 24 25 26 27 28 29  
+30
+
+## change system time
+# date 
+sudo date 092316592019.00
+# Sep 23 16:59:08 PDT 2019
+
+
+##2. df: filesystem mounted on hard drive or memory
+# -h means human-readable,
+# -l : dislplay local filesystems , not remote 
+# -T : show file-type
+# df -t ext4
+litepoint@litepoint-e6440:~$ df -h
+
+Filesystem      Size  Used Avail Use% Mounted on
+udev            3.9G     0  3.9G   0% /dev
+tmpfs           789M  1.9M  787M   1% /run
+/dev/sda1       458G   14G  421G   4% /
+tmpfs           3.9G     0  3.9G   0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
+/dev/loop15     2.3M  2.3M     0 100% /snap/gnome-calculator/260
+/dev/loop0      1.0M  1.0M     0 100% /snap/gnome-logs/61
+/dev/loop16     4.2M  4.2M     0 100% /snap/gnome-calculator/406
+/dev/loop1       15M   15M     0 100% /snap/gnome-logs/45
+/dev/loop13      35M   35M     0 100% /snap/gtk-common-themes/818
+/dev/loop3       54M   54M     0 100% /snap/core18/941
+/dev/loop2      2.8M  2.8M     0 100% /snap/telegram-cli/25
+/dev/loop4      152M  152M     0 100% /snap/gnome-3-28-1804/55
+/dev/loop5      298M  298M     0 100% /snap/pycharm-community/128
+/dev/loop7      3.8M  3.8M     0 100% /snap/gnome-system-monitor/87
+/dev/loop6       89M   89M     0 100% /snap/core/6964
+/dev/loop9       90M   90M     0 100% /snap/core/6818
+/dev/loop8       15M   15M     0 100% /snap/gnome-characters/284
+/dev/loop10     141M  141M     0 100% /snap/gnome-3-26-1604/82
+/dev/loop12     298M  298M     0 100% /snap/pycharm-community/132
+/dev/loop17     1.0M  1.0M     0 100% /snap/gnome-logs/57
+/dev/loop18     4.2M  4.2M     0 100% /snap/gnome-calculator/352
+/dev/loop19     141M  141M     0 100% /snap/gnome-3-26-1604/86
+/dev/loop20     272M  272M     0 100% /snap/pycharm-community/117
+/dev/loop22      92M   92M     0 100% /snap/core/6531
+/dev/loop21      54M   54M     0 100% /snap/core18/782
+/dev/loop23      36M   36M     0 100% /snap/gtk-common-themes/1198
+/dev/loop24      94M   94M     0 100% /snap/telegram-desktop/753
+/dev/loop26      15M   15M     0 100% /snap/gnome-characters/280
+/dev/loop27     3.8M  3.8M     0 100% /snap/gnome-system-monitor/83
+/dev/loop28      35M   35M     0 100% /snap/gtk-common-themes/1122
+/dev/loop11      54M   54M     0 100% /snap/core18/970
+/dev/loop25     152M  152M     0 100% /snap/gnome-3-28-1804/51
+/dev/loop14      94M   94M     0 100% /snap/telegram-desktop/791
+tmpfs           789M  1.4M  787M   1% /run/user/1000
+
+##3. free : memory usage, obtained from /proc/meminfo
+litepoint@litepoint-e6440:~$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:           7.7G        778M        6.1G        174M        830M        6.5G
+Swap:          2.0G          0B        2.0G
+
+ -b for bytes, -k for kilobytes, -m for megabytes, -g for gigabytes,
+ --tera for terabytes.
+
+free -s 3 # fresh every 3 seconds
+free -s 3 -c 5 # fresh every 3 seconds for 5 times
+
+free -t # display total for each column
+#
+shared: mostly used by virtual file-system-> tmpfs,
+buffers: I/O buffers.
+cache: page cache(file data), and slab( kernel data objects)  
+#
+swap: memory content, which is temporily moved to hard-disk.
+## ending a terminal session exit or CTRL-D
+
+##4. Filenames
+# filename starts with a ., called hidden files
+# filenames and commands in linux are case sensitive
+
+cd ~user_name # changes working directory to username's home dir
+
+# ls can show multiple directories 
+litepoint@litepoint-e6440:~$ ls / ~
+/:
+bin    dev   initrd.img      lib64       mnt   requirements.txt  sbin  swapfile  usr      vmlinuz.old
+boot   etc   initrd.img.old  lost+found  opt   root              snap  sys       var
+cdrom  home  lib             media       proc  run               srv   tmp       vmlinuz
+
+/home/litepoint:
+Desktop    Downloads  examples.desktop  new_rst1.txt  Pictures  snap       thinclient_drives
+Documents  env        Music             new_rst.txt   Public    Templates  Videos
+
+# command are often followed by one or more options (that modify their behavior) and by one or
+# more arguments
+command -options arguments
+
+# options can be specified as either single - with a letter, or double dashes -- with a word
+
+#
+litepoint@litepoint-e6440:~$ ls Desktop/
+Docker_files              practical_docker  shell_cmd.txt  shell_st.txt
+docker_subreddit_fetcher  re.txt            Shell_script   test
+$ ls -l | grep ^d # only show directory
+ls -l | grep ^[^d] # only show non-directory
+
+# "file" to check type of files
+litepoint@litepoint-e6440:~/Desktop$ file shell_cmd.txt 
+shell_cmd.txt: ASCII text
+litepoint@litepoint-e6440:~/Desktop$ file Docker_files/
+Docker_files/: directory
+
+# view file with "less"
+
+## 5. file directory
+/bin         # binaries/programs that must be present for the system to boot or run
+/sbin	     # system binaries, that perform viral system tasks.
+/boot # Linux kernel, initial RAM disk image, boot loader
+/dev  # device nodes
+/etc  # system-wide configuration files,and shell scripts that start system services at boot
+/etc/crontab #a file defines when automated jobs will run
+/etc/fstab   # a table of storage devices and their mount points
+/etc/passwd  # a list of user accounts
+/lib         # shared library by core system program, like dlls.
+/media       #contain the mount points for USB, 
+/opt         # used to install "optional" software
+/tmp         # storage of temporary files created by various programs
+/proc        # virtual file system maintained by linux kernel,. 
+/usr         # contains all the programs and support files used by regular users.
+/usr/bin     # contains the executables installed by Linux distribution.
+/usr/sbin    # more system admin programs
+/usr/lib     # Shared librares for the programs in /usr/bin
+/usr/local   # store programs installed for systme-wide use, but not included with Linux      
+               distribution
+/usr/share   # contains all the shared data used by programs in usr/bin
+/usr/share/doc # documentations of program installed.
+/var         # With the exception of /tmp and /home, most directories contents remain relativ
+             # static, /var is used to store data likely to change, databases, user mail, 
+/var/log     # contain log files, records of system activities
+/var/log/messages, /var/log/syslog
+
+# symbolic link, cpp is the link name, which points to the real file /etc/alternatives/cpp*
+lrwxrwxrwx  1 root root    21 Feb 26 07:37 cpp -> /etc/alternatives/cpp*
+
+#
+litepoint@litepoint-e6440:/lib$ ls -lF 
+total 204
+drwxr-xr-x  2 root root  4096 Feb  9 16:13 apparmor/
+drwxr-xr-x  2 root root  4096 Feb  9 16:15 brltty/
+drwxr-xr-x  2 root root  4096 Jun  2 00:24 console-setup/
+lrwxrwxrwx  1 root root    21 Feb 26 07:37 cpp -> /etc/alternatives/cpp*
+drwxr-xr-x  3 root root  4096 Feb  9 16:13 crda/
+drwxr-xr-x 84 root root 36864 Jun  2 00:27 firmware/
+drwxr-xr-x  2 root root  4096 Feb  9 16:13 hdparm/
+drwxr-xr-x  2 root root  4096 Feb  9 16:14 ifupdown/
+drwxr-xr-x  2 root root  4096 Feb  9 16:12 init/
+-rwxr-xr-x  1 root root 74656 Nov  9  2017 klibc-wBFLvVtxy4xJqEadIBJMa78iJz8.so*
+drwxr-xr-x  2 root root  4096 Feb  9 16:13 linux-sound-base/
+drwxr-xr-x  3 root root  4096 Feb  9 16:12 lsb/
+drwxr-xr-x  2 root root  4096 Jun  7 06:23 modprobe.d/
+drwxr-xr-x  5 root root  4096 Jun  7 06:23 modules/
+drwxr-xr-x  2 root root  4096 Jun  2 00:25 netplan/
+drwxr-xr-x  3 root root  4096 Feb  9 16:13 recovery-mode/
+drwxr-xr-x  8 root root 12288 Jun  2 00:24 systemd/
+drwxr-xr-x 15 root root  4096 Feb 12  2018 terminfo/
+drwxr-xr-x  4 root root  4096 Jun  2 00:28 udev/
+drwxr-xr-x  2 root root  4096 Jun  2 00:25 ufw/
+drwxr-xr-x  3 root root 12288 Jun 15 06:49 x86_64-linux-gnu/
+
+##6. shell wildcard
+*    matches any chars
+?    match any single char
+[chars]  match any single char that is a meber of the set
+[!chars] match any single char that is NOT part of the set
+[[:class:]] match any single char that is member of the class
+# common char class
+[:alnum:]  alphanumerica char
+[:alpha:] alpha char
+[:digit:] numeral
+[:lower:] any lower case
+[:upper:] any upper case
+
+#
+*	all files
+^g*	any files starting with g
+b*.txt	any files beginning with b and ending with .txt
+Data???	Any file beginning with Data followed by exactly 3 chars
+[abc]*	Any file beginning with a or b or c 
+BACKUP.[0-9][0-9][0-9]	any file beginning with BACKUP. followed by exactly 3 numerals
+[[:upper:]]*	Any file starting with a upper case letter
+[![:digit:]]	Any file not starting with a numeral
+*[[:lower:]123]	Any file ending with a lowercase letter or 1,2, or 3,
+
+##7. copy
+copy -a	copy files and directories with all the attibutes.
+copy -u		copy files only if they don't exist or are new version of existing one.
+
+#cp -r dir1 dir2
+if dir2 doesNOT exist, dir2 will be created, only content of dir1 will be copied into dir2
+if dir2 exists, dir1 and its content will be copied into dir2
+
+# dir2 must be present if coping files only
+cp file1 file2 dir2
+cp dir1/* dir2,  copy all files from dir1 to dir2
+
+## cp -v    	shows the files copied process
+
+##8. hard link vs symbolic link
+ files are made up two parts: the data part holding the content, and the name part 
+# holding the file name
+
+# inode: associated with name part
+
+# Creating Hard Links
+ln re_cp.txt re_cp_hard.txt
+ln re.txt re_hard.txt
+
+both original file and its hard-linked files have same inode numbers.
+litepoint@litepoint-e6440:~/Desktop/tmp$ ls -l
+total 8
+-rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_cp_hard.txt
+-rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_cp.txt
+-rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_hard.txt
+-rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re.txt
+drwxr-xr-x 3 litepoint litepoint 4096 Jun 16 16:00 tmp1
+drwxr-xr-x 3 litepoint litepoint 4096 Jun 16 16:16 tmp2
+litepoint@litepoint-e6440:~/Desktop/tmp$ ls -il
+total 8
+13109163 -rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_cp_hard.txt
+13109163 -rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_cp.txt
+13109162 -rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re_hard.txt
+13109162 -rw-r--r-- 2 litepoint litepoint    0 Jun 16 15:36 re.txt
+13109145 drwxr-xr-x 3 litepoint litepoint 4096 Jun 16 16:00 tmp1
+13108403 drwxr-xr-x 3 litepoint litepoint 4096 Jun 16 16:16 tmp2
+
+# symbolic links are creaated to overcome two disadantages of hard links
+1) Hard links can't span physical devices
+2) Hard links can't reference directory, only files can be hard-linked.
+
+# hard link file is real file, if original file is deleted, hard linked file still exists
+# and works
+
+# for linked files, hard or soft linked, any file content 
+# changes affected all original and linked files
+
+
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ls -il
+total 16
+13109155 -rwxr-xr-x 1 litepoint litepoint 224 Jun 16 16:00 calculator_ex
+13109157 -rwxr-xr-x 1 litepoint litepoint 359 Jun 16 16:00 counter_ex
+13109156 -rwxr-xr-x 1 litepoint litepoint 174 Jun 16 16:00 cpu_monitor
+13108751 -rw-r--r-- 1 litepoint litepoint   0 Jun 16 17:00 file1.txt
+13109158 -rwxr-xr-x 1 litepoint litepoint 259 Jun 16 16:00 processMonitor
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ln -s calculator_ex calculator_ex_sym
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ls -il
+total 16
+13109155 -rwxr-xr-x 1 litepoint litepoint 224 Jun 16 16:00 calculator_ex
+13108752 lrwxrwxrwx 1 litepoint litepoint  13 Jun 16 17:00 calculator_ex_sym -> calculator_ex
+13109157 -rwxr-xr-x 1 litepoint litepoint 359 Jun 16 16:00 counter_ex
+13109156 -rwxr-xr-x 1 litepoint litepoint 174 Jun 16 16:00 cpu_monitor
+13108751 -rw-r--r-- 1 litepoint litepoint   0 Jun 16 17:00 file1.txt
+13109158 -rwxr-xr-x 1 litepoint litepoint 259 Jun 16 16:00 processMonitor
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ln calculator_ex c
+calculator_ex      calculator_ex_sym  counter_ex         cpu_monitor        
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ln calculator_ex calculator_ex_hard
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ ls -il
+total 20
+13109155 -rwxr-xr-x 2 litepoint litepoint 224 Jun 16 16:00 calculator_ex
+13109155 -rwxr-xr-x 2 litepoint litepoint 224 Jun 16 16:00 calculator_ex_hard
+13108752 lrwxrwxrwx 1 litepoint litepoint  13 Jun 16 17:00 calculator_ex_sym -> calculator_ex
+13109157 -rwxr-xr-x 1 litepoint litepoint 359 Jun 16 16:00 counter_ex
+13109156 -rwxr-xr-x 1 litepoint litepoint 174 Jun 16 16:00 cpu_monitor
+13108751 -rw-r--r-- 1 litepoint litepoint   0 Jun 16 17:00 file1.txt
+13109158 -rwxr-xr-x 1 litepoint litepoint 259 Jun 16 16:00 processMonitor
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ 
+
+
+#################### command lines ###########################################
+##9. a command can be
+1) an executable 
+2) built-in function, such as cd, pwd
+3) a shell function, like a shell script
+4) An alias
+
+type:  defines command type                                                                                                                                                                                                                                                                                                                  
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ type pwd
+pwd is a shell builtin 
+which: display path of executable
+litepoint@litepoint-e6440:~/Desktop/tmp/tmp1/script_examples$ which pwd
+/bin/pwd
+
+##10. Using alias
+# alias cmd_name='string of shell command'
+litepoint@litepoint-e6440:~/Desktop/Shell_script$ alias foo='pwd;ls -l; cd ~; pwd'
+litepoint@litepoint-e6440:~/Desktop/Shell_script$ foo
+/home/litepoint/Desktop/Shell_script
+total 652
+-rwxr-xr-x 1 litepoint litepoint    118 Jun 15 09:32 cmd_substitution
+-rwxr-xr-x 1 litepoint litepoint    140 Jun 15 16:25 if_test
+-rwxr-xr-x 1 litepoint litepoint    159 Jun 15 00:23 masterScript
+-rw-r--r-- 1 litepoint litepoint      0 Jun 15 09:36 newfile-15-06-19
+-rwxr-xr-x 1 litepoint litepoint    233 Jun 15 11:48 paternTest
+-rwxrwxrwx 1 litepoint litepoint     86 Jun 14 21:48 script1
+-rwxrwxrwx 1 litepoint litepoint    132 Jun 14 23:12 script2
+drwxr-xr-x 2 litepoint litepoint   4096 Jun 15 23:42 script_examples
+-rwxr-xr-x 1 litepoint litepoint    333 Jun 15 20:01 select_admin_menu
+-rwxr-xr-x 1 litepoint litepoint     13 Jun 15 09:32 source.06-15-19
+-rwxr-xr-x 1 litepoint litepoint     13 Jun 15 00:27 sourceme
+-rw-r--r-- 1 litepoint litepoint 622592 Jun 15 23:21 typescript
+/home/litepoint
+litepoint@litepoint-e6440:~$
+
+# To remove alias
+litepoint@litepoint-e6440:~$ unalias foo
+
+##10. output re-direction
+litepoint@litepoint-e6440:~/Desktop$ ls -l > ls_logout.txt
+#
+> ls-output.txt #create a new, empty file or overwrite an existing one to empty file
+# output to append >>
+litepoint@litepoint-e6440:~/Desktop$ ls -l ~ >> ls_logout.txt
+# Re-directing stderror 2>
+litepoint@litepoint-e6440:~/Desktop$ ls /usr/tmp 2> ls_error.txt
+litepoint@litepoint-e6440:~/Desktop$ cat ls_error.txt 
+ls: cannot access '/usr/tmp': No such file or directory
+
+#Redirecting both stdout and stderr to the same file &>
+ls: cannot access '/usr/tmp': No such file or directory
+litepoint@litepoint-e6440:~/Desktop$ ls /usr/tmp &> ls_out_err.txt 
+litepoint@litepoint-e6440:~/Desktop$ ls -l &>> ls_out_err.txt
+
+# special file /dev/null
+# to suppress unwanted stderr
+litepoint@litepoint-e6440:~/Desktop$ ls -l /usb/usd 2> /dev/null
+#
+
+##11. pipelines
+# pipe operator |
+# The standard output of one command can be piped into the standard input of another
+litepoint@litepoint-e6440:~/Desktop$ ls -l | less
+## filter
+command > file
+command1    | command2
+
+# command expansion
+litepoint@litepoint-e6440:~/Desktop$ echo *
+Docker_files docker_subreddit_fetcher ls_error.txt ls_logout.txt ls_out_err.txt practical_docker re.txt shell_cmd.txt Shell_script shell_st.txt test tmp
+
+## path expansion
+
+litepoint@litepoint-e6440:~/Desktop$ echo D*
+Docker_files
+litepoint@litepoint-e6440:~/Desktop$ echo *s
+Docker_files
+litepoint@litepoint-e6440:~/Desktop$ echo [[:upper:]]*
+Docker_files Shell_script
+##arimetic expansion
+$((expression))
+litepoint@litepoint-e6440:~/Desktop$ echo $((2*2+9))
+
+##12. echo
+ssqa@ssqa:~/Documents/test_log$ echo "test time"
+test time
+ssqa@ssqa:~/Documents/test_log$ echo test time
+test time
+ssqa@ssqa:~/Documents/test_log$ echo -e "test \n time"
+test
+ time
+#
+echo * # simialr to "ls"
+# -n : ignore trailing new lines.
+ssqa@ssqa:~/Documents/test_log$ echo -n this is a test
+this is a testssqa@ssqa:~/Documents/test_log$
+#
+$ echo "test page" > testPage
+#
+litepoint@litepoint-e6440:~/Desktop$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+litepoint@litepoint-e6440:~/Desktop$ echo Number_{1..5}
+Number_1 Number_2 Number_3 Number_4 Number_5
+
+##13. variable expansion
+litepoint@litepoint-e6440:~/Desktop$ echo $USER
+litepoint
+##
+#command substitution
+#quoting
+#double quote
+# any special chars used by shell are treated as ordinary chars. The
+# exception is $, \, `
+
+#single quote: suppress all expansions
+litepoint@litepoint-e6440:~/Desktop$ echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+text /home/litepoint/new_rst1.txt /home/litepoint/new_rst.txt a b foo 4 litepoint
+litepoint@litepoint-e6440:~/Desktop$ echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+litepoint@litepoint-e6440:~/Desktop$ echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+text ~/*.txt {a,b} foo 4 litepoint
+
+#
+# -e enable echo for escaping 
+litepoint@litepoint-e6440:~/Desktop$ echo "Time is up \a"
+Time is up \a
+litepoint@litepoint-e6440:~/Desktop$ echo -e  "Time is up \a"
+Time is up 
+litepoint@litepoint-e6440:~/Desktop$ echo -e  "Time is up \t"
+Time is up 	
+litepoint@litepoint-e6440:~/Desktop$ echo -e  "Time is up \t j"
+Time is up 	 j
+litepoint@litepoint-e6440:~/Desktop$ echo   "Time is up \t j"
+Time is up \t j
+
+##14. Permission: chmod
+u+x, Add execute permission for the owner
+u-x, remove execute permission for the owner
++x,  add execute permission for the owner, group, and world
+go=rw, set the group, others to have read and write permission
+
+##15.
+su: Run a shell with substitute user and group IDs
+# start a shell for the superuser
+su -l or su -
+
+###
+sudo: Execute a command As another User
+
+# chown: change file owner and group
+
+##16. Process
+: Process is how Linux organizes different programs waiting for their turn at the CPU
+
+ps: Report a snapshot of current processes
+top: Display tasks
+jobs: List active jobs
+bg: Palce a job in the background
+fg: Place a job in the foreground
+kill: 
+killall: Kill processes by name
+
+# How process works
+When a system starts up, the kernel launches a program called init, locatd at /etc. init runs
+a series of shell scripts, called init scripts, which start all the system services. Many of these
+services are implemented as daemon programs, that sit in the background and do their thing without
+having any user interface.
+
+##17. ps (Process Status)
+By default, ps doesn't show much, only the processes associated with current terminal session.
+
+# ps x 
+tell ps to show all of the processes regardless of what terminal they are controlled by.
+
+PID TTY      STAT   TIME COMMAND
+ 1171 ?        Ss     0:00 /lib/systemd/systemd --user
+ 1179 ?        S      0:00 (sd-pam)
+ 1226 ?        SLl    0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+ 1270 tty1     Ssl+   0:00 /usr/lib/gdm3/gdm-wayland-session env GNOME_SHELL_SESSION_MODE=ubuntu  gnome-session --session=ubuntu
+ 1272 ?        Ss     0:02 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+ 1285 tty1     Sl+    0:00 /usr/lib/gnome-session/gnome-session-binary --session=ubuntu
+ 1354 tty1     Rl+   10:55 /usr/bin/gnome-shell
+ 1406 ?        Ssl    0:00 /usr/lib/gvfs/gvfsd
+ 1411 ?        Sl     0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+ 1420 tty1     Sl+    0:05 /usr/bin/Xwayland :0 -rootless -terminate -accessx -core -listen 4 -listen 5 -displayfd 6
+ 1453 ?        Ssl    0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+ 1458 ?        S      0:00 /usr/bin/dbus-daemon --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 3
+ 1460 ?        Sl     0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+ 1466 ?        S<l    0:01 /usr/bin/pulseaudio --start --log-target=syslog
+ 1497 tty1     Sl     1:04 ibus-daemon --xim --panel disable
+#
+? : no controlling terminal
+STAT: state
+R: Running, the process is running or ready to run
+S: Sleeping, The process is NOT running, waiting for an event, such as keystroke or network packet
+D: Uninterruptible sleep, waiting for I/O
+T: Stopped by job control signals
+t: stopped by debugger during the tracing.
+x: dead, should never be seen
+Z: defunct or zombie process. This is a child process, that has terminated, but has not been
+cleaned up by its parent.
+<: a high - priority process.
+N: a low priority process
+L: has pages locked into memory (for real-time and custom IO)
+s: a session leader
+l: multi-threaded 
++: in the foreground process group.
+
+# ps
+ps # print bash and last executed command
+ps -A, ps -e, # print all running precesses
+# detailed view
+-f #(full format)
+-F #(extra full format)
+
+# ps -eF same as ps aux
+
+
+
+
+# ps aux
+litepoint@litepoint-e6440:~/Desktop$ ps aux
+
+a: shows all running processes
+u: shows user or owner column 
+x: show processes that not been executed.
+
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 225844  9672 ?        Ss   Jun16   0:09 /sbin/init splash
+root         2  0.0  0.0      0     0 ?        S    Jun16   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        I<   Jun16   0:00 [rcu_gp]
+root         4  0.0  0.0      0     0 ?        I<   Jun16   0:00 [rcu_par_gp]
+root         6  0.0  0.0      0     0 ?        I<   Jun16   0:00 [kworker/0:0H-kb]
+root         8  0.0  0.0      0     0 ?        I<   Jun16   0:00 [mm_percpu_wq]
+root         9  0.0  0.0      0     0 ?        S    Jun16   0:00 [ksoftirqd/0]
+root        10  0.0  0.0      0     0 ?        I    Jun16   0:15 [rcu_sched]
+root        11  0.0  0.0      0     0 ?        I    Jun16   0:00 [rcu_bh]
+root        12  0.0  0.0      0     0 ?        S    Jun16   0:00 [migration/0]
+
+VSZ: Virual memory used in bytes.
+RSS: Resident set size, RAM in kilobytes used by the process, which can't be swapped.
+TTY: Terminal from which the process is started. ? means this process is not
+started from a terminal
+STAT: process state
+START: date/time when the process starts
+TIME: Total CPU time used by this process
+
+
+
+# ps only provides a snapshot of the processes at the moment the ps command is executed.
+##18.  top: displays a continuously updating of the system processes in ordere of process activities.
+
+##18. top (Real time process monitor)
+By default, the top command output is refreshed every 3 seconds. 
+In order to change this interval, hit the d key while the top command is running.
+# Display specific user
+# top -u "username"
+
+# view the absolute path of the running processes, hit the c key
+#
+Kill a Running Process with Top Command
+A very powerful feature of the top command is that you can kill running processes through it.
+\This is especially helpful when a process becomes unresponsive and you want to get rid of it. 
+Hit the k key while the top command is running. A prompt will ask you about the PID you want to kill.
+ Enter the required process ID by viewing it from the list and then hit enter. 
+ The process and the corresponding application will close almost immediately
+
+ #
+Change Priority of a Process-Renice
+Renice means changing the priority of a process. Hit the r key while the top command is 
+running and then enter the PID of a process whose priority you want to change.
+ #
+ quit the top command manually through q or ctrl+c. 
+ In case you want the top command to only run till a specific number of output refreshes, 
+ you can use the following command:
+
+$ top -n [no-of-refreshes]
+ #
+
+ Save top Command Results to a Text File
+#
+Forest view : "V"
+
+litepoint@litepoint-e6440:~/Desktop$ top
+top - 21:36:09 up 6 days,  9:45,  1 user,  load average: 0.14, 0.14, 0.08
+Tasks: 235 total,   1 running, 184 sleeping,   1 stopped,   0 zombie
+%Cpu(s):  2.0 us,  0.5 sy,  0.0 ni, 97.4 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st
+KiB Mem :  8071664 total,  4503240 free,  1247792 used,  2320632 buff/cache
+KiB Swap:  2097148 total,  2097148 free,        0 used.  6258668 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                  
+ 1354 litepoi+  20   0 3977004 327064 121536 D   7.3  4.1  11:34.72 gnome-shell                                                              
+ 2521 litepoi+  20   0  568284  43668  31852 S   2.0  0.5   0:38.02 gnome-terminal-                                                          
+13875 litepoi+  20   0   51352   4268   3552 R   0.7  0.1   0:00.23 top                                                                      
+  468 root     -51   0       0      0      0 S   0.3  0.0   2:31.13 irq/31-iwlwifi                                                           
+ 1497 litepoi+  20   0  361492   7976   6528 S   0.3  0.1   1:10.69 ibus-daemon                                                              
+ 3816 litepoi+  20   0 1577272 160244  81636 S   0.3  2.0   5:11.40 WebExtensions                                                            
+13472 root      20   0       0      0      0 I   0.3  0.0   0:00.65 kworker/1:0-eve                                                          
+    1 root      20   0  225844   9672   6736 S   0.0  0.1   0:09.81 systemd                                                                  
+    2 root      20   0       0      0      0 S   0.0  0.0   0:00.04 kthreadd                                                                 
+    3 root       0 -20       0      0      0 I   0.0  0.0   0:00.00 rcu_gp    
+
+# load average: number of processes that are waiting to run.
+# Swap : vitual memory being used.
+# Controlling processes
+xlogo
+# Interrupting process: CTRL-C, terminate a program, many but not all command line programs
+can be interrupted by ^C.
+
+##19. Putting a process in background, &
+litepoint@litepoint-e6440:~/Desktop$ xlogo &
+[2] 13964
+# we started job number 1, [1], with PID 13964
+litepoint@litepoint-e6440:~/Desktop$ ps
+  PID TTY          TIME CMD
+ 2526 pts/0    00:00:02 bash
+12766 pts/0    00:00:00 ssh
+13964 pts/0    00:00:00 xlogo
+13970 pts/0    00:00:00 ps
+
+##20. jobs: job control , list the jobs that have been launched from our terminal.
+litepoint@litepoint-e6440:~/Desktop$ jobs
+[1]+  Stopped                 ssh root@192.168.0.18
+[2]-  Running                 xlogo &
+
+## return a process to foreground , fg %job_number
+litepoint@litepoint-e6440:~/Desktop$ fg %2
+xlogo
+##
+
+## Stopping (pausing) a process
+Stop a process without terminating a process, this is often done to allow a foregound process to be 
+moved to the backgound. To stop a foreground process and place it in the background, press 
+CTRL-Z.
+litepoint@litepoint-e6440:~/Desktop$ fg %2
+xlogo
+^Z
+[2]+  Stopped                 xlogo
+
+## bg %2
+## resume xlogo in the background
+litepoint@litepoint-e6440:~/Desktop$ bg %2
+[2]+ xlogo &
+litepoint@litepoint-e6440:~/Desktop$ 
+
+## kill PID, terminated a program.
+litepoint@litepoint-e6440:~/Desktop$ ps
+  PID TTY          TIME CMD
+ 2526 pts/0    00:00:02 bash
+12766 pts/0    00:00:00 ssh
+13980 pts/0    00:00:00 xlogo
+14007 pts/0    00:00:00 ps
+litepoint@litepoint-e6440:~/Desktop$ kill 13980
+litepoint@litepoint-e6440:~/Desktop$ jobs
+[1]+  Stopped                 ssh root@192.168.0.18
+[2]-  Terminated              xlogo
+###
+### send signals to process with kill
+## pstree
+litepoint@litepoint-e6440:~/Desktop$ pstree
+systemd─┬─ModemManager───2*[{ModemManager}]
+        ├─NetworkManager─┬─dhclient
+        │                └─2*[{NetworkManager}]
+        ├─accounts-daemon───2*[{accounts-daemon}]
+        ├─acpid
+        ├─avahi-daemon───avahi-daemon
+        ├─bluetoothd
+        ├─boltd───2*[{boltd}]
+        ├─colord───2*[{colord}]
+        ├─containerd───16*[{containerd}]
+        ├─cron
+        ├─cups-browsed───2*[{cups-browsed}]
+        ├─cupsd
+        ├─dbus-daemon
+        ├─dockerd───47*[{dockerd}]
+        ├─firefox─┬─Web Content───25*[{Web Content}]
+        │         ├─Web Content───20*[{Web Content}]
+        │         ├─WebExtensions───24*[{WebExtensions}]
+        │         └─62*[{firefox}]
+        ├─gdm3─┬─gdm-session-wor─┬─gdm-session-wor───2*[{gdm-session-wor}]
+        │      │                 ├─gdm-wayland-ses─┬─gnome-session-b─┬─deja-dup-monito───3*[{deja-dup-monito}]
+        │      │                 │                 │                 ├─gnome-shell─┬─Xwayland───5*[{Xwayland}]
+        │      │                 │                 │                 │             ├─gnome-control-c───4*[{gnome-control-c}]
+        │      │                 │                 │                 │             ├─ibus-daemon─┬─ibus-dconf───3*[{ibus-dconf}]
+        │      │                 │                 │                 │             │             ├─ibus-engine-sim───2*[{ibus-engine-sim}]
+        │      │                 │                 │                 │             │             └─2*[{ibus-daemon}]
+        │      │                 │                 │                 │             └─13*[{gnome-shell}]
+        │      │                 │                 │                 ├─gsd-a11y-settin───3*[{gsd-a11y-settin}]
+        │      │                 │                 │                 ├─gsd-clipboard───3*[{gsd-clipboard}]
+        │      │                 │                 │                 ├─gsd-color───4*[{gsd-color}]
+        │      │                 │                 │                 ├─gsd-datetime───3*[{gsd-datetime}]
+        │      │                 │                 │                 ├─gsd-disk-utilit───2*[{gsd-disk-utilit}]
+        │      │                 │                 │                 ├─gsd-housekeepin───3*[{gsd-housekeepin}]
+        │      │                 │                 │                 ├─gsd-keyboard───4*[{gsd-keyboard}]
+        │      │                 │                 │                 ├─gsd-media-keys───4*[{gsd-media-keys}]
+        │      │                 │                 │                 ├─gsd-mouse───3*[{gsd-mouse}]
+        │      │                 │                 │                 ├─gsd-power───5*[{gsd-power}]
+        │      │                 │                 │                 ├─gsd-print-notif───2*[{gsd-print-notif}]
+        │      │                 │                 │                 ├─gsd-rfkill───2*[{gsd-rfkill}]
+        │      │                 │                 │                 ├─gsd-screensaver───2*[{gsd-screensaver}]
+        │      │                 │                 │                 ├─gsd-sharing───3*[{gsd-sharing}]
+        │      │                 │                 │                 ├─gsd-smartcard───4*[{gsd-smartcard}]
+        │      │                 │                 │                 ├─gsd-sound───3*[{gsd-sound}]
+        │      │                 │                 │                 ├─gsd-wacom───3*[{gsd-wacom}]
+        │      │                 │                 │                 ├─gsd-xsettings───4*[{gsd-xsettings}]
+        │      │                 │                 │                 ├─nautilus-deskto───3*[{nautilus-deskto}]
+        │      │                 │                 │                 ├─python3───2*[{python3}]
+        │      │                 │                 │                 └─3*[{gnome-session-b}]
+        │      │                 │                 └─2*[{gdm-wayland-ses}]
+        │      │                 └─2*[{gdm-session-wor}]
+        │      └─2*[{gdm3}]
+        ├─gedit───3*[{gedit}]
+        ├─gnome-keyring-d─┬─ssh-agent
+        │                 └─3*[{gnome-keyring-d}]
+        ├─gsd-printer───2*[{gsd-printer}]
+        ├─ibus-x11───3*[{ibus-x11}]
+        ├─irqbalance───{irqbalance}
+        ├─2*[kerneloops]
+        ├─networkd-dispat───{networkd-dispat}
+        ├─packagekitd───2*[{packagekitd}]
+        ├─polkitd───2*[{polkitd}]
+        ├─pulseaudio───2*[{pulseaudio}]
+        ├─rsyslogd───3*[{rsyslogd}]
+        ├─rtkit-daemon───2*[{rtkit-daemon}]
+        ├─snapd───17*[{snapd}]
+        ├─sshd
+        ├─systemd─┬─(sd-pam)
+        │         ├─at-spi-bus-laun─┬─dbus-daemon
+        │         │                 └─3*[{at-spi-bus-laun}]
+        │         ├─at-spi2-registr───2*[{at-spi2-registr}]
+        │         ├─dbus-daemon
+        │         ├─dconf-service───2*[{dconf-service}]
+        │         ├─evolution-addre─┬─evolution-addre───5*[{evolution-addre}]
+        │         │                 └─4*[{evolution-addre}]
+        │         ├─evolution-calen─┬─evolution-calen───8*[{evolution-calen}]
+        │         │                 └─4*[{evolution-calen}]
+        │         ├─evolution-sourc───3*[{evolution-sourc}]
+        │         ├─gnome-shell-cal───5*[{gnome-shell-cal}]
+        │         ├─gnome-terminal-─┬─bash─┬─pstree
+        │         │                 │      └─ssh
+        │         │                 └─3*[{gnome-terminal-}]
+        │         ├─goa-daemon───3*[{goa-daemon}]
+        │         ├─goa-identity-se───3*[{goa-identity-se}]
+        │         ├─gvfs-afc-volume───3*[{gvfs-afc-volume}]
+        │         ├─gvfs-goa-volume───2*[{gvfs-goa-volume}]
+        │         ├─gvfs-gphoto2-vo───2*[{gvfs-gphoto2-vo}]
+        │         ├─gvfs-mtp-volume───2*[{gvfs-mtp-volume}]
+        │         ├─gvfs-udisks2-vo───2*[{gvfs-udisks2-vo}]
+        │         ├─gvfsd─┬─gvfsd-dnssd───2*[{gvfsd-dnssd}]
+        │         │       ├─gvfsd-network───3*[{gvfsd-network}]
+        │         │       ├─gvfsd-trash───2*[{gvfsd-trash}]
+        │         │       └─2*[{gvfsd}]
+        │         ├─gvfsd-fuse───5*[{gvfsd-fuse}]
+        │         ├─gvfsd-metadata───2*[{gvfsd-metadata}]
+        │         └─ibus-portal───2*[{ibus-portal}]
+        ├─systemd-journal
+        ├─systemd-logind
+        ├─systemd-resolve
+        ├─systemd-timesyn───{systemd-timesyn}
+        ├─systemd-udevd
+        ├─thermald───{thermald}
+        ├─udisksd───4*[{udisksd}]
+        ├─unattended-upgr───{unattended-upgr}
+        ├─upowerd───2*[{upowerd}]
+        ├─whoopsie───2*[{whoopsie}]
+        ├─wpa_supplicant
+        ├─xrdp
+        └─xrdp-sesman
+
+## vmstat: snapshot of system resource usage 
+
+## xload, tload, showing systme load over time
+## THe shell maintains information during shell session, caled environment. Programs use the data
+stored in the environment to determine facts about system's configuration. most programs use configuration files to store program settings.
+
+# printenv: print part or all of the environment
+# set : Set shell options
+# export: Export environment to subsequently executed programs
+# alias: Create alias for a command
+
+# enviroment info: environment vairables and shell variables
+# set : show both the shell and environment variables
+# printenv: only shows environment variables
+
+litepoint@litepoint-e6440:~/Desktop$ printenv
+CLUTTER_IM_MODULE=xim
+LESSCLOSE=/usr/bin/lesspipe %s %s
+XDG_MENU_PREFIX=gnome-
+LANG=en_US.UTF-8
+DISPLAY=:0
+OLDPWD=/home/litepoint
+GNOME_SHELL_SESSION_MODE=ubuntu
+COLORTERM=truecolor
+USERNAME=litepoint
+XDG_VTNR=1
+SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+XDG_SESSION_ID=1
+USER=litepoint
+DESKTOP_SESSION=ubuntu-wayland
+QT4_IM_MODULE=xim
+TEXTDOMAINDIR=/usr/share/locale/
+WAYLAND_DISPLAY=wayland-0
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/3ae88e05_0a24_4dfb_8980_6ba961bd7611
+PWD=/home/litepoint/Desktop
+HOME=/home/litepoint
+TEXTDOMAIN=im-config
+XDG_SESSION_TYPE=wayland
+XDG_DATA_DIRS=/usr/share/ubuntu-wayland:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+XDG_SESSION_DESKTOP=ubuntu-wayland
+TERM=xterm-256color
+SHELL=/bin/bash
+VTE_VERSION=5202
+QT_IM_MODULE=xim
+XMODIFIERS=@im=ibus
+IM_CONFIG_PHASE=2
+XDG_CURRENT_DESKTOP=ubuntu:GNOME
+GNOME_TERMINAL_SERVICE=:1.67
+XDG_SEAT=seat0
+SHLVL=2
+GDMSESSION=ubuntu-wayland
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+LOGNAME=litepoint
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+XDG_RUNTIME_DIR=/run/user/1000
+XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu-wayland:/etc/xdg
+PATH=/home/litepoint/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+SESSION_MANAGER=local/litepoint-e6440:@/tmp/.ICE-unix/1285,unix/litepoint-e6440:/tmp/.ICE-unix/1285
+LESSOPEN=| /usr/bin/lesspipe %s
+_=/usr/bin/printenv
+
+##
+litepoint@litepoint-e6440:~/Desktop$ printenv PATH
+/home/litepoint/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+##
+set
+
+##
+litepoint@litepoint-e6440:~/Desktop$ echo $HOME
+/home/litepoint
+
+## alias: show aliases
+litepoint@litepoint-e6440:~/Desktop$ alias
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias ls='ls --color=auto'
+
+## How is the environment established
+# whne we log on, the bash program starts and reads configuration scripts, called 
+startup files, which define default environment shared by all users.Followd by more startup files
+in our home directory that defines our personal environment.
+
+## login shell session
+# prompt for username and password.
+
+# startup files for Login Shell Sessions.
+/etc/profile, global configuration script applying to all users.
+~/.bash_profile: A user's personal startup file.
+~/.bash_login:   If ~/.bash_profile is not found, bash attenpts read this script
+~/.profile:      if neither ~/.bash_profile or ~/.bash_login is found, the one is the default
+
+## Non-login Session
+/etc/bash.bashrc: A global configuration script for all users
+~/.bashrc: A user's personal startup file , most important for user
+
+# what is a startup file: .bash_profile	
+1. read ~/.bashrc if it exists
+2. set PATH=$PATH:$HOME/bin
+
+## parameter/variable expansion
+litepoint@litepoint-e6440:~/Desktop$ test="wifi, bt"
+litepoint@litepoint-e6440:~/Desktop$ echo $test
+wifi, bt
+litepoint@litepoint-e6440:~/Desktop$ test=$test:"OFDMA."
+litepoint@litepoint-e6440:~/Desktop$ echo $test
+wifi, bt:OFDMA.
+litepoint@litepoint-e6440:~/Desktop$ more_test=" UWB"
+litepoint@litepoint-e6440:~/Desktop$ echo $more_test 
+UWB
+litepoint@litepoint-e6440:~/Desktop$ test=$test:$more_test 
+litepoint@litepoint-e6440:~/Desktop$ echo $test
+wifi, bt:OFDMA.: UWB
+litepoint@litepoint-e6440:~/Desktop$ 
+## export PATH
+the export command tells the shell to make the contents of PATH available to 
+chile process of this shell
+
+## To create a backup of .bashrc
+cp .bashrc .bashrc.bak
+
+## modify .bashrc, and force bash to re-read the modified .bashrc
+source ~/.bashrc
+
+## If a package requires a shared resource such as a shared library, it is called 
+have a dependency.
+
+# Ubuntu
+# low-level package tool: dpkg
+# high-level pakcage tool: apt-get, apt, aptitude
+# Fedora: rpm,   , yum, dnf
+
+## Installing a Package from a repository
+# high level tools permit a package to be downloaded from a repository and installed
+with full dependcy resolution
+#
+apt-get update,
+apt-get install package_name
+# for ex: install emacs
+apt-get install emacs
+## remove a package
+apt-get remove package_name
+
+## Updating packages from a repository
+apt-get update
+apt-get upgrade
+## replace apt-get with apt, no need for apt-get, use apt instead
+
+#Upgrading a package from a package file from a nonrepository source
+dpkg -i package_file
+
+# list installed package
+dpkg -l
+
+## Determine if a package is installed
+dpkg -s package_name
+
+## display info about a package
+apt-cache show python3
+
+## Determine which package installed a file
+dpkg -S file_name
+##
+
+### storage media
+mount: Mount a file system
+umount: Unmount a file system
+fsck: check and repair a file system
+fdisk: Manipulate disk partition table
+mkfs: create a filesystme
+dd: Convert and copy a file
+genisoimage(mkisofs): Create an ISO image
+# The first step to manage a storage device is to attach the device to file system tree,
+by mount.
+# Linux maintains a single file system tree with devices attached at various points.
+
+# /etc/fstab (file system table) lists the devices (hard disk partitions) that are to be
+mounted during boot time.
+
+###
+mount: display  a list of file system currently mounted
+
+
+## /dev
+/dev/lp* : printers
+/dev/sd* : SCSI disks, USB drives
+
+## copy removable devices from sdb to sdc
+dd if=/dev/sdb of=/dev/sdc
+dd if=/dev/sdb of=flash_drive.img
+
+## df, free
+## traceroute www.yahoo.com
+## ip a
+## netstat -ie: network interfaces
+
+##
+litepoint@litepoint-e6440:~$ netstat -r : show kernel routing table
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         _gateway        0.0.0.0         UG        0 0          0 wlp3s0
+172.17.0.0      0.0.0.0         255.255.0.0     U         0 0          0 docker0
+192.168.0.0     0.0.0.0         255.255.255.0   U         0 0          0 wlp3s0
+
+##ftp: transfer files over network
+ftp fileserver
+cd,ls,
+get filename.iso
+bye
+
+## wget: file downloading
+wget http://linuxcommand.org/index.php
+
+## Secure comm with remote hosts
+ssh: authenticate remote host and encrypt all the communications
+
+1. open a shell session
+ssh litepoint@ip_address
+2. execute a single command on a remote system
+ssh litepoint free
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

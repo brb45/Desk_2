@@ -1,0 +1,4 @@
+
+CONNECT_TESTER      IQ2010              127.0.0.1
+BT_CONNECT_DUT      BRCM_4329_BT        COM1
+

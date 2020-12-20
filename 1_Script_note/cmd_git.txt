@@ -1,0 +1,591 @@
+#1/24/2019
+# review 1/6/2020
+
+10.201.9.79
+relational database
+client/server architecture
+network protocol
+file system management
+sw lifecycle
+TCP/IP, UDP, DHCP, ARP, ICMP,
+6/19/19: python: itertool, re, generator; 
+9/28/2019
+
+#@@ 1. git
+#Setting Up Git
+ssqa@ssqa:~/Documents$ git config --global user.name ssqa
+ssqa@ssqa:~/Documents$ git config --global user.email sunusd@yahoo.com
+ssqa@ssqa:~/Documents$ git config --list
+
+git init
+git clone https://github.com/brb45/sampleproject 
+git add b_file_op1.py b_file_op2.py
+git add .
+
+git rm --cached b_file_op2.py  # reverse add opration
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ git add empty.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ git status -s
+ m Docker_AWS/Docker_proj_11_26/Docker_AWS/Code/docker-in-aws
+ m Docker_AWS/Docker_proj_11_26/Docker_AWS/proj_1/todobackend
+A  empty.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ git rm --cached empty.py
+rm 'empty.py'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ git status -s
+ m Docker_AWS/Docker_proj_11_26/Docker_AWS/Code/docker-in-aws
+ m Docker_AWS/Docker_proj_11_26/Docker_AWS/proj_1/todobackend
+?? empty.py
+
+
+git commit -m "b_file_1 draft1" b_file_op1.py
+git commit -am "Second Line" 3.txt   # -a , add and commit
+
+git log
+git status -s
+
+git branch
+git branch demoBranch
+git checkout demoBranch
+git log --oneline
+
+git clean
+git reset
+git revert
+
+git remote -v
+git remote remove origin
+git remote add origin https://github.com/brb45/repo2  
+
+git checkout master
+fork
+
+git pull
+git diff
+git add -A # add all new files to the repository
+git add -a -m "message" # commit  with new add files (git add -A)
+git push -u origin <branch>
+git push
+
+#strace �p <pid> 
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git version
+git version 2.16.1.windows.4
+git push -u origin master
+git pull origin master
+
+
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects/93xx_QA_files (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects/93xx_QA_files (master)
+$ git reset HEAD~4
+Unstaged changes after reset:
+M       .idea/misc.xml
+M       .idea/vcs.xml
+M       .idea/workspace.xml
+M       file_op/b_file_op1.1.py
+M       git_note.txt
+D       log_test.py
+D       proc_data_1.py
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects/93xx_QA_files (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   ../.idea/misc.xml
+        modified:   ../.idea/vcs.xml
+        modified:   ../.idea/workspace.xml
+        modified:   ../file_op/b_file_op1.1.py
+        modified:   ../git_note.txt
+        deleted:    ../log_test.py
+        deleted:    ../proc_data_1.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        ./
+        ../Post Processing/
+        ../log_test_std.py
+        ../proc_lt_std.py
+        ../rest_ex1/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+##
+
+To remove folder/directory only from git repository and not from the local try 3 simple commands.
+Steps to remove directory
+
+git rm -r --cached FolderName
+git commit -m "Removed folder from repository"
+git push origin master
+##
+$ git clone https://github.com/DjangoPatternsBook/superbook2.git
+Next, install pipenv system-wide or locally, but outside a virtualenv, 
+as recommended in pipenv installation documents. Alternatively, follow these commands:
+
+######@@3. Python
+
+
+
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   reset      Reset current HEAD to the specified state
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   branch     List, create, or delete branches
+   checkout   Switch branches or restore working tree files
+   commit     Record changes to the repository
+   diff       Show changes between commits, commit and working tree, etc
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   tag        Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local bra
+nch
+   push       Update remote refs along with associated objects
+
+
+
+jsun@jsun-mbpw10 MINGW64 ~
+$ git help add
+
+##################################################### 
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ mkdir git_repo
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ ls | grep git
+git_repo/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents
+$ cd git_repo/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test1/
+
+#@@ 1.
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1
+$ git init
+Initialized empty Git repository in C:/Users/jsun/Documents/git_repo/test1/.git/
+
+#@@ 2. 
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 11:53 .git/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ mkdir temp1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ ls -al
+total 14
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 11:53 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 11:53 .git/
+-rw-r--r-- 1 jsun 1049089 1686 Aug 29 18:25 b_file_op1.py
+-rw-r--r-- 1 jsun 1049089 1772 Aug 30 13:33 b_file_op2.py
+-rw-r--r-- 1 jsun 1049089 1089 Aug 29 13:15 b_file_op3.py
+-rw-r--r-- 1 jsun 1049089  669 Aug 29 18:45 b_file_op4.py
+-rw-r--r-- 1 jsun 1049089 1673 Nov  7 22:09 b_file_op5.py
+-rw-r--r-- 1 jsun 1049089 1733 Aug 30 00:19 b_file_op6.py
+-rw-r--r-- 1 jsun 1049089 2704 Aug 30 17:01 b_file_op7.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 13:43 temp1/
+
+
+#@@ 3.
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ mkdir test3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ../
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ git clone https://github.com/brb45/sampleproject
+Cloning into 'sampleproject'...
+remote: Enumerating objects: 12, done.
+remote: Counting objects: 100% (12/12), done.
+remote: Compressing objects: 100% (12/12), done.
+Receiving objectsremote: Total 348 (delta 3), reused 3 (delta 0), pack-reused
+Receiving objects: 100% (348/348), 82.45 KiB | 6.34 MiB/s, done.
+
+Resolving deltas: 100% (169/169), done.
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al
+total 0
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:08 ../
+drwxr-xr-x 1 jsun 1049089 0 Jan  7 14:09 sampleproject/
+__________________________________________________________________________________
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ ls -al sampleproject/
+total 22
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ./
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 ../
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 .git/
+-rw-r--r-- 1 jsun 1049089  145 Jan  7 14:09 .gitignore
+-rw-r--r-- 1 jsun 1049089  420 Jan  7 14:09 .travis.yml
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 data/
+-rw-r--r-- 1 jsun 1049089 1100 Jan  7 14:09 LICENSE.txt
+-rw-r--r-- 1 jsun 1049089  141 Jan  7 14:09 MANIFEST.in
+-rw-r--r-- 1 jsun 1049089 1742 Jan  7 14:09 README.md
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 sample/
+-rw-r--r-- 1 jsun 1049089  677 Jan  7 14:09 setup.cfg
+-rw-r--r-- 1 jsun 1049089 8501 Jan  7 14:09 setup.py
+drwxr-xr-x 1 jsun 1049089    0 Jan  7 14:09 tests/
+-rw-r--r-- 1 jsun 1049089 1191 Jan  7 14:09 tox.ini
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3
+$ cd sampleproject/
+
+#@@ 4.
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3/sampleproject (master)
+$ ls
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test3/sampleproject (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+
+#@@ 5.
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test1
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        b_file_op1.py
+        b_file_op2.py
+        b_file_op3.py
+        b_file_op4.py
+        b_file_op5.py
+        b_file_op6.py
+        b_file_op7.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+###
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ ls -R
+.:
+note.txt  test1/  test2/  test3/
+
+./test1:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py  temp1/
+
+./test1/temp1:
+
+./test2:
+b_file_op1.py  b_file_op2.py  b_file_op3.py  b_file_op4.py  b_file_op5.py  b_file_op6.py  b_file_op7.py
+
+./test3:
+sampleproject/
+
+./test3/sampleproject:
+data/  LICENSE.txt  MANIFEST.in  README.md  sample/  setup.cfg  setup.py  tests/  tox.ini
+
+./test3/sampleproject/data:
+data_file
+
+./test3/sampleproject/sample:
+__init__.py  package_data.dat
+
+./test3/sampleproject/tests:
+__init__.py  test_simple.py
+
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test1 (master)
+$ git log
+commit 6cd9c40bdc5cbc5f2774df158a96fa9d065a28f9 (HEAD -> master)
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 16:40:56 2019 -0800
+
+    Second Draft
+
+commit 214878c64810e4d27a58ac5d31040f9113d20a37
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 16:39:12 2019 -0800
+
+    b_file_op6, first draft
+
+commit 90b359b3c5b1b455113624000e3485f1543c8d94
+Author: brb45 <sunusd@yahoo.com>
+Date:   Mon Jan 7 15:54:16 2019 -0800
+
+    b_file_1 draft1
+
+
+
+#@@  6.
+##
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo
+$ cd test4
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ ls
+1.txt  2.txt  3  4.txt  txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+A  1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm 1.txt
+error: the following file has changes staged in the index:
+    1.txt
+(use --cached to keep the file, or -f to force removal)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm --cached 1.txt
+rm '1.txt'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "First Draft" 1.txt
+[master (root-commit) 815daf7] First Draft
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 1.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm 1.txt
+rm '1.txt'
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+D  1.txt
+?? 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git rm --cached 1.txt
+fatal: pathspec '1.txt' did not match any files
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 1.txt
+fatal: pathspec '1.txt' did not match any files
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ ls
+2.txt  3  4.txt  txt
+
+##########################################################
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git add 2.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "First"
+[master 5134d16] First
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename 1.txt => 2.txt (100%)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ vi 2.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+ M 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -m "second"
+On branch master
+Changes not staged for commit:
+        modified:   2.txt
+
+Untracked files:
+        3
+        4.txt
+        txt
+
+no changes added to commit
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+ M 2.txt
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git commit -am "Second"
+warning: LF will be replaced by CRLF in 2.txt.
+The file will have its original line endings in your working directory.
+[master 2115bad] Second
+ 1 file changed, 2 insertions(+)
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test4 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+##
+
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+?? 3
+?? 4.txt
+?? txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git add .
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+A  3
+A  4.txt
+A  txt
+
+$ git commit -m "All files committed"
+[master e033c2e] All files committed
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 3
+ create mode 100644 4.txt
+ create mode 100644 txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ rm 3
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ rm txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ ls
+2.txt  4.txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+ D 3
+ D txt
+
+$ git commit -am "Second Line" 3.txt
+warning: LF will be replaced by CRLF in 2.txt.
+The file will have its original line endings in your working directory.
+[master dc00991] Second Line
+ 3 files changed, 2 insertions(+)
+ delete mode 100644 3
+ delete mode 100644 txt
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/git_repo/test5 (master)
+$ git status -s
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ git add .
+warning: adding embedded git repository: practical-docker-with-python
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint:
+hint:   git submodule add <url> practical-docker-with-python
+hint:
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint:
+hint:   git rm --cached practical-docker-with-python
+hint:
+hint: See "git help submodule" for more information.
+############################################################################################
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+ Role ARN
+arn:aws:iam::142291337702:role/admin
+pro_sun
+
+ec2-54-90-81-253.compute-1.amazonaws.com
+
+54.90.81.253
+

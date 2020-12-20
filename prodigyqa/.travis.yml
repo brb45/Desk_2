@@ -1,0 +1,37 @@
+language: python
+
+# sudo: false
+
+matrix:
+  include:
+    - python: 3.5
+    - python: 3.6
+    - python: 3.7
+      dist: xenial
+      sudo: true
+
+addons:
+  firefox: latest
+  chrome: stable
+
+
+before_script:
+  - "sudo apt-get install python-opencv"
+#   - bash chrome_driver_install.sh
+
+script:
+#   - pytest Examples/samplerestapitest.py
+#   - pytest Examples/FilesCompare/samplecomparisontest.py
+  - "flake8 prodigyqa/*.py"
+  - "flake8 Examples/*.py && flake8 Examples/*/*.py"
+  - "pycodestyle prodigyqa/*.py && pycodestyle Examples/*/*.py"
+
+deploy:
+  provider: pypi
+  user: Revant
+  password: Revantpypi
+  distributions: "sdist bdist_wheel"
+  skip_existing: true
+  skip_cleanup: true
+  on:
+      branch: master

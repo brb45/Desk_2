@@ -1,0 +1,5 @@
+#LitePoint Test Flow Version 1.5.0 (2010-04-30)
+
+RunMode = 0
+RepeatTimes = 1
+ExitWhenDone = 0

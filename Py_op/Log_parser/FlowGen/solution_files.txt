@@ -1,0 +1,357 @@
+
+flow.csv input file
+--------------------------------------------
+TECHNOLOGY,FREQ_MHZ,DATA_RATE,TEST,POWER_DBM,ANTENNA
+WIFI,2412,OFDM_6,TX_VERIFY_EVM,15.2,"(0,1,0,0)"
+WIFI,2417,OFDM_12,TX_VERIFY_MASK,14.7,"(1,0,0,0)"
+WIFI,2422,,TX_VERIFY_SPECTRUM,,
+
+multirate_flow.csv input file
+    note: '*' means a "second layer" parameter
+--------------------------------------------
+TECHNOLOGY,FREQ_MHZ,DATA_RATE*,TEST*,POWER_DBM*,ANTENNA
+WIFI_MPS,2412,OFDM_6,"E,M,P",15.2,"(0,1,0,0)"
+WIFI_MPS,2417,OFDM_12,"E,M,P,S",14.7,"(1,0,0,0)"
+WIFI_MPS,2422,,"L,H,S",,
+
+flow3.csv input file
+---------------------------------
+TECHNOLOGY,FREQ_MHZ,DATA_RATE,TEST,POWER_DBM,ANTENNA
+WIFI,2442,DSSS_1,TX_VERIFY_POWER,13,"(0,0,1,0)"
+WIFI,5040,OFDM_18,TX_VERIFY_SPECTRUM,,"(1,1,0,1)"
+WIFI,,OFDM_24,,,
+
+template directory structure
+-----------------------------------
+templates/
+    template.txt             <- general template of the whole file
+    root_header.txt
+    tail_header.txt
+    WIFI/
+              template.txt
+              tech_header.txt
+              tech_tail.txt
+              TX_VERIFY_EVM.txt
+              TX_VERIFY_MASK.txt
+              TX_VERIFY_POWER.txt
+              TX_VERIFY_SPECTRUM.txt
+              RX_VERIFY_PER.txt
+    WIFI_MPS/
+              template.txt
+              sequence.txt
+              tech_header.txt
+              tech_tail.txt
+              TEST_PREPARE.txt
+              TEST_RUN.txt
+              TX_TEST_ADD.txt
+              RX_TEST_ADD.txt
+              
+
+root template templates/template.txt
+---------------------------------
+%%include_root root_header.txt%%
+%%iterate_tech %%
+%%include_root root_tail.txt%%
+
+root root_header.txt
+-------------------------------------
+
+#LitePoint Test Flow Version 1.5.0 (2010-04-30)
+
+RunMode = 0
+RepeatTimes = 1
+ExitWhenDone = 0
+
+
+root root_tail.txt
+-------------------------------------
+(nothing)
+
+WIFI template.txt
+-------------------------------------
+%%include_tech tech_header.txt%%
+%%iterate_tests TEST %%
+%%include_tech tech_tail.txt%%
+
+WIFI tech_header.txt
+-----------------------------------------
+WIFI:
+	GLOBAL_SETTINGS
+		#Input Parameters:
+		>ANALYSIS_11AG_AMPL_TRACK [Integer]  = 2 
+		>ANALYSIS_11AG_CH_ESTIMATE [Integer]  = 1 
+		>ANALYSIS_11AG_FREQ_SYNC [Integer]  = 2 
+		>ANALYSIS_11AG_PH_CORR_MODE [Integer]  = 3 
+        ....
+		>PER_11N_HT40_MIXED_MCS9_WAVEFORM_NAME [String]  = WiFi_HT40_MCS9.mod 
+		>PER_WAVEFORM_DESTINATION_MAC [String]  = 000000C0FFEE 
+		>PER_WAVEFORM_PATH [String]  = ../mod 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	CONNECT_IQ_TESTER
+		#Input Parameters:
+		>DH_ENABLE [Integer]  = 0 
+		>DH_OBTAIN_CONTROL_TIMEOUT_MS [Integer]  = 0 
+        ....
+		<IQ_MAX_SIGNAL_VERSION [String]  = <,>
+		<IQ_NXN_SIGNAL_VERSION [String]  = <,>
+		<IQ_NXN_VERSION [String]  = <,>
+		<IQ_ZIGBEE_SIGNAL_VERSION [String]  = <,>
+		<TEST_MANAGER_VERSION [String]  = <,>
+	LOAD_PATH_LOSS_TABLE
+		#Input Parameters:
+		>RX_PATH_LOSS_FILE [String]  = path_loss.csv 
+		>TX_PATH_LOSS_FILE [String]  = path_loss.csv 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	INSERT_DUT
+		#Input Parameters:
+		>RELOAD_DUT_DLL [Integer]  = 0 
+		>CONNECTION_STRING [String]  =  
+		>DUT_DLL_FILENAME [String]  = TemplateDut.DLL 
+		>OPTION_STRING [String]  =  
+		#Return Values:
+		<DUT_VERSION [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+		<VDUT_VERSION [String]  = <,>
+	INITIALIZE_DUT
+		#Input Parameters:
+		#Return Values:
+		<DUT_DRIVER_INFO [String]  = <,>
+		<DUT_NAME [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_CALIBRATION
+		#Input Parameters:
+		>TX1 [Integer]  = 1 
+		>TX2 [Integer]  = 0 
+		>TX3 [Integer]  = 0 
+		>TX4 [Integer]  = 0 
+        ....
+		<CAL_RESULT_4 [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+
+
+WIFI tech_tail.txt
+--------------------------------------------
+	REMOVE_DUT
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	DISCONNECT_IQ_TESTER
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+
+
+WIFI TX_VERIFY_EVM.txt
+-------------------------------------
+	TX_VERIFY_EVM
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = %%subst FREQ_MHZ%% 
+		>TX1 [Integer]  = %%subst ANTENNA%% 
+		>TX2 [Integer]  = %%subst ANTENNA%% 
+		>TX3 [Integer]  = %%subst ANTENNA%% 
+		>TX4 [Integer]  = %%subst ANTENNA%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>TX_POWER_DBM [Double]  = %%subst POWER_DBM%%
+		>BANDWIDTH [String]  = HT20 
+		>DATA_RATE [String]  = %%subst DATA_RATE%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<SPATIAL_STREAM [Integer]  = <,>
+		<AMP_ERR_DB [Double]  = <,>
+        ....
+		<POWER_MIN_2 [Double]  = <,>
+		<POWER_MIN_3 [Double]  = <,>
+		<POWER_MIN_4 [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+
+TX_VERIFY_POWER.txt
+TX_VERIFY_MASK.txt
+TX_VERIFY_SPECTRUM.txt
+----------------------------------------
+(similar to TX_VERIFY_EVM.txt)
+
+WIFI RX_VERIFY_PER.txt
+----------------------------------------
+	RX_VERIFY_PER
+		#Input Parameters:
+		>FRAME_COUNT [Integer]  = 0 
+		>FREQ_MHZ [Integer]  = %%subst FREQ_MHZ%% 
+		>RX1 [Integer]  = %%subst ANTENNA%% 
+		>RX2 [Integer]  = %%subst ANTENNA%% 
+		>RX3 [Integer]  = %%subst ANTENNA%% 
+		>RX4 [Integer]  = %%subst ANTENNA%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>RX_POWER_DBM [Double]  = %%subst POWER_DBM%%
+		>BANDWIDTH [String]  = HT20 
+		>DATA_RATE [String]  = %%subst DATA_RATE%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<GOOD_PACKETS [Integer]  = <,>
+		<TOTAL_PACKETS [Integer]  = <,>
+		<CABLE_LOSS_DB_1 [Double]  = <,>
+		<CABLE_LOSS_DB_2 [Double]  = <,>
+		<CABLE_LOSS_DB_3 [Double]  = <,>
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<PER [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+
+WIFI_MPS template.txt
+----------------------------------------
+%%include_tech tech_header.txt%%
+%%iterate_sequence_file sequence.txt%%
+%%include_tech tech_tail.txt%%
+
+WIFI_MPS tech_header.txt
+---------------------------------------------
+WIFI_MPS:
+	GLOBAL_SETTINGS
+		#Input Parameters:
+		>ANALYSIS_11AG_AMPL_TRACK [Integer]  = 2 
+		>ANALYSIS_11AG_CH_ESTIMATE [Integer]  = 1 
+        ....
+		>PER_11N_HT40_MIXED_MCS9_WAVEFORM_NAME [String]  = WiFi_HT40_MCS9.mod 
+		>PER_WAVEFORM_DESTINATION_MAC [String]  = 000000C0FFEE 
+		>PER_WAVEFORM_PATH [String]  = ../mod 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	CONNECT_IQ_TESTER
+		#Input Parameters:
+		>DH_ENABLE [Integer]  = 0 
+		>DH_OBTAIN_CONTROL_TIMEOUT_MS [Integer]  = 0 
+        .....
+		<IQ_ZIGBEE_SIGNAL_VERSION [String]  = <,>
+		<TEST_MANAGER_VERSION [String]  = <,>
+	LOAD_PATH_LOSS_TABLE
+		#Input Parameters:
+		>RX_PATH_LOSS_FILE [String]  = path_loss.csv 
+		>TX_PATH_LOSS_FILE [String]  = path_loss.csv 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	LOAD_MULTI_SEGMENT_WAVEFORM
+		#Input Parameters:
+		>RELOAD_MULTI_WAVEFORM_FILE [Integer]  = 0 
+		>MULTI_WAVEFORM_DEFINITION_FILE [String]  = Multi_Segment_Waveform.ini 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	INSERT_DUT
+		#Input Parameters:
+		>RELOAD_DUT_DLL [Integer]  = 0 
+		>CONNECTION_STRING [String]  = --linuxdut --serial 1 --interactive --clientbatch 
+		>DUT_DLL_FILENAME [String]  = TemplateDut.DLL 
+		>EEPROM_FILENAME [String]  = otp_data_default.bin 
+		>OPTION_STRING [String]  =  
+		#Return Values:
+		<DUT_VERSION [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+		<VDUT_VERSION [String]  = <,>
+	INITIALIZE_DUT
+		#Input Parameters:
+		#Return Values:
+		<DUT_DRIVER_INFO [String]  = <,>
+		<DUT_NAME [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_CALIBRATION
+		#Input Parameters:
+		>CALIBRATION_RETRY [Integer]  = 0 
+		>CAL_MIN_POINT_IN_RANGE [Integer]  = 5 
+        ....
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<CAL_RESULT [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+
+
+WIFI_MPS tech_tail.txt
+----------------------------------------------
+	REMOVE_DUT
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	DISCONNECT_IQ_TESTER
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+
+
+
+WIFI_MPS  sequence.txt
+---------------------------------------
+%%include_tech TEST_PREPARE.txt%%
+%%iterate_section TEST E,M,P,S:TX_TEST_ADD.txt L,H,S:RX_TEST_ADD.txt %%
+%%include_tech TEST_RUN.txt%%
+
+
+WIFI_MPS  TEST_PREPARE.txt
+---------------------------------------
+	TEST_PREPARE
+		#Input Parameters:
+		>ANT1 [Integer]  = %%subst ANTENNA%% 
+		>ANT2 [Integer]  = %%subst ANTENNA%% 
+		>ANT3 [Integer]  = %%subst ANTENNA%% 
+		>ANT4 [Integer]  = %%subst ANTENNA%% 
+		>FREQ_MHZ [Integer]  = %%subst FREQ_MHZ%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>BANDWIDTH [String]  = HT20 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+
+WIFI_MPS  TEST_RUN.txt
+---------------------------------------
+	TEST_RUN
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+
+
+
+WIFI_MPS TX_TEST_ADD.txt
+-----------------------------------------------
+	TX_TEST_ADD
+		#Input Parameters:
+		>CAPTURE_COUNT [Integer]  = 0 
+		>PACKET_SKIP_COUNT [Integer]  = 200 
+		>SAMPLING_TIME_US [Integer]  = 0 
+		>CORRECTION_FACTOR_11B [Double]  = 9.20 
+		>OBW_PERCENTAGE [Double]  = 99.00 
+		>TX_POWER_DBM [Double]  = %%subst POWER_DBM%%
+		>DATA_RATE [String]  = %%subst DATA_RATE%%
+		>MEASUREMENTS [String]  = %%subst TEST%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+
+WIFI_MPS RX_TEST_ADD.txt
+-----------------------------------------------
+	RX_TEST_ADD
+		#Input Parameters:
+		>FRAME_COUNT [Integer]  = 0 
+		>SPIKE_REMOVAL [Integer]  = 1 
+		>PER_SENS_MAX_POWER_DBM [Double]  = -20.00 
+		>PER_TRGT_SENS_POWER_DBM [Double]  = -65.00 
+		>SENS_PER_PERCENTAGE [Double]  = 10.00 
+		>START_POWER_LEVEL_DBM [Double]  = -65.00 
+		>STOP_POWER_LEVEL_DBM [Double]  = -75.00 
+		>SWEEP_STEP_DB [Double]  = -1.00 
+		>DATA_RATE [String]  = %%subst DATA_RATE%%
+		>MEASUREMENTS [String]  = %%subst TEST%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+

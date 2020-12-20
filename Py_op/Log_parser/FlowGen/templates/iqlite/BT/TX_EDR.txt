@@ -1,0 +1,38 @@
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2402")%%
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = %%sub getvalue("PACKET_TYPE", "2DH1") %%
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

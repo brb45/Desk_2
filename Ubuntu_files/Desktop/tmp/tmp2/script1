@@ -1,0 +1,8 @@
+#!/bin/bash
+#This is some comment
+
+clear
+echo 'hello world'
+echo hello planet
+
+exit 0

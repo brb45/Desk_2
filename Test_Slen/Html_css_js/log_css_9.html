@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <!-- Child combinator: ul > li -->
+    <head>
+        <style>
+            .box p {
+                color: red
+            }    
+            
+            ul > li {
+                border-top: 5px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Text not in .box</p>
+        <div class='box'>
+            <p>
+                Text in .box
+            </p>
+        </div>
+        <ul>
+            <li>Unordered item</li>
+            <li>Unordered item
+                <ol>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                </ol>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+#!/bin/bash
+INTERVAL=$1
+
+while sleep $INTERVAL
+do
+	VALUE=$(ps -eo pcpu,pid -o comm= | sort -k1 -n -r | head -1)
+	USAGE=$(echo $VALUE | awk '{ print $1 }')
+	echo $USAGE
+
+done

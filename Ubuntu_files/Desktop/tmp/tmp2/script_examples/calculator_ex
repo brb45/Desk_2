@@ -1,0 +1,13 @@
+#!/bin/bash
+
+logfile_1="/home/litepint/Desktop/Shell_script/script_examples/test_log1"
+date > $logfile_1
+
+
+if [ "$(expr $RANDOM % 100)" -lt "70" ]
+then
+	x=`expr $(expr $RANDOM % 4) + 6`
+else
+	x=`expr $RANDOM % 5`
+fi
+echo $x

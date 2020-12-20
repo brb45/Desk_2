@@ -1,0 +1,6 @@
+Tech,API,Freq,Data_rate,RU
+"['wifi', 'wifi_mps', 'AX_mps', 'RSDB']","['EVM', 'TX_Power', 'PER', 'RX_Sens', 'Mask']",,,
+,,"[2412, 2437, 2482, 5180]",,
+,,,"[6, 9, 48, 54, 216]",
+,"['EVM', 'TX_Power', 'PER', 'RX_Sens', 'Mask']",,,"[5, 10, 15, 25, 40, 80]"
+,,,,"[0, 37, 53, 61, 65, 67]"

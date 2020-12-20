@@ -1,0 +1,16 @@
+	RX_TEST_ADD
+		#Input Parameters:
+		>FRAME_COUNT [Integer]  = 0 
+		>SPIKE_REMOVAL [Integer]  = 1 
+		>PER_SENS_MAX_POWER_DBM [Double]  = -20.00 
+		>PER_TRGT_SENS_POWER_DBM [Double]  = -65.00 
+		>SENS_PER_PERCENTAGE [Double]  = 10.00 
+		>START_POWER_LEVEL_DBM [Double]  = -65.00 
+		>STOP_POWER_LEVEL_DBM [Double]  = -75.00 
+		>SWEEP_STEP_DB [Double]  = -1.00 
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-6")%%
+		>MEASUREMENTS [String]  = %%sub getvalue("TEST")%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>

@@ -1,0 +1,16 @@
+env: C:\Users\jsun\Documents\Py_projects\django_test_proj\01\
+
+1. C:\Users\jsun\Documents\Py_projects\django_test_proj\01\restful01\
+http://localhost:8000/api/articles/
+
+2. C:\Users\jsun\Documents\Py_projects\django_test_proj\blog_api_1\
+http://localhost:8000/api/
+
+###
+C:\Users\jsun\Documents\Py_projects\Docker_AWS\D_AWS\
+
+###  pytest == top1
+C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\01\restful05_pytest\
+
+##
+C:\Users\jsun\Documents\Py_projects\HillarDjangoREST\Restful_Python\C08\

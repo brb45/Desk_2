@@ -1,0 +1,15 @@
+/docs
+/tests
+/vagrant
+/static
+INSTALL*
+COPYRIGHT
+LICENSE
+*.md
+*.txt
+!requirements.txt
+.coveragerc
+.gitignore
+.travis.yml
+MANIFEST.in
+env-setup.sh

@@ -1,0 +1,47 @@
+	TX_VERIFY_MASK
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2412")%% 
+		>TX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%% 
+		>TX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>TX3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>TX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>OBW_PERCENTAGE [Double]  = 99.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>TX_POWER_DBM [Double]  = %%sub getvalue("TX_POWER_DBM", "15.0")%%
+		>BANDWIDTH [String]  = HT20 
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-54")%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<CABLE_LOSS_DB_1 [Double]  = <,>
+		<CABLE_LOSS_DB_2 [Double]  = <,>
+		<CABLE_LOSS_DB_3 [Double]  = <,>
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<FREQ_AT_MARGIN_LOWER_1 [Double]  = <,>
+		<FREQ_AT_MARGIN_LOWER_2 [Double]  = <,>
+		<FREQ_AT_MARGIN_LOWER_3 [Double]  = <,>
+		<FREQ_AT_MARGIN_LOWER_4 [Double]  = <,>
+		<FREQ_AT_MARGIN_UPPER_1 [Double]  = <,>
+		<FREQ_AT_MARGIN_UPPER_2 [Double]  = <,>
+		<FREQ_AT_MARGIN_UPPER_3 [Double]  = <,>
+		<FREQ_AT_MARGIN_UPPER_4 [Double]  = <,>
+		<MARGIN_DB_LOWER_1 [Double]  = <,>
+		<MARGIN_DB_LOWER_2 [Double]  = <,>
+		<MARGIN_DB_LOWER_3 [Double]  = <,>
+		<MARGIN_DB_LOWER_4 [Double]  = <,>
+		<MARGIN_DB_UPPER_1 [Double]  = <,>
+		<MARGIN_DB_UPPER_2 [Double]  = <,>
+		<MARGIN_DB_UPPER_3 [Double]  = <,>
+		<MARGIN_DB_UPPER_4 [Double]  = <,>
+		<OBW_FREQ_START_MHZ [Double]  = <,>
+		<OBW_FREQ_STOP_MHZ [Double]  = <,>
+		<OBW_MHZ [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <%%lim = TX_POWER_DBM - 1.5%%,%%lim TX_POWER_DBM + 1.5 %%>
+		<VIOLATION_PERCENT [Double]  = <,>
+		<SPECTRUM_RAW_DATA_X [ArrayDouble]  = <,>
+		<SPECTRUM_RAW_DATA_Y [ArrayDouble]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

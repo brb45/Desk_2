@@ -1,0 +1,26 @@
+total 52
+drwxr-xr-x 5 litepoint litepoint  4096 Jun  4 09:19 Docker_files
+drwxr-xr-x 3 litepoint litepoint  4096 Jun  5 09:22 docker_subreddit_fetcher
+-rw-r--r-- 1 litepoint litepoint     0 Jun 16 21:09 ls_logout.txt
+drwxr-xr-x 9 litepoint litepoint  4096 Jun  5 08:29 practical_docker
+-rw-r--r-- 1 litepoint litepoint     0 Jun  2 21:26 re.txt
+-rw-rw-r-- 1 litepoint litepoint 14504 Jun 16 21:05 shell_cmd.txt
+drwxr-xr-x 3 litepoint litepoint  4096 Jun 15 20:26 Shell_script
+-rw-r--r-- 1 litepoint litepoint 11183 Jun 16 12:28 shell_st.txt
+drwxrwxr-x 2 litepoint litepoint  4096 Mar  5 07:48 test
+drwxr-xr-x 4 litepoint litepoint  4096 Jun 16 16:47 tmp
+total 56
+drwxr-xr-x 8 litepoint litepoint 4096 Jun 16 21:05 Desktop
+drwxr-xr-x 3 litepoint litepoint 4096 Jun  5 08:34 Documents
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Downloads
+drwxrwxr-x 3 litepoint litepoint 4096 Mar 18 08:11 env
+-rw-r--r-- 1 litepoint litepoint 8980 Feb 26 07:39 examples.desktop
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Music
+-rw-r--r-- 1 litepoint litepoint    0 Jun  5 23:11 new_rst1.txt
+-rw-r--r-- 1 root      root         0 Jun  5 22:55 new_rst.txt
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Pictures
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Public
+drwxr-xr-x 5 litepoint litepoint 4096 Jun  4 22:17 snap
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Templates
+drwxrwxr-t 2 litepoint litepoint 4096 Mar 19 10:22 thinclient_drives
+drwxr-xr-x 2 litepoint litepoint 4096 Feb 26 07:42 Videos

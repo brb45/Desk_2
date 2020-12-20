@@ -1,0 +1,12 @@
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>

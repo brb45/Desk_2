@@ -1,0 +1,217 @@
+12_3_19
+r: 4/10/20
+
+1. Use  Jenkins to perform CI with software Dev Lifecycle
+2. Install  Jenkins using Docker
+3. Configure Jenkins "the DevOps way" with Docker, Jobs DSL and 
+Jenkins pipelines.
+4. Use  plugins to integrate Jenkins with popular  dev. software
+5. Configure the authentication and authorization options to tighten
+security on your Jenkins UI. 
+
+Jenkins: 
+1. CI/CD tool written in Java
+2. automation server used to build and deliver software projects.
+3. lots  of plugins available
+
+CI/CD:
+CI: merging working copies from developers to a shared mainline several
+times a day.
+
+CD: Continuous  Delivery
+ team produce sw in short cycles, ensuring sw can be reliably released
+at any time.
+
+CI/CD:
+verify and publish SW releases by triggering  automated builds & tests.
+for every commit or at lease once a day
+
+All developers should push changes to a version control, which should
+be built and tested by Jenkins
+
+Jenkins doesn't merge code or resolve code conflicts. that's git or other
+merge tools' job.
+
+jenkins provides feedback loop to developer to fix build
+errors
+
+Jenkins auto-build, auto-test and publish and deployed
+to dev/qa/staging server. advance SDLC faster
+
+#____________________________________
+Why use Docker with Jenkins?
+While you can absolutely use Jenkins without Docker, using Docker provides two big advantages:
+ease of setup, and replicability. Both of these are due to how Docker uses images and containers.
+Docker containers are like running programs — they generally fulfill a specific purpose — like running a Jenkins instance
+ — and can be terminated or restarted similar to a regular executable program.
+Docker images are like the blueprints for containers, allowing Docker to build and run a container on any system that supports Docker.
+Because of this, the same container can potentially run on a Mac, Linux, or modern Windows operating system
+without modification beyond certain command line options or file system considerations.
+
+What this means for our purposes is that if we have a Docker image for Jenkins,
+ we can run a container for Jenkins on any machine that supports Docker with little modification
+ and easily repeat the process across multiple machines.
+
+#____________________________________
+Node.js : 
+1) javascript runtime environment
+2) execute javascript code server side rather than client side
+3) event-driven architecture capable of asynchronous I/O 
+Response fast to requests, it can immediately give a client the result
+and asynchronously handle database updates which takes longer time in 
+general.
+4) it doesn't need to be compiled, unlike building Java projects.
+
+Node.js  projects
+1)  npm Install
+2) run node.js tests
+3) package
+    a) create a container that includes Node.js binaries and your projects
+    so the package contains a binary that include all binaries and dependencies
+    rather than creating .zip or .jar or .tgz package
+    ensure that code behaves the same on the production system as 
+    dev/test/staging machines.
+4) distribute the docker image
+use docker registry to upload  the image
+
+
+Jenkins:
+Manually create jobs with Jenkins UI
+1) Use a web UI to input all build parameters
+2) Segregation between Jenkins admins and developers
+3) Difficult to backup and restore when setting is changed
+4) When not many jobs, use UI to manager jobs is easier, but if many jobs, 
+
+Automate Jenkins jobs
+1.1) write Jenkins jobs as code and save it in version control
+1.2) Dev bundle Jenkins build instructions  with their own project repository.
+A) Jenkins "Job DSL": write code that creates and modifies Jenkins jobs automatically
+DSL: Domain Specific Language
+Jenkins Job DSL  is a plug in 
+describe jobs using a Groovy based language.
+
+
+B) Jenkins Pipeline  (Jenkinsfile)
+Bundle the build parameters within  the project
+put build steps in code
+
+Job DSL vs Pipeline
+1) Job DSLs creates new jobs based on the code.
+2) Pipelines is a job type, Organization Folder
+3)  use Job DSLs to create  new Pipeline jobs 
+4) Declarative Pipeline: write pipeline in Jenkins DSL
+5) Scripted Pipeline : write the pipeline in Groovy
+
+
+"freestyle projects" from Jenkins UI is a job type
+
+Jfrog arrifactory
+Gradle vs maven build tool
+Jenkins HTTP request plugins
+
+bitbucker vs github
+Sonarqube: code quality
+
+
+
+docker exec
+
+Jenkins CI
+    Each developer should work in their own branch, and ideally your CI would build each developer's branch as
+    they commit to it... catching any build failures early during the development phase.
+    After the new feature is complete or whatever, and the builds are passing for their own branch,
+    then the developer would push/merge into master (triggering another build to test all the changes together).
+    Your CI should never make code changes automatically, but instead it should email/notify the offending
+    committer about their build-breaking changes.
+
+    This belief (branches vs. CI) is incorrect. Consider keeping one stable branch, where you commit only unit
+    tested changes. The rest (feature branches and local branches) should be the responsibility
+    of each developer and not part of your CI policy in any way.
+
+    In feature branches you want to be isolated from other developers. This allows you to:
+
+        perform exploratory coding
+
+        experiment with the code base
+
+        perform partial commits (effectively commit non-working code) to set up backup points (in case you screw up),
+        to create more meaningfull change history (through commit messages), and to back up your work and
+        switch completely to something else (in the time it takes you to write "git commit && git checkout ")
+
+        perform low-priority tasks that take a long time (e.g. you want to perform a refactoring that alters
+        all 80 classes of the data layer: you change two per day, until you change all of them an the code
+        compiles (but you can do this without affecting anyone until you can make a single commit).
+
+    The CI should never alter the commit history of the repo.
+
+The correct solution here is for no commits to be added to master branch if they haven't been tested and verified.
+
+Do you work on feature branches, have the CI run automatically on those, and if the builds fail, don't merge them into master.
+
+You can have an additional build that tests merges if those are a concern, by running on the feature branch,
+and during the build merging master/integration/whatever into the local branch, then running tests.
+
+
+What you should be doing though is these steps
+
+    work off master if you like(that is fine and keep pulling changes from everyone) BUT do NOT commit to master locally
+    JUST BEFORE you are going to commit your changes to master, create a branch with submit_XXXXXX
+    have your automated build pick up all submit_XXX branches build
+    Option 1: build breaks, or merge breaks...change rejected and it never lands on master
+    Option 2: build works, jenkins pushes master and updates it
+    THEN, what we do is put a git commit hook in preventing EVERYONE from actualy committing to master.
+    It works great....NO broken builds ever and NO reverting commits from master either.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

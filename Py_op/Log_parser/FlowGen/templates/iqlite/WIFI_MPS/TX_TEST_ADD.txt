@@ -1,0 +1,14 @@
+	TX_TEST_ADD
+		#Input Parameters:
+		>CAPTURE_COUNT [Integer]  = 0 
+		>PACKET_SKIP_COUNT [Integer]  = 200 
+		>SAMPLING_TIME_US [Integer]  = 0 
+		>CORRECTION_FACTOR_11B [Double]  = 9.20 
+		>OBW_PERCENTAGE [Double]  = 99.00 
+		>TX_POWER_DBM [Double]  = %%sub getvalue("TX_POWER_DBM", "15.0")%%
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-6")%%
+		>MEASUREMENTS [String]  = %%sub getvalue("TEST")%%
+		>PACKET_FORMAT_11N [String]  = MIXED 
+		>PREAMBLE [String]  = SHORT 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>

@@ -1,0 +1,44 @@
+WRITING DOCKERFILE FOR THE PROJECT
+Now you’ll try writing the Dockerfile for this project. Before you start writing a Dockerfile, here are some guidelines on Dockerizing an application.
+
+Tip The source code and Dockerfile associated with this are available as docker-subreddit-fetcher.zip.
+
+Let’s review what you need for this project:
+A Docker image based on Python 3
+
+The project dependencies listed in requirements.txt
+
+An environment variable named NBT_ACCESS_TOKEN
+
+Now that you have what you need, let’s write the Dockerfile for the project. The steps are as follows:
+1.	
+Start with a proper base image.
+
+ 
+2.	
+Make a list of files required for the application.
+
+ 
+3.	
+Make a list of environment variables required for the application.
+
+ 
+4.	
+Copy the application files to the image using a COPY instruction.
+
+ 
+5.	
+Specify the environment variable with the ENV instruction.
+
+ 
+Combining these steps, you will arrive at the following Dockerfile.
+
+Dockerfile Listing
+
+FROM python:3-alpine
+COPY * /apps/subredditfetcher/
+WORKDIR /apps/subredditfetcher/
+RUN ["pip", "install", "-r", "requirements.txt"]
+ENV NBT_ACCESS_TOKEN="<token>"
+CMD ["python", "newsbot.py"]
+Take care to replace <token> with the token generated from the earlier chapter. Let’s build the image:

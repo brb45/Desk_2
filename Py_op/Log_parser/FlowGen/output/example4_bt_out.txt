@@ -1,0 +1,792 @@
+#LitePoint Test Flow Version 1.5.0 (2010-04-30)
+
+RunMode = 0
+RepeatTimes = 1
+ExitWhenDone = 0
+BT:
+	GLOBAL_SETTINGS
+		#Input Parameters:
+		>BER_1DH1_PACKETS_LENGTH [Integer]  = 27 
+		>BER_1DH3_PACKETS_LENGTH [Integer]  = 183 
+		>BER_1DH5_PACKETS_LENGTH [Integer]  = 339 
+		>BER_2DH1_PACKETS_LENGTH [Integer]  = 54 
+		>BER_2DH3_PACKETS_LENGTH [Integer]  = 367 
+		>BER_2DH5_PACKETS_LENGTH [Integer]  = 679 
+		>BER_3DH1_PACKETS_LENGTH [Integer]  = 83 
+		>BER_3DH3_PACKETS_LENGTH [Integer]  = 552 
+		>BER_3DH5_PACKETS_LENGTH [Integer]  = 1021 
+		>BER_VSG_TIMEOUT_SEC [Integer]  = 20 
+		>BT_DH1_SAMPLE_INTERVAL_US [Integer]  = 650 
+		>BT_DH3_SAMPLE_INTERVAL_US [Integer]  = 2000 
+		>BT_DH5_SAMPLE_INTERVAL_US [Integer]  = 3250 
+		>DUT_RX_SETTLE_TIME_MS [Integer]  = 0 
+		>DUT_TX_SETTLE_TIME_MS [Integer]  = 0 
+		>IQ_P_TO_A_BDR [Integer]  = 3 
+		>IQ_P_TO_A_CW [Integer]  = 3 
+		>IQ_P_TO_A_EDR [Integer]  = 3 
+		>TX_BDR_AVERAGE [Integer]  = 1 
+		>TX_EDR_AVERAGE [Integer]  = 1 
+		>TX_POWER_CONTROL_AVERAGE [Integer]  = 3 
+		>VSA_PORT [Integer]  = 2 
+		>VSA_SAVE_CAPTURE_ALWAYS [Integer]  = 0 
+		>VSA_SAVE_CAPTURE_ON_FAILED [Integer]  = 1 
+		>VSA_TRIGGER_TYPE [Integer]  = 6 
+		>VSG_PORT [Integer]  = 2 
+		>VSA_AMPLITUDE_TOLERANCE_DB [Double]  = 3.00 
+		>VSA_PRE_TRIGGER_TIME_US [Double]  = 3.00 
+		>VSA_TRIGGER_LEVEL_DB [Double]  = -25.00 
+		>VSG_MAX_POWER_BT [Double]  = -5.00 
+		>BER_1DH1_WAVEFORM_NAME [String]  = 1DH1_000088C0FFEE.mod 
+		>BER_1DH3_WAVEFORM_NAME [String]  = 1DH3_000088C0FFEE.mod 
+		>BER_1DH5_WAVEFORM_NAME [String]  = 1DH5_000088C0FFEE.mod 
+		>BER_2DH1_WAVEFORM_NAME [String]  = 2DH1_000088C0FFEE.mod 
+		>BER_2DH3_WAVEFORM_NAME [String]  = 2DH3_000088C0FFEE.mod 
+		>BER_2DH5_WAVEFORM_NAME [String]  = 2DH5_000088C0FFEE.mod 
+		>BER_3DH1_WAVEFORM_NAME [String]  = 3DH1_000088C0FFEE.mod 
+		>BER_3DH3_WAVEFORM_NAME [String]  = 3DH3_000088C0FFEE.mod 
+		>BER_3DH5_WAVEFORM_NAME [String]  = 3DH5_000088C0FFEE.mod 
+		>BER_WAVEFORM_BD_ADDRESS [String]  = 000088C0FFEE 
+		>BER_WAVEFORM_PATH [String]  = ../mod 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	CONNECT_IQ_TESTER
+		#Input Parameters:
+		>IQTESTER_RECONNECT [Integer]  = 0 
+		>IQTESTER_IP [String]  = 192.168.100.254 
+		#Return Values:
+		<BLUETOOTH_VERSION [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+		<IQAPITC_VERSION [String]  = <,>
+		<IQAPI_VERSION [String]  = <,>
+		<IQMEASURE_VERSION [String]  = <,>
+		<IQTESTER_INFO [String]  = <,>
+		<IQTESTER_SERIAL_NUM [String]  = <,>
+		<IQV_ANALYSIS_VERSION [String]  = <,>
+		<IQV_MW_VERSION [String]  = <,>
+		<IQ_MAX_SIGNAL_VERSION [String]  = <,>
+		<IQ_NXN_SIGNAL_VERSION [String]  = <,>
+		<IQ_NXN_VERSION [String]  = <,>
+		<IQ_ZIGBEE_SIGNAL_VERSION [String]  = <,>
+		<TEST_MANAGER_VERSION [String]  = <,>
+	LOAD_PATH_LOSS_TABLE
+		#Input Parameters:
+		>RX_PATH_LOSS_FILE [String]  = path_loss_BT.csv 
+		>TX_PATH_LOSS_FILE [String]  = path_loss_BT.csv 
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	INSERT_DUT
+		#Input Parameters:
+		>RELOAD_DUT_DLL [Integer]  = 1 
+		>CONNECTION_NAME [String]  =  
+		>DUT_DLL_FILENAME [String]  = TemplateDut.DLL 
+		#Return Values:
+		<DUT_VERSION [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+		<VDUT_VERSION [String]  = <,>
+	INITIALIZE_DUT
+		#Input Parameters:
+		>IMAGE_FILE_NAME [String]  =  
+		#Return Values:
+		<DUT_NAME [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_CALIBRATION
+		#Input Parameters:
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 50.00 
+		>TX_CAL_TIMEOUT_MS [Double]  = 600000.00 
+		#Return Values:
+		<CABLE_LOSS_DB [Double]  = <,>
+		<CAL_RESULT [String]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH1
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH1
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH3
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH3
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH5
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH5
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH1
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH1
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH3
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH3
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2432 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH5
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2432
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH5
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH1
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH1
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH3
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH3
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 2DH5
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 2DH5
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH1
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH1
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH3
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH3
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = 2447 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = 3DH5
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	TX_EDR
+		#Input Parameters:
+		>FREQ_MHZ [Integer]  = 2447
+		>PACKET_LENGTH [Integer]  = 0 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = 3DH5
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DB_OFFSET_1 [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<EDR_EVM_AV [Double]  = <,>
+		<EDR_EVM_PK [Double]  = <,>
+		<EDR_EXTREME_OMEGA_0 [Double]  = <,>
+		<EDR_EXTREME_OMEGA_I0 [Double]  = <,>
+		<EDR_OMEGA_I [Double]  = <,>
+		<EDR_POW_DIFF_DB [Double]  = <,>
+		<EDR_PROB_EVM_99_PASS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+	REMOVE_DUT
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>
+	DISCONNECT_IQ_TESTER
+		#Input Parameters:
+		#Return Values:
+		<ERROR_MESSAGE [String]  = <,>

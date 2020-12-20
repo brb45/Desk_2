@@ -1,0 +1,681 @@
+#11/27/2019
+#1/6/2020
+#2/20/2020
+HTTP:
+
+1.)  Safe methods are HTTP methods that do not modify resources. 
+    For instance, using GET or HEAD on a resource URL, should NEVER change the resource.
+    Since PUT request (so does PATCH for that matter) updates the resource, 
+    so it can't be cached and hence it's not SAFE
+
+2.) Idempotent
+An idempotent HTTP method is a HTTP method that can be called many times without different outcomes. 
+It would not matter if the method is called only once, or ten times over. 
+The result should be the same. Again, this only applies to the result, not the resource itself.
+
+The idea behind PUT request being idempotent is that if an update call on a resource fails, 
+a client can make the same call again without causing any undesirable or inconsistent state. 
+PUT request should always be preceded by a GET request to the resource, 
+and should succeed if and if only resource hasn't changed since. 
+
+
+    It's not safe because in general you can't safely execute a PATCH request without changing a resource (That's what it's for).
+So why is PATCH not idempotent compared to PUT? 
+It's because it matters how you apply your changes. If you'd like to change the name property of a resource, 
+you might send something like {"name": "foo"} as a payload and that would indeed be idempotent 
+since executing this request any number of times would yield the same result: The resources name attribute is now "foo".
+    But PATCH is much more general in how you can change a resource (check this definition on how to apply a JSON patch). 
+It could also, for example, mean to move the resource and would look something like this: 
+{ "op": "move", "from": "/a/b/c", "path": "/a/b/d" }. This operation is obviously not idempotent 
+since calling at a second time would result in an error.
+So while most PATCH operations might be idempotent, there are some that aren't.
+    Idempotence is defined by repeating an operation multiple times in a row. 
+Saying that something is not idempotent because the effect is different 
+if some other operation was executed in between or in parallel just isn't a valid argument 
+(no operation would be idempotent in general if that was the case).
+ Mathematically, an idempotent transformation is one that yields the same result, 
+ no matter how often you apply it (like rotating something 360 degrees). 
+ Of course two 360 deg rotation might yield different results if you apply any other operation in between.
+    A PATCH request that is not idempotent would be for instance appending items to an array: using JSON Patch format, 
+{"op": "add", "path": "/-", "value": "foo"} transforms [] to ["foo"] the 1st time, then to ["foo", "foo"] the 2nd time, 
+then to ["foo", "foo", "foo"] the 3rd time, etc.
+
+    I recently started looking if Patch is idempotent or not and after reading about the JSON patch format, 
+i understood that if the add operation is applied using the Patch method its completely possible that the request is non-idempotent 
+as it could add the new values to an existing resource if the same request is made multiple times.
+{ "op": "add", "path": "/a/b/c", "value": [ "foo", "bar" ] }
+
+    The PUT method requests that the enclosed entity be stored under the supplied Request-URI. 
+If the Request-URI refers to an already existing resource, 
+the enclosed entity SHOULD be considered as a modified version of the one residing on the origin server. 
+If the Request-URI does not point to an existing resource, 
+and that URI is capable of being defined as a new resource by the requesting user agent, 
+the origin server can create the resource with that URI.
+
+    The PATCH method requests that a set of changes described in the request entity be applied 
+to the resource identified by the Request- URI.
+    PATCH is a relatively new verb (RFC introduced in March 2010), and it comes to solve the 
+problem of "patching" or modifying a set of fields. Before PATCH was introduced, everybody used PUT to update resource.
+
+    Idempotent methods are distinguished because the request can be repeated automatically 
+if a communication failure occurs before the client is able to read the server's response. 
+For example, if a client sends a PUT request and the underlying connection is closed before any response is received, 
+then the client can establish a new connection and retry the idempotent request. 
+It knows that repeating the request will have the same intended effect, even if the original request succeeded, 
+though the response might differ.
+
+    you could just PUT the entire thing back with the updated value, 
+but that requires a recent GET of its state, can get heavyweight (especially for mobile clients), 
+and requires use of pre conditional requests to avoid “lost updates.”
+
+    Replaces the existing resource by the new one. As an example, PUT /api/log/1 will completely replace that resource for the new one. 
+Optionally in the request you may include an If-Match with the ETag value to be sure you are replacing 
+the expected version of that resource (preventing concurrency problems). In case of success, 
+it should return a 200 Ok or 202 Accepted (async operations) with the new ETag. In case the entity does not exist, 
+a 404 Not Found must be returned or a 409 Conflict if the version or any other value in the entity 
+are not correct with internal server state (like referenced links). Think about it like an update to a complete row in a table;
+
+
+ 
+3.) Cachable
+
+4.) stateless and uniform interface  and client-server architecture
+
+Safe: GET, HEAD, OPTION
+NOT-safe: put
+Idempotent: Put, Delete, get
+Not-Idempotent:  Post, Patch
+
+
+#@@ 1.1 HTTP Caching
+    HTTP caching occurs when the browser stores local copies of web resources for faster retrieval the next time the resource is required.
+ As your application serves resources it can attach cache headers to the response specifying the desired cache behavior.
+    HTTP cache headers
+There are two primary cache headers, Cache-Control and Expires.
+    **Cache-Control:public
+public resources can be cached not only by the end-user’s browser but also by any intermediate proxies that may be serving many other users as well.
+    **Cache-Control:private
+private resources are bypassed by intermediate proxies and can only be cached by the end-client.
+    **Cache-Control:public, max-age=31536000
+The max-age value sets a timespan for how long to cache the resource (in seconds).
+
+Cache-Control:public
+Expires: Mon, 25 Jun 2012 21:31:12 GMT
+When accompanying the Cache-Control header, Expires simply sets a date from which the cached resource should no longer be considered valid
+
+If both Expires and max-age are set max-age will take precedence.
+
+#@@ 1.2 Conditional requests
+Conditional requests are those where the browser can ask the server if it has an updated copy of the resource. 
+The browser will send some information about the cached resource it holds and the server will determine whether 
+updated content should be returned 
+or the browser’s copy is the most recent and an HTTP status of 304 (not modified) is returned.
+
+1.) Time-based
+A time-based conditional request ensures that only if the requested resource has changed since the browser’s copy was cached 
+will the contents be transferred. If the cached copy is the most up-to-date then the server returns the 304 response code.
+
+To enable conditional requests the application specifies the last modified time of a resource via the Last-Modified response header.
+
+(Response Header)
+Cache-Control:public, max-age=31536000
+Last-Modified: Mon, 03 Jan 2011 17:45:57 GMT
+
+The next time the browser requests this resource it will only ask for the contents of the resource if they’re unchanged 
+since this date using the If-Modified-Since request header
+
+If-Modified-Since: Mon, 03 Jan 2011 17:45:57 GMT
+If the resource hasn’t changed since Mon, 03 Jan 2011 17:45:57 GMT the server will return with an empty body with the 304 response code.
+
+2.) Content-based
+    The ETag (or Entity Tag) works in a similar way to the Last-Modified header except its value
+is a digest of the resources contents (for instance, an MD5 hash). This allows the server to identify 
+if the cached contents of the resource are different to the most recent version.
+    This tag is useful when for when the last modified date is difficult to determine.
+
+(response Headers)
+Cache-Control:public, max-age=31536000 
+ETag: "15f0fff99ed5aae4edffdd6496d7131f"
+
+On subsequent browser requests the If-None-Match request header is sent with the ETag value of the last requested version of the resource.
+
+If-None-Match: "15f0fff99ed5aae4edffdd6496d7131f" (request headers)
+As with the If-Modified-Since header, if the current version has the same ETag value, indicating its value is the same as the browser’s 
+cached copy, then an HTTP status of 304 is returned.
+
+# Etag example
+standard suggests that ETags be returned with all requests
+3. Client-Server Communication With curl
+We can break down a simple Client-Server communication involving ETags into the steps:
+
+First, the Client makes a REST API call – the Response includes the ETag header that will be stored for further use:
+
+curl -H "Accept: application/json" -i http://localhost:8080/spring-boot-rest/foos/1
+
+(response)
+HTTP/1.1 200 OK
+ETag: "f88dd058fe004909615a64f01be66a7"
+Content-Type: application/json;charset=UTF-8
+Content-Length: 52
+
+    For the next request, the Client will include the If-None-Match request header with the ETag value from the previous step. 
+If the Resource hasn't changed on the Server, the Response will contain no body and a status code of 304 – Not Modified:
+curl -H "Accept: application/json" -H 'If-None-Match: "f88dd058fe004909615a64f01be66a7"'
+ -i http://localhost:8080/spring-boot-rest/foos/1
+
+HTTP/1.1 304 Not Modified
+ETag: "f88dd058fe004909615a64f01be66a7"
+Now, before retrieving the Resource again, let's change it by performing an update:
+
+curl -H "Content-Type: application/json" -i 
+  -X PUT --data '{ "id":1, "name":"Transformers2"}'
+    http://localhost:8080/spring-boot-rest/foos/1
+ 
+HTTP/1.1 200 OK
+ETag: "d41d8cd98f00b204e9800998ecf8427e"
+Content-Length: 0
+Finally, we send out the last request to retrieve the Foo again. Keep in mind that we've updated it since the last time we requested it,
+ so the previous ETag value should no longer work. The response will contain the new data and a new ETag which, again, can be stored for further use:
+
+curl -H "Accept: application/json" -H 'If-None-Match: "f88dd058fe004909615a64f01be66a7"' -i 
+  http://localhost:8080/spring-boot-rest/foos/1
+
+HTTP/1.1 200 OK
+ETag: "03cb37ca667706c68c0aad4cb04c3a211"
+Content-Type: application/json;charset=UTF-8
+Content-Length: 56
+And there you have it – ETags in the wild and saving bandwidth.
+
+ETags
+    ETags, short for entity tags, are a common way to conditionally verify an HTTP cache. An ETag is a digest which represents the contents of a given resource.
+
+When a response is returned by the server it will include an ETag to represent the resource’s state as part of the HTTP response headers. 
+Subsequent HTTP requests which want to know whether or not the resource has changed since the last request can send along the stored ETag via the If-None-Match header.
+
+The server will then compare the current ETag for the resource to the one provided by the client. If the two ETags match, the client’s cache is 
+considered fresh and the server can respond with a “304 Not Modified” status.
+
+If the resource has changed since the last time the client has requested the resource the server will respond with a new ETag and the updated response.
+
+Last-Modified Timestamp
+Another header that a server can supply is the Last-Modified header.
+
+As the name implies, this will return a timestamp of when the resource was last modified. The client can then include an If-Modified-Since header with the 
+Last-Modified timestamp value to ask the server if the resource has been modified since the previous request.
+
+Again, if the resource has not been modified since the last request, the server can respond with a “304 Not Modified” status. Otherwise, it will return 
+an updated representation of the resource and a new Last-Modified timestamp for next time.
+
+#@@ 1.2.1  Conditional  Put
+Avoiding the lost update problem with optimistic locking
+    A common operation in Web applications is to update a remote document.
+    With the PUT method you are able to implement this. The client first reads the original files, modifies them, 
+    and finally pushes them to the server.
+Unfortunately, things get a little inaccurate as soon as we take into account concurrency. 
+While a client is locally modifying its new copy of the resource, a second client can fetch the same resource 
+and do the same on its copy. What happens next is very unfortunate: when they commit back to the server, 
+the modifications from the first client are discarded by the next client push, as this second client is 
+unaware of the first client's changes to the resource. The decision on who wins, 
+is not communicated to the other party. Which client's changes are to be kept, 
+will vary with the speed they commit; this depends on the performance of the clients, of the server, 
+and even of the human editing the document at the client. 
+The winner will change from one time to the next. 
+This is a race condition and leads to problematic behaviors, which are difficult to detect and to debug
+
+Conditional requests allow implementing the optimistic locking algorithm (used by most wikis or source control systems). 
+The concept is to allow all clients to get copies of the resource, then let them modify it locally, 
+controlling concurrency by successfully allowing the first client submitting an update. 
+All subsequent updates, based on the now obsolete version of the resource, are rejected (412 Precondition Failed)
+
+step 1) client1 --> Get /doc HTTP/1.1
+step 1.1) client2 --> Get /doc HTTP/1.1
+STEP 2) SERVER --> HTTP/1.1 200 OK , Last-Modified: date, Etag: "xyz"
+step 3) client1 --> PUT /doc HTTP/1.1 If-Match:  "xyz", If-Unmodified-Since: date
+step 4) server --> HTTP/1.1 204 No Content  Last-Modified: date2 Etag: "xyx2"
+step 5) client2 -> PUT /doc HTTP/1.1 If-Match: "xyz" If-Unmodified-Since: date
+step 6) server --> HTTP/1.1 412 Precondition Failed
+
+Conditional PUT requests are used to avoid the lost update problem when multiple agents are acting in parallel on the same resource 
+(using optimistic locking). Let us assume the value of a resource is
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+ETag: "0"
+
+{ "value": 0 }
+Now two clients simultaneously want to increment the value and send a PUT request with a body which contains the new value, 
+together with an If-Match header.
+
+PUT /value HTTP/1.1
+Content-Type: application/json
+If-Match: "0“
+
+{ "value": 1 }
+The server answers on the first request with status 200 (OK) and on the second one with status 412 (Precondition Failed), 
+i.e. the second client has to repeat his task (GET, update resource and PUT it with an If-Match header with the new etag value).
+
+The server has the current state of the resource (metadata such as ETag and content). That's sufficient to process the conditional request
+
+
+    #**if you want to increase an upvote counter, and want to make sure the count accurately reflects multiple, 
+simultaneous upvotes, use a conditional request to write the new value to the counter. 
+Instead of two writes that change the counter to the same number, one of the write requests fails and you can then retry 
+the request with the new value.
+    You can request an ETag with any method other than PATCH. The following example uses a GET request.
+curl -i 'https://test.example.com/posts/12345/upvotes.json' -H 'X-Firebase-ETag: true'
+
+Specifically calling the ETag in the header returns the ETag of the specified location in the HTTP response.
+HTTP/1.1 200 OK
+Content-Length: 6
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+ETag: [ETAG_VALUE]
+Cache-Control: no-cache
+
+10 // Current value of upvotes at the specified location
+
+Include the returned ETag in your next PUT or DELETE request to update data that specifically matches that ETag value. 
+Following our example, to update the counter to 11, or 1 larger than the initial fetched value of 10, 
+and fail the request if the value no longer matches, use the following code:
+curl -iX PUT -d '11' 'https://[PROJECT_ID].firebaseio.com/posts/12345/upvotes.json' -H 'if-match:[ETAG_VALUE]'
+
+If the value of the data at the specified location is still 10, the ETag in the PUT request matches, 
+and the request succeeds, writing 11 to the database.
+HTTP/1.1 200 OK
+Content-Length: 6
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+Cache-Control: no-cache
+
+11 // New value of the data at the specified location, written by the conditional request
+
+If the location no longer matches the ETag, which might occur if another user wrote a new value to the database, 
+the request fails without writing to the location. The return response includes the new value and ETag.
+HTTP/1.1 412 Precondition Failed
+Content-Length: 6
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+ETag: [ETAG_VALUE]
+Cache-Control: no-cache
+
+12 // New value of the data at the specified location
+
+Use the new information if you decide to retry the request. Realtime Database does not automatically retry conditional 
+requests that have failed. However, you can use the new value and ETag to build a new conditional request 
+with the information returned by the fail response.
+
+    REST-based conditional requests implement the HTTP if-match standard. However, they differ from the standard in the following ways:
+1) You can only supply one ETag value for each if-match request, not multiple.
+2) While the standard suggests that ETags be returned with all requests, Realtime Database only returns ETags with requests 
+including the X-Firebase-ETag header. This reduces billing costs for standard requests.
+Conditional requests might also be slower than typical REST requests.
+
+
+To generate a unique, timestamp-based key for every child added to a Firebase database reference we can send a POST request. 
+For our users path, it made sense to define our own keys since each user has a unique username. 
+But when users add blog posts to the app, we'll use a POST request to auto-generate a key for each blog post:
+
+curl -X POST -d '{
+  "author": "alanisawesome",
+  "title": "The Turing Machine"
+}' 'https://docs-examples.firebaseio.com/rest/saving-data/fireblog/posts.json'
+
+Our posts path now has the following data:
+
+{
+  "posts": {
+    "-JSOpn9ZC54A4P4RoqVa": {
+      "author": "alanisawesome",
+      "title": "The Turing Machine"
+    }
+  }
+}
+
+Notice that the key -JSOpn9ZC54A4P4RoqVa was automatically generated for us because we used a POST request. 
+A successful request will be indicated by a 200 OK HTTP status code, and the response will contain the key of the new data that was added:
+
+{"name":"-JSOpn9ZC54A4P4RoqVa"}
+
+example 1:
+GET /product/1 HTTP/1.1
+Host: myshop.com
+
+HTTP/1.1 200 OK
+Content-Length: 265
+Content-Type: application/json
+ETag: “686897696a7c876b7e”
+{
+ “name”: “WeberFamilyBBQ”,
+ “description”: “Great for parties and cooks a neat roast too.”,
+ “price”: 399,
+ “status”: “InStock”
+}
+
+PUT /product/1 HTTP/1.1
+Host: myshop.com
+If-Match: “686897696a7c876b7e”
+{
+ “name”: “WeberFamilyBBQ”,
+ “description”: “Great for parties and cooks a neat roast too.”,
+ “price”: 399,
+ “status”: “InStock”
+}
+HTTP/1.1 204 No Content
+ETag: “616898r96a8cy86b8eee11”
+
+PUT /product/1 HTTP/1.1
+Host: myshop.com
+If-Match: “686897696a7c876b7e”
+{
+ “name”: “WeberFamilyBBQ”,
+ “description”: “Great for parties and cooks a neat roast too.”,
+ “price”: 399,
+ “status”: “InStock”
+}
+HTTP/1.1 412 Precondition Failed
+
+The service then determines that someone is trying to change the same product, using an out-of-date 
+resource representation (ETags are different!), and responds with a 412 Precondition Failed code. No race conditions whatsoever!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#Linux version
+curl -X POST -H "Content-Type: application/json" localhost:8000/api/articles/ -d '{"title": "Run Post Test", "description": "First Trial", "body": "Running 2 tests", "author_id": 11}'
+#windows version
+curl -X POST -H "Content-Type: application/json" localhost:8000/api/subscriber -d "{\"name\": \"4378 Station\", \"age\": 2, \"email\": \"4378@litepoint.com\"}"  
+
+#@@ 1. GET 
+#1.0)
+# i option to show HTTP header
+curl    http://localhost:8000/drone-categories/  | jq
+curl -i http://localhost:8000/drone-categories/
+
+test_master@jsun-mbpw10:~$ http ":8000/drone-categories/"
+HTTP/1.0 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 427
+Content-Type: application/json
+Date: Tue, 15 Oct 2019 18:23:28 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "drones": [
+                "http://localhost:8000/drones/5",
+                "http://localhost:8000/drones/4",
+                "http://localhost:8000/drones/1"
+            ],
+            "name": "Octocopter",
+            "pk": 1,
+            "url": "http://localhost:8000/drone-categories/1"
+        },
+        {
+            "drones": [
+                "http://localhost:8000/drones/6",
+                "http://localhost:8000/drones/2",
+                "http://localhost:8000/drones/3"
+            ],
+            "name": "Quadcopter",
+            "pk": 2,
+            "url": "http://localhost:8000/drone-categories/2"
+        }
+    ]
+}
+
+# 1.1)
+test_master@jsun-mbpw10:~$ http ":8000/drone-categories/1"
+HTTP/1.0 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 187
+Content-Type: application/json
+Date: Tue, 15 Oct 2019 18:24:20 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drones": [
+        "http://localhost:8000/drones/5",
+        "http://localhost:8000/drones/4",
+        "http://localhost:8000/drones/1"
+    ],
+    "name": "Octocopter",
+    "pk": 1,
+    "url": "http://localhost:8000/drone-categories/1"
+
+#@@ 2.POST
+#2.1
+test_master@jsun-mbpw10:~$ http POST ":8000/drone-categories/" name='Hexocopter'
+HTTP/1.0 201 Created
+Allow: GET, POST, HEAD, OPTIONS
+Content-Length: 89
+Content-Type: application/json
+Date: Tue, 15 Oct 2019 18:30:34 GMT
+Location: http://localhost:8000/drone-categories/3
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drones": [],
+    "name": "Hexocopter",
+    "pk": 3,
+    "url": "http://localhost:8000/drone-categories/3"
+} 
+#2.2 
+# curl, always include -H "Content-Type: application/json"
+
+curl -iX POST -H "Content-Type: application/json" -d '{"name":"Fortnite", "release_date": "2017-05-18T03:02:00.776594Z"}' "localhost:8000/games/"
+curl -iX POST localhost:8000/drone-categories/ -H "Content-Type: application/json" -d '{"name": "Geocopter"}'
+HTTP/1.0 201 Created
+Date: Tue, 15 Oct 2019 18:38:55 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Location: http://localhost:8000/drone-categories/5
+Vary: Accept, Cookie
+Allow: GET, POST, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 88
+
+#@@ 3.PUT
+#// PUT: updates the existing one with a new instance.
+test_master@jsun-mbpw10:~$ curl -iX PUT -H "Content-Type: application/json" -d '{"name": "Xyenocopter"}' localhost:8000/drone-categories/6
+curl -iX PUT -H "Content-Type: application/json" -d '{"name": "Xyenocopter"}' localhost:8000/drone-categories/6
+
+HTTP/1.0 200 OK
+Date: Tue, 15 Oct 2019 18:58:33 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Content-Type: application/json
+Vary: Accept, Cookie
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 90
+
+#//
+test_master@jsun-mbpw10:~$ http PUT ":8000/drone-categories/6" name="Zobieocopter"
+HTTP/1.0 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 91
+Content-Type: application/json
+Date: Tue, 15 Oct 2019 19:01:16 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drones": [],
+    "name": "Zobieocopter",
+    "pk": 6,
+    "url": "http://localhost:8000/drone-categories/6"
+}
+
+#@@ 4.  PATCH
+#//PATCH
+curl -iX PATCH -H "Content-Type: application/json" -d '{"name": "CurlPatchOcopter"}' localhost:8000/drone-categories/6
+http PATCH ":8000/drone-categories/6" name="ZPATCHEDocopter"
+HTTP/1.0 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 94
+Content-Type: application/json
+Date: Tue, 15 Oct 2019 20:23:06 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+{
+    "drones": [],
+    "name": "ZPATCHEDocopter",
+    "pk": 6,
+    "url": "http://localhost:8000/drone-categories/6"
+}
+
+#@@ 5. DELETE
+#5.1
+http DELETE :8000/drone-categories/7
+
+HTTP/1.0 204 No Content
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Length: 0
+Date: Tue, 15 Oct 2019 20:28:33 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+
+
+#5.2
+curl -iX DELETE localhost:8000/drone-categories/8
+HTTP/1.0 204 No Content
+Date: Tue, 15 Oct 2019 20:30:06 GMT
+Server: WSGIServer/0.2 CPython/3.7.2
+Vary: Accept, Cookie
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+X-Frame-Options: SAMEORIGIN
+Content-Length: 0
+
+//Linux environment
+curl -X POST -H "Content-Type: application/json" localhost:8000/todos \
+       -d '{"title": "Wash the car", "order": 2}'
+
+curl -s localhost:8000/todos | jq
+
+> curl -X PATCH -H "Content-Type: application/json" localhost:8000/todos/2 \
+       -d '{"completed": true}'
+
+ 
+
+ 
+####@@ Docker AWS
+@@Dokcer
+Docker Compose: This allows you to orchestrate and run multi-container environments both locally and on Docker Swarm clusters
+
+Git: This is required to fork and clone the sample application from GitHub and create your own Git repositories for the various 
+applications and environments you will create in this book
+GNU Make 3.82 or higher: This provides task automation, allowing you run simple commands (for example, make test) to execute a given task
+jq: A command-line utility for parsing JSON
+curl: A command-line HTTP client
+tree: A command-line client for displaying folder structures in the shell
+Python interpreter: This is required for Docker Compose and the AWS Command-Line Interface (CLI) tool that we will install in a later chapter
+pip: A Python package manager for installing Python applications such as the AWS CLI
+
+## Remove old Docker
+
+## Application
+## Install Dependency
+pip3 install -r requirements.txt --user
+
+##
+# retrive souce code of a webpage
+src> curl localhost:8000
+{"todos":"http://localhost:8000/todos"}
+
+## -o
+# save output to a file
+curl -o vue-v2.5.16.js https://cdn.jsdelivr.net/npm/vue/dist/vue.js
+# Uppercase -O will save the file with its original filename:
+curl -O https://cdn.jsdelivr.net/npm/vue/dist/vue.js
+
+##
+The -I option allows you to fetch only the HTTP headers, no content 
+of the specified resource:
+curl -I https://www.ubuntu.com
+
+## include header: -i and content
+curl -i https://www.ubuntu.com
+
+## -L follow redirect
+ curl -L google.com
+
+## -X
+curl -X GET http://example.com -I
+
+## -X GET. The -X signifies the method used for the request. 
+Common options are GET, POST, DELETE, PUT.
+
+## -H : submit the request header
+## -d : data
+
+curl -X POST -H "Content-Type: application/json" localhost:8000/todos -d '{"title": "Wash the car", "order": 2}'
+       
+#Linux version
+curl -X POST -H "Content-Type: application/json" localhost:8000/api/articles/ -d '{"title": "Run Post Test", "description": "First Trial", "body": "Running 2 tests", "author_id": 11}'
+#windows version
+curl -X POST -H "Content-Type: application/json" localhost:8000/api/subscriber -d "{\"name\": \"4378 Station\", \"age\": 2, \"email\": \"4378@litepoint.com\"}"      
+
+
+## 
+curl -s localhost:8000/todos | jq
+
+## curl -X PATCH -H "Content-Type: application/json" localhost:8000/todos/1 \
+    -d '{"completed": true}'
+
+## curl -X POST -H "Content-Type: application/json" localhost:8000/todos \
+    -d '{"title": "Walk the dog", "completed": false, "order": 1}'
+[
+  {
+    "url": "http://localhost:8000/todos/1",
+    "title": "Wash the car",
+    "completed": true,
+    "order": 2
+  },
+  {
+    "url": "http://localhost:8000/todos/2",
+    "title": "Walk the dog",
+    "completed": false,
+    "order": 1
+  }
+]
+
+##
+$ python3 manage.py test --settings todobackend.settings_test
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_1/todobackend/src$ python3 manage.py test --settings todobackend.settings_test
+
+@@ Build applications with Docker

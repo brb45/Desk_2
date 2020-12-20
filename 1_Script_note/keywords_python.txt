@@ -1,0 +1,20 @@
+## Keywords are reserved, can't be used for var. name, function name and
+any other identifier.
+
+False, True
+and,
+assert,
+break,
+class, continue, 
+def, del, 
+elif, else, except, 
+finally, for, from, 
+global, 
+if, import, in, is, 
+lambda, 
+None, nonlocal, not, 
+or,
+pass
+raise, return, try
+while, with,
+yield

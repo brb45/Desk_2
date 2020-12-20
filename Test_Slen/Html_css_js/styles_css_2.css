@@ -1,0 +1,12 @@
+h1 {
+  color: blue;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+ul{
+    color:darkmagenta;
+}
+h1+ul+p {
+  color: red;
+}

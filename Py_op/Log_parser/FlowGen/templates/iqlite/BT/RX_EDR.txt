@@ -1,0 +1,19 @@
+	RX_EDR
+		#Input Parameters:
+		>ENABLE_RX_LEVEL2_TEST [Integer]  = 1 
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2402")%% 
+		>PACKET_LENGTH [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>RX_BER_THRESHOLD_LIMIT_LEVEL1 [Double]  = 0.01 
+		>RX_BIT_NUMBER_LEVEL1 [Double]  = 1600000.00 
+		>RX_BIT_NUMBER_LEVEL2 [Double]  = 16000000.00 
+		>RX_POWER_LEVEL [Double]  = -70.00 
+		>PACKET_TYPE [String]  = %%sub getvalue("PACKET_TYPE", "2DH1") %%
+		#Return Values:
+		<BER [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<GOOD_BITS [Double]  = <,>
+		<RSSI [Double]  = <,>
+		<RX_POWER_LEVEL [Double]  = <,>
+		<TOTAL_BITS [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

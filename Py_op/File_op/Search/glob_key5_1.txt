@@ -1,0 +1,4 @@
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\b_email_log.py
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\b_function_log.py
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\b_glob_log.py
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\b_split_log.py

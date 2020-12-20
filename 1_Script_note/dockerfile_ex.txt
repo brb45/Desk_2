@@ -1,0 +1,1618 @@
+go: docker cmd and ex
+
+Review:  
+1) 1/3/2020
+#**************************
+docker info
+docker ps
+docker build
+docker images
+docker push
+
+docker-compose build release
+
+@********************
+
+#@@ 1.
+Dockerfile:
+1. A text configuration file written using a special syntax
+2. step-by-step instructions of all the commands you need to run to assemble a Docker Image.
+3. The docker build command processes this file generating a Docker Image in your Local Image Cache, 
+which you can then start-up using the docker run command, or push to a permanent Image Repository.
+
+Command 	Description
+ADD 	Copies a file from the host system onto the container
+CMD 	The command that runs when the container starts
+ENTRYPOINT
+ENV 	Sets an environment variable in the new container
+EXPOSE 	Opens a port for linked containers
+FROM 	The base image to use in the build. This is mandatory and must be the first command in the file.
+MAINTAINER 	An optional value for the maintainer of the script
+ONBUILD 	A command that is triggered when the image in the Dcokerfile is used as a base for another image
+RUN 	Executes a command and save the result as a new layer
+USER 	Sets the default user within the container
+VOLUME 	Creates a shared volume that can be shared among containers or by the host machine
+WORKDIR 	Set the default working directory for the container
+
+# entrypoint vs cmd
+
+#@@ 2. docker cmd 
+1) docker build command operations
+1.1) -t : provide tag name for new image
+docker build -t imagename .
+
+1.2) Pushing a Docker image to Docker repository: docker hub
+$ docker login
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: ^C
+
+1.3) Retag the image with a version number:
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+odobackend-release       latest              ab9b23e37485        24 hours ago        144MB
+todobackend-test         latest              4cc6c87e9db1        26 hours ago        321MB
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker tag odobackend-release odobackend-release:v1
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker images
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+odobackend-release       latest              ab9b23e37485        24 hours ago        144MB
+odobackend-release       v1                  ab9b23e37485        24 hours ago        144MB
+ 
+1.4)
+Then push with the following:
+
+$ docker push abiodunjames/example-node-app:v1
+
+
+#@@ 0.2 docker-compose command operations
+
+1.10) docker ps : shows all running containers
+CONTAINER ID  IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
+7720dade11be  odobackend-release   "uwsgi --http=0.0.0.…"   a minute ago   Up a minute   0.0.0.0:8000->8000/tcp   odobackend_poj2.1
+
+2) docker version
+Client: Docker Engine - Community
+ Version:           19.03.4
+ API version:       1.40
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.4
+
+3) docker iamges 
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+odobackend-release       latest              ab9b23e37485        3 hours ago         144MB
+todobackend-test         latest              4cc6c87e9db1        5 hours ago         321MB
+alpine                   latest              965ea09ff2eb        5 weeks ago         5.55MB
+<none>                   <none>              8ec17bae6d29        7 weeks ago         143MB
+alpine                   <none>              961769676411        3 months ago        5.58MB
+
+4) docker run: launch a container
+--name container_name
+-d detached mode , running in background
+-p Publish Container Ports: host_ip:host_port:container_port, 6379:
+    0.0.0.0:6379->6379/tcp,
+    We can see that our host is listening across all interfaces (
+0.0.0.0) on port 6379, and that traffic is being redirected to port 6379 within the container.
+
+-v Mount Host volumes
+    == Share storage volumes across multiple containers.
+    -v /tmp/data:/data   --> share /tmp/data from host to /data within all containers
+    write speed to a volume mount is far greater than the write speed within the container’s filesystem.
+    bind mounts vs volume
+
+
+
+
+
+docker run --name test-image -it --rm todobackend-test
+start a container running image todobackend-test
+--name: give a container name
+
+5) docker logs <container-id>
+docker logs f3377d1de9cd
+You can view Docker logs in a Docker container:
+
+6) stop a running container:
+$ docker stop 7ff70854d19e
+once docker is stopped, docker ps doesn't the container, and no logs available for docker logs on this container id
+
+7) docker  inspect container_name
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker inspect  odobackend_poj2.1_detached
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker run -d --name odobackend_poj2.1_detached -
+it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+10) docker run -p
+Using -p to Publish Container Ports
+    containers have been inaccessible for anything outside of the internal Docker service. 
+The reason for this is because we have not published any ports to connect to todobackend  server. 
+    To publish a port via docker run, we simply need to add the -p flag.
+    we used the -p flag to publish the 8000 port from the host to the container to port 8000 within the container. 
+    This means anyone connecting to this host over port 8000 will be routed to the container via port 8000.
+    The syntax for this flag is host_ip:host_port:container_port, with the host IP being optional. 
+    If we wanted to see what ports were mapped on a previously running container, we can use the docker ps command.
+$ docker run -d -p 6379:6379 --name redis redis
+2138279e7d29234defd2b9f212e65d47b9a0f3e422165b4e4025e466f25bbc2b
+
+
+10.1) docker run -v
+Using -v to Mount Host Volumes
+
+persistent storage. This option is the -v flag.
+
+The -v flag is used to define volume mounts. Volume mounts are a way to share storage volumes across multiple containers. 
+In the example below, we are sharing the /tmp/data directory on the host as /data to the container.
+
+$ docker run -d -p 6379:6379 --name redis -v /tmp/data:/data redis
+23de16619b5983107c60dad00a0a312ee18e526f89b26a6863fef5cdc70c8426
+
+The example above makes it to where anything written to /data within the container is 
+actually accessing /tmp/data on the host. The same is true of anything being written to /tmp/data on the host; 
+that data will also be available within /data in the container.
+
+We can see this if we look within the /tmp/data directory on the host.
+
+$ ls /tmp/data/
+dump.rdb
+
+Performance implications of volume mounts
+
+volume mounts is that the write speed to a volume mount is far greater than the write speed within the container’s filesystem. 
+The reason for this is that the default container filesystem uses features such as thin provisioning and copy-on-write. 
+These features can introduce latency for write-heavy applications.
+By using a host-based volume mount, the containerized application can achieve the same write speeds as the host itself.
+
+
+#@@ 3. proj_2
+
+1) tree-structure
+proj_2
+│   └── todobackend
+│       ├── docker-compose.yml
+│       ├── Dockerfile
+│       ├── ex_Dockerfile_example.txt
+│       ├── Makefile
+│       ├── README.md
+│       └── src
+│           ├── acceptance.bats
+│           ├── manage.py
+│           ├── requirements_test.txt
+│           ├── requirements.txt
+│           ├── todo
+│           │   ├── admin.py
+│           │   ├── apps.py
+│           │   ├── __init__.py
+│           │   ├── migrations
+│           │   │   ├── 0001_initial.py
+│           │   │   ├── __init__.py
+│           │   │   └── __pycache__
+│           │   ├── models.py
+│           │   ├── __pycache__
+│           │   │   ├── admin.cpython-36.pyc
+│           │   │   ├── __init__.cpython-36.pyc
+│           │   │   ├── models.cpython-36.pyc
+│           │   │   ├── serializers.cpython-36.pyc
+│           │   │   ├── tests.cpython-36.pyc
+│           │   │   ├── urls.cpython-36.pyc
+│           │   │   └── views.cpython-36.pyc
+│           │   ├── serializers.py
+│           │   ├── tests.py
+│           │   ├── urls.py
+│           │   └── views.py
+│           └── todobackend
+│               ├── __init__.py
+│               ├── __pycache__
+│               │   ├── __init__.cpython-36.pyc
+│               │   ├── settings.cpython-36.pyc
+│               │   └── urls.cpython-36.pyc
+│               ├── settings.py
+│               ├── settings_release.py
+│               ├── settings_test.py
+│               ├── urls.py
+│               └── wsgi.py
+
+2) Dockerfile
+
+# Test stage
+FROM alpine AS test
+LABEL application=todobackend
+
+# Install basic utilities
+RUN apk add --no-cache bash git
+
+# Install build dependencies
+RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+RUN pip3 install wheel -U
+
+# Copy requirements
+COPY /src/requirements* /build/
+WORKDIR /build
+
+# Build and install requirements
+RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+
+# Copy source code
+COPY /src /app
+WORKDIR /app
+
+# Test entrypoint
+CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+
+# Release stage
+FROM alpine
+LABEL application=todobackend
+
+# Install operating system dependencies
+RUN apk add --no-cache python3 mariadb-client bash curl bats jq
+
+# Create app user
+RUN addgroup -g 1000 app && \
+    adduser -u 1000 -G app -D app
+
+# Copy and install application source and pre-built dependencies
+COPY --from=test --chown=app:app /build /build
+COPY --from=test --chown=app:app /app /app
+RUN pip3 install -r /build/requirements.txt -f /build --no-index --no-cache-dir
+RUN rm -rf /build
+
+# Create public volume
+RUN mkdir /public
+RUN chown app:app /public
+VOLUME /public
+
+# Set working directory and application user
+WORKDIR /app
+USER app
+
+3) Docker build test image
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2/todobackend$ docker build --target test -t todobackend-test .
+Sending build context to Docker daemon  44.54kB
+Step 1/12 : FROM alpine AS test
+ ---> 965ea09ff2eb
+Step 2/12 : LABEL application=todobackend
+ ---> Using cache
+ ---> 6d411110e3d8
+Step 3/12 : RUN apk add --no-cache bash git
+ ---> Using cache
+ ---> 3126fe270165
+Step 4/12 : RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+ ---> Using cache
+ ---> 41765b341b8e
+Step 5/12 : RUN pip3 install wheel -U
+ ---> Using cache
+ ---> 1c93dff0fff0
+Step 6/12 : COPY /src/requirements* /build/
+ ---> 45052d086294
+Step 7/12 : WORKDIR /build
+ ---> Running in cb1f5b5c4c2a
+Removing intermediate container cb1f5b5c4c2a
+ ---> d1796300e60f
+Step 8/12 : RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+ ---> Running in b102266bcece
+Collecting Django==2.0 (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/44/98/35b935a98a17e9a188efc2d53fc51ae0c8bf498a77bc224f9321ae5d111c/Django-2.0-py3-none-any.whl (7.1MB)
+  Saved ./Django-2.0-py3-none-any.whl
+Collecting django-cors-headers==2.1.0 (from -r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/10/97/40b519badff93449706cd2cab3f328e1898e627bb218e3429c5581ad1932/django_cors_headers-2.1.0-py2.py3-none-any.whl
+  Saved ./django_cors_headers-2.1.0-py2.py3-none-any.whl
+Collecting djangorestframework==3.7.3 (from -r requirements.txt (line 3))
+  Downloading https://files.pythonhosted.org/packages/f5/2c/3c3c81b8ecd60952c20ccd5fc1d19c0b22731c80c75649dd2e3fef361aaf/djangorestframework-3.7.3-py2.py3-none-any.whl (1.5MB)
+  Saved ./djangorestframework-3.7.3-py2.py3-none-any.whl
+Collecting mysql-connector-python==8.0.11 (from -r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/0f/07/53d129764f4b9e7eda2a8f10474b710a2c4986571a73b6345271b7b94eb0/mysql_connector_python-8.0.11-py2.py3-none-any.whl (318kB)
+  Saved ./mysql_connector_python-8.0.11-py2.py3-none-any.whl
+Collecting pytz==2017.3 (from -r requirements.txt (line 5))
+  Downloading https://files.pythonhosted.org/packages/a3/7f/e7d1acbd433b929168a4fb4182a2ff3c33653717195a26c1de099ad1ef29/pytz-2017.3-py2.py3-none-any.whl (511kB)
+  Saved ./pytz-2017.3-py2.py3-none-any.whl
+Collecting uwsgi==2.0.17 (from -r requirements.txt (line 6))
+  Downloading https://files.pythonhosted.org/packages/98/b2/19b34b20662d111f7d2f926cdf10e13381761dd7dbd10666b9076cbdcd22/uwsgi-2.0.17.tar.gz (798kB)
+Collecting colorama==0.3.9 (from -r requirements_test.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/db/c8/7dcf9dbcb22429512708fe3a547f8b6101c0d02137acbd892505aee57adf/colorama-0.3.9-py2.py3-none-any.whl
+  Saved ./colorama-0.3.9-py2.py3-none-any.whl
+Collecting coverage==4.4.2 (from -r requirements_test.txt (line 3))
+  Downloading https://files.pythonhosted.org/packages/0b/e1/190ef1a264144c9b073b7353c259ca5431b5ddc8861b452e858fcbd0e9de/coverage-4.4.2.tar.gz (374kB)
+Collecting django-nose==1.4.5 (from -r requirements_test.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/06/2c/22cd461bb388f91b807e571d49024ef69157da7a29614739c2ccb881b171/django_nose-1.4.5-py2.py3-none-any.whl
+  Saved ./django_nose-1.4.5-py2.py3-none-any.whl
+Collecting nose==1.3.7 (from -r requirements_test.txt (line 5))
+  Downloading https://files.pythonhosted.org/packages/15/d8/dd071918c040f50fa1cf80da16423af51ff8ce4a0f2399b7bf8de45ac3d9/nose-1.3.7-py3-none-any.whl (154kB)
+  Saved ./nose-1.3.7-py3-none-any.whl
+Collecting pinocchio==0.4.2 (from -r requirements_test.txt (line 6))  Downloading https://files.pythonhosted.org/packages/8f/4e/6656705e951d7e115c6bae2e26ea943af1c984ea7d155a91b20723a09f27/pinocchio-0.4.2.tar.gz
+Collecting protobuf>=3.0.0 (from mysql-connector-python==8.0.11->-r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/ad/c2/86c65136e280607ddb2e5dda19e2953c1174f9919b557d1d154574481de4/protobuf-3.10.0-py2.py3-none-any.whl (434kB)
+  Saved ./protobuf-3.10.0-py2.py3-none-any.whl
+Collecting setuptools (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/9e/d5/444a443d890f09fc1ca1a2c3c9fc7e84cb148177b05ac94fe5084e3d9abb/setuptools-42.0.1-py2.py3-none-any.whl (582kB)
+  Saved ./setuptools-42.0.1-py2.py3-none-any.whl
+Collecting six>=1.9 (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r requirements.txt (line 4))
+  Downloading https://files.pythonhosted.org/packages/65/26/32b8464df2a97e6dd1b656ed26b2c194606c16fe163c695a992b36c11cdf/six-1.13.0-py2.py3-none-any.whl
+  Saved ./six-1.13.0-py2.py3-none-any.whl
+Skipping Django, due to already being wheel.
+Skipping django-cors-headers, due to already being wheel.
+Skipping djangorestframework, due to already being wheel.
+Skipping mysql-connector-python, due to already being wheel.
+Skipping pytz, due to already being wheel.
+Skipping colorama, due to already being wheel.
+Skipping django-nose, due to already being wheel.
+Skipping nose, due to already being wheel.
+Skipping protobuf, due to already being wheel.
+Skipping setuptools, due to already being wheel.
+Skipping six, due to already being wheel.
+Building wheels for collected packages: uwsgi, coverage, pinocchio
+  Building wheel for uwsgi (setup.py): started
+  Building wheel for uwsgi (setup.py): finished with status 'done'
+  Created wheel for uwsgi: filename=uWSGI-2.0.17-cp37-cp37m-linux_x86_64.whl size=544739 sha256=6357b3ec5c1e2a8c007937c5cd5022c5e1934977d9e033a2f8c140da9d37bf4f
+  Stored in directory: /build
+  Building wheel for coverage (setup.py): started
+  Building wheel for coverage (setup.py): finished with status 'done'
+  Created wheel for coverage: filename=coverage-4.4.2-cp37-cp37m-linux_x86_64.whl size=204320 sha256=64c594828f41fed0f1a7f19a2393c4cfd17d5c4bc0e53d7b833b0ac458f3f001
+  Stored in directory: /build
+  Building wheel for pinocchio (setup.py): started
+  Building wheel for pinocchio (setup.py): finished with status 'done'
+  Created wheel for pinocchio: filename=pinocchio-0.4.2-py3-none-any.whl size=12313 sha256=9ce19499d1f2e5ef85c1103d913c653b03309ef84f7014a8cefd41590fd932b6
+  Stored in directory: /build
+Successfully built uwsgi coverage pinocchio
+WARNING: You are using pip version 19.2.3, however version 19.3.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.
+Removing intermediate container b102266bcece
+ ---> 6f9ebc319fbf
+Step 9/12 : RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+ ---> Running in 84aa7b9b3af6
+Looking in links: /build
+Collecting Django==2.0 (from -r requirements.txt (line 1))
+Collecting django-cors-headers==2.1.0 (from -r requirements.txt (line 2))
+Collecting djangorestframework==3.7.3 (from -r requirements.txt (line 3))
+Collecting mysql-connector-python==8.0.11 (from -r requirements.txt (line 4))
+Collecting pytz==2017.3 (from -r requirements.txt (line 5))
+Collecting uwsgi==2.0.17 (from -r requirements.txt (line 6))
+Collecting colorama==0.3.9 (from -r requirements_test.txt (line 2))
+Collecting coverage==4.4.2 (from -r requirements_test.txt (line 3))
+Collecting django-nose==1.4.5 (from -r requirements_test.txt (line 4))
+Collecting nose==1.3.7 (from -r requirements_test.txt (line 5))
+Collecting pinocchio==0.4.2 (from -r requirements_test.txt (line 6))Collecting protobuf>=3.0.0 (from mysql-connector-python==8.0.11->-r requirements.txt (line 4))
+Collecting six>=1.9 (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r requirements.txt (line 4))
+Requirement already satisfied: setuptools in /usr/lib/python3.7/site-packages (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r requirements.txt (line 4)) (41.2.0)
+Installing collected packages: pytz, Django, django-cors-headers, djangorestframework, six, protobuf, mysql-connector-python, uwsgi, colorama, coverage, nose, django-nose, pinocchio
+Successfully installed Django-2.0 colorama-0.3.9 coverage-4.4.2 django-cors-headers-2.1.0 django-nose-1.4.5 djangorestframework-3.7.3 mysql-connector-python-8.0.11 nose-1.3.7 pinocchio-0.4.2 protobuf-3.10.0 pytz-2017.3 six-1.13.0 uwsgi-2.0.17
+Removing intermediate container 84aa7b9b3af6
+ ---> 9b337ec0c48d
+Step 10/12 : COPY /src /app
+ ---> 01fdbcd2bafb
+Step 11/12 : WORKDIR /app
+ ---> Running in 69a07755a796
+Removing intermediate container 69a07755a796
+ ---> 47df7238cc6b
+Step 12/12 : CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+ ---> Running in 51a578c3934e
+Removing intermediate container 51a578c3934e
+ ---> 4cc6c87e9db1
+Successfully built 4cc6c87e9db1
+Successfully tagged todobackend-test:latest
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2/todobackend$
+
+
+4) docker run test image
+todobackend>  docker run --name test-image -it --rm todobackend-test
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2/todobackend$ docker run --name test-image -it --rm todobackend-test
+nosetests --verbosity=2 --nologcapture --with-coverage --cover-package=todo --with-spec --spec-color --with-xunit --xunit-file=./unittests.xml --cover-xml --cover-xml-file=./coverage.xml
+Creating test database for alias 'default'...
+
+Ensure we can create a new todo item
+- item has correct title
+- item was created
+- received 201 created status code
+- received location header hyperlink
+
+Ensure we can delete all todo items
+- all items were deleted
+- received 204 no content status code
+
+Ensure we can delete a todo item
+- received 204 no content status code
+- the item was deleted
+
+Ensure we can update an existing todo item using PATCH
+- item was updated
+- received 200 ok status code
+
+Ensure we can update an existing todo item using PUT
+- item was updated
+- received 200 created status code
+
+----------------------------------------------------------------------
+XML: /app/unittests.xml
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+todo/__init__.py                      0      0   100%
+todo/admin.py                         1      1     0%
+todo/migrations/0001_initial.py       5      0   100%
+todo/migrations/__init__.py           0      0   100%
+todo/models.py                        6      6     0%
+todo/serializers.py                   7      0   100%
+todo/urls.py                          6      0   100%
+todo/views.py                        17      0   100%
+-----------------------------------------------------
+TOTAL                                42      7    83%
+----------------------------------------------------------------------
+Ran 12 tests in 0.150s
+
+OK
+
+Destroying test database for alias 'default'...
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2/todobackend$
+
+4) 
+#_________________________________________________________________#
+#_________________________________________________________________#
+#_________________________________________________________________#
+
+#@@ 2. proj_2.1
+1) tree-structure
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ tree -L 6
+.
+├── Dockerfile
+├── ex_Dockerfile_example.txt
+├── README.md
+└── src
+    ├── acceptance.bats
+    ├── manage.py
+    ├── requirements_test.txt
+    ├── requirements.txt
+    ├── todo
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── __init__.py
+    │   ├── migrations
+    │   │   ├── 0001_initial.py
+    │   │   └── __init__.py
+    │   ├── models.py
+    │   ├── serializers.py
+    │   ├── tests.py
+    │   ├── urls.py
+    │   └── views.py
+    └── todobackend
+        ├── __init__.py
+        ├── settings.py
+        ├── settings_release.py
+        ├── settings_test.py
+        ├── urls.py
+        └── wsgi.py
+
+2) Dockerfile
+
+# Test stage
+FROM alpine AS test
+LABEL application=todobackend
+
+# Install basic utilities
+RUN apk add --no-cache bash git
+
+# Install build dependencies
+RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+RUN pip3 install wheel -U
+
+# Copy requirements
+COPY /src/requirements* /build/
+WORKDIR /build
+
+# Build and install requirements
+RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+
+# Copy source code
+COPY /src /app
+WORKDIR /app
+
+# Test entrypoint
+CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+
+# Release stage
+FROM alpine
+LABEL application=todobackend
+
+# Install operating system dependencies
+RUN apk add --no-cache python3 mariadb-client bash curl bats jq
+
+# Create app user
+RUN addgroup -g 1000 app && \
+    adduser -u 1000 -G app -D app
+
+# Copy and install application source and pre-built dependencies
+COPY --from=test --chown=app:app /build /build
+COPY --from=test --chown=app:app /app /app
+RUN pip3 install -r /build/requirements.txt -f /build --no-index --no-cache-dir
+RUN rm -rf /build
+
+# Create public volume
+RUN mkdir /public
+RUN chown app:app /public
+VOLUME /public
+
+# Set working directory and application user
+WORKDIR /app
+USER app
+
+3) Build Test Stage
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ 
+docker build --target test -t todobackend-test .
+
+Sending build context to Docker daemon  40.45kB
+Step 1/12 : FROM alpine AS test
+ ---> 965ea09ff2eb
+Step 2/12 : LABEL application=todobackend
+ ---> Using cache
+ ---> 6d411110e3d8
+Step 3/12 : RUN apk add --no-cache bash git
+ ---> Using cache
+ ---> 3126fe270165
+Step 4/12 : RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+ ---> Using cache
+ ---> 41765b341b8e
+Step 5/12 : RUN pip3 install wheel -U
+ ---> Using cache
+ ---> 1c93dff0fff0
+Step 6/12 : COPY /src/requirements* /build/
+ ---> Using cache
+ ---> 45052d086294
+Step 7/12 : WORKDIR /build
+ ---> Using cache
+ ---> d1796300e60f
+Step 8/12 : RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+ ---> Using cache
+ ---> 6f9ebc319fbf
+Step 9/12 : RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+ ---> Using cache
+ ---> 9b337ec0c48d
+Step 10/12 : COPY /src /app
+ ---> Using cache
+ ---> 01fdbcd2bafb
+Step 11/12 : WORKDIR /app
+ ---> Using cache
+ ---> 47df7238cc6b
+Step 12/12 : CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+ ---> Using cache
+ ---> 4cc6c87e9db1
+Successfully built 4cc6c87e9db1
+Successfully tagged todobackend-test:latest
+
+4) Run test - image
+run test on todobackend-test image
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run -it --rm todobackend-test
+nosetests --verbosity=2 --nologcapture --with-coverage --cover-package=todo --with-spec 
+--spec-color --with-xunit --xunit-file=./unittests.xml --cover-xml --cover-xml-file=./coverage.xml
+
+Creating test database for alias 'default'...
+
+Ensure we can create a new todo item
+- item has correct title
+- item was created
+- received 201 created status code
+- received location header hyperlink
+
+Ensure we can delete all todo items
+- all items were deleted
+- received 204 no content status code
+
+Ensure we can delete a todo item
+- received 204 no content status code
+- the item was deleted
+
+Ensure we can update an existing todo item using PATCH
+- item was updated
+- received 200 ok status code
+
+Ensure we can update an existing todo item using PUT
+- item was updated
+- received 200 created status code
+
+----------------------------------------------------------------------
+XML: /app/unittests.xml
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+todo/__init__.py                      0      0   100%
+todo/admin.py                         1      1     0%
+todo/migrations/0001_initial.py       5      0   100%
+todo/migrations/__init__.py           0      0   100%
+todo/models.py                        6      6     0%
+todo/serializers.py                   7      0   100%
+todo/urls.py                          6      0   100%
+todo/views.py                        17      0   100%
+-----------------------------------------------------
+TOTAL                                42      7    83%
+----------------------------------------------------------------------
+Ran 12 tests in 0.151s
+
+OK
+
+Destroying test database for alias 'default'...
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$
+
+5) build release image
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker build -t
+ odobackend-release .
+Sending build context to Docker daemon  40.45kB
+Step 1/25 : FROM alpine AS test
+ ---> 965ea09ff2eb
+Step 2/25 : LABEL application=todobackend
+ ---> Using cache
+ ---> 6d411110e3d8
+Step 3/25 : RUN apk add --no-cache bash git
+ ---> Using cache
+ ---> 3126fe270165
+Step 4/25 : RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+ ---> Using cache
+ ---> 41765b341b8e
+Step 5/25 : RUN pip3 install wheel -U
+ ---> Using cache
+ ---> 1c93dff0fff0
+Step 6/25 : COPY /src/requirements* /build/
+ ---> Using cache
+ ---> 45052d086294
+Step 7/25 : WORKDIR /build
+ ---> Using cache
+ ---> d1796300e60f
+Step 8/25 : RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+ ---> Using cache
+ ---> 6f9ebc319fbf
+Step 9/25 : RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+ ---> Using cache
+ ---> 9b337ec0c48d
+Step 10/25 : COPY /src /app
+ ---> Using cache
+ ---> 01fdbcd2bafb
+Step 11/25 : WORKDIR /app
+ ---> Using cache
+ ---> 47df7238cc6b
+Step 12/25 : CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+ ---> Using cache
+ ---> 4cc6c87e9db1
+Step 13/25 : FROM alpine
+ ---> 965ea09ff2eb
+Step 14/25 : LABEL application=todobackend
+ ---> Using cache
+ ---> 6d411110e3d8
+Step 15/25 : RUN apk add --no-cache python3 mariadb-client bash curl bats jq
+ ---> Using cache
+ ---> 297a0a973d2b
+Step 16/25 : RUN addgroup -g 1000 app &&     adduser -u 1000 -G app -D app
+ ---> Using cache
+ ---> 123c717e1e06
+Step 17/25 : COPY --from=test --chown=app:app /build /build
+ ---> 45b40426317f
+Step 18/25 : COPY --from=test --chown=app:app /app /app
+ ---> 24eab0a182a2
+Step 19/25 : RUN pip3 install -r /build/requirements.txt -f /build --no-index --no-cache-dir
+ ---> Running in 36073c48907f
+Looking in links: /build
+Collecting Django==2.0 (from -r /build/requirements.txt (line 1))
+Collecting django-cors-headers==2.1.0 (from -r /build/requirements.txt (line 2))
+Collecting djangorestframework==3.7.3 (from -r /build/requirements.txt (line 3))
+Collecting mysql-connector-python==8.0.11 (from -r /build/requirements.txt (line 4))
+Collecting pytz==2017.3 (from -r /build/requirements.txt (line 5))
+Collecting uwsgi==2.0.17 (from -r /build/requirements.txt (line 6))
+Collecting protobuf>=3.0.0 (from mysql-connector-python==8.0.11->-r /build/requirements.txt (line 4))
+Requirement already satisfied: setuptools in /usr/lib/python3.7/site-packages (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r /build/requirements.txt (line 4)) (41.2.0)
+Collecting six>=1.9 (from protobuf>=3.0.0->mysql-connector-python==8.0.11->-r /build/requirements.txt (line 4))
+Installing collected packages: pytz, Django, django-cors-headers, djangorestframework, six, protobuf, mysql-connector-python, uwsgi
+Successfully installed Django-2.0 django-cors-headers-2.1.0 djangorestframework-3.7.3 mysql-connector-python-8.0.11 protobuf-3.10.0 pytz-2017.3 six-1.13.0 uwsgi-2.0.17
+Removing intermediate container 36073c48907f
+ ---> 45e783e23771
+Step 20/25 : RUN rm -rf /build
+ ---> Running in e0f1845d7c39
+Removing intermediate container e0f1845d7c39
+ ---> a8e087899a1f
+Step 21/25 : RUN mkdir /public
+ ---> Running in 52de5e81a691
+Removing intermediate container 52de5e81a691
+ ---> 2a67e2f69a92
+Step 22/25 : RUN chown app:app /public
+ ---> Running in 0b2b70dc4036
+Removing intermediate container 0b2b70dc4036
+ ---> d0c330074573
+Step 23/25 : VOLUME /public
+ ---> Running in 91c1a03285b6
+Removing intermediate container 91c1a03285b6
+ ---> dcf5a38223a8
+Step 24/25 : WORKDIR /app
+ ---> Running in e2cd035f47f5
+Removing intermediate container e2cd035f47f5
+ ---> 141ba656018d
+Step 25/25 : USER app
+ ---> Running in 536ff0df9b96
+Removing intermediate container 536ff0df9b96
+ ---> ab9b23e37485
+Successfully built ab9b23e37485
+Successfully tagged odobackend-release:latest
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$
+
+6) Run release_image (application)-->  server is up
+docker run --name odobackend_poj2.1 -it --rm  -p 8000:8000 odobackend-release uwsgi 
+--http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ 
+docker run --name odobackend_poj2.1 -it --rm  -p 8000:8000 odobackend-release uwsgi 
+--http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+
+*** Starting uWSGI 2.0.17 (64bit) on [Mon Nov 25 21:49:34 2019] ***
+compiled with version: 8.3.0 on 25 November 2019 19:34:05
+os: Linux-5.0.0-32-generic #34~18.04.2-Ubuntu SMP Thu Oct 10 10:36:02 UTC 2019
+nodename: 7720dade11be
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /app
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8000 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:43453 (port auto-assigned) fd 3
+Python version: 3.7.5 (default, Oct 17 2019, 12:25:15)  [GCC 8.3.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x555cac4c8260
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x555cac4c8260 pid: 1 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 6, cores: 1)
+spawned uWSGI http 1 (pid: 7)
+
+__________________________________________________________________
+6.1) check container status:  docker ps  
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
+7720dade11be        odobackend-release   "uwsgi --http=0.0.0.…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp   odobackend_poj2.1
+
+6.2) Start another instance with different port  mappings
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run --name odobackend_poj2.1_02 -it --rm  -p 8001:8001 odobackend-release uwsgi --http=0.0.
+0.0:8000 --module=todobackend.wsgi --master
+
+
+*** Starting uWSGI 2.0.17 (64bit) on [Mon Nov 25 22:01:32 2019] ***
+compiled with version: 8.3.0 on 25 November 2019 19:34:05
+os: Linux-5.0.0-32-generic #34~18.04.2-Ubuntu SMP Thu Oct 10 10:36:02 UTC 2019
+nodename: 4fbd9f45d6b3
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 4
+current working directory: /app
+detected binary path: /usr/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uWSGI http bound on 0.0.0.0:8000 fd 4
+uwsgi socket 0 bound to TCP address 127.0.0.1:34491 (port auto-assigned) fd 3
+Python version: 3.7.5 (default, Oct 17 2019, 12:25:15)  [GCC 8.3.0]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x555b77dad260
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x555b77dad260 pid: 1 (default app)
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 6, cores: 1)
+spawned uWSGI http 1 (pid: 7)
+
+###########
+ssqa@ssqa:~$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4fbd9f45d6b3        odobackend-release   "uwsgi --http=0.0.0.…"   37 seconds ago      Up 35 seconds       0.0.0.0:8001->8001/tcp   odobackend_poj2.1_02
+7720dade11be        odobackend-release   "uwsgi --http=0.0.0.…"   12 minutes ago      Up 12 minutes       0.0.0.0:8000->8000/tcp   odobackend_poj2.1
+
+#____________________________________________________
+
+7) run  docker in -d detached mode ( running in the background)
+docker run -d --name odobackend_poj2.1_detached -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run -d --name odobackend_poj2.1_detached -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158
+
+ssqa@ssqa:~$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
+66d426f3aa17        odobackend-release   "uwsgi --http=0.0.0.…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp   odobackend_poj2.1_detached
+
+8) docker inspect
+ssqa@ssqa:~$ docker inspect odobackend_poj2.1_detached
+
+[
+    {
+        "Id": "66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158",
+        "Created": "2019-11-25T22:14:28.729485969Z",
+        "Path": "uwsgi",
+        "Args": [
+            "--http=0.0.0.0:8000",
+            "--module=todobackend.wsgi",
+            "--master"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 9164,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2019-11-25T22:14:30.315615594Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:ab9b23e37485d9332e4891ad1645095bbe39e355ebf2603a56aeb03c6e9dc7e4",
+        "ResolvConfPath": "/var/lib/docker/containers/66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158/hostname",
+        "HostsPath": "/var/lib/docker/containers/66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158/hosts",
+        "LogPath": "/var/lib/docker/containers/66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158/66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158-json.log",
+        "Name": "/odobackend_poj2.1_detached",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {
+                "8000/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8000"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": true,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "Capabilities": null,
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/60025446d2e03365ecb94c8fed25366f1ae605953bc8eea983d2706cee520610-init/diff:/var/lib/docker/overlay2/368483e48711e2dfa70ae1cc6d4d5bd07a4c38d06e5d7486940897c9a1e481d1/diff:/var/lib/docker/overlay2/fbaee4f64f410513b10187bee857381eb28f64332edc3a7a3e971acd23acd718/diff:/var/lib/docker/overlay2/ce92de0c6593264e159577cded241164126c80a31159ce21ecbfceb16154873d/diff:/var/lib/docker/overlay2/6a26297031b87e9a0065c10c454dd623be4159ecec3a8e3159743640d9b96cdf/diff:/var/lib/docker/overlay2/770d22ce6b0edac4726e9887d2e29ee26a5f1f05384eee4db99cb9787beb7209/diff:/var/lib/docker/overlay2/f0f98345a5a39e75347a1e0826d27d44df2e44d7e075b4e3415141dec5f1b624/diff:/var/lib/docker/overlay2/05955b37e294ab26a60c1b081c6784665c3aee0e56a23eaf44740cd9dcd658b8/diff:/var/lib/docker/overlay2/6ca30bd750ba197cca15a0b27cd2d03ba4b37050976b48e2111800b17bf0290e/diff:/var/lib/docker/overlay2/86eebd18aef58583688b26480c907f297b9efcf78681a2d485b7a59ba9e36f6b/diff",
+                "MergedDir": "/var/lib/docker/overlay2/60025446d2e03365ecb94c8fed25366f1ae605953bc8eea983d2706cee520610/merged",
+                "UpperDir": "/var/lib/docker/overlay2/60025446d2e03365ecb94c8fed25366f1ae605953bc8eea983d2706cee520610/diff",
+                "WorkDir": "/var/lib/docker/overlay2/60025446d2e03365ecb94c8fed25366f1ae605953bc8eea983d2706cee520610/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "592a47ffce5262fe6bc817e6becf674c4feda60c3ff4bae557dceee19877e597",
+                "Source": "/var/lib/docker/volumes/592a47ffce5262fe6bc817e6becf674c4feda60c3ff4bae557dceee19877e597/_data",
+                "Destination": "/public",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "66d426f3aa17",
+            "Domainname": "",
+            "User": "app",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "8000/tcp": {}
+            },
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "uwsgi",
+                "--http=0.0.0.0:8000",
+                "--module=todobackend.wsgi",
+                "--master"
+            ],
+            "Image": "odobackend-release",
+            "Volumes": {
+                "/public": {}
+            },
+            "WorkingDir": "/app",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "application": "todobackend"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "b878ed95ebc086a0883003d11a299e638d33e5df7be1587ad837f3309451c9a4",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {
+                "8000/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8000"
+                    }
+                ]
+            },
+            "SandboxKey": "/var/run/docker/netns/b878ed95ebc0",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "620f6d3a46bbb1d360d2343f2e44d2095bc5c54dbe152e3b89b02ba567e3ecd3",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.2",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:02",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "46641504329afc532e01a4462ba78e8136db17e452a7a632c886148a33ff11ff",
+                    "EndpointID": "620f6d3a46bbb1d360d2343f2e44d2095bc5c54dbe152e3b89b02ba567e3ecd3",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "02:42:ac:11:00:02",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+#_______________________________________________________________________#
+#@@ 3. proj_2.2
+1) tree-structure
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ tree -L 4
+.
+├── docker-compose_db.yml
+├── docker-compose_noMigrate.yml
+├── docker-compose.yml
+├── Dockerfile
+├── ex_Dockerfile_example.txt
+├── Makefile
+├── README.md
+└── src
+    ├── acceptance.bats
+    ├── manage.py
+    ├── requirements_test.txt
+    ├── requirements.txt
+    ├── todo
+    │   ├── admin.py
+    │   ├── apps.py
+    │   ├── __init__.py
+    │   ├── migrations
+    │   │   ├── 0001_initial.py
+    │   │   └── __init__.py
+    │   ├── models.py
+    │   ├── serializers.py
+    │   ├── tests.py
+    │   ├── urls.py
+    │   └── views.py
+    └── todobackend
+        ├── __init__.py
+        ├── settings.py
+        ├── settings_release.py
+        ├── settings_test.py
+        ├── urls.py
+        └── wsgi.py
+
+4 directories, 27 files
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$
+
+2) Dockerfile
+
+
+3) Build Test Stage
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker build --
+target test -t todobackend-test .
+
+4) Run test - image
+run test on todobackend-test image
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run -it --rm todobackend-test
+
+5) build release image
+
+6) Run release_image (application)-->  server is up
+docker run --name odobackend_poj2.1 -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run --name odobackend_poj2.1 -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+
+__________________________________________________________________
+6.1) check container status:  docker ps  
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
+7720dade11be        odobackend-release   "uwsgi --http=0.0.0.…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp   odobackend_poj2.1
+
+6.2) Start another instance with different port  mappings
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run --name odobackend_poj2.1_02 -it --rm  -p 8001:8001 odobackend-release uwsgi --http=0.0.
+0.0:8000 --module=todobackend.wsgi --master
+
+###########
+ssqa@ssqa:~$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS              PORTS                    NAMES
+4fbd9f45d6b3        odobackend-release   "uwsgi --http=0.0.0.…"   37 seconds ago      Up 35 seconds       0.0.0.0:8001->8001/tcp   odobackend_poj2.1_02
+7720dade11be        odobackend-release   "uwsgi --http=0.0.0.…"   12 minutes ago      Up 12 minutes       0.0.0.0:8000->8000/tcp   odobackend_poj2.1
+
+#____________________________________________________
+
+7) run  docker in -d detached mode ( running in the background)
+docker run -d --name odobackend_poj2.1_detached -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.1/todobackend$ docker run -d --name odobackend_poj2.1_detached -it --rm  -p 8000:8000 odobackend-release uwsgi --http=0.0.0.0:8000 --module=todobackend.wsgi --master
+66d426f3aa17762125b9a7d86acc1ba744da23fc859b381416f3087c732ae158
+
+ssqa@ssqa:~$ docker ps
+CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
+66d426f3aa17        odobackend-release   "uwsgi --http=0.0.0.…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp   odobackend_poj2.1_detached
+
+8) docker inspect
+ssqa@ssqa:~$ docker inspect odobackend_poj2.1_detached
+
+#@@@@@@@@@@@@@@
+# Docker  compose
+
+## @@ docker-compose
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose up release
+
+Starting todobackend_release_1 ... done
+Attaching to todobackend_release_1
+release_1  | *** Starting uWSGI 2.0.17 (64bit) on [Wed Oct  2 00:01:20 2019] ***
+release_1  | compiled with version: 8.3.0 on 01 October 2019 23:51:28
+release_1  | os: Linux-5.0.0-27-generic #28~18.04.1-Ubuntu SMP Thu Aug 22 03:00:32 UTC 2019
+release_1  | nodename: da5de5b3dae8
+release_1  | machine: x86_64
+release_1  | clock source: unix
+release_1  | detected number of CPU cores: 4
+release_1  | current working directory: /app
+release_1  | detected binary path: /usr/bin/uwsgi
+release_1  | !!! no internal routing support, rebuild with pcre support !!!
+release_1  | your memory page size is 4096 bytes
+release_1  | detected max file descriptor number: 1048576
+release_1  | lock engine: pthread robust mutexes
+release_1  | thunder lock: disabled (you can enable it with --thunder-lock)
+release_1  | uWSGI http bound on 0.0.0.0:8000 fd 4
+release_1  | uwsgi socket 0 bound to TCP address 127.0.0.1:39521 (port auto-assigned) fd 3
+release_1  | Python version: 3.7.3 (default, May  3 2019, 11:24:39)  [GCC 8.3.0]
+release_1  | *** Python threads support is disabled. You can enable it with --enable-threads ***
+release_1  | Python main interpreter initialized at 0x55770a5f54c0
+release_1  | your server socket listen backlog is limited to 100 connections
+release_1  | your mercy for graceful operations on workers is 60 seconds
+release_1  | mapped 145840 bytes (142 KB) for 1 cores
+release_1  | *** Operational MODE: single process ***
+release_1  | WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55770a5f54c0 pid: 1 (default app)
+release_1  | *** uWSGI is running in multiple interpreter mode ***
+release_1  | spawned uWSGI master process (pid: 1)
+release_1  | spawned uWSGI worker 1 (pid: 6, cores: 1)
+release_1  | spawned uWSGI http 1 (pid: 7)
+
+## @@ docker-compose build test
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose build test
+
+## @@ docker-compose run test
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose run test
+nosetests --verbosity=2 --nologcapture --with-coverage --cover-package=todo --with-spec --spec-color --with-xunit --xunit-file=./unittests.xml --cover-xml --cover-xml-file=./coverage.xml
+Creating test database for alias 'default'...
+
+Ensure we can create a new todo item
+- item has correct title
+- item was created
+- received 201 created status code
+- received location header hyperlink
+
+Ensure we can delete all todo items
+- all items were deleted
+- received 204 no content status code
+
+Ensure we can delete a todo item
+- received 204 no content status code
+- the item was deleted
+
+Ensure we can update an existing todo item using PATCH
+- item was updated
+- received 200 ok status code
+
+Ensure we can update an existing todo item using PUT
+- item was updated
+- received 200 created status code
+
+----------------------------------------------------------------------
+XML: /app/unittests.xml
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+todo/__init__.py                      0      0   100%
+todo/admin.py                         1      1     0%
+todo/migrations/0001_initial.py       5      0   100%
+todo/migrations/__init__.py           0      0   100%
+todo/models.py                        6      6     0%
+todo/serializers.py                   7      0   100%
+todo/urls.py                          6      0   100%
+todo/views.py                        17      0   100%
+-----------------------------------------------------
+TOTAL                                42      7    83%
+----------------------------------------------------------------------
+Ran 12 tests in 0.148s
+
+OK
+
+Destroying test database for alias 'default'...
+##
+## docker-compose up release
+
+## docker-compose down -v
+
+## ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose run release python3 manage.py migrate
+
+# ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose up migrate
+todobackend_db_1 is up-to-date
+Recreating todobackend_migrate_1 ... done
+Attaching to todobackend_migrate_1
+migrate_1  | Operations to perform:
+migrate_1  |   Apply all migrations: admin, auth, contenttypes, sessions, todo
+migrate_1  | Running migrations:
+migrate_1  |   Applying contenttypes.0001_initial... OK
+migrate_1  |   Applying auth.0001_initial... OK
+migrate_1  |   Applying admin.0001_initial... OK
+migrate_1  |   Applying admin.0002_logentry_remove_auto_add... OK
+migrate_1  |   Applying contenttypes.0002_remove_content_type_name... OK
+migrate_1  |   Applying auth.0002_alter_permission_name_max_length... OK
+migrate_1  |   Applying auth.0003_alter_user_email_max_length... OK
+migrate_1  |   Applying auth.0004_alter_user_username_opts... OK
+migrate_1  |   Applying auth.0005_alter_user_last_login_null... OK
+migrate_1  |   Applying auth.0006_require_contenttypes_0002... OK
+migrate_1  |   Applying auth.0007_alter_validators_add_error_messages... OK
+migrate_1  |   Applying auth.0008_alter_user_username_max_length... OK
+migrate_1  |   Applying auth.0009_alter_user_last_name_max_length... OK
+migrate_1  |   Applying sessions.0001_initial... OK
+migrate_1  |   Applying todo.0001_initial... OK
+todobackend_migrate_1 exited with code 0
+
+#_____________________________________________________________________________________
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose up app
+Building app
+Step 1/25 : FROM alpine AS test
+---> 961769676411
+Step 2/25 : LABEL application=todobackend
+---> Using cache
+---> 27c350f22511
+Step 3/25 : RUN apk add --no-cache bash git
+---> Using cache
+---> 8071d5389dae
+Step 4/25 : RUN apk add --no-cache gcc python3-dev libffi-dev musl-dev linux-headers mariadb-dev
+---> Using cache
+---> b8511ea6066f
+Step 5/25 : RUN pip3 install wheel -U
+---> Using cache
+---> 85d760de343f
+Step 6/25 : COPY /src/requirements* /build/
+---> Using cache
+---> a00c369026fd
+Step 7/25 : WORKDIR /build
+---> Using cache
+---> a43debfe1d6d
+Step 8/25 : RUN pip3 wheel -r requirements_test.txt --no-cache-dir --no-input
+---> Using cache
+---> c5cbfb746765
+Step 9/25 : RUN pip3 install -r requirements_test.txt -f /build --no-index --no-cache-dir
+---> Using cache
+---> 07b2d756b724
+Step 10/25 : COPY /src /app
+---> Using cache
+---> e5f3ef3cbac4
+Step 11/25 : WORKDIR /app
+---> Using cache
+---> 2d03f89e0124
+Step 12/25 : CMD ["python3", "manage.py", "test", "--noinput", "--settings=todobackend.settings_test"]
+---> Using cache
+---> b158ab6f817c
+
+Step 13/25 : FROM alpine
+---> 961769676411
+Step 14/25 : LABEL application=todobackend
+---> Using cache
+---> 27c350f22511
+Step 15/25 : RUN apk add --no-cache python3 mariadb-client bash curl bats jq
+---> Using cache
+---> 4ad25a550090
+Step 16/25 : RUN addgroup -g 1000 app &&     adduser -u 1000 -G app -D app
+---> Using cache
+---> a23d33309581
+Step 17/25 : COPY --from=test --chown=app:app /build /build
+---> Using cache
+---> 462675485986
+Step 18/25 : COPY --from=test --chown=app:app /app /app
+---> Using cache
+---> 2f3d64e2c304
+Step 19/25 : RUN pip3 install -r /build/requirements.txt -f /build --no-index --no-cache-dir
+---> Using cache
+---> b6e3d425d8b1
+Step 20/25 : RUN rm -rf /build
+---> Using cache
+---> 4beff7acfa3a
+Step 21/25 : RUN mkdir /public
+---> Using cache
+---> f4fa71123ed1
+Step 22/25 : RUN chown app:app /public
+---> Using cache
+---> 048c565df9a8
+Step 23/25 : VOLUME /public
+---> Using cache
+---> 17d72cbf540a
+Step 24/25 : WORKDIR /app
+---> Using cache
+---> 8ec17bae6d29
+Step 25/25 : USER app
+---> Using cache
+---> 0119b88f7d85
+
+Successfully built 0119b88f7d85
+Successfully tagged todobackend_app:latest
+WARNING: Image for service app was built because it did not already exist. To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
+todobackend_db_1 is up-to-date
+Creating todobackend_app_1 ... done
+Attaching to todobackend_app_1
+app_1      | *** Starting uWSGI 2.0.17 (64bit) on [Wed Oct  2 20:41:30 2019] ***
+app_1      | compiled with version: 8.3.0 on 01 October 2019 23:51:28
+app_1      | os: Linux-5.0.0-27-generic #28~18.04.1-Ubuntu SMP Thu Aug 22 03:00:32 UTC 2019
+app_1      | nodename: f93ac33c406a
+app_1      | machine: x86_64
+app_1      | clock source: unix
+app_1      | detected number of CPU cores: 4
+app_1      | current working directory: /app
+app_1      | detected binary path: /usr/bin/uwsgi
+app_1      | !!! no internal routing support, rebuild with pcre support !!!
+app_1      | your memory page size is 4096 bytes
+app_1      | detected max file descriptor number: 1048576
+app_1      | lock engine: pthread robust mutexes
+app_1      | thunder lock: disabled (you can enable it with --thunder-lock)
+app_1      | uWSGI http bound on 0.0.0.0:8000 fd 4
+app_1      | uwsgi socket 0 bound to TCP address 127.0.0.1:38743 (port auto-assigned) fd 3
+app_1      | Python version: 3.7.3 (default, May  3 2019, 11:24:39)  [GCC 8.3.0]
+app_1      | *** Python threads support is disabled. You can enable it with --enable-threads ***
+app_1      | Python main interpreter initialized at 0x55dd4f2bd600
+app_1      | your server socket listen backlog is limited to 100 connections
+app_1      | your mercy for graceful operations on workers is 60 seconds
+app_1      | mapped 145840 bytes (142 KB) for 1 cores
+app_1      | *** Operational MODE: single process ***
+app_1      | WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55dd4f2bd600 pid: 1 (default app)
+app_1      | *** uWSGI is running in multiple interpreter mode ***
+app_1      | spawned uWSGI master process (pid: 1)
+app_1      | spawned uWSGI worker 1 (pid: 6, cores: 1)
+app_1      | spawned uWSGI http 1 (pid: 7)
+
+##
+http://localhost:8000/static
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose up migrate
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose run app python3 manage.py collectstatic --no-input
+##
+
+Starting todobackend_db_1 ... done
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/fonts/Roboto-Bold-webfont.woff'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/fonts/Roboto-Light-webfont.woff'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/fonts/LICENSE.txt'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/fonts/README.txt'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/fonts/Roboto-Regular-webfont.woff'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-changelink.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/tooltag-add.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-calendar.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-unknown-alt.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/LICENSE'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/calendar-icons.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-unknown.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/search.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/tooltag-arrowright.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-yes.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/README.txt'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/sorting-icons.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/inline-delete.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-alert.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-deletelink.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-clock.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-no.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/selector-icons.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/icon-addlink.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/gis/move_vertex_off.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/img/gis/move_vertex_on.svg'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/dashboard.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/login.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/forms.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/fonts.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/base.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/widgets.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/changelists.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/responsive_rtl.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/responsive.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/rtl.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/autocomplete.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/vendor/select2/select2.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/vendor/select2/LICENSE-SELECT2.md'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/css/vendor/select2/select2.min.css'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/collapse.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/cancel.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/inlines.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/collapse.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/change_form.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/prepopulate_init.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/inlines.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/autocomplete.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/urlify.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/prepopulate.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/timeparse.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/calendar.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/SelectBox.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/prepopulate.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/jquery.init.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/core.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/actions.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/actions.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/popup_response.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/SelectFilter2.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/xregexp/xregexp.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/xregexp/LICENSE-XREGEXP.txt'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/xregexp/xregexp.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/jquery/jquery.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/jquery/LICENSE-JQUERY.txt'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/jquery/jquery.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/select2.full.min.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/select2.full.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/LICENSE-SELECT2.md'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/th.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ar.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/zh-TW.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/km.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/id.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/fr.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ja.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/gl.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/lt.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/eu.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/lv.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ko.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/pl.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/es.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ro.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/bg.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ca.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/sr-Cyrl.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/pt-BR.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/it.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/fa.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/he.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/cs.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/en.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/vi.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/is.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/sk.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/uk.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/et.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/sv.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/hu.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/tr.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/hi.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ru.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/pt.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/nl.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/zh-CN.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/hr.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/de.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/ms.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/el.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/nb.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/sr.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/da.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/az.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/mk.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/vendor/select2/i18n/fi.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/admin/RelatedObjectLookups.js'
+Copying '/usr/lib/python3.7/site-packages/django/contrib/admin/static/admin/js/admin/DateTimeShortcuts.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.woff2'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.svg'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.ttf'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/fonts/glyphicons-halflings-regular.eot'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings.png'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/img/glyphicons-halflings-white.png'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/img/grid.png'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/css/prettify.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/css/bootstrap.min.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/css/bootstrap-tweaks.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/css/default.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/glyphicons-halflings-regular.woff'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/fontawesome-webfont.woff'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/glyphicons-halflings-regular.woff2'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/fontawesome-webfont.eot'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/fontawesome-webfont.ttf'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/glyphicons-halflings-regular.svg'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/fontawesome-webfont.svg'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/glyphicons-halflings-regular.ttf'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/fonts/glyphicons-halflings-regular.eot'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/img/favicon.ico'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/img/grid.png'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/bootstrap-theme.min.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/jquery.json-view.min.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/base.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/bootstrap.min.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/highlight.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/css/font-awesome-4.0.3.css'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/js/api.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/js/bootstrap.min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/js/jquery.json-view.min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/js/jquery-1.10.2.min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/docs/js/highlight.pack.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/csrf.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/bootstrap.min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/jquery-1.12.4.min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/default.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/prettify-min.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/coreapi-0.1.1.js'
+Copying '/usr/lib/python3.7/site-packages/rest_framework/static/rest_framework/js/ajax-form.js'
+
+159 static files copied to '/public/static'.
+
+##
+> docker-compose down -v
+...
+...
+> docker-compose build
+...
+...
+> docker-compose up migrate
+...
+...
+> docker-compose run app python3 manage.py collectstatic --no-input
+...
+...
+> docker-compose up acceptance
+
+##
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose up acceptance
+todobackend_db_1 is up-to-date
+Recreating todobackend_app_1 ... done
+Creating todobackend_acceptance_1 ... done
+Attaching to todobackend_acceptance_1
+acceptance_1  | 1..4
+acceptance_1  | ok 1 todobackend root
+acceptance_1  | ok 2 todo items returns empty list
+acceptance_1  | not ok 3 create todo item
+acceptance_1  | # (in test file acceptance.bats, line 24)
+acceptance_1  | #   `[ $(curl ${BASH_REMATCH[1]} | jq '.title') = $(echo "$item" | jq '.title') ]' failed with status 2
+acceptance_1  | #   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+acceptance_1  | #                                  Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+acceptance_1  | #   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+acceptance_1  | #                                  Dload  Upload   Total   Spent    Left  Speed
+100    84  100    84    0     0   2400      0 --:--:-- --:--:-- --:--:--  2400
+acceptance_1  | # /tmp/bats.1.src: line 24: [: too many arguments
+acceptance_1  | ok 4 delete todo item
+todobackend_acceptance_1 exited with code 1
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$
+
+##
+curl -X POST localhost:8000/api/ -H "Content-Type: application/json" -d '{"title": 4378, "content": "Station Setup"}'
+
+curl -X PUT localhost:8000/api/1/ -H "Content-Type: application/json" -d '{"title": 4389, "content": "Station Setup"}'
+
+curl -X PATCH localhost:8000/api/2/ -H "Content-Type: application/json" -d '{"title": 4378}'
+
+
+
+ssqa@ssqa:~/Documents/Docker_AWS/proj_2.2/todobackend$ docker-compose down -v
+Removing todobackend_test_1                ... done
+Removing todobackend_release_1             ... done
+Removing todobackend_test_run_f2d9f6dbb051 ... done
+Removing todobackend_acceptance_1          ... done
+Removing todobackend_app_1                 ... done
+Removing todobackend_app_run_5bd1aedaaed8  ... done
+Removing todobackend_app_run_2b441a3d4338  ... done
+Removing todobackend_app_run_2f75c394d6d7  ... done
+Removing todobackend_migrate_1             ... done
+Removing todobackend_db_1                  ... done
+Removing network todobackend_default
+Removing volume todobackend_public
+
+######################################################################################################

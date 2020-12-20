@@ -1,0 +1,39 @@
+	TX_VERIFY_POWER
+		#Input Parameters:
+		>BSS_FREQ_MHZ_PRIMARY [Integer]  = %%sub getvalue("BSS_FREQ_MHZ_PRIMARY", "5180")%% 
+		>BSS_FREQ_MHZ_SECONDARY [Integer]  = 0 
+		>CH_FREQ_MHZ [Integer]  = %%sub getvalueAlt("CH_FREQ_MHZ", "BSS_FREQ_MHZ_PRIMARY", "5180")%% 
+		>CH_FREQ_MHZ_PRIMARY_20MHz [Integer]  = 0 
+		>NUM_STREAM_11AC [Integer]  = %%sub getvalue("NUM_STREAM_11AC", "1")%% 
+		>TX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%% 
+		>TX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%%  
+		>TX3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>TX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>TX_POWER_DBM [Double]  = %%sub getvalue("TX_POWER_DBM", "15.0")%% 
+		>BSS_BANDWIDTH [String]  = %%sub getvalue("BSS_BANDWIDTH", "BW-20")%%  
+		>CH_BANDWIDTH [String]  = %%sub get11AC_CH_BW("BSS_BANDWIDTH", "CBW-20")%% 
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-6")%% 
+		>GUARD_INTERVAL [String]  = LONG 
+		>PACKET_FORMAT [String]  = %%sub getvalue("PACKET_FORMAT", "NON_HT")%% 
+		>PREAMBLE [String]  = SHORT 
+		>STANDARD [String]  = 802.11ac 
+		#Return Values:
+		<CH_FREQ_MHZ_PRIMARY_40MHz [Integer]  = <,>
+		<CH_FREQ_MHZ_PRIMARY_80MHz [Integer]  = <,>
+		<CABLE_LOSS_DB_1 [Double]  = <,>
+		<CABLE_LOSS_DB_2 [Double]  = <,>
+		<CABLE_LOSS_DB_3 [Double]  = <,>
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <%%lim = TX_POWER_DBM - 1.5%%,%%lim TX_POWER_DBM + 1.5%%>
+		<POWER_AVERAGE_MAX_DBM [Double]  = <,>
+		<POWER_AVERAGE_MIN_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<POWER_PEAK_MAX_DBM [Double]  = <,>
+		<POWER_PEAK_MIN_DBM [Double]  = <,>
+		<TX_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

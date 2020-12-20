@@ -1,0 +1,46 @@
+node log_parser.js log_file_name folder_path_for_output_files
+C:\Users\jsun\Documents\Log_parser>node log_parser.js Log_4355.txt ./parser_jason
+
+#Create Test flow
+C:\Users\jsun\Documents\Log_parser>node createTestFlowFile.js Log_4355.txt 4355_new_flow.txt
+
+TheCommand_to_launch_harness="/Users/gdlocal/Documents/ATMPreload/IQXPCHost.app/Contents/MacOS/IQXPCHost
+ -port $nup -dut $dut -instr $Testername -testerip $testerIP -loop $loopNumber -test $scenarioName 2>/dev/null"
+ 
+ mysql --host=192.168.14.254 --port=3306 --user=gdlocal --password=gdlocal --database=AutoQA 
+ --execute="UPDATE PackageInformation SET teststatus='Completed' where dutinfo = '$dutinfo' AND packagepathname = '$CurrentPackage'; "
+ 
+./IQXPCHost -port 0,1,2,3 -dut 4357_MIMO -instr IQ2800 -testerip 192.168.100.254 -test FULL_TEST -scenario WIFI_BT -loop 2
+
+6.	Testing of IQfact+ new releases.  (75%)
+7.	Correlation testing between exiting products and new products, including new testers, new methodology in terms of IQfact+ solution and etc. (10%)
+8.	Verification and trouble-shooting of issues, reported from field, customers, both internally and externally, and etc.  (10%)
+9.	Maintenance of QA test stations and set-up of new stations upon request. (4%)
+10.	 Maintenance and development of automation and tools of log analysis and flow-generation. (1%)
+
+
+System Test/QA intern:
+1.	Create web-based QA test management system:
+    a.	Real-time monitoring test status for each QA station.
+2.	Manages database for each QA station: 
+    "	History of tests and test data: Jira number, log location, 
+    "	Setup information and DUT related information.
+3.	Keep track of all QA related documentation/manuals.
+4.	On-line bookkeeping of RF components, and tools in QA lab.
+5.	The completion of the project will significantly boost productivity and efficiency of QA work. 
+It will also provide a great and easy way for team to review and  manage QA resource.
+
+./bin/IQXPCServices contains all compiled XPC Service binaries
+./doc contains doxygen documentation
+Doxyfile includes the documentation configuration for the project
+./lib contains all library dependancies
+./src contains all project and source code files
+./etc contains all related configuration files for execution
+./install contains project installer
+
+ENVIRONMENT:
+
+Since many dylibs depend on dependancies installed in ~/Documents/lp, to successfully run the
+IQXPCHOST (IQXPCHost Shell) application, building and running the installer located in ./install
+is required.
+

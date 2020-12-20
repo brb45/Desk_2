@@ -1,0 +1,9 @@
+			<measurementType name="RX" >
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+			</measurementType>

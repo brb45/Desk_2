@@ -1,0 +1,69 @@
+	RX_SWEEP_PER
+		#Input Parameters:
+		>ARRAY_HANDLING_METHOD [Integer]  = 1 
+		>BSS_FREQ_MHZ_PRIMARY [Integer]  = %%sub getvalue("BSS_FREQ_MHZ_PRIMARY", "5180")%% 
+		>BSS_FREQ_MHZ_SECONDARY [Integer]  = 0 
+		>CH_FREQ_MHZ [Integer]  = %%sub getvalueAlt("CH_FREQ_MHZ", "BSS_FREQ_MHZ_PRIMARY", "5180")%%  
+		>CH_FREQ_MHZ_PRIMARY_20MHz [Integer]  = 0 
+		>FRAME_COUNT [Integer]  = 0 
+		>NUM_STREAM_11AC [Integer]  = %%sub getvalue("NUM_STREAM_11AC", "1")%% 
+		>RX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%%  
+		>RX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>RX3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>RX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>SPIKE_REMOVAL [Integer]  = 1 
+		>STOP_AT_PER_PERCENTAGE [Integer]  = 0 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>SENS_PER_PERCENTAGE [Double]  = 10.00 
+		>START_POWER_LEVEL_DBM [Double]  = %%sub getvalue("START_POWER_LEVEL_DBM", "-65.00")%% 
+		>STOP_POWER_LEVEL_DBM [Double]  = %%sub getvalue("STOP_POWER_LEVEL_DBM", "-75.00")%% 
+		>SWEEP_STEP_DB [Double]  = -1.00 
+		>BSS_BANDWIDTH [String]  = %%sub getvalue("BSS_BANDWIDTH", "BW-20")%% 
+		>CH_BANDWIDTH [String]  = %%sub get11AC_CH_BW("BSS_BANDWIDTH", "CBW-20")%%  
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-6")%% 
+		>GUARD_INTERVAL [String]  = LONG 
+		>PACKET_FORMAT [String]  = %%sub getvalue("PACKET_FORMAT", "NON_HT")%% 
+		>PREAMBLE [String]  = %%sub getvalue("PREAMBLE", "SHORT")%% 
+		>STANDARD [String]  = 802.11ac 
+		>WAVEFORM_NAME [String]  =  
+		#Return Values:
+		<CH_FREQ_MHZ_PRIMARY_40MHz [Integer]  = <,>
+		<CH_FREQ_MHZ_PRIMARY_80MHz [Integer]  = <,>
+		<NUMBER_OF_POWER_LEVELS [Integer]  = <,>
+		<SENS_POWER_LEVEL_DBM [Double]  = <,%%lmap(DATA_RATE, PACKET_FORMAT, BSS_BANDWIDTH)
+															OFDM-6,NON_HT,BW-20 = -82; 
+															OFDM-9,NON_HT,BW-20 = -81;
+															OFDM-12,NON_HT,BW-20 = -79;
+															OFDM-18,NON_HT,BW-20 = -77;
+															OFDM-24,NON_HT,BW-20 = -74;
+															OFDM-36,NON_HT,BW-20 = -70;
+															OFDM-48,NON_HT,BW-20 = -66;
+															OFDM-54,NON_HT,BW-20 = -65;
+															
+															MCS0,HT_MF,BW-20 = -82; MCS0,HT_MF,BW-40 = -79;
+															MCS1,HT_MF,BW-20 = -79; MCS1,HT_MF,BW-40 = -76;
+															MCS2,HT_MF,BW-20 = -77; MCS2,HT_MF,BW-40 = -74;
+															MCS3,HT_MF,BW-20 = -74; MCS3,HT_MF,BW-40 = -71;
+															MCS4,HT_MF,BW-20 = -70; MCS4,HT_MF,BW-40 = -67;
+															MCS5,HT_MF,BW-20 = -66; MCS5,HT_MF,BW-40 = -63;
+															MCS6,HT_MF,BW-20 = -65; MCS6,HT_MF,BW-40 = -62;
+															MCS7,HT_MF,BW-20 = -64; MCS7,HT_MF,BW-40 = -61;
+				
+															MCS0,VHT,BW-20 = -82; MCS0,VHT,BW-40 = -79;MCS0,VHT,BW-80 = -76;MCS0,VHT,BW-160 = -73;
+															MCS1,VHT,BW-20 = -79; MCS1,VHT,BW-40 = -76;MCS1,VHT,BW-80 = -73;MCS1,VHT,BW-160 = -70;
+															MCS2,VHT,BW-20 = -77; MCS2,VHT,BW-40 = -74;MCS2,VHT,BW-80 = -71;MCS2,VHT,BW-160 = -68;
+															MCS3,VHT,BW-20 = -74; MCS3,VHT,BW-40 = -71;MCS3,VHT,BW-80 = -68;MCS3,VHT,BW-160 = -65;
+															MCS4,VHT,BW-20 = -70; MCS4,VHT,BW-40 = -67;MCS4,VHT,BW-80 = -64;MCS4,VHT,BW-160 = -61;
+															MCS5,VHT,BW-20 = -66; MCS5,VHT,BW-40 = -63;MCS5,VHT,BW-80 = -60;MCS5,VHT,BW-160 = -57;
+															MCS6,VHT,BW-20 = -65; MCS6,VHT,BW-40 = -62;MCS6,VHT,BW-80 = -59;MCS6,VHT,BW-160 = -56;
+															MCS7,VHT,BW-20 = -64; MCS7,VHT,BW-40 = -61;MCS7,VHT,BW-80 = -58;MCS7,VHT,BW-160 = -55;
+															MCS8,VHT,BW-20 = -59; MCS8,VHT,BW-40 = -56;MCS8,VHT,BW-80 = -53;MCS8,VHT,BW-160 = -50;
+															MCS9,VHT,BW-20 = -57; MCS9,VHT,BW-40 = -54;MCS9,VHT,BW-80 = -51;MCS9,VHT,BW-160 = -48;
+															%%>
+		<PER_VALUES [ArrayDouble]  = <,>
+		<POWER_LEVELS [ArrayDouble]  = <,>
+		<ERROR_MESSAGE [String]  = <,>
+		<WAVEFORM_NAME [String]  = <,>

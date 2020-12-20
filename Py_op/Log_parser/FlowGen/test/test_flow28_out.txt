@@ -1,0 +1,872 @@
+<!-- LitePoint Push Tests builder 1.0.29  -->
+<pushTestFlow version="1.0.0">
+	<dut technology = "WIFI" name="AR6003" version = "1.0">
+		<param name = "conTimeout" value = "100"/>
+		<param name = "mac" value = "01:00:00:C0:FF:EE"/>
+	</dut>
+	<testFlow technology = "WIFI">
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "1" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "2" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "3" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "4" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "5" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "6" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "7" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2412" />
+			<param name = "id" value = "8" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "9" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "10" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "11" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "12" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "13" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "14" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "15" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2417" />
+			<param name = "id" value = "16" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "17" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "18" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "19" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-6">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "20" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-6" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "21" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "22" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-75" />
+			<param name = "step" value = "2" />
+			<param name = "stopPower" value = "-65" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "23" />
+			<param name = "preamble" value = "Short" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+		<testItem type = "Rx Test" name = "OFDM-9">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "HT20" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "2424" />
+			<param name = "id" value = "24" />
+			<param name = "preamble" value = "Long" />
+			<param name = "rate" value = "OFDM-9" />
+			<param name = "startPower" value = "-60" />
+			<param name = "step" value = "-2" />
+			<param name = "stopPower" value = "-70" />
+			<param name = "timeout" value = "1000" />
+		</testItem>
+	</testFlow>
+
+	<results_limits technology = "WIFI">
+		<testResult id = "1">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "2">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "3">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "4">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "5">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "6">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "7">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "8">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "9">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "10">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "11">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "12">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "13">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "14">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "15">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "16">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "17">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "18">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "19">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "20">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "21">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "22">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "23">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+		<testResult id = "24">
+			<measurementType name="RX" >
+				<result name = "dataRate" unit = "" helpText = "Data Rate in Mbps" dataType = "string" upperLimit = "" lowerLimit = "" />
+				<result name = "packetSentCount" unit = "" helpText = "Number of packet transmitted by VSG for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "ackDetectedCount" unit = "" helpText = "Number of ACK detected for each power level" dataType = "integer" upperLimit = "" lowerLimit = "" />
+				<result name = "actualPowerLeveldBm" unit = "dBm" helpText = "Actual Power of each step, unit is dBm." dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMaxUs" unit = "us" helpText = "Maximum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "ackResponseMinUs" unit = "us" helpText = "Minimum ACK response time in us" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "perPercentage" unit = "%" helpText = "Rx Per Percentage in %" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "SENSITIVITY_POWER_LEVEL_DBM" unit = "%" helpText = "The level that meet sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_POWER_LEVEL_DBM" unit = "%" helpText = "The level of first point that exceed sensitivity per percentage" dataType = "double" upperLimit = "" lowerLimit = "" />
+				<result name = "IEEE_SENS_VIOLATION_PER_PERCENTAGE" unit = "%" helpText = "The per of first point that exceed sensitivity per percentage." dataType = "double" upperLimit = "" lowerLimit = "" />
+			</measurementType>
+		</testResult>
+	</results_limits>
+	<testerSettings>
+			<TestSetup>
+				<param name="DUT_RX_ANT1" value ="RF1" />
+				<param name="DUT_RX_ANT2" value ="RF2" />
+				<param name="DUT_TX_ANT1" value ="RF1" />
+				<param name="DUT_TX_ANT2" value ="RF2" />
+				<param name="FM_TOKEN_ID" value ="0" />
+				<param name="GPS_TOKEN_ID" value ="0" />
+				<param name="PATH_LOSS_FILE" value ="./Setup/path_loss.csv" />
+				<param name="PUSH_TOKEN_ID" value ="0" />
+				<param name="RETRY_ENABLE" value ="0" />
+				<param name="TESTER_IP_ADDRESS" value ="127.0.0.1" />
+				<param name="VSA_AMPLITUDE_REFERRED_FROM_RESULT_LIMIT" value ="0" />
+				<param name="VSA_SAVE_CAPTURE_ALWAYS" value ="0" />
+				<param name="VSA_SAVE_CAPTURE_ON_FAILED" value ="1" />
+			</TestSetup>
+			<Tester>
+				<param name="FPGA1" value ="082310A0, 093010A0, 021011A0, 093010A1, 041211A0, 041511A0" />
+				<param name="FPGA2" value ="071210B0" />
+				<param name="IQapi" value ="1.8.73" />
+				<param name="PUSHengine" value ="1.0.0" />
+				<param name="TESTER_MAX_TRIGGER_OFFSET_DB" value ="-35" />
+				<param name="VSA_MIN_AMPLITUDE_DBM" value ="-15" />
+				<param name="VSA_PRE_TRIGGER_TIME_US" value ="3" />
+				<param name="VSA_TRIGGER_TIMEOUT_MS" value ="10000" />
+				<param name="VSG_MAX_POWER_11B" value ="0" />
+				<param name="VSG_MAX_POWER_11G" value ="-5" />
+				<param name="VSG_MAX_POWER_11N" value ="-5" />
+				<param name="VSG_TRANSMIT_TIMEOUT_MS" value ="10000" />
+			</Tester>
+			<DUT>
+				<param name="2GHZ_SUPPORT" value ="bgn/bg" />
+				<param name="5GHZ_SUPPORT" value ="an/a" />
+				<param name="BANDWIDTH_SUPPORT" value ="HT20/HT40" />
+				<param name="CAL_DETECT_TARGET_LEVEL_DBM" value ="-10" />
+				<param name="CAL_DETECT_TIMEOUT_MS" value ="100" />
+				<param name="CAL_WINDOW_LENGTH_US" value ="25" />
+				<param name="DUT_SELF_CAL_PER_BLOCK" value ="0" />
+				<param name="DUT_SELF_CAL_PER_FREQ" value ="0" />
+				<param name="EVM_AVERAGE_COUNT" value ="3" />
+				<param name="GAP_BEFORE_CAL_START_US" value ="200" />
+				<param name="MASK_AVERAGE_COUNT" value ="1" />
+				<param name="MULTI_SEGMENT_WAVEFORM_NAME" value ="PUSH_ATHR_Waveforms.mod" />
+				<param name="PER_MAC_ADDRESS" value ="010000C0FFEE" />
+				<param name="POWER_AVERAGE_COUNT" value ="0" />
+				<param name="POWER_LTS_AVERAGE_COUNT" value ="20" />
+				<param name="POWER_RAMP_AVERAGE_COUNT" value ="1" />
+				<param name="RAMP_AVERAGE_COUNT" value ="1" />
+				<param name="RETRY_REVERSE_BLOCK_COUNT" value ="0" />
+				<param name="RETRY_WHOLE_TEST_FLOW" value ="0" />
+				<param name="RX_ENABLED_AT_START" value ="0" />
+				<param name="RX_MAXIMUM_PACKET_COUNT" value ="0" />
+				<param name="RX_OPTIMAL_POWER_DBM" value ="-40" />
+				<param name="RX_PER_SLEEP_MS" value ="0" />
+				<param name="RX_PER_SYNC" value ="0" />
+				<param name="RX_STBC_SUPPORT" value ="0" />
+				<param name="SYNC_DETECT_ACK_PACKET_NUM" value ="1" />
+				<param name="SYNC_MAC_ADDRESS" value ="010000CAFFEE" />
+				<param name="SYNC_PACKET_POWER_LEVEL_DBM" value ="10.0" />
+				<param name="SYNC_SLEEP_MS" value ="0" />
+				<param name="SYNC_START_GAP_MS" value ="1" />
+				<param name="SYNC_START_ON_CAL_DETECT_FAIL" value ="1" />
+				<param name="SYNC_TIMEOUT_MS" value ="500" />
+				<param name="TX_BLOCK_START_PACKET_COUNT" value ="97" />
+				<param name="TX_BLOCK_START_PACKET_OFFSET" value ="0" />
+				<param name="TX_BLOCK_STOP_PACKET_COUNT" value ="0" />
+				<param name="TX_FLUSH_ENABLE" value ="0" />
+				<param name="TX_FLUSH_TIMEOUT_MS" value ="500" />
+				<param name="TX_FLUSH_UP_TIME_US" value ="16" />
+				<param name="TX_PACKET_COUNT_VARIATION" value ="0" />
+				<param name="TX_PACKET_GAP_LENGTH_MAX" value ="0" />
+				<param name="TX_PACKET_GAP_LENGTH_MIN" value ="0" />
+				<param name="TX_PACKET_PAYLOAD_LENGTH_MAX" value ="1500" />
+				<param name="TX_PACKET_PAYLOAD_LENGTH_MIN" value ="1500" />
+				<param name="TX_POST_GAP_DETECT" value ="0" />
+				<param name="TX_POST_GAP_TIME_US" value ="1000" />
+				<param name="TX_POWER_MAX_DBM" value ="21.0" />
+				<param name="TX_POWER_MIN_DBM" value ="0.0" />
+				<param name="TX_POWER_P2P_VARIATION_DB" value ="0.0" />
+				<param name="TX_POWER_STEP_INCREMENT_DB" value ="0.5" />
+				<param name="TX_SKIP_FIRST_PACKETS" value ="1" />
+				<param name="TX_STEP_START_PACKET_COUNT" value ="97" />
+				<param name="TX_TARGET_POWER_DBM" value ="18.0" />
+			</DUT>
+			<Limits>
+				<param name="EVM_LIMITS_TABLE" value ="evm_limits_table.xml" />
+				<param name="PER_LIMITS_TABLE" value ="per_limits_table.xml" />
+				<param name="POWER_TARGET_TABLE" value ="power_target.xml" />
+			</Limits>
+			<Measurements>
+				<param name="ANALYSIS_11AG_AMPL_TRACK" value ="1" />
+				<param name="ANALYSIS_11AG_CH_ESTIMATE" value ="1" />
+				<param name="ANALYSIS_11AG_FREQ_SYNC" value ="2" />
+				<param name="ANALYSIS_11AG_PH_CORR_MODE" value ="2" />
+				<param name="ANALYSIS_11AG_SYM_TIM_CORR" value ="2" />
+				<param name="ANALYSIS_11B_DC_REMOVE_FLAG" value ="0" />
+				<param name="ANALYSIS_11B_EQ_TAPS" value ="1" />
+				<param name="ANALYSIS_11B_METHOD_11B" value ="1" />
+				<param name="ANALYSIS_11N_AMPLITUDE_TRACKING" value ="0" />
+				<param name="ANALYSIS_11N_DECODE_PSDU" value ="0" />
+				<param name="ANALYSIS_11N_FREQUENCY_CORRELATION" value ="2" />
+				<param name="ANALYSIS_11N_FULL_PACKET_CHANNEL_EST" value ="0" />
+				<param name="ANALYSIS_11N_PHASE_CORR" value ="1" />
+				<param name="ANALYSIS_11N_SYM_TIMING_CORR" value ="1" />
+				<param name="ANALYSIS_POWER_MAX_POWER_DIFF_DB" value ="15" />
+				<param name="ANALYSIS_POWER_T_INTERVAL" value ="3.2e-6" />
+				<param name="EVM_11AG_CAPTURE_LENGTH_US" value ="95" />
+				<param name="EVM_11B_L_CAPTURE_LENGTH_US" value ="286" />
+				<param name="EVM_11B_S_CAPTURE_LENGTH_US" value ="190" />
+				<param name="EVM_11N_GREENFIELD_CAPTURE_LENGTH_US" value ="115" />
+				<param name="EVM_11N_MIXED_CAPTURE_LENGTH_US" value ="123" />
+				<param name="IQ_P_TO_A_11AG_12M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_18M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_24M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_36M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_48M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_54M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_6M" value ="10" />
+				<param name="IQ_P_TO_A_11AG_9M" value ="10" />
+				<param name="IQ_P_TO_A_11B_11M" value ="2" />
+				<param name="IQ_P_TO_A_11B_1M" value ="2" />
+				<param name="IQ_P_TO_A_11B_2M" value ="2" />
+				<param name="IQ_P_TO_A_11B_5_5M" value ="2" />
+				<param name="IQ_P_TO_A_11N_MCS0" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS1" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS2" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS3" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS4" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS5" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS6" value ="10" />
+				<param name="IQ_P_TO_A_11N_MCS7" value ="10" />
+				<param name="MASK_DSSS_CAPTURE_LENGTH_US" value ="286" />
+				<param name="MASK_OFDM_CAPTURE_LENGTH_US" value ="95" />
+				<param name="PM_DSSS_CAPTURE_LENGTH_US" value ="100" />
+				<param name="PM_OFDM_CAPTURE_LENGTH_US" value ="20" />
+				<param name="SENSITIVITY_PER_PERCENTAGE_11AGN" value ="10" />
+				<param name="SENSITIVITY_PER_PERCENTAGE_11B" value ="8" />
+				<param name="SYNC_MEASUREMENT_TYPE" value ="EVM" />
+			</Measurements>
+	</testerSettings>
+</pushTestFlow>

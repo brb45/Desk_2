@@ -1,0 +1,42 @@
+	TX_BDR
+		#Input Parameters:
+		>ANALYZE_POWER_ONLY [Integer]  = 0 
+		>FREQ_MHZ [Integer]  = %%sub getvalue("FREQ_MHZ", "2402") %%
+		>PACKET_LENGTH [Integer]  = 0 
+		>TRANSMIT_0XF0_SEQUENCE_FOR_DELTA_F1_AVG [Integer]  = 1 
+		>TX_POWER_LEVEL [Integer]  = 0 
+		>CABLE_LOSS_DB [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>PACKET_TYPE [String]  = %%sub getvalue("PACKET_TYPE", "1DH1") %%
+		#Return Values:
+		<PAYLOAD_ERRORS [Integer]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-1 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_-5 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_0 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_1 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_2 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_3 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_4 [Double]  = <,>
+		<ACP_MAX_POWER_DBM_OFFSET_5 [Double]  = <,>
+		<BANDWIDTH_20DB [Double]  = <,>
+		<CABLE_LOSS_DB [Double]  = <,>
+		<DATA_RATE_DETECT [Double]  = <,>
+		<DELTA_F1_AVERAGE [Double]  = <,>
+		<DELTA_F2_AVERAGE [Double]  = <,>
+		<DELTA_F2_AV_ACCESS [Double]  = <,>
+		<DELTA_F2_F1_AV_RATIO [Double]  = <,>
+		<DELTA_F2_MAX [Double]  = <,>
+		<DELTA_F2_MAX_ACCESS [Double]  = <,>
+		<FREQ_DEVIATION [Double]  = <,>
+		<FREQ_DEVIATION_PK_TO_PK [Double]  = <,>
+		<FREQ_DRIFT [Double]  = <,>
+		<FREQ_EST [Double]  = <,>
+		<FREQ_EST_HEADER [Double]  = <,>
+		<MAX_FREQ_DRIFT_RATE [Double]  = <,>
+		<POWER_AVERAGE_DBM [Double]  = <,>
+		<POWER_PEAK_DBM [Double]  = <,>
+		<TARGET_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

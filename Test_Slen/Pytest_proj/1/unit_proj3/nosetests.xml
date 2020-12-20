@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="4" errors="0" failures="0" skip="0"><testcase classname="log_r_13_test.ShoppingCartTest" name="test_item" time="0.000"></testcase><testcase classname="log_r_13_test.ShoppingCartTest" name="test_length" time="0.000"><system-out><![CDATA[WHT
+wht again
+]]></system-out></testcase><testcase classname="log_r_13_test.ShoppingCartTest" name="test_price" time="0.000"></testcase><testcase classname="log_r_13_test.ShoppingCartTest" name="test_total_with_sales_tax" time="0.000"></testcase></testsuite>

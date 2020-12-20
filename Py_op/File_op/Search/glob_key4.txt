@@ -1,0 +1,8 @@
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\fish2.jpg
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\fish3.jpg
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\frogs 1.jpg
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\frogs 2.jpg
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\frogs 3.jpg
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\output_file1.txt
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\QAtest1.py
+C:\Users\jsun\Documents\Desk_1\Py_op\example_log\QAtest2.py

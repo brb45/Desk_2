@@ -1,0 +1,1 @@
+	<testFlow technology = "%%sub gettech()%%">

@@ -1,0 +1,6 @@
+#!/bin/bash
+#comand substitution
+
+cp ~/Desktop/Shell_script/sourceme ./source.$(date +%m-%d-%y)
+
+echo sourceme copied

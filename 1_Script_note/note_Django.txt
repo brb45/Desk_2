@@ -1,0 +1,186 @@
+06/25/2019
+rev: 10/11/19
+
+#1. C:\Users\jsun\Documents\Py_projects>python -m venv .\django_test_proj\01
+
+#2. Activate virtual env
+C:\Users\jsun\Documents\Py_projects\django_test_proj\01>Scripts\activate
+
+#3 (01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01>pip list
+Package    Version
+---------- -------
+pip        19.1.1
+setuptools 40.6.2
+
+#4. (01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01>pip install django
+#5. (01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01>pip install djangorestframework
+#6. (01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01>pip list
+Package             Version
+------------------- -------
+Django              2.2.2
+djangorestframework 3.9.4
+pip                 19.1.1
+pytz                2019.1
+setuptools          40.6.2
+sqlparse            0.3.0
+
+#7. (01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01>python Scripts\django-admin.exe startproject restful01
+# create a folder : restful01 and
+#       sub-folder: restful01\restful01 with following files: __init__.py, settings.py, urls.py, wsgi.py
+# and manage.py
+#
+#8.(01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01\restful01>python manage.py startapp article
+
+#9. Before creating a super user, need to get server up and running first
+
+(01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01\restful01>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying sessions.0001_initial... OK
+
+(01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01\restful01>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 25, 2019 - 18:03:28
+Django version 2.2.2, using settings 'restful01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+# Create a super user : http://localhost:8000/admin/
+(01) C:\Users\jsun\Documents\Py_projects\django_test_proj\01\restful01>python manage.py createsuperuser
+Username (leave blank to use 'jsun'): admin
+Email address: sunusd@yahoo.com
+Password:
+Password (again):
+
+Superuser created successfully.
+#10. Register models in admin: http://localhost:8000/admin/
+#register our models in order for them to appear on admin page.
+#open the admin.py file inside the articles folder and register the models as shown below
+
+#11.create our endpoints. We will start with an endpoint where we can view all articles
+# modify views.py
+#12. we need to provide a URL from where a user will be able to access this endpoint.
+#For that, create a urls.py file inside the articles folder: \restful01\article\urls.py
+
+#13. we need to include these URLs inside the main URLs file i.e the URLs , under restful01\restful01\urls.py
+
+# http://127.0.0.1:8000/api/articles/
+TypeError at /api/articles/
+Object of type Article is not JSON serializable
+Request Method:	GET
+Request URL:	http://127.0.0.1:8000/api/articles/
+Django Version:	2.2.2
+Exception Type:	TypeError
+Exception Value:
+Object of type Article is not JSON serializable
+#14  The error is being raised by this line return Response({"articles": articles})
+# the list of articles is trying to be serialized/converted from an object into JSON.
+# Since we haven’t provided a class to serialize the Article object, we receive the above error.
+# To fix this, I will introduce you to Serializers .
+
+# Serializers allow complex data such as querysets and model instances to be converted to native
+Python datatypes (dict, list,) that can then be easily rendered into JSON, XML or other content types.
+Since now we know what serializers are, let's create one that will convert our articles to a python
+list that we can return to our users. Create a new file inside articles folder and name it
+something like serializers.py
+
+# 15 The next step is to add this serializer to our views and
+# ask the view to serialize the articles. The following code shows how this is done.
+class ArticleView(APIView):
+    def get(self, request):
+        articles = Article.objects.all()
+        # the many param informs the serializer that it will be serializing more than a single article.
+        serializer = ArticleSerializer(articles, many=True)
+        return Response({"articles": serializer.data})
+
+# 16. http://127.0.0.1:8000/api/articles/
+Article
+GET /api/articles/
+HTTP 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+{
+    "articles": [
+        {
+            "title": "QA Methodology",
+            "description": "This article describes QA procedures.\r\n1. Test plan\r\n2. Test requirements",
+            "body": "1. test preparation\r\n2. brain-storm\r\n3. material - add\r\n4. schedules"
+        },
+        {
+            "title": "Automation",
+            "description": "Mainly focus on automation strategy",
+            "body": "1. Basic steps to set up automation framework\r\n2. Added robust features\r\n3. Added log-analysis scripts"
+        }
+    ]
+}
+
+# 17 post
+We don’t want to limit creating articles from the admin dashboard since not every user has the admin rights.
+To overcome this challenge, we can create an endpoint where users will be able to create articles from.
+We could create another class with a post method and register it into our URLs just like we did for the get method.
+However, instead of creating a brand new class and an endpoint, APIView allows us to specify multiple HTTP
+ methods for that class. We will, therefore, add a post method inside of our ArticleView check out the code below.
+
+As you can see, we are using the serializer that we created earlier in order to create an article from the article
+data we receive from the users. As we had said earlier, we had ignored the author's field in our serializer
+and thus it was not being returned in the response we got. For us to be able to use our serializer to create articles,
+we need to add the author_id field into the serializer and then we will need to implement the create method
+in the serializer that tells the serializer what to do when the serializer save method is invoked.
+Update your ArticleSerializer to look like this.
+
+# 18
+Given that you had created an author from the admin dashboard, you can now use postman
+  {"article":{
+        "title": "We need article here for post to work",
+        "description": "This article describes TEST procedures.",
+        "body": "1. test preparation",
+        "author_id": 3
+    }
+  }
+
+#19 update
+1. For this, we will update our articles endpoint to allow users to update an article by sending a PUT request
+to the article. First, add a new path in the articles urlpatterns from which the update will be sent to.
+path('articles/<int:pk>', ArticleView.as_view())
+
+2. Add an update method to serializers.py
+
+3. we have to define the put method in our ArticleView , this method should accept a pk URL parameter
+which we will use to query the Article we want to update. Here is how the put method should look like.
+
+4.
+Using Postman or any other tool, you can now be able to update an article by sending a put request to the
+URL http://127.0.0.1:8000/articles/<article id> with the data you want to update.
+
+localhost:8000/api/articles/2
+ {"article":{
+        "title": "Article ID is 2",
+        "description": "Postman has to change the whole thing.",
+        "body": "No shortcut",
+        "author_id": 3
+    }
+  }
+## 19
+curl -X POST -i -H "Content-Type": "application/json" -d '{"title": "Run Post Test", "description": "First Trial", "body": "Running 2 tests", "author_id": 11}' localhost:8000/api/articles/ 

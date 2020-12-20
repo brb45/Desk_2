@@ -1,0 +1,19 @@
+TECHNOLOGY,TEST,freq,rate,bw,preamble,power_range
+WIFI,TX_EVM_POWER_MASK,2412,OFDM-6,HT20,Long,"(-75, -85, 1)"
+,TX_POWER,2417,OFDM-6,,,
+,TX_EVM_MASK,2442,OFDM-12,,,
+,TX_MASK_POWER,2437,OFDM-18,,,
+,RX,2472,OFDM-24,,,
+,,,OFDM-36,,,
+,,,OFDM-48,,,
+,,,OFDM-54,,,
+,,,,,,
+TECHNOLOGY,TEST,freq,rate,bw,preamble,power_range
+WIFI,TX_EVM_POWER_MASK,5180,MCS-0,HT20,N Mixed,"(-80, -100, 1)"
+,RX,5320,MCS-1,,,
+,,5500,MCS-2,,,
+,,5600,MCS-3,,,
+,,5745,MCS-4,,,
+,,,MCS-5,,,
+,,,MCS-6,,,
+,,,MCS-7,,,

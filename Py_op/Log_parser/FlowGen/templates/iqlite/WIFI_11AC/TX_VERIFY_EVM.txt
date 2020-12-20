@@ -1,0 +1,126 @@
+	TX_VERIFY_EVM
+		#Input Parameters:
+		>BSS_FREQ_MHZ_PRIMARY [Integer]  = %%sub getvalue("BSS_FREQ_MHZ_PRIMARY", "5180")%% 
+		>BSS_FREQ_MHZ_SECONDARY [Integer]  = 0 
+		>CH_FREQ_MHZ [Integer]  = %%sub getvalueAlt("CH_FREQ_MHZ", "BSS_FREQ_MHZ_PRIMARY", "5180")%% 
+		>CH_FREQ_MHZ_PRIMARY_20MHz [Integer]  = 0 
+		>NUM_STREAM_11AC [Integer]  = %%sub getvalue("NUM_STREAM_11AC", "1")%% 
+		>TX1 [Integer]  = %%sub getvalue("ANTENNA", 0, "1")%%  
+		>TX2 [Integer]  = %%sub getvalue("ANTENNA", 1, "0")%% 
+		>TX3 [Integer]  = %%sub getvalue("ANTENNA", 2, "0")%% 
+		>TX4 [Integer]  = %%sub getvalue("ANTENNA", 3, "0")%% 
+		>CABLE_LOSS_DB_1 [Double]  = 0.00 
+		>CABLE_LOSS_DB_2 [Double]  = 0.00 
+		>CABLE_LOSS_DB_3 [Double]  = 0.00 
+		>CABLE_LOSS_DB_4 [Double]  = 0.00 
+		>SAMPLING_TIME_US [Double]  = 0.00 
+		>TX_POWER_DBM [Double]  = %%sub getvalue("TX_POWER_DBM", "15.0")%% 
+		>BSS_BANDWIDTH [String]  = %%sub getvalue("BSS_BANDWIDTH", "BW-20")%% 
+		>CH_BANDWIDTH [String]  = %%sub get11AC_CH_BW("BSS_BANDWIDTH", "CBW-20")%%
+		>DATA_RATE [String]  = %%sub getvalue("DATA_RATE", "OFDM-6")%% 
+		>GUARD_INTERVAL [String]  = LONG 
+		>PACKET_FORMAT [String]  = %%sub getvalue("PACKET_FORMAT", "NON_HT")%% 
+		>PREAMBLE [String]  = SHORT 
+		>STANDARD [String]  = 802.11ac 
+		#Return Values:
+		<CH_FREQ_MHZ_PRIMARY_40MHz [Integer]  = <,>
+		<CH_FREQ_MHZ_PRIMARY_80MHz [Integer]  = <,>
+		<SPATIAL_STREAM [Integer]  = <,>
+		<AMP_ERR_DB [Double]  = <,>
+		<AMP_ERR_DB_1 [Double]  = <,>
+		<AMP_ERR_DB_2 [Double]  = <,>
+		<AMP_ERR_DB_3 [Double]  = <,>
+		<AMP_ERR_DB_4 [Double]  = <,>
+		<CABLE_LOSS_DB_1 [Double]  = <,>
+		<CABLE_LOSS_DB_2 [Double]  = <,>
+		<CABLE_LOSS_DB_3 [Double]  = <,>
+		<CABLE_LOSS_DB_4 [Double]  = <,>
+		<DATA_RATE [Double]  = <,>
+		<EVM_AVG_1 [Double]  = <,>
+		<EVM_AVG_2 [Double]  = <,>
+		<EVM_AVG_3 [Double]  = <,>
+		<EVM_AVG_4 [Double]  = <,>
+		<EVM_AVG_DB [Double]  = <,%%lmap(DATA_RATE, PACKET_FORMAT)
+		
+															OFDM-6,NON_HT  = -5; 
+															OFDM-9,NON_HT  = -8;
+															OFDM-12,NON_HT  = -10;
+															OFDM-18,NON_HT  = -13;
+															OFDM-24,NON_HT  = -16;
+															OFDM-36,NON_HT  = -19;
+															OFDM-48,NON_HT  = -22;
+															OFDM-54,NON_HT  = -25;
+															
+															MCS0,HT_MF  = -5; 
+															MCS1,HT_MF  = -10; 
+															MCS2,HT_MF  = -13; 
+															MCS3,HT_MF  = -16; 
+															MCS4,HT_MF  = -19; 
+															MCS5,HT_MF  = -22; 
+															MCS6,HT_MF  = -25; 
+															MCS7,HT_MF  = -28; 
+															
+															MCS8,HT_MF  = -5; 
+															MCS9,HT_MF  = -10; 
+															MCS10,HT_MF  = -13; 
+															MCS11,HT_MF  = -16; 
+															MCS12,HT_MF  = -19; 
+															MCS13,HT_MF  = -22; 
+															MCS14,HT_MF  = -25; 
+															MCS15,HT_MF  = -28;
+															
+															MCS16,HT_MF  = -5; 
+															MCS17,HT_MF  = -10; 
+															MCS18,HT_MF  = -13; 
+															MCS19,HT_MF  = -16; 
+															MCS20,HT_MF  = -19; 
+															MCS21,HT_MF  = -22; 
+															MCS22,HT_MF  = -25; 
+															MCS23,HT_MF  = -28;
+				
+															MCS0,VHT  = -5; 
+															MCS1,VHT  = -10; 
+															MCS2,VHT  = -13; 
+															MCS3,VHT  = -16; 
+															MCS4,VHT  = -19; 
+															MCS5,VHT  = -22; 
+															MCS6,VHT  = -25; 
+															MCS7,VHT  = -27; 
+															MCS8,VHT  = -30; 
+															MCS9,VHT  = -32; 
+
+															%%>
+		<EVM_MAX_1 [Double]  = <,>
+		<EVM_MAX_2 [Double]  = <,>
+		<EVM_MAX_3 [Double]  = <,>
+		<EVM_MAX_4 [Double]  = <,>
+		<EVM_MIN_1 [Double]  = <,>
+		<EVM_MIN_2 [Double]  = <,>
+		<EVM_MIN_3 [Double]  = <,>
+		<EVM_MIN_4 [Double]  = <,>
+		<EVM_PK_DB [Double]  = <,>
+		<FREQ_ERROR_AVG [Double]  = <,>
+		<FREQ_ERROR_MAX [Double]  = <,>
+		<FREQ_ERROR_MIN [Double]  = <,>
+		<PHASE_ERR [Double]  = <,>
+		<PHASE_ERR_1 [Double]  = <,>
+		<PHASE_ERR_2 [Double]  = <,>
+		<PHASE_ERR_3 [Double]  = <,>
+		<PHASE_ERR_4 [Double]  = <,>
+		<PHASE_NOISE_RMS_ALL [Double]  = <,>
+		<POWER_AVG_1 [Double]  = <,>
+		<POWER_AVG_2 [Double]  = <,>
+		<POWER_AVG_3 [Double]  = <,>
+		<POWER_AVG_4 [Double]  = <,>
+		<POWER_AVG_DBM [Double]  = <%%lim = TX_POWER_DBM - 1.5%%,%%lim TX_POWER_DBM + 1.5%%>
+		<POWER_MAX_1 [Double]  = <,>
+		<POWER_MAX_2 [Double]  = <,>
+		<POWER_MAX_3 [Double]  = <,>
+		<POWER_MAX_4 [Double]  = <,>
+		<POWER_MIN_1 [Double]  = <,>
+		<POWER_MIN_2 [Double]  = <,>
+		<POWER_MIN_3 [Double]  = <,>
+		<POWER_MIN_4 [Double]  = <,>
+		<SYMBOL_CLK_ERR [Double]  = <,>
+		<TX_POWER_DBM [Double]  = <,>
+		<ERROR_MESSAGE [String]  = <,>

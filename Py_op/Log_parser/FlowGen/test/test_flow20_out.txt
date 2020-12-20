@@ -1,0 +1,67 @@
+
+# Settings: these are user preferences and do not affect the test results
+
+# number of times to run the flow uninterrupted (default = 1)
+#SETTING REPETITIONS     1
+
+# EXIT_WHEN_DONE: specify to not query user after flow is done (default = 0)
+#SETTING     EXIT_WHEN_DONE      0
+
+# MAX_TEST_FAILURES: maximum number of test failures allowed; (default = 0 = infinite)
+#SETTING     MAX_TEST_FAILURES      0
+
+# MAX_LIMIT_FAILURES: maximum number of test limit failures allowed; (default = 0 = infinite)
+#SETTING     MAX_LIMIT_FAILURES     0
+
+# set the IQlite debug level to: NONE, ERROR, WARNING, INFORMATION
+#SET_DEBUG_LEVEL     NONE
+
+# set the preamble to: SHORT or LONG
+#SET_PARAMETER  WF_PREAMBLE         SHORT
+
+#SET_PARAMETER  CABLE_LOSS          18.0
+
+# set the antenna config information for the DUT (set after connecting) (ANT1, ANT2,...)
+#SET_PARAMETER	ANTENNA_CONFIG	    (1,0,0,0)
+
+# enable multi packet (default is enabled for MPS)
+#SET_PARAMETER	MULTI_PACKET	    1
+
+# set dual head port to: RF_PORT_LEFT or RF_PORT_RIGHT 
+#SET_PARAMETER	DUAL_HEAD_PORT	    RF_PORT_LEFT
+
+# set dual head token to: DUAL_HEAD_TOKEN_MASTER or DUAL_HEAD_TOKEN_SLAVE
+#SET_PARAMETER	DUAL_HEAD_TOKEN	    DUAL_HEAD_TOKEN_MASTER
+
+# set the Bluetooth firmware file
+#SET_PARAMETER  BT_CONFIG_FILE      4329\BCM4329_042009.hcd 
+
+# set Bluetooth ss location (set before connecting to DUT)
+#SET_PARAMETER  BT_SS_LOCATION      0x00087410
+
+
+CONNECT_TESTER      IQ2010              127.0.0.1
+WF_CONNECT_DUT      BRCM_4329_WIFI      COM1
+
+WF_VERIFY_TX_EVM        5180   OFDM-9   16.0
+WF_VERIFY_TX_MASK        5180   OFDM-9   16.0
+WF_VERIFY_RX_PER        5180   OFDM-9   15.0   
+WF_VERIFY_TX_EVM        5180   OFDM-36   16.0
+WF_VERIFY_TX_MASK        5180   OFDM-36   16.0
+WF_VERIFY_RX_PER        5180   OFDM-36   15.0   
+WF_VERIFY_TX_EVM        5300   OFDM-9   16.0
+WF_VERIFY_TX_MASK        5300   OFDM-9   16.0
+WF_VERIFY_RX_PER        5300   OFDM-9   15.0   
+WF_VERIFY_TX_EVM        5300   OFDM-36   16.0
+WF_VERIFY_TX_MASK        5300   OFDM-36   16.0
+WF_VERIFY_RX_PER        5300   OFDM-36   15.0   
+WF_VERIFY_TX_EVM        5745   OFDM-9   16.0
+WF_VERIFY_TX_MASK        5745   OFDM-9   16.0
+WF_VERIFY_RX_PER        5745   OFDM-9   15.0   
+WF_VERIFY_TX_EVM        5745   OFDM-36   16.0
+WF_VERIFY_TX_MASK        5745   OFDM-36   16.0
+WF_VERIFY_RX_PER        5745   OFDM-36   15.0   
+
+WF_DISCONNECT_DUT           BRCM_4329_WIFI
+DISCONNECT_TESTER
+

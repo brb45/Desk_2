@@ -1,0 +1,16 @@
+		<testItem type = "Rx Test" name = "%%sub getvalue("rate")%%">
+			<param name = "ANT1" value = "Enable" />
+			<param name = "ANT2" value = "Disable" />
+			<param name = "ANT3" value = "Disable" />
+			<param name = "ANT4" value = "Disable" />
+			<param name = "bw" value = "%%sub getvalue("bw","HT20")%%" />
+			<param name = "count" value = "100" />
+			<param name = "freq" value = "%%sub getvalue("freq","2412")%%" />
+			<param name = "id" value = %%sub getid()%%" />
+			<param name = "preamble" value = "%%sub getvalue("preamble","Long")%%" />
+			<param name = "rate" value = "%%sub getvalue("rate","???")%%" />
+			<param name = "startPower" value = "%%sub getvalue("power_range", 0, "-78.000000")%%" />
+			<param name = "step" value = "%%sub getvalue("power_range", 2, "1")%%" />
+			<param name = "stopPower" value = "%%sub getvalue("power_range", 1, "-78.000000")%%" />
+			<param name = "timeout" value = "1000" />
+		</testItem>

@@ -1,0 +1,162 @@
+#1.create a virtual environment for your project and activate it:
+---------------------------------------------------------------------------------------
+C:\Users\jsun\Documents\django>mkdir env
+
+C:\Users\jsun\Documents\django>virtualenv env/bookmarks_env
+---------------------------------------------------------------------------------------
+---Using base prefix 'c:\\program files\\python36'
+New python executable in C:\Users\jsun\Documents\django\env\bookmarks_env\Scripts\python.exe
+Installing setuptools, pip, wheel...done.
+
+C:\Users\jsun\Documents\django>cd env\bookmarks_env\Scripts
+#Activate the virtual env : bookmarks_env
+C:\Users\jsun\Documents\django\env\bookmarks_env\Scripts>activate
+---------------------------------------------------------------------------------------
+(bookmarks_env) C:\Users\jsun\Documents\django\env\bookmarks_env\Scripts>
+
+#2. Install Django in your virtual environment with the following command:
+(bookmarks_env) C:\Users\jsun\Documents\django>pip install Django==1.8.5
+---------------------------------------------------------------------------------------
+Collecting Django==1.8.5
+  Using cached Django-1.8.5-py2.py3-none-any.whl
+Installing collected packages: Django
+Successfully installed Django-1.8.5
+
+#3.create a new project:
+(bookmarks_env) C:\Users\jsun\Documents\django>django-admin startproject bookmarks
+---------------------------------------------------------------------------------------
+
+#4. create a new application named account:
+(bookmarks_env) C:\Users\jsun\Documents\django\bookmarks>django-admin startapp account
+---------------------------------------------------------------------------------------
+
+#5.Remember to activate the new application in your project by adding it to the INSTALLED_APPS
+#setting in the settings.py file. Place it in the INSTALLED_APPS list before any of the other installed apps:
+INSTALLED_APPS = (
+'account',
+---------------------------------------------------------------------------------------
+# ...)
+#6.Run the next command to sync the database with the models of the default
+#applications included in the INSTALLED_APPS setting:
+(bookmarks_env) C:\Users\jsun\Documents\django\bookmarks>python manage.py migrate
+---------------------------------------------------------------------------------------
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: contenttypes, auth, admin, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+  Installing custom SQL...
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying sessions.0001_initial... OK
+
+#7 Creating a log-in view
+We will start by using the Django authentication framework to allow users to log in into our website.
+ Our view should perform the following actions to log in a user:
+ Get the username and password
+ by posting a form.
+ Authenticate the user against the data stored in the database.
+ Check if the user is active.
+ Log the user into the website and start an authenticated session.
+ First, we are going to create a log in form. Create a new forms.py file into your account
+ application directory and add the following lines to it:
+ from django import forms
+ class LoginForm(forms.Form):
+ username = forms.CharField()
+ password = forms.CharField(widget=forms.PasswordInput)
+
+ #7.1 Edit the views.py file of your account application and add the following code to it:
+ #7.2 Now, you need to create an URL pattern for this view.
+ Create a new urls.py file into your account application directory and
+ add the following code to it:
+ #7.3
+ Edit the main urls.py file located in your bookmarks project directory and include the URL
+ patterns of the account application as follows:
+ from django.conf.urls import include,url
+ from django.contrib import admin
+ urlpatterns = [    url(r'^admin/', include(admin.site.urls)),
+ url(r'^account/', include('account.urls')),]
+
+ #7.4 create html files for login
+ The log in view can now be accessed by a URL. It is time to create a template for this view.
+ Since you don't have any templates for this project, you can start by creating a base template
+ that can be extended by the log in template. Create the following files and directories
+ inside the account application directory:
+
+ #7.5 There are no users in your database yet. You will need to create a superuser first
+ in order to be able to access the administration site to manage other users.
+ Open the command line and execute python manage.py createsuperuser.
+-----------------------------------------------------------------------------------------
+ (bookmarks_env) C:\Users\jsun\Documents\django\bookmarks>python manage.py createsuperuser
+
+ Username (leave blank to use 'jsun'): admin
+Email address: sunusd@yahoo.com
+Password:
+Password (again):
+Superuser created successfully.
+
+#7.6 Using Django authentication views
+Django includes several forms and views in the authentication framework that you can use straightaway.
+The login view you have created is a good exercise to understand the process of user authentication
+in Django. However, you can use the default Django authentication views in most cases.
+#7.7 Log in and log out views
+Edit the urls.py of your account application and make it look like this:
+
+#8.1 Building a custom authentication backend
+#9.1 Adding social authentication to your site
+You might also want to add social authentication to your site using services
+such as Facebook, Twitter, or Google. Python-social-auth is a Python module
+that simplifies the process of adding social authentication to your website.
+By using this module, you can let your users log in to your website using
+their account of other services. You can find the code of this module
+at https://github.com/omab/python-social-auth.
+#9.2 This module comes with authentication backends for different Python frameworks, including Django.
+To install the package via pip, open the console and run the following command:
+pip install python-social-auth==0.2.12
+#9.3 Then add social.apps.django_app.default to the INSTALLED_APPS setting in the settings.py file of your
+project:
+INSTALLED_APPS = (
+#...
+'social.apps.django_app.default',)
+#9.4 run the following command to sync python-social-auth models with your database:
+(bookmarks_env) C:\Users\jsun\Documents\django\bookmarks>python manage.py migrate
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: default, contenttypes, admin, sessions, auth
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+  Installing custom SQL...
+Running migrations:
+  Rendering model states... DONE
+  Applying default.0001_initial... OK
+  Applying default.0002_add_related_name... OK
+  Applying default.0003_alter_email_max_length... OK
+#9.5 You need to add social login URL patterns to your project.
+Open the main urls.py file of the bookmarks project
+and add the following URL pattern to it:
+#9.6
+In order to make social authentication work, you will need a hostname,
+because several services will not allow redirecting to 127.0.0.1
+or localhost. In order to fix this, under Linux or Mac OS X,
+edit your /etc/hosts file and add the following line to it:127.0.0.1 mysite.com
+This will tell your computer to point the mysite.com hostname to your own machine.
+If you are using Windows, your hosts file is located at C:\Winwows\System32\Drivers\etc\hosts.
+#9.7 Authentication using Facebook
+#10.1 User registration and user profiles
+User registrationLet's create a simple view to allow user registration in our
+website. Initially, we have to create a form to let the user enter a username,
+their real name, and a password. Edit the forms.py file located inside the
+account application directory and add the following code to it:
+#django debug toolbar
+pip install django-debug-toolbar

@@ -1,0 +1,201 @@
+# cnt lines
+find . -name \*.py | xargs wc -l
+
+ls -R # list items from sub-directory
+
+nmap:10.0.2.15
+awk, sed,
+ps aux
+/usr/share?/usr/local  #software installed path
+
+service name start/restart
+
+#compare two files 
+cmp
+
+ifconfig eth0 192.168.1.12 netmask 255.255.255.0 broadcast 192.168.1.255
+
+netstat -a   #network info ,
+netsta  -s
+
+nslookup     # DNS info
+dig          # query DNS server, replacing nslookup
+
+free # memory usage
+
+mysqldump -u root -ptecmint rsyslog > rsyslog.sql  # database backup
+
+crontab -e 
+0 3 * * * /root/backup.sh  # run backup.sh at specified time
+
+ip address
+
+apt --version
+apt 1.6.8 (amd64)
+
+ssh root@192.168.4.62 rm -fr /root/Documents/test_d
+scp -r test_d/ root@192.168.4.62:/root/Documents
+
+
+ssqa@ssqa:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 18.04.3 LTS
+Release:        18.04
+Codename:       bionic
+ssqa@ssqa:~$ uname -a
+Linux ssqa 5.0.0-32-generic #34~18.04.2-Ubuntu SMP Thu Oct 10 10:36:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+
+sudo apt-get install build-essential checkinstall
+sudo apt-get install build-essential
+sudo wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
+sudo tar xzf Python-3.7.2.tgz
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+sudo apt install -y python3-pip
+
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 1
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
+litepoint@litepoint-Latitude-E6440:~$ sudo update-alternatives --config python3
+There are 2 choices for the alternative python3 (providing /usr/bin/python3).
+
+  Selection    Path                Priority   Status
+------------------------------------------------------------
+* 0            /usr/bin/python3.6   1         auto mode
+  1            /usr/bin/python3.6   1         manual mode
+  2            /usr/bin/python3.7   1         manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 2
+
+sudo apt install python3-venv
+
+python3 -m venv env
+$ source env/bin/activate
+
+# -p, make nested directories
+mkdir -p /just/one/dir
+mkdir -p -- a/foo b/bar a/baz
+
+# cp test1_dir test2_dir 
+# if test2_dir exists, test1_dir and its content copied.
+# if test2_dir does not exist, only content of rest1_dir is copied.
+
+cp test1_dir/* test2_dir  # make sure test2_dir exists
+
+#search files/directory, return all  files or dirs that match
+ find <paht> -name <l*>
+
+# grep: Searches files for a specified string or expression
+-i , ignore word cases
+-r , search recursively
+-w , word only
+-v not matching
+grep -w boo will ignor fooboo, boohoo
+
+-c count times that pattern found
+
+-l list files containing 'main'
+grep -l 'main' *.py
+
+grep -w -c , combined with wc
+grep -w "pattern" -c file
+
+##
+grep keyword filename
+-i : ignore case
+ssqa@ssqa:~/Documents/sys_cmd$ grep -c migration top_log.txt
+8
+ssqa@ssqa:~/Documents/sys_cmd$ grep -wc migration top_log.txt
+8
+ssqa@ssqa:~/Documents/sys_cmd$ grep -w migration top_log.txt
+   11 root      rt   0       0      0      0 S   0.0  0.0   0:01.90 migration/0
+   17 root      rt   0       0      0      0 S   0.0  0.0   0:01.53 migration/1
+   23 root      rt   0       0      0      0 S   0.0  0.0   0:01.66 migration/2
+   29 root      rt   0       0      0      0 S   0.0  0.0   0:02.20 migration/3
+   11 root      rt   0       0      0      0 S   0.0  0.0   0:01.90 migration/0
+   17 root      rt   0       0      0      0 S   0.0  0.0   0:01.53 migration/1
+   23 root      rt   0       0      0      0 S   0.0  0.0   0:01.66 migration/2
+   29 root      rt   0       0      0      0 S   0.0  0.0   0:02.20 migration/3
+
+   
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ grep -c "git init" git_note.txt
+4
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ grep -n "git init" git_note.txt
+3:git init
+297:$ git init
+353:$ git init
+457:$ git init
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ ls -l | grep git_note.txt
+-rw-r--r-- 1 jsun 1049089 51557 Apr 29 13:41 git_note.txt
+
+#
+$ ls -l | grep ^-
+-rw-r--r-- 1 jsun 1049089 51557 Apr 29 13:41 git_note.txt
+-rw-r--r-- 1 jsun 1049089  4073 Apr 25 17:18 log_test.py
+-rw-r--r-- 1 jsun 1049089   496 Mar 22 18:59 log_test1.py
+-rw-r--r-- 1 jsun 1049089  1355 Mar 22 16:59 log_test4.py
+-rw-r--r-- 1 jsun 1049089 20922 Apr 25 17:18 proc_data_1.py
+-rw-r--r-- 1 jsun 1049089  1287 Feb  5  2017 PYTHON_DEFAULT.md
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ ls -l | grep ^d
+drwxr-xr-x 1 jsun 1049089     0 Apr 25 17:40 Automation_scripts/
+drwxr-xr-x 1 jsun 1049089     0 Feb  7 16:55 cls/
+drwxr-xr-x 1 jsun 1049089     0 Mar 16 18:56 concur_log/
+drwxr-xr-x 1 jsun 1049089     0 Feb 26 17:02 example_log/
+drwxr-xr-x 1 jsun 1049089     0 Apr  4 21:51 file_op/
+drwxr-xr-x 1 jsun 1049089     0 Mar 14  2018 FlowGen/
+drwxr-xr-x 1 jsun 1049089     0 Feb 25 14:09 Jenkins_scripts/
+drwxr-xr-x 1 jsun 1049089     0 Mar 22 18:55 libs/
+drwxr-xr-x 1 jsun 1049089     0 Apr 25 18:04 log_parse/
+drwxr-xr-x 1 jsun 1049089     0 Feb 25 13:56 Log_parser/
+drwxr-xr-x 1 jsun 1049089     0 Mar  4 16:56 mul_process/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 py_auto/
+drwxr-xr-x 1 jsun 1049089     0 Mar  5 15:29 py_dataStruc/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 py_netwk/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 py_network_cpy/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 py_network_cpy_1/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 py_network_cpy_2/
+drwxr-xr-x 1 jsun 1049089     0 Apr 17 14:04 Py_QA/
+drwxr-xr-x 1 jsun 1049089     0 Apr  4 22:24 Pytest_log/
+drwxr-xr-x 1 jsun 1049089     0 Feb 17  2018 python script/
+drwxr-xr-x 1 jsun 1049089     0 Apr 19  2018 QA_cls_auto1/
+drwxr-xr-x 1 jsun 1049089     0 Feb  6 14:37 rex/
+drwxr-xr-x 1 jsun 1049089     0 Feb 25 13:57 share-master/
+drwxr-xr-x 1 jsun 1049089     0 Mar 23 20:32 Slen/
+drwxr-xr-x 1 jsun 1049089     0 Mar 12 16:30 venv/
+drwxr-xr-x 1 jsun 1049089     0 Mar 20 21:52 venv_3.7.2/
+drwxr-xr-x 1 jsun 1049089     0 Mar 22 11:17 web_log/
+
+jsun@jsun-mbpw10 MINGW64 ~/Documents/Py_projects (master)
+$ ls -l | grep "Mar 2"
+drwxr-xr-x 1 jsun 1049089     0 Mar 22 18:55 libs/
+-rw-r--r-- 1 jsun 1049089   496 Mar 22 18:59 log_test1.py
+-rw-r--r-- 1 jsun 1049089  1355 Mar 22 16:59 log_test4.py
+drwxr-xr-x 1 jsun 1049089     0 Mar 23 20:32 Slen/
+drwxr-xr-x 1 jsun 1049089     0 Mar 20 21:52 venv_3.7.2/
+drwxr-xr-x 1 jsun 1049089     0 Mar 22 11:17 web_log/
+
+# check installed python versions
+apt list --installed | grep python
+
+#Create virtual environment
+sudo apt install -y python3-venv
+python3 -m venv sample_environment
+
+ssqa@ssqa:~/Documents/Docker_AWS$ python3 -m venv docker_3.6.8
+ssqa@ssqa:~/Documents/Docker_AWS$ source docker_3.6.8/bin/activate
+# deactivate
+(docker_3.6.8) ssqa@ssqa:~/Documents/Docker_AWS$ deactivate
+
+## display a directory
+tree -a dir1
+## display dirctory only
+tree -d #
+tree -f # display whole path
+tree -s # display size of files/folders
