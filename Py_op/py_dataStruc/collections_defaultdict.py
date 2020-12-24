@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 
 dic = defaultdict(set)
 dic1 = defaultdict(list)

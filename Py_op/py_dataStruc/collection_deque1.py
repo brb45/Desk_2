@@ -1,5 +1,6 @@
 # 12/12/20
 # 12/14/20
+# 12/21/20
 from collections import deque
 
 dq = deque()
@@ -66,7 +67,31 @@ dq.appendleft(99)
 print(dq)
 # deque([99, 'e', 'f', 'g'], maxlen=4)
 
+from collections import deque as dq
+d = dq(maxlen=4)
+print(d)
+# deque([], maxlen=4)
+
+d.insert(0, 1)
+d.insert(0, 2)
+d.insert(1,3)
+d.insert(2,4)
+print(d)
+# deque([2, 3, 4, 1], maxlen=4)
 
 
+# d.insert(3,5)
+# print(d)
+# insert gives an error, if maxlen is reached.
+# IndexError: deque already at its maximum size
+# deque([], maxlen=4)
+
+d.append(100)
+print(d)
+# deque([3, 4, 1, 100], maxlen=4)
+
+d.appendleft(99)
+print(d)
+# deque([99, 3, 4, 1], maxlen=4)
 
 
