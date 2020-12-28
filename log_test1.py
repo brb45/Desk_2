@@ -1,30 +1,52 @@
-def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
-    # 12:37 11/30/20
-    # 4:00 12/1/20
+def findNumberOfLIS(nums):
+    # 10:43 --> 11:00 -->  11;16  9/1/20 Num of longest increasing subsequence
 
-    cur = dummy = ListNode()
-    cur.next = head
+    dp = [[1, 1] for i in range(len(nums))]
+    max_for_all = 0
+    maxlen = 0
+    for i, num in enumerate(nums):
+        max_len, count = 1, 0
+        for j in range(i):
+            if nums[j] < num:
+                if dp[j][0] + 1 > max_len:
+                    max_len = dp[j][0] + 1
+                    count = 0
+                if dp[j][0] + 1 == max_len:
+                    count += dp[j][1]
+        dp[i] = [max_len, max(count, dp[i][1])]
 
-    cnt = 0
+        if max_for_all == dp[i][0]:
+            maxlen += dp[i][1]
+        if max_for_all < dp[i][0]:
+            max_for_all = dp[i][0]
+            maxlen = dp[i][1]
+    return maxlen
 
-    while cur.next:
-        cnt += 1
+nums = [2,2,2,2,2]
 
-        if cnt < m:
-            cur = cur.next
+print(findNumberOfLIS(nums))
 
-        elif m <= cnt <= n:
-            if cnt == m:
-                left_tail = cur
-                right_tail = cur.next
-                tail = None
-            node_next = cur.next.next
-            cur.next.next = tail
-            tail = cur.next
-            cur.next = node_next
-            if cnt == n:
-                cur.next = tail
-                right_tail.next = node_next
-                break
-
-    return dummy.next
+# def findNumberOfLIS(self, nums: List[int]) -> int:
+#     # 10:43 --> 11:00 -->  11;16  9/1/20 Num of longest increasing subsequence
+#
+#     dp = [[1, 1] for i in range(len(nums))]
+#     max_for_all = 1
+#     cnt_max = 1
+#     for i, num in enumerate(nums):
+#         # max_len, count = 1, 0
+#         for j in range(i):
+#             if nums[j] < num:
+#                 new_len = dp[j][0] + 1
+#                 if new_len > dp[i][0]:
+#                     dp[i][0] = new_len
+#                     dp[i][1] = dp[j][1]
+#                 elif new_len == dp[i][0]:
+#                     dp[i][1] += 1
+#
+#             if dp[i][0] > max_for_all:
+#                 max_for_all = dp[i][0]
+#                 cnt_max = dp[i][1]
+#             elif dp[i][0] == max_for_all:
+#                 cnt_max += 1
+#
+#     return cnt_max

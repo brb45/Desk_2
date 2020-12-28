@@ -36,6 +36,10 @@ import copy
 ##list.pop(index) -- removes and returns the element at the given index.
 #list.pop() -- remove the last element, and return the element being removed
 
+a = list(10)
+# TypeError: 'int' object is not iterable
+
+
 from functools import cmp_to_key
 nums = [28, 50, 17, 12, 121]
 
