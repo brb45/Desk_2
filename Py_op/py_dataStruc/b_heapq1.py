@@ -35,3 +35,17 @@ print(type(b_list)) # <class 'list'>
 print(nums) # [2, 5, 3, 1000, 6, 8, 7]
 a_list = heapq.nlargest(3, nums)
 print(a_list) # [1000, 8, 7]
+
+print("ex 2")
+brr = []
+to_insert = [(1,'b'), (1,'c'), (1,'d'), (1,'a'), (2,'a')]
+for val in to_insert:
+    heapq.heappush(brr, val)
+while brr:
+    print(heapq.heappop(brr))
+# (1, 'a')
+# (1, 'b')
+# (1, 'c')
+# (1, 'd')
+# (2, 'a')
+

@@ -1,11 +1,23 @@
 from selenium import webdriver
 import time
 
-url = ""
 options = webdriver.ChromeOptions()
 options.add_argument('ignore-certificate-errors')
 options.add_argument('--allow-insecure-localhost')
 driver = webdriver.Chrome(options=options)
+
+
+
+
+# options = webdriver.ChromeOptions()
+# options.add_argument('ignore-certificate-errors')
+#
+# driver = webdriver.Chrome(chrome_options=options)
+# driver.get('https://cacert.org/')
+#
+# driver.close()
+
+url = ""
 # driver = webdriver.Chrome()
 
 url = "https://rahulshettyacademy.com/angularpractice/"
