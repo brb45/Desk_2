@@ -1,25 +1,16 @@
-def deleteNodes(self, head: ListNode, m: int, n: int) -> ListNode:
+def nextLargerNodes(self, head, G) -> List[int]:
 
-        start = head
-        while True:
-            cnt = m
-            while head and cnt > 1:
-                head = head.next
-                cnt -= 1
-
-            if not head:
-                break
-            cnt = n
-            tail = head
-            while tail and cnt > 0:
-                tail = tail.next
-                cnt -= 1
-
-            if not tail or not tail.next:
-                head.next = None
-                break
-            head.next = tail.next
-            head = head.next
-        return start
-
+    cnt = 0
+    flag = 0
+    while head and head.next:
+        if head.val in G and head.next.val in G:
+            if flag == 0:
+                cnt += 2
+                flag = 1
+            else:
+                cnt += 1
+        else:
+            flag = 0
+        head = head.next
+    return cnt
 

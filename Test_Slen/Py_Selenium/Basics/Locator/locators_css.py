@@ -48,7 +48,7 @@ time.sleep(2)
 # <input type="text" id="fistname" name="first_name" class="myForm">
 # The generic way to locate elements by attribute is:
 #
-# css = element_name[<attribute_name> = '<value>']
+# css = "element_name[<attribute_name> = '<value>']"
 # Example:
 #
 # WebElement firstName = driver.findElement(By.cssSelector("input[name='first_name']"));
@@ -76,16 +76,17 @@ time.sleep(2)
 ##2.1
 # For example if the below is the html for a sign button
 #
-# <button class="submit btn primary-btn flex-table-btn js-submit" type="submit" style="background-color: rgb(85, 172, 238);">
-#  Log in
-#  </button>
-
+"""
+<button class="submit btn primary-btn flex-table-btn js-submit" type="submit" style="background-color: rgb(85, 172, 238);">
+ Log in
+</button>
+"""
 # In the above html there are multiple classes used for the single button.
 # How to work in such a situation????
 # Below are the examples to work with classes.
 # If you observe, we have combined multiple classes to work.
 # As the class is not unique like ID, we may require to join two classes and find the accurate element.
-#
+
 # The CSS class selector matches elements based on the contents of their class attribute.
 # In the below exampleprimary-btn is class attribute value.
 #
