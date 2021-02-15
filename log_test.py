@@ -1,3 +1,7 @@
+my_header = {'Authorization': 'bearer token_seq'}
+import requests
+
+rst = requests.get('https://httpbin.org/headers', headers=my_header)
 class Solution:
     def insertionSortList(self, head: ListNode) -> ListNode:
         slow = fast = head
