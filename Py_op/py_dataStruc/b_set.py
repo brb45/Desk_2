@@ -27,6 +27,7 @@ old_set.update([7,8,9])
 # print(old_set) # {1, 2, 3, 7, 8, 9, 10}
 
 old_set.update([11,12], {20,21}) #{1, 2, 3, 7, 8, 9, 10, 11, 12, 20, 21}
+old_set.update([100, 20], [44,233], [0,9,8])
 
 # old_set.update(100) TypeError: 'int' object is not iterable
 # print(old_set)

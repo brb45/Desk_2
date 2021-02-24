@@ -21,7 +21,7 @@ import shutil
 # self.file = open('biaobai.json', 'w', encoding="utf-8")
 # self.file.write(content)
 
-
+# read one line at a time (with open) file_handle
 with open("x.txt") as f:
     for line in f:
         do something with data
@@ -45,18 +45,39 @@ with open(fname) as fin:
 
 print(lines)
 
-# eac line includes "\n"
+# each line includes "\n"
 # ['from shutil import copyfile, copy2 # copytree\n', 'import os\n', 'import shutil\n', '\n', '# with open(file, "r") as fin:\n',
 
-## 2. readlines()
+## 2. readlines() vs readlines(num_of_chars)
 fname = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\\file_rw.py"
 
 with open(fname) as fin:
     # readlines() load the whole file into memory, and return a list of strings (lines)
+    # readlines(n): n: # of chars; read a list of lines up to a total of n chars
     lines = fin.readlines()
 
 print(lines)
 # ['from shutil import copyfile, copy2 # copytree\n', 'import os\n', 'import shutil\n', '\n', '# with open(file, "r") as fin:\n',
+
+fname = "C:\\Users\jsun\Documents\Desk_2\Py_op\File_op\\file_rw.py"
+
+res = []
+with open(fname, 'r', encoding='utf-8') as fin:
+    num_chars = 100
+    rest = fin.readlines(num_chars)
+    # read in lines upto num_chars
+
+    print(rest)
+# ['from shutil import copyfile, copy2 # copytree\n', 'import os\n', 'import shutil\n', '\n', '# with open(file, "r") as fin:\n']fname = "C:\\Users\jsun\Documents\Desk_2\Py_op\File_op\\file_rw.py"
+#
+res = []
+with open(fname, 'r', encoding='utf-8') as fin:
+    num_chars = 100
+    rest = fin.readlines(num_chars)
+    # read in lines upto num_chars
+
+    print(rest)
+# # ['from shutil import copyfile, copy2 # copytree\n', 'import os\n', 'import shutil\n', '\n', '# with open(file, "r") as fin:\n']
 
 ## 3.
 def readInChunks(fileObj, chunkSize=2048):
@@ -117,7 +138,7 @@ with open(res,"w") as output:
 
 
 newfile = r"newfile.txt"
-with open(infile, "r") as input:
+with open(newfile, "r") as input:
     with open(newfile, "w") as output:
         a = input.readlines()
         # readlines(): read the whole file into a list of strings, each line corresponds to one line.
@@ -131,9 +152,10 @@ with open(infile, "r") as input:
 #___________________________________________________________________________
 #___________________________________________________________________________
 # 7. ("a") mode
-infile = r"logging_test.txt"
-append_file = r"app_file.txt"
+infile = r"outfile.txt"
+append_file = r"outfile_2_17_21_2.txt.txt"
 
+# in 'append' mode, if file doesn't exist, it will create one just like file write
 with open(append_file,'a') as output:
     with open(infile, 'r') as input:
         for line in input:

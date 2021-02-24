@@ -3,27 +3,30 @@ import copy
 # reverse() vs reversed()
 # sort() vs sorted()
 # nums.reverse()
-# strs1_st = sorted(strs1, key=len)
-# sorted(strs, key=str.lower)  # ['aa', 'BB', 'CC', 'zz']
-# (sorted(strs, key=str.upper))
 
 # Not working
 # word = sorted(word, key=(len), key=str.lower)
 # word = sorted(word, key=(len,str.lower))
 
 # working
-# s_sorted = sorted(s_arr, key=lambda x: (len(x), x.lower()))
+# s_sorted = sorted(s_arr, key= lambda x: (len(x), x.lower()))
 # s_sorted = sorted(s_arr, key = len)
 # s_sorted = sorted(s_arr, key = str.lower)
+# (sorted(strs, key=str.upper)
+
 #ADD
-#list.append(elem) -- adds a single element to the end of the list.does not return the new list, just modifies the original.
+#list.append(elem) -- adds a single element to the end of the list.
+# does not return the new list, just modifies the original.
+
+# list += [elem] same as list.append(elem)
+
 #list.insert(index, elem) -- inserts the element at the given index, shifting elements to the right.
 #list.extend(list2)--list2 must be a list or iterable; adds the elements in list2 to the end of the list.
-#Using + or += on a list is similar to using extend().
+
 
 #search
 #list.index(elem) -- searches the given element and returns its index.
-#list.index(elem,start_pos)
+#list.index(elem,start_pos, end_pos)
 #Throws a ValueError if the element does not appear (use "in" to check without a ValueError).
 #i = somelist.index(x) if x in somelist else None
 
@@ -32,46 +35,45 @@ import copy
 #list.reverse() -- reverses the list in place (does not return it)
 
 ##
-#list.remove(elem) -- searches for the first instance of the given element and removes it (throws ValueError
+#list.remove(elem) -- searches for the first instance of the given element and removes it (throws ValueError)
 ##list.pop(index) -- removes and returns the element at the given index.
 #list.pop() -- remove the last element, and return the element being removed
+# del list[index]
 
 a = list(10)
 # TypeError: 'int' object is not iterable
 
-
+# -----------------------------------------------------------------------------
 from functools import cmp_to_key
 nums = [28, 50, 17, 12, 121]
 
-nums.sort(key=cmp_to_key(lambda x, y: 1 if x < y else -1)) # Descending
+nums.sort(key=cmp_to_key(lambda x, y: -1 if x > y else 1)) # Descending
 print(nums)
 # [121, 50, 28, 17, 12]
 nums.sort(key=cmp_to_key(lambda x, y: -1 if x < y else 1)) # increasing
 print(nums)
 # [12, 17, 28, 50, 121]
+
+
 # 1.
 # list slicing returns a list or empty list
 word = ["Abd",'abc','aBc','abC',"ABCD",'ABCDE','ac']
 
-print(word[0:0])  # []
-print(word[4:-1:-1]) # []
-print(word[0:1])  # ["Abd"]
-# print(word[:2])    ['Abd', 'abc']
+print(word[0:0])      # []
+print(word[4:-1:-1])  # []
+print(word[0:1])      # ["Abd"]
+print(word[:2])       # ['Abd', 'abc']
+print(word[4:])       # ['ABCD', 'ABCDE', 'ac']
+print(word[4:-1])     # ['ABCD', 'ABCDE'])
 
-# print(word[4:])    ['ABCD', 'ABCDE', 'ac']
-
-# print(word[4:-1])  ['ABCD', 'ABCDE']
-a = [1,2 ,3]
+a = [1,2,3]
 b = a[::]
 c = a[:]
 b[0] = 100
 
-print(a)
-print(b)
-print(c)
-# [1, 2, 3]
-# [100, 2, 3]
-# [1, 2, 3]
+print(a)    # [1, 2, 3]
+print(b)    # [100, 2, 3]
+print(c)    # [1, 2, 3]
 
 # 2.
 a = [1,2,3,4,5,6]
@@ -79,7 +81,6 @@ print(a[: 4]) # [1, 2, 3, 4]
 # same as
 print(a[0:4]) # [1, 2, 3, 4]
 
-print(a[1:]) # [2, 3, 4, 5, 6]
 print(a[1:]) # [2, 3, 4, 5, 6]
 print(a[1:-1:2]) # [2, 4]
 
@@ -97,17 +98,27 @@ ss = sum(squares) # 30
 ss = sum(*squares) # Error
 # TypeError: sum expected at most 2 arguments, got 4
 
+# sum(iterable, int)  at most two arguments
+squares = [1, 4, 9, 16]
+print(sum(squares))         #   30
+print(sum(squares, 1000))   #   1030
+
 ## 4.
 a_tuple = ([1,2],3)
-print(type(a_tuple), a_tuple)
+print(type(a_tuple), a_tuple) # <class 'tuple'> ([1, 2], 3)
+
+a_tuple[0].append(100)
+print(a_tuple) #    ([1, 2, 100], 3)
 
 # a_set = {[1,2],3}  TypeError: unhashable type: 'list'
 # print(type(a_set), a_set)
 
 ## 5. List Sorting with lambda
 s_arr = ['ab', 'abc', 'Cba', 'ddf', 'Dh', 'Ag']
+
 s_sorted = sorted(s_arr, key=lambda x: (len(x), x.lower()))
 # print(s_sorted)  ['ab', 'Ag', 'Dh', 'abc', 'Cba', 'ddf']
+
 ss_sorted = sorted(s_arr, key=len)
 # print(ss_sorted) ['ab', 'Dh', 'Ag', 'abc', 'Cba', 'ddf']
 sss_sorted = sorted(s_arr, key=str.lower)
@@ -122,27 +133,32 @@ for letter in cnt_dict.items():  # letter is of type tuple
     cnt_list.append(letter)
 
 cnt_order_list = sorted(cnt_list, key=lambda x: (x[1],x[0]), reverse=True)
-print(type(letter))
+# reverse=True apply to both x[1] and x[0]
+print(type(letter))                     # < class 'tuple' >
 print(f"cnt_list is {cnt_list}")
-print(f"cnt_order_list is {cnt_order_list}")
-print()
-# < class 'tuple' >
 # cnt_list is [('a', 4), ('b', 8), ('c', 10), ('d', 4),
 #              ('e', 10), ('f', 5), ('h', 5), ('g', 5)]
+print(f"cnt_order_list is {cnt_order_list}")
 # cnt_order_list is [('e', 10), ('c', 10), ('b', 8), ('h', 5),
 #                    ('g', 5), ('f', 5), ('d', 4), ('a', 4)]
+print()
 
-## 5.3
-wd_cnt_lst = [('a', 10), ('b', 5), ('a', 5), ('a', 7), ('c', 15)]
-# print(sorted(wd_cnt_lst))
-# [('a', 5), ('a', 7), ('a', 10), ('b', 5), ('c', 15)]
+## 5.2
+wd_cnt_lst = [('a', 10), ('b', 5), ('a', 5), ('a', 7), ('c', 15), ('b', 3), ('c', 12)]
 
-print(sorted(wd_cnt_lst, key= lambda x: x[1]))
-# [('b', 5), ('a', 5), ('a', 7), ('a', 10), ('c', 15)]
+print(sorted(wd_cnt_lst))
+# [('a', 5), ('a', 7), ('a', 10), ('b', 3), ('b', 5), ('c', 12), ('c', 15)]
 
-print(sorted(wd_cnt_lst, key= lambda x: x[0], reverse=True))
-# [('c', 15), ('b', 5), ('a', 10), ('a', 5), ('a', 7)]
+print(sorted(wd_cnt_lst, key=lambda x: x[0]))
+# [('a', 10), ('a', 5), ('a', 7), ('b', 5), ('b', 3), ('c', 15), ('c', 12)]
 
+print(sorted(wd_cnt_lst, key=lambda x: x[1]))
+# [('b', 3), ('b', 5), ('a', 5), ('a', 7), ('a', 10), ('c', 12), ('c', 15)]
+
+print(sorted(wd_cnt_lst, key=lambda x: x[0], reverse=True))
+# [('c', 15), ('c', 12), ('b', 5), ('b', 3), ('a', 10), ('a', 5), ('a', 7)]
+
+##5.3
 str_lst = [("abc", 4),  ("cd", 4), ("avdk", 10),
            ("ab", 5), ("helf", 12), ("aaaa", 8)]
 print(sorted(str_lst, key=lambda x: (len(x[0]))))
@@ -158,16 +174,17 @@ str_list = ["abc", "aaa", "def", "ab", "ba", "cd", "fhef", "kdfj", "efgh"]
 
 # print(sorted(str_list, key=len))
 # ['ab', 'ba', 'cd', 'abc', 'aaa', 'def', 'fhef', 'kdfj', 'efgh']
-print(sorted(str_list, key=(len, lambda x: x[0]))) # TypeError: 'tuple' object is not callable
 
 # print(sorted(str_list, key=lambda x: (len(x))))
 # ['ab', 'ba', 'cd', 'abc', 'aaa', 'def', 'fhef', 'kdfj', 'efgh']
+
+print(sorted(str_list, key=(len, lambda x: x[0]))) # TypeError: 'tuple' object is not callable
 
 print(sorted(str_list, key=lambda x: (len(x), x)))
 ['ab', 'ba', 'cd', 'aaa', 'abc', 'def', 'efgh', 'fhef', 'kdfj']
 
 str1_list = ["abc", "Aaa", "def", "ab", "Ba", "cd", "fhef", "Kdfj", "efgh"]
-# print(sorted(str1_list, key=len))
+print(sorted(str1_list, key=len))
 # ['ab', 'Ba', 'cd', 'abc', 'Aaa', 'def', 'fhef', 'Kdfj', 'efgh']
 print(sorted(str1_list, key=str.lower))
 # ['Aaa', 'ab', 'abc', 'Ba', 'cd', 'def', 'efgh', 'fhef', 'Kdfj']
@@ -179,7 +196,7 @@ print(sorted(str1_list, key=lambda x: [len(x), x.lower()]))
 
 ## 6. _________________________________________
 p = [10,3,0,5,3]
-sp = [2,10,1,1,3]
+sp = [2,10,1,1,3,100, 99]
 p_s = list(zip(p,sp))
 print(p_s)
 # [(10, 2), (3, 10), (0, 1), (5, 1), (3, 3)]
@@ -187,7 +204,7 @@ print(p_s)
 # convert list of tuple to dict
 p_s1 = dict(p_s)  # {10: 2, 3: 3, 0: 1, 5: 1}
 
-#@@ 6.1
+#@@ 6
 a = [1,2]
 v = 3
 print(a + [v])#[1, 2, 3]
@@ -204,6 +221,11 @@ print(maxh) #[0, 0, 0, 0, 0]
 #4.
 arr = [0]*5
 print(arr) #[0, 0, 0, 0, 0]
+
+arr = [1,2,3]
+arr_copy = arr*4
+print(arr_copy)
+# [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]
 
 #@@ 9.
 #range(start, stop, step), is iterable, but not iterator
@@ -243,7 +265,10 @@ rs = []
 rs = [[8]+ [4] for r in range(5)]
 #[[8, 4], [8, 4], [8, 4], [8, 4], [8, 4]]
 
+#@@ 11.1
 result = [[]]
+print(len(result))  # 1
+print(len(result[0])) # 0
 
 #@@ 12.
 a = (n*n for n in range(5))
@@ -276,6 +301,7 @@ print(type(my_tuple))#tuple
 tuple = (1, 2, 'hi')  # (1, 2, 'hi')
 len(tuple)  # 3
 tuple[2]  # hi
+
 # tuple[2] = 'bye'  # NO, tuples cannot be changed
 
 #@@ 15
@@ -405,24 +431,6 @@ print(len(mm), len(mm[0]))  # 5 0
 
 #@@ 26
 #
-arr = [(100,'wifi',5),(34,'opt',88), (34,'opt', 45),(99, 'ac', 'ka')]
-print(arr)
-arr.sort()
-print(arr)
-print(sorted(arr))
-# [(100, 'wifi', 5), (34, 'opt', 88), (34, 'opt', 45), (99, 'ac', 'ka')]
-# [(34, 'opt', 45), (34, 'opt', 88), (99, 'ac', 'ka'), (100, 'wifi', 5)]
-# [(34, 'opt', 45), (34, 'opt', 88), (99, 'ac', 'ka'), (100, 'wifi', 5)]
-
-t = [(100,100,100),(200,200,0),(100,100,0),(200,200,200),(0,255,0)]
-t1 = sorted(t, key = lambda x: (x[0], x[1], x[2]))
-print("t1 ", t1)
-import operator
-t.sort(key = operator.itemgetter(0, 1, 2))
-print("t ", t)
-
-# t1  [(0, 255, 0), (100, 100, 0), (100, 100, 100), (200, 200, 0), (200, 200, 200)]
-# t  [(0, 255, 0), (100, 100, 0), (100, 100, 100), (200, 200, 0), (200, 200, 200)]
 
 #@@ 27
 ltr_str = "abcd"
@@ -452,14 +460,28 @@ list(50)
 
 
 ## passing a list _________________________________________________________________________________________
+wd = " "
+res = wd.split(" ")
+print(type(res), res)
+# <class 'list'>
+# ['', '']
+
+res = wd.split()
+print(type(res), res)
+# <class 'list'>
+# []
+
 str = "  this is  a good book  "
 str_list_1 = str.split(" ") #   ['', '', 'this', 'is', '', 'a', 'good', 'book', '', '']
 str_list_2 = str.split()     #  ['this', 'is', 'a', 'good', 'book']
+
+
 ## 4.
 # arr is a list
 # func(arr): pass arr as an argument, it is like pass a reference arr, any changes to arr in func, will actually change arr.
 # func(arr[1:5]): complete different!. arr[1:5] is a new list, which is a shallow copy of arr's 2nd through 6th elements
 ##
+arr = [[1, 2, 3], [4, 5, 6], 10]
 # new_list_1 is shallow copy of arr, Not completely independent of new_list
 new_list_1 = arr[1:3]
 # new_list_2 is an extension of shallow copy of arr
@@ -508,6 +530,7 @@ listCpy = num_lt[:3]
 listShallowCpy(listCpy)
 # num_lt   is [3,   [11, 11, 11], [333, 22, 22], 2, 1]
 # listCpy  is [30,  111,          [333, 22, 22]]
+
 #@@ 1.1 list passed as an argument
 arr = [[100,200],2,3,4,5]
 
@@ -521,17 +544,46 @@ print(f"arr is {arr}") # arr is [[20000, 200], 2, 3, 4, 5]
 change_list(arr)  #  arr is  arr, not  a shallow copy of arr
 print(f"arr is {arr}") # arr is [[20000, 200], 999, 3, 4, 5]
 
-#@@ 1.1  list passed to a function
-s = [1,2,3]
-def change_to_list(s):
-    s[0] = 100
-    return s
+#-----------------------------------------------------------------------------------------
+# python list
 
-change_to_list(s) # pass s as reference will change s
-print(s)  # [100, 2, 3]
+# Slicing?
+a = []
+len_a = len(a)
+print(f"len a is {len_a}")
+b = 1
 
-no_change = change_to_list(s[0:2]) # pass a new list which is a shallow copy of partial s[0:2].
-print(f"no change is {no_change}")
-print(f's is not changed {s}')
-# no change is [100, 2]
-# s is not changed [1, 2, 3]
+a += [b]
+print(a)
+
+a.append(10)
+print(a)
+
+a.insert(1,5) # insert at loc=1
+print(a)
+
+# search
+res = a.index(5)
+print(res)
+res = a.index(10,1)
+print(res)
+
+# sort
+a.sort(reverse=True)
+print(a)
+
+#
+a[1:2] = [3, 9, 6]
+print(a)
+
+#
+a.pop()
+print(a)
+a.remove(10)
+print(a)
+del a[1]
+print(a)
+
+#
+print(type(a[:-1]))
+print(a[:-1])
