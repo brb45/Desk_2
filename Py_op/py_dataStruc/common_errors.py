@@ -8,6 +8,16 @@ b = list(s)
 # ['1', '2', '3']
 
 # c = s.split('') # ValueError: empty separator
+#
+s = '123'
+a = s.split()
+
+print(a) # ['123']
+
+b = list(a)
+c = ''.join(b)
+print(b) # ['123']
+print(c, type(c)) # 123 <class 'str'>
 
 # 1.1
 s = " \n\nabc  dd  d\n\n "
@@ -89,12 +99,25 @@ mod(res)
 
 #
 res = []
+print(id(res)) # 23479760
 def mod(res):
+    print(id(res)) # 23479760
     res += [1, 2, 3]
+    print(id(res)) # 23479760
 
 mod(res)
 print(res)  # [1, 2, 3]
 
+#
+res = []
+print(id(res)) # 17253840
+def mod(res):
+    print(id(res)) # 17253840
+    res = [1, 2, 3]
+    print(id(res)) # 17255000
+
+mod(res)
+print(res)  # []
 #
 res = []
 def mod(res):

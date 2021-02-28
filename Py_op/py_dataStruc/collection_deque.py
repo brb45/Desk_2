@@ -1,4 +1,5 @@
 # 12/12/20
+# 2/23/21
 from collections import deque
 
 # 1. input : iterable or empty deque
@@ -49,14 +50,38 @@ loc_d = dq.index('d', 0)
 print(loc_d) # 8
 
 #
-insert(i, x)
-# Insert x into the deque at position i.
-# If the insertion would cause a bounded deque to grow beyond maxlen, an IndexError is raise
+from collections import deque
+dq = deque([1,2,3,4,5])
+dq_cpy = dq.copy()
+print(dq_cpy)
+dq_deepCopy = copy.deepcopy(dq)
+print(dq_deepCopy)
+# deque([1, 2, 3, 4, 5])
+# deque([1, 2, 3, 4, 5])
+
+for i in range(len(dq)):
+    print(dq[i], end=', ')
+print()
 
 #
-remove(value)
+# insert(i, x)
+# Insert x into the deque at position i.
+# If the insertion would cause a bounded deque to grow beyond maxlen, an IndexError is raise
+dq.insert(1,100)
+for i in range(len(dq)):
+    print(dq[i], end=', ')
+# 1, 100, 2, 3, 4, 5,
+print()
+#
+# remove(value)
 # Remove the first occurrence of value. If not found, raises a ValueError.
 #
+dq.remove(100)
+for i in range(len(dq)):
+    print(dq[i], end=', ')
+# 1, 2, 3, 4, 5,
+print()
+
 # del dq[index]
 del dq[1]
 print(dq)

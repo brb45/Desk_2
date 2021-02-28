@@ -1,5 +1,21 @@
 from collections import defaultdict, deque
 
+
+# x = defaultdict(lambda: defaultdict(dict))
+xx = defaultdict(lambda: list)
+xxx = defaultdict(list)
+xxxx = defaultdict(dict)
+yy   = defaultdict(set)
+zz   = defaultdict(deque)
+print(xx[0]) # <class 'list'>
+print(xxx[0]) # []
+print(xxxx[0]) # {}
+print(yy[0]) # set()
+print(zz[0]) # deque([])
+
+
+
+
 dic3 = defaultdict(lambda: defaultdict(list))
 
 s = "avcdladjlajfdlajadlsjfdalf"
@@ -78,6 +94,9 @@ print(cnt['a']) # [1, 100]
 # # set_a = {100,200,300}
 # # print(dic)
 # # print(set_a)
+{'a': 100, 'b': 200, 'c': 300}
+{200, 100, 300}
+
 #
 # y = defaultdict(lambda: defaultdict(lambda: 0))
 # # print(y['k1']['k2'] )  # 0

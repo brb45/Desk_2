@@ -20,6 +20,25 @@ print(len(b)) # 0
 cnt_d = Counter("")
 print(cnt_d[""])  # 0
 
+from collections import Counter
+
+s = ['a','b','c','c','b','a','d']
+s = 'abccbad'
+cnt = Counter(s)
+
+
+res = cnt.elements()
+print(type(res)) # <class 'itertools.chain'>
+print(list(res)) # ['a', 'a', 'b', 'b', 'c', 'c', 'd']
+
+res = cnt.most_common()
+print(type(res)) # <class 'list'>
+print(res) # [('a', 2), ('b', 2), ('c', 2), ('d', 1)]
+
+res = cnt.most_common(2)
+print(res) # [('a', 2), ('b', 2)]
+
+
 # 2. elements() --> returns an iterable
 a = Counter({'d': 2, 'b': 1, "c": 3, 'a': 3})
 # print(type(a)) <class 'collections.Counter'>

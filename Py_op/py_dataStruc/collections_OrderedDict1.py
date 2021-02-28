@@ -29,7 +29,7 @@ for key in dic:
     # c
     # h
 
-move_to_end(key, last=True)
+# move_to_end(key, last=True)
 # Move an existing key to either end of an ordered dictionary.
 # The item is moved to the right end if last is true (the default) or to the beginning
 # if last is false. Raises KeyError if the key does not exist:

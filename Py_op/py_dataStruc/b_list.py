@@ -13,6 +13,37 @@ import copy
 # s_sorted = sorted(s_arr, key = len)
 # s_sorted = sorted(s_arr, key = str.lower)
 # (sorted(strs, key=str.upper)
+arr = [0,0,1,2,4,8, -1,-2,-4,-8]
+
+nums = sorted(arr, key=abs)
+print(nums) # [0, 0, 1, -1, 2, -2, 4, -4, 8, -8]
+
+arr = [0,0,1,2,4,8, -1,-2,-4,-8]
+
+s = 'abcd'
+arr.extend(s)
+
+print(arr) #[0, 0, 1, 2, 4, 8, -1, -2, -4, -8, 'a', 'b', 'c', 'd']
+
+import copy
+dic = {'a': 0, 'b': 1}
+dic_copy = dic.copy()
+print(dic_copy)
+dic_deepCopy = copy.deepcopy(dic)
+print(dic_deepCopy)
+# {'a': 0, 'b': 1}
+# {'a': 0, 'b': 1}
+
+from collections import deque
+dq = deque([1,2,3,4,5])
+dq_cpy = dq.copy()
+print(dq_cpy)
+dq_deepCopy = copy.deepcopy(dq)
+print(dq_deepCopy)
+# deque([1, 2, 3, 4, 5])
+# deque([1, 2, 3, 4, 5])
+
+
 
 #ADD
 #list.append(elem) -- adds a single element to the end of the list.

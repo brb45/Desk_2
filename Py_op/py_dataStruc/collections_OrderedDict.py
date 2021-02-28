@@ -14,3 +14,33 @@ for key in dic:
     # d
     # e
     # c
+
+dic['g'] =100
+dic['a'] = 200
+
+print(str(dic))
+# OrderedDict([('d', 50), ('e', 30), ('c', 40), ('g', 100), ('a', 200)])
+
+###
+from collections import OrderedDict
+
+dic = OrderedDict([('a', 1), ('h', 2), ('b', 3), ('f', 100)])
+
+print(dic)
+# OrderedDict([('a', 1), ('h', 2), ('b', 3), ('f', 100)])
+
+dic.popitem()
+# OrderedDict([('a', 1), ('h', 2), ('b', 3)])
+print(dic)
+
+a = dic.popitem(last=False)
+# OrderedDict([('h', 2), ('b', 3)])
+print(dic)
+
+
+print(type(a))
+# <class 'tuple'>
+print(a)
+# ('a', 1)
+
+###

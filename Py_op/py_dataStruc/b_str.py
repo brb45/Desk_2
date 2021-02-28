@@ -12,6 +12,7 @@ a = 'ab'
 # print(chr(97))  # a
 
 #@@ 1.1
+# Do Not support string math
 a = 'a'
 b = 'A'
 # c = a - b
@@ -66,6 +67,7 @@ raw = r'this\t\n and that'
 myString = '1234567890'
 # print(myString[::-1]) #0987654321
 
+#------------------------------------------
 ## 4.1
 # s is a string
 s.isalpha()
@@ -77,6 +79,7 @@ s.isspace()
 s.islower()
 s.isupper()
 s.isdecimal()
+
 # ignore non-alphabetic chars
 # s.lower()
 # s.upper()
@@ -94,7 +97,7 @@ str_word = "this is # of day"
 # print(str_word.islower())  True
 # print(str_word.upper())    THIS IS # OF DAY
 
-#@@ 5.
+#@@ 5. count
 s.count(substr, start, end)
 # Does not count overlapping substrings.
 cnt_count='foooo'
@@ -103,7 +106,7 @@ cnt_count.count('oo') # 2
 cnt_count.count('o', 1) # 4
 cnt_count.count('a')  # 0
 
-## 6.
+## 6. find vs rfind
 s.find(substr, start, end)
     # search substr in range[start_pos, end_pos), excluding end_pos
     # returns the first index where it begins or -1 if not found
@@ -120,7 +123,10 @@ s.startswith('other')
 s.endswith('other')
 # -- tests if the string starts or ends with the given other string
 
+##--------------------------------------------------------------
 #@@ 7. strip() return a string
+# strip(chars): remove all chars cumulatively from front and back
+# strip(): remove all the white space from front and back
 s.lstrip(chars)
 s = "   foo goo   "
 # Trims leading chars
@@ -148,6 +154,7 @@ s = "abc abc "
 ss = s.strip('a b c')
 print([ss]) # ['']
 
+##--------------------------------------------------------##
 #@@ 8.
 # s.split(sep=None, maxsplit=-1) # return a list
 #  -- returns a list of substrings separated by the delimiter.
@@ -171,6 +178,10 @@ print(ltr_list)  # ['abcd']
 word = "\nthis is first page\nthis is 2nd page\nthis is third page\n"
 word.split("\n") #['', 'this is first page', 'this is 2nd page', 'this is third page', '']
 word.splitlines()#['', 'this is first page', 'this is 2nd page', 'this is third page']
+
+word = "\nthis is first page\n\nthis is 2nd page\n\nthis is third page\n"
+wd = word.split("\n")       # ['', 'this is first page', '', 'this is 2nd page', '', 'this is third page', '']
+wd_1 = word.splitlines()    # ['', 'this is first page', '', 'this is 2nd page', '', 'this is third page']
 
 word1 = "    1  2  3  "
 word1.split()  # ['1', '2', '3']
@@ -210,6 +221,7 @@ s = ss.split('a')
 #
 #@@ 7.
 # s.partition(< sep > )
+# Return a tuple
 
 # s.partition( < sep > ) splits s at the first occurrence of string < sep > .
 # The return value is a three-part tuple consisting of:
@@ -227,11 +239,15 @@ s = ss.split('a')
 print("j#k".partition("u"))
 # ('j#k', '', '')
 
+word = 'foo.bar.candy'
+wd = word.partition('.') # ('foo', '.', 'bar.candy')
+
 #@@  8.
 # #_______________________________________________________________
 # s.join( < iterable > )
 # iterable must ba an iterable of strings
-# Concatenates strings from an iterable, returns a string
+# Concatenates strings from an iterable,
+# returns a string
 #
 # #joins a list of strings with s
 '---'.join(['aaa', 'bbb', 'ccc'])
@@ -251,19 +267,23 @@ w1 = "---".join({'a','c','b'})
 w1 = "---".join({'a'})
 print(w1) # 'a'
 
+ss = '---'.join(['aaa'])
+print(ss) # aaa
 #@@  9.
 
 # ____________________________________________________________________
 # s.replace(old, new, count)
-# count – the number of times you want to replace the old substring with the new substring. (Optional )
-
 #  -- returns a string where all occurrences of 'old' have been replaced by 'new'
+
+# count – the number of times you want to replace the old substring with the new substring. (Optional )
 # if "old" is not found, no replacement happens
 
-
-#  -- returns a string with whitespace at the start and end removed.
-# ____________________________________________________________________
-
+s = "  abc dkd "
+old = " "
+new = 'A'
+count = 10
+res = s.replace(old, new, count)
+print(res)  #   AAabcAdkdA
 
 # #_______________________________________________________________
 # s[1:4] #is 'ell' #-- chars starting at index 1 and extending up to but not including index 4
