@@ -23,13 +23,14 @@ print("type is ", type(name))
 # type is  <class 'selenium.webdriver.remote.webelement.WebElement'>
 print("name is ",  name)
 # name is  <selenium.webdriver.remote.webelement.WebElement
-# (session="94fa27fad67123e5ae7c85c929ef9b4e", element="02ed17af-de1a-416d-913c-b10ada98077b")>
+# (session="d16dcdec694409714467ee18b2c19520", element="b966ddb8-2791-4bde-ae8b-c523de40f68e")>
 
 email = driver.find_element_by_name("email")
 email.send_keys('ssqa@litepoint.com')
 print("email is ", email)
 # email is  <selenium.webdriver.remote.webelement.WebElement
-# (session="8857d3be73a46388386244b14b30e8e7", element="fd4c8122-59a0-4757-a197-f74c6907bfb5")>
+# (session="d16dcdec694409714467ee18b2c19520", element="5b24dc0a-4984-4308-87b1-cebbcdad90da")>
+
 id = driver.find_element_by_id("exampleCheck1")
 id.click()
 

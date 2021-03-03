@@ -25,10 +25,13 @@ url = 'https://yahoo.com'
 
 #2.
 driver = webdriver.Chrome()
-url = "https://rahulshettyacademy.com/angularpractice/"
+url = "http://rahulshettyacademy.com/angularpractice/"
 driver.get(url)
 
 print(driver.title)
 print(driver.current_url)
 # assert "ProtoCommerce" == driver.title
 # assert url == driver.current_url
+
+
+
