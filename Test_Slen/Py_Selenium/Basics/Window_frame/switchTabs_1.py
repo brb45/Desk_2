@@ -18,6 +18,7 @@ tab.click()
 
 new_tab = driver.switch_to.window(driver.window_handles[1])
 print(driver.current_url)
+time.sleep(2)
 driver.close()
 # https://www.rahulshettyacademy.com/#/index
 
@@ -25,8 +26,9 @@ driver.close()
 driver.switch_to.window(driver.window_handles[0])
 print(driver.current_url)
 # https://rahulshettyacademy.com/AutomationPractice/
+time.sleep(2)
 
-
+# driver.quit()
 
 
 

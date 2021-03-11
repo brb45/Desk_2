@@ -13,6 +13,19 @@ import copy
 # s_sorted = sorted(s_arr, key = len)
 # s_sorted = sorted(s_arr, key = str.lower)
 # (sorted(strs, key=str.upper)
+
+n = 5
+
+
+dp1 = [[1, 1] for i in range(n)]
+dp = [[1, 1]] * n  # [max_len, cnt]
+
+dp1[0][0] = 100
+dp[0][0] = 100
+print(dp1) # [[100, 1], [1, 1], [1, 1], [1, 1], [1, 1]]
+print(dp) # [[100, 1], [100, 1], [100, 1], [100, 1], [100, 1]]
+
+#-----------------------------------------
 arr = [0,0,1,2,4,8, -1,-2,-4,-8]
 
 nums = sorted(arr, key=abs)

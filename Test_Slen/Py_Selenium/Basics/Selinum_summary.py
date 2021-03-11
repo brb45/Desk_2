@@ -25,13 +25,6 @@ xpath_custom = "//*[contains(@class, 'alert-success')]"
 # <a href="/" class="secondary button fiftyfifty mb16">Cancel</a>
 driver.find_element_by_xpath("//a[text()='Cancel']").click()
 
-
-
-
-
-
-
-
 ##1. wait
 # implicitly_wait vs explicit_wait
 
@@ -41,22 +34,46 @@ driver.find_element_by_xpath("//a[text()='Cancel']").click()
 
 ## 4.
 # Best Practices For Using Locators In Selenium WebDriver
-# Keeping in mind which locator to choose is as important as ensuring you know all the locators. Certain best practices and rules have been laid down to ensure you make efficient use of locators in Selenium WebDriver. Listing few below:
+# Keeping in mind which locator to choose is as important as ensuring you know all the locators.
+# Certain best practices and rules have been laid down to ensure you make efficient use of locators in Selenium WebDriver.
+# Listing few below:
 #
-# Do not locate elements that depends on information which may change as they may make your locators easy to break and less maintainable.
-# This is one of the key rules that one needs to keep in mind while writing better automation code using locators in Selenium WebDriver. If locator is dependent on a single entity like for instance class, name, id etc which if changed may need to be repaired but in case of complex locators like By.XPath(“//div[@class=”class-form_6180″]/div[5]/h3”), it may lead to frequent breakage if any of the div’s changes or the class name etc. Try to make your locators in Selenium WebDriver precise and dependent on single entity than multiple. Only in case you do not have any option left, move to complex locators, but make sure the dependent elements have less likelihood of changing.
+# Do not locate elements that depends on information which may change as they may make your locators
+# easy to break and less maintainable.
+# This is one of the key rules that one needs to keep in mind while writing better automation code
+# using locators in Selenium WebDriver. If locator is dependent on a single entity like for instance class, name, id etc which if changed may need to be repaired but in case of complex locators like By.XPath(“//div[@class=”class-form_6180″]/div[5]/h3”), it may lead to frequent breakage if any of the div’s changes or the class name etc. Try to make your locators in Selenium WebDriver precise and dependent on single entity than multiple. Only in case you do not have any option left, move to complex locators, but make sure the dependent elements have less likelihood of changing.
 #
-# Ensure your locator In Selenium matches only the required information to be selected and not multiple other information present along with it.
-# This is contextual and depends upon your scenario. In case you wish to locate single element ensure it matches uniquely to only one element. It should never be the case, where there are multiple elements identified via locator and you opt to choose for the second or third selection. This can be a point of your script breakage, since if the page design changes or the assumed count on which the selected element appears changes, your locator will tend to break. So always make sure, your locator locates the exact match.
-# Secondly, if you are trying to look out for multiple matches (using ‘findElements’), ensure it matches all the desired elements you are looking out for.
-#
+# Ensure your locator In Selenium matches only the required information to be selected and
+# not multiple other information present along with it.
+# This is contextual and depends upon your scenario. In case you wish to locate single element,
+# ensure it matches uniquely to only one element. It should never be the case, where there are multiple elements
+# identified via locator and you opt to choose for the second or third selection. This can be a point of
+# your script breakage, since if the page design changes or the assumed count on which the selected element appears changes,
+# your locator will tend to break. So always make sure, your locator locates the exact match.
+
+# Secondly, if you are trying to look out for multiple matches (using ‘findElements’),
+# ensure it matches all the desired elements you are looking out for.
+
 # While using locators in Selenium, do not locate elements that depend on auto-generated values.
 # When new to this business this is something we get into. Usually ID’s are auto generated and while locating them and using them in scripts could be problematic. Every time the script or page containing those ID’s are run they tend to change and make your scripts fail. The easiest solution to figure out whether they are auto generated or not is watching them through minimum 2 runs and identifying them through the prefix/post fixed number associated with it. In case they are changed or incremented, you can conclude those are auto generated and you look out for other ways to locate those elements.
-#
+
+
+
 # While choosing locators of Selenium, do not use XPath or CSS Selector provided by the Dev Tools.
-# Yes, you read that right! Copying xpath or css selector from developer tools is something we believe is the easiest task to do, but believe me these are one of the problems that appears in the longer run, causing problems in the stability and readability of your scripts. Your browser providing you these values does not look out for meaningful XPath or CSS locators and give you complex ones, with multiple dependent factors, which I mentioned above may lead to frequent breakages. So even though this may look tempting and easier to do activity try refraining yourself from it.
-#
-# These are some of the factors one should keep in mind while writing locators in Selenium WebDriver. The technique or strategy you use to locate elements can be any but make sure the above rules are fulfilled which helps to make your script easy to maintain and read. These locators in Selenium are the building blocks of your script, make sure they are correct and your road ahead on it is smoother and more focused towards other aspects of the functionality of your project as you automate them.
+# Yes, you read that right! Copying xpath or css selector from developer tools is something
+# we believe is the easiest task to do, but believe me these are one of the problems
+# that appears in the longer run, causing problems in the stability and readability of your scripts.
+# Your browser providing you these values does not look out for meaningful XPath
+# or CSS locators and give you complex ones, with multiple dependent factors,
+# which I mentioned above may lead to frequent breakages.
+# So even though this may look tempting and easier to do activity try refraining yourself from it.
+
+# These are some of the factors one should keep in mind while writing locators in Selenium WebDriver.
+# The technique or strategy you use to locate elements can be any but make sure the above rules
+# are fulfilled which helps to make your script easy to maintain and read.
+# These locators in Selenium are the building blocks of your script,
+# make sure they are correct and your road ahead on it is smoother and more focused towards other
+# aspects of the functionality of your project as you automate them.
 
 
 ## 5. DOM vs HTML

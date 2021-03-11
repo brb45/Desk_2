@@ -6,30 +6,27 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support       import expected_conditions as EC
 
-# https://rahulshettyacademy.com/seleniumPractise/#/
-# //div[@class='product-action']/button/parent::div/parent::div
-#
-#explicit wait:
-#
-# Not global, only apply for target execution
+# Significance of Iframe in HTML :
+# The iframe in HTML stands for Inline Frame.
+# The ” iframe ” tag defines a rectangular region within the document
+# in which the browser can display a separate document, including scrollbars and borders.
 
-# HTML Inline Frame element (<iframe>)
+# iframe lets you embed an independent HTML document with its browsing context
+
+# An inline frame is used to embed another document within the current HTML document.
+# The ‘ src ‘ attribute is used to specify the URL of the document that occupies the iframe.
+#
+# Syntax :
+#
+# <iframe src="URL"></iframe>
 
 driver = webdriver.Chrome()
-# driver = webdriver.Firefox()
-# url = "https://rahulshettyacademy.com/angularpractice/"
-# url = "https://www.makemytrip.com/"
-# url = "https://rahulshettyacademy.com/AutomationPractice/"
-# driver.implicitly_wait(1000)
-# url ="https://rahulshettyacademy.com/seleniumPractise/"
 
 url = "https://the-internet.herokuapp.com/iframe"
 driver.get(url)
-# driver.maximize_window()
+
 # <h3>An iFrame containing the TinyMCE WYSIWYG Editor</h3>
 print(driver.find_element_by_tag_name("h3").text)
-
-
 
 # <iframe id="mce_0_ifr"
 # src="javascript:&quot;&quot;"

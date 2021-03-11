@@ -73,7 +73,6 @@ driver.find_element_by_css_selector(".promoBtn").click()
 # EC.url_contains
 
 # EC.visibility_of_any_elements_located
-# EC.visibility_of_any_elements_located
 # EC.visibility_of_all_elements_located
 
 # EC.alert_is_present
@@ -101,7 +100,7 @@ time.sleep(3)
 #
 # wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(“//div[contains(text(),’COMPOSE’)]”)));
 #
-# So what do you thing ,For how much time driver will wait for element ?
+# So what do you think ,For how much time driver will wait for element ?
 # Answer : 15 second :) People will say its wrong answer
 # Why?
 #

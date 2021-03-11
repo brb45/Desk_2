@@ -1,17 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+
 import time
-
-# locator actions
-# send_keys("content"),
-# click(),
-# text,
-# clear()
-
-# driver actions
-# driver.title
-# driver.get()
-# driver.current_url
-
 
 driver = webdriver.Chrome()
 # driver = webdriver.Firefox()
@@ -41,32 +31,30 @@ login = "#Login"
 driver.find_element_by_css_selector(login).click()
 time.sleep(2)
 
+driver.find_element(By.XPATH)
 #--------------------------------------
 # CSS Selectors by Attribute
 # Let’s imagine we have a tag with the following attributes [id, class, name, value]
-#
+
 # <input type="text" id="fistname" name="first_name" class="myForm">
 # The generic way to locate elements by attribute is:
 #
-# css = "element_name[<attribute_name> = '<value>']"
-# Example:
-#
-# WebElement firstName = driver.findElement(By.cssSelector("input[name='first_name']"));
-
+# css = "tag_name[<attribute_name> = '<value>']"
+driver.find_element(By.CSS_SELECTOR, "input[id='first_name']")
 ## 1. Id Attribute
 # In CSS, we can use # notation to select the id attribute of an element:
-#
-# driver.findElement(By.cssSelector("input#firstname"));
+driver.find_element(By.CSS_SELECTOR, "input#first_name")
+
 # //or
-# driver.findElement(By.cssSelector("#firstname"));
+driver.find_element(By.CSS_SELECTOR, "#first_name")
 
 ## 2. Class Attribute
 # Class is not unique as ID.
 # dot(.) refers to class
 # The same principle can be used to locate elements by their class attribute.
 # We use the . notation.
-# driver.findElement(By.cssSelector("input.myForm"));
-#
+driver.findElement(By.cssSelector("input.myForm"))
+
 # //or
 #
 # driver.findElement(By.cssSelector(".myForm"));
@@ -154,9 +142,6 @@ time.sleep(2)
 
 # driver.findElement(By.cssSelector("ul#fruit li:last-child"));
 
-
-
-
 ##---------------------------------------------------
 # In this example, all the three div elements contain the word ‘random’.
 #
@@ -176,20 +161,10 @@ time.sleep(2)
 
 ## 8. Attribute Contains
 # To select the last div element we would use *= which means ‘sub-string’
-#
 # driver.findElement(By.cssSelector("div[id*='_pattern_']"));
 # We can also use the contains
-#
 # driver.findElement(By.cssSelector("div:contains('_pattern_')"));
 #---------------------------------------
-
-
-
-
-
-
-
-
 
 #@@ locator: link_text
 # <a id="forgot_password_link" class="fl small" href="/secur/forgotpassword.jsp?locale=us">Forgot Your Password?</a>

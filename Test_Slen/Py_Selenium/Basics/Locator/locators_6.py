@@ -1,44 +1,46 @@
 from selenium import webdriver
 import time
-from selenium.webdriver.support.select import Select
-#
-# radio button
 
-# locator actions
-# send_keys("content"), click(), text,clear()
+# Hide / Show message
 driver = webdriver.Chrome()
-# driver = webdriver.Firefox()
-# url = "https://rahulshettyacademy.com/angularpractice/"
-# url = "https://www.makemytrip.com/"
-url = "https://rahulshettyacademy.com/AutomationPractice/"
+url = "https://rahulshettyacademy.com/AutomationPractice"
 driver.get(url)
-print(driver.title)
-print(driver.current_url)
-# driver.maximize_window()
-time.sleep(2)
-# @@ 3. radio
-# <input value="radio1" name="radioButton" class="radioButton" type="radio">
-xpath_sel = "//input[@type='radio']"
-radio_button = driver.find_elements_by_xpath(xpath_sel)
 
-for button in radio_button:
-    if button.get_attribute('value') =='radio2':
-        button.click()
-        assert button.is_selected()
-        print(True)
+# <input id="displayed-text" name="show-hide" class="inputs displayed-class" placeholder="Hide/Show Example" type="text">
+assert driver.find_element_by_id('displayed-text').is_displayed()
 
-time.sleep(2)
-radio_button_3 = "//input[@value='radio3']"
-driver.find_element_by_xpath(radio_button_3).click()
+driver.find_element_by_id('hide-textbox').click()
+
+assert not driver.find_element_by_id('displayed-text').is_displayed()
+
+# <input id="show-textbox" class="btn-style class2" value="Show" onclick="showElement()" type="submit">
+driver.find_element_by_css_selector('#show-textbox').click()
+time.sleep(1)
 
 
+# <input id="alertbtn" class="btn-style" value="Alert" onclick="displayAlert()" type="submit">
+alert_button = "//input[@value='Alert']"
+alert_xpath  = driver.find_element(By.XPATH, alert_button)
+if alert_xpath.is_displayed():
+    print('alert_button is present')
+# alert_button is present
+
+# alert_xpath.is_enabled()
+# alert_xpath.is_selected()
+# alert_xpath.is_displayed()
+
+displayed_box = driver.find_element_by_id('displayed-text')
+message = "Message shown"
+if displayed_box.is_displayed():
+    displayed_box.send_keys(message)
+if displayed_box.get_attribute('value') == message:
+    print(f"{message} is displayed")
+# Message shown is displayed
 
 
 
 
-
-time.sleep(2)
-driver.close()
+# driver.close()
 
 
 

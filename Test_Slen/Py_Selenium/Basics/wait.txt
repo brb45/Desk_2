@@ -1,5 +1,6 @@
 Condition for Explicit wait in selenium webdriver
-Condition 1- I have a web page which has some login form and after login,
+
+#1- I have a web page which has some login form and after login,
 it takes a lot of time to load Account page or Home page. This page is dynamic
 it means sometimes it takes 10 seconds to load the homepage, sometimes its 15 second and so on.
 In this situation, the Explicit wait can help us
@@ -7,14 +8,12 @@ which will wait until specific page/page title is not present it will keep waiti
 
 
 
-Condition 2- You are working on travel application and you have filled the web form
+#2- You are working on travel application and you have filled the web form
 and clicked on submit button. Now you have to wait until complete data is not loaded
 or specific data is not loaded. In this case, again we can use Explicit wait
 in which we can give wait till specific or set of elements are not loaded.
 
-
-
-Condition 3- There are some elements on a web page which are hidden and it will be displayed
+#3- There are some elements on a web page which are hidden and it will be displayed
 only when specific conditions get true, so we have to wait until these elements are not visible.
 In this case, again explicit wait will help in which we can specify wait
 till the element or elements are not visible.
@@ -26,4 +25,4 @@ as to account for that five second load time, it may fail because the next inter
 
 The general advice from the Selenium community on how to handle this is to use explicit waits.
 While you could also use implicit waits, an implicit wait only waits for the appearance of certain
-elements on the page, while an explicit wait can be set to wait for broader conditions
+elements on the page, while an explicit wait can be set to wait for broader conditions.

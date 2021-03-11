@@ -3,12 +3,11 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 # setup options for headless
-options = Options()
+options = webdriver.ChromeOptions()
 options.add_argument("--headless")
-# options.add_argument("--window-size=1920x1080")
+options.add_argument("--window-size=1920x1080")
 
-# driver = webdriver.Chrome(options=options)
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 # driver = webdriver.Firefox()
 url = "https://login.yahoo.com/?.intl=us&.lang=en-US&src=ym&done=https%3A%2F%2Fmail.yahoo.com%2Fd&add=1"
 driver.get(url)
@@ -16,7 +15,7 @@ time.sleep(1)
 
 def log_in_yahoo_mail():
     user = "pice.bong@yahoo.com"
-    passwd = "aA12345!"
+    passwd = "HenryF99!"
     # <input class="phone-no " type="text" name="username" id="login-username" tabindex="1"
     # value="" autocomplete="username" autocapitalize="none" autocorrect="off" autofocus="true" placeholder=" ">
     driver.find_element_by_css_selector("#login-username").send_keys(user)
@@ -53,7 +52,7 @@ def log_in_yahoo_mail():
 
 log_in_yahoo_mail()
 driver.get_screenshot_as_file("chrome_headless.png")
-
+print("DONE")
 driver.close()
 
 
