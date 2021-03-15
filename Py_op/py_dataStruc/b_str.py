@@ -86,6 +86,15 @@ s.isdecimal()
 # s.islower()
 # s.isupper():
 
+##
+# count
+# strip, split, find, rfind,
+# partition,
+# startswith, endswith,
+# join
+
+##
+
 # -- returns the lowercase or uppercase version of the whole string
 st = "Hope You Find It"
 stt = st.lower() # convert the whole string to lower case
@@ -264,7 +273,7 @@ w1 = "---".join({'a','c','b'})
 # print(w1)
 # w1 is random: a---c---b, or a---b---c, c---a---b ...
 
-w1 = "---".join({'a'})
+w1 = "---".join(['a'])
 print(w1) # 'a'
 
 ss = '---'.join(['aaa'])
@@ -282,8 +291,17 @@ s = "  abc dkd "
 old = " "
 new = 'A'
 count = 10
-res = s.replace(old, new, count)
-print(res)  #   AAabcAdkdA
+ss = s.replace(old, new, count)
+print(ss) # AAabcAdkdA
+
+t = s.replace(old, new, 2)
+print(t) # AAabc dkd
+
+a = "a b a c a ad a d"
+aa = a.replace('a', "A")
+print(aa)
+# A b A c A Ad A d
+
 
 # #_______________________________________________________________
 # s[1:4] #is 'ell' #-- chars starting at index 1 and extending up to but not including index 4

@@ -14,7 +14,8 @@ print(yy[0]) # set()
 print(zz[0]) # deque([])
 
 
-
+# dic3 = defaultdict(defaultdict(list))
+# TypeError: first argument must be callable or None
 
 dic3 = defaultdict(lambda: defaultdict(list))
 
@@ -69,6 +70,16 @@ print(cnt['a']) # a
 # print(cnt['a']) # [1, 100]
 #
 
+from functools import cmp_to_key
+
+arr = [1,3 ,7,9, 3,5]
+
+arr.sort(key= cmp_to_key(lambda x, y: -1 if x < y else 1))  # ascending
+
+print(arr) # [1, 3, 3, 5, 7, 9]
+
+arr.sort(key = cmp_to_key(lambda x, y: -1 if x > y else 1)) # Descending
+print(arr) # [9, 7, 5, 3, 3, 1]
 
 # from functools import cmp_to_key
 # nums = [28, 50, 17, 12, 121]

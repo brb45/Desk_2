@@ -42,6 +42,7 @@ top_val = heapq.heappop(nums)
 print(top_val)  # 1
 print(nums)     # [2, 5, 3, 1000, 6, 8, 7]
 
+
 # len
 print(len(nums))  # 7
 if nums:
@@ -49,9 +50,10 @@ if nums:
     # type of nums is <class 'list'>
 
 #
-b_list = heapq.nsmallest(3, nums)
+b_list = heapq.nsmallest(3, nums) # return a list
 print(b_list) # [2, 3, 5]
 print(type(b_list)) # <class 'list'>
+
 
 print(nums) # [2, 5, 3, 1000, 6, 8, 7]
 a_list = heapq.nlargest(3, nums)
@@ -70,6 +72,9 @@ sequence3 = [6, 8, 10]
 
 # Merge the sequences
 merged = heapq.merge(sequence1, sequence2, sequence3)
+# heapq.heappush(merged, 1000)
+# TypeError: heap argument must be a list
+
 # Print the merged sequences
 print(f"type of merged is {type(merged)}")
 # type of merged is <class 'generator'>

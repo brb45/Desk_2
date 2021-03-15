@@ -32,6 +32,7 @@ with open(filename, 'r') as f:
     objects = ijson.items(f, 'meta.view.columns.item')
     columns = list(objects)
 
+#__________________________________________________________________________________________
 ## 1. # load one line to memory at a time; slow, but not loading a big file into memory
 fname = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\\file_rd_wr.py"
 
