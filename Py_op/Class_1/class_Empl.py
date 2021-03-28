@@ -10,10 +10,16 @@ class Employee:
         print("First Name is", self.first_name)
         print("Last Name is ", self.last_name)
         print("ID is ", self.user_id)
-        print("Salary is ", self.get_salary())
+        print("Salary is ", self.emp_salary)
         
-    def get_salary(self):
+
+    @property
+    def emp_salary(self):
         return self.__salary
+
+    @emp_salary.setter
+    def emp_salary(self, s):
+        self.__salary = s
 
     def __str__(self):
         return self.last_name + ', ' +  self.first_name
@@ -22,9 +28,10 @@ class Employee:
 def main():
     test_engineer = Employee("Jack", "Wallace", "747612", 10000)
     test_engineer.show_employee()
-    my_salary = test_engineer.get_salary()
-    print("the salary is called by get_salary ", my_salary)
     print(test_engineer)
+
+    test_engineer.emp_salary = 2000
+    print(test_engineer.emp_salary)
 
 
 if __name__ == "__main__":
@@ -34,5 +41,5 @@ if __name__ == "__main__":
 # Last Name is  Wallace
 # ID is  747612
 # Salary is  10000
-# the salary is called by get_salary  10000
 # Wallace, Jack
+# 2000

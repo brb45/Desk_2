@@ -102,6 +102,7 @@ class Dog(DomesticMammal):
     def talk(self):
         self.bark()
 
+    # objects can call classmethod too.
     @classmethod
     def print_breed(cls):
         print(cls._breed)

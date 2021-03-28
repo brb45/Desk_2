@@ -64,3 +64,18 @@ s.num_base_calls)
 # Calling method on Base Class
 # Calling method on Right Subclass
 # Calling method on Subclass
+
+# isinstance() function #
+# The isinstance() function is used to determine whether the object is an instance of the class or not.
+#
+# Syntax: isinstance(object, class_type)
+
+# >>> isinstance(1, int)
+# True
+#
+# >>> isinstance(1.2, int)
+# False
+#
+# >>> isinstance([1,2,3,4], list)
+# True
+# Next chapter Exception Handling.

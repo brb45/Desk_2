@@ -38,7 +38,7 @@ fname = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\\file_rd_wr.py"
 
 lines = []
 with open(fname) as fin:
-    for line in fin:
+    for line in fin: #  read line by line
         # each line is a string, ended with "\n"
         # to remove "\n"
         # line = line.rstrip('\n')
@@ -51,7 +51,7 @@ print(lines)
 
 ## 2. readlines() vs readlines(num_of_chars)
 fname = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\\file_rw.py"
-
+#
 with open(fname) as fin:
     # readlines() load the whole file into memory, and return a list of strings (lines)
     # readlines(n): n: # of chars; read a list of lines up to a total of n chars
@@ -228,6 +228,7 @@ with open("relayTest.json", "r+") as jsonFile:
     data = json.load(jsonFile)
 
     data["location"] = "OldPath"
+    data["location_mod"] = "Path_NEW"
     jsonFile.seek(0)  # rewind
     json.dump(data, jsonFile, indent=4, sort_keys=True)
     jsonFile.truncate() # in case, new data file size is smaller
