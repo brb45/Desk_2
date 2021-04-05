@@ -13,28 +13,10 @@ rows2 = [['11AX',     2422,   'DSSS-1',    'E,M,P',     15.0, (1,0,0,0)],
         [             2484,   ""      ,    "L,H,S",      ""   , ""    ]
     ]
 # name of csv file
-filename = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\CSV\\res_set1.csv"
-# writing to csv file
-with open(filename, 'w') as fout:
+filename = "csv_data3.csv"
+
+with open(filename, "w") as fout:
     csvWriter = csv.writer(fout)
-    # writerow(single_list)
     csvWriter.writerow(fields)
-
-    # writerows(a list of lists)
     csvWriter.writerows(rows1)
-    csvWriter.writerows(rows2)
-
-
-#
-# with open(filename,"r") as fin_in:
-#     csv_reader = csv.reader(fin_in)
-#     for line in csv_reader:
-#         print(line)
-#         #print(type(line))
-#         for wd in line:
-#             if wd == "":
-#                 print('quote', end=" ")
-#             else:
-#                 print(wd, end=" ")
-#         print()
 

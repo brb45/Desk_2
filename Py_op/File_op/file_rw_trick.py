@@ -1,6 +1,7 @@
 ##1. read the last line
 fileName = 'file_rw.py'
 # 1.1 last line
+
 with open(fileName, 'r', encoding='utf-8') as f:
     last_line = f.readlines()[-1]
     print(last_line)

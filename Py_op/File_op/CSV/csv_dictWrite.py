@@ -27,7 +27,7 @@ test_v.append(dict_5)
 # field names
 fields = ['Tech', 'API', 'Freq', 'Data_rate', "RU"]
 # name of csv file
-filename = "C:\\Users\jsun\Documents\Desk_1\Py_op\File_op\CSV\dict_write.csv"
+filename = "dict_write.csv"
 
 with open(filename, "w") as fin:
     # csv_writer = csv.writer(fin)

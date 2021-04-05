@@ -1,2 +1,0 @@
-1. jsonpath vs ijson
-2. Using the Python ijson parser to parse Json file

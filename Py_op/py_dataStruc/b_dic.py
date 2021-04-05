@@ -51,7 +51,26 @@ print("type b is {}".format(b))  # dict_items
 # print("type c is {}".format(c))
 
 #######################################################################
+# dict.get(key, default = None)
+# Parameters
+# key − This is the Key to be searched in the dictionary.
+#
+# default − This is the Value to be returned in case key does not exist.
+#
+# Return Value
+# This method return a value for the given key. If key is not available, then returns default value None.
 
+
+#!/usr/bin/python
+
+dic = {'Name': 'Zabra', 'Age': 7}
+# print "Value : %s" %  dict.get('Age')
+# print "Value : %s" %  dict.get('Education', "Never")
+print(dic.get("Name")) # Zabra
+print(dic.get("gender", "Female")) # Female
+print(dic.get('char')) # None
+
+##
 # size of the dict
 len(test)
 

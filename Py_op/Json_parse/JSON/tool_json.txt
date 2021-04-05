@@ -1,0 +1,6 @@
+1. jsonpath vs ijson
+2. Using the Python ijson parser to parse Json file
+
+https://stackoverflow.com/questions/64270230/using-ijson-parse-and-ijson-items-to-load-a-big-json-file-why-does-this-wo
+https://www.aylakhan.tech/?p=27
+

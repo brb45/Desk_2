@@ -56,7 +56,16 @@ print(dq_deepCopy)
 # deque([1, 2, 3, 4, 5])
 # deque([1, 2, 3, 4, 5])
 
+a = (1,2)
+b = (3,4)
 
+c = a + b
+print(c)
+# (1, 2, 3, 4)
+
+
+d = list(range(10))
+print(d) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 #ADD
 #list.append(elem) -- adds a single element to the end of the list.

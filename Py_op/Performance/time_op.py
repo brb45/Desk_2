@@ -12,13 +12,19 @@ import time
 from datetime import datetime
 
 def main():
-    res = 1000 / 3
+    res = 10000 / 3
     print(f"res is {res}")
-    print(f"res is {res:1.6}")
+    print(f"res is {res:8.4}") # width is 8 and decimal places upto 4
 
+    # res is 3333.3333333333335
+    # res is 3.333e+03
     start = time.time()
     time.sleep(2)
     stop = time.time()
+    print(f"stop time is {stop}") # stop time is 1617236955.5342178
+    print(f"stop time is {stop:8.3}")
+    # stop time is 1617237749.1253026
+    # stop time is 1.62e+09
     delta = stop - start
     print(f'\n(footer_function_scope)--> test duration : {delta:0.5} seconds')
 
