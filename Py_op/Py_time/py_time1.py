@@ -75,39 +75,3 @@ current_time = now.strftime("%H:%M:%S:%d:%m:%Y") # return a string
 print("Current Time =", current_time)
 # Current Time = 16:53:53:07:04:2021
 
-
-class Solution:
-    def largestNumber(self, nums: List[int]) -> str:
-        # 11:00 8/6/20
-        # 9:32 4/7/21
-
-        def sort_decrease(x, y):
-            if x + y > y + x:
-                return -1
-            else:
-                return 1
-            # else:
-            #     return 0
-
-        nums_str = [str(num) for num in nums]
-        nums_str.sort(key=functools.cmp_to_key(sort_decrease))
-
-        res = "".join(nums_str)
-
-        return res if res[0] != '0' else '0'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

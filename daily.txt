@@ -35,7 +35,7 @@ pytest monkeypatch
 1. conversion between csv and json
 2. ijson, Pandas
 3. how to deal with large json file
-4. Using jq
+4. Using linux command: jq, split, sed ,awk
 jq, in its own words, is "a lightweight and flexible command-line JSON processor.
 You can use it to slice and filter and map and transform structured data
 with the same ease that sed, awk, grep.
@@ -66,5 +66,38 @@ https://www.dataquest.io/blog/python-api-tutorial/
 ++++++++++++++++
 
 9. pandas vs csv
+
+pandas is for processing data; pandas has more power than python csv module
+pandas will export processed data to be saved in csv
+
 10. logging module
 python logging level to set
+
+11. tqdm
+Instantly make your loops show a smart progress meter - just wrap any iterable with tqdm(iterable)
+from tqdm import tqdm
+for i in tqdm(range(100000000)):
+    i = 1
+12. Requests-Cache
+13. time
+# time process
+
+from datetime import datetime
+import time
+
+now = datetime.now()
+print(now.strftime("%Y-%m-%d, %H:%M:%S"))
+14. pip install requests-cache
+import requests
+import requests_cache
+
+url = "http://jasonrigden.com"
+requests_cache.install_cache("my_sqlite_db", expire_after=1000) # expire in 1000 sec
+# requests_cache.disabled() # disable cache
+# requests_cache.clear() # clear cache
+# requests_cache.uninstall_cache() # remove cache
+
+r = requests.get(url)
+print(r.from_cache) # First time False
+# 2nd time run, return True
+

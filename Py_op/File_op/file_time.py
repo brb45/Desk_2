@@ -49,4 +49,3 @@ modTimesinceEpoc = os.path.getmtime(path)
 modificationTime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(modification_time))
 print("Last Modified Time : ", modificationTime )
 # Last Modified Time :  2018-09-21 15:58:33
-
