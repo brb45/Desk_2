@@ -1,4 +1,16 @@
+print(-1 >> 1) # -1
+print(-3 >> 1) # -2
+print(-1 % 2) # 1
+print((1 % -2)) # -1
 
+print(-1 // 2) # -1
+print(-1 / 2) # -0.5
+print(-3 // 2) # -2
+print(-3 % 2)  # 1
+print(-3/2) # -1.5
+
+print(1 // 2) # 0
+print(3 // 2) # 1
 # 1.
 s = '123'
 a = s.split()
