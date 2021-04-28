@@ -116,3 +116,7 @@ gives
 dictCustomNamedArgs
          ^
 SyntaxError: non-keyword arg after keyword arg
+
+import math
+print(math.ceil(100.9)) # 101
+print(math.floor(100.9)) # 100

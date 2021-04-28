@@ -67,6 +67,31 @@ print(c)
 d = list(range(10))
 print(d) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+
+#
+n = 3
+arr = [[[-1, 0]] for _ in range(n)]
+
+from pprint import pprint
+
+pprint(arr)
+[[[-1, 0]], [[-1, 0]], [[-1, 0]]]
+#
+arr = [1,2,3]
+
+def change_arr(arr):
+    arr = [4,5,6]
+
+change_arr((arr))
+print(arr)
+# [1, 2, 3]
+
+def change_arr_1(arr):
+    arr[:] = [4,5,6,6]
+
+change_arr_1(arr)
+print(arr)
+# [4, 5, 6, 6]
 #ADD
 #list.append(elem) -- adds a single element to the end of the list.
 # does not return the new list, just modifies the original.

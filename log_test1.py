@@ -1,23 +1,31 @@
+class NumArray:
+    def __init__(self, nums: List[int]):
+        if not nums:
+            return
+        self.arr = list(nums)
+        self.n = math.ceil(len(self.arr) / (len(self.arr)) ** 0.5)
+        self.block = [0] * self.n
+        for i in range(len(self.arr)):
+            self.block[i // self.n] += self.arr[i]
 
-class Solution:
-    def search(self, nums: List[int], target: int) -> int:
-        # 7/4/2020
+    def update(self, i: int, val: int) -> None:
+        idx = i // self.n
+        self.block[idx] += val - self.arr[i]
+        self.arr[i] = val
 
-        n = len(nums)
-        lt, rt = 0, n- 1
-        while lt <= rt:
-            mid = lt + (rt - lt) // 2
-            if nums[mid] == target:
-                return mid
-            if nums[mid] < nums[rt]:
-                if nums[mid] < target <= nums[rt]:
-                    lt = mid + 1
-                else:
-                    rt = mid - 1
-            elif nums[mid] >= nums[rt]:
-                if nums[lt] <= target < nums[mid]:
-                    rt = mid - 1
-                else:
-                    lt = mid + 1
+    def sumRange(self, i: int, j: int) -> int:
+        sums = 0
+        lt_block, rt_block = i // self.n, j // self.n
+        if lt_block == rt_block:
+            for k in range(i, j + 1):
+                sums += self.arr[i]
+        else:
+            for k in range(i, (lt_block + 1) * self.n):
+                sums += self.arr[k]
+            for m_block in range(lt_block + 1, rt_block):
+                sums += self.block[m_block]
 
-        return -1
+            for k in range((rt_block) * self.n, j + 1):
+                sums += self.arr[k]
+
+        return sums

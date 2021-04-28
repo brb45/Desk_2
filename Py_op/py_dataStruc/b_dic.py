@@ -70,6 +70,11 @@ print(dic.get("Name")) # Zabra
 print(dic.get("gender", "Female")) # Female
 print(dic.get('char')) # None
 
+# dic = {a=10, b=100} SyntaxError: invalid syntax
+#using key argumnet to initiate a dict.
+dic = dict(q=100, b = 100, c='a')
+print(dic)
+# {'q': 100, 'b': 100, 'c': 'a'}
 ##
 # size of the dict
 len(test)
