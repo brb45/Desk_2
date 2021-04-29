@@ -1,31 +1,19 @@
-class NumArray:
-    def __init__(self, nums: List[int]):
-        if not nums:
-            return
-        self.arr = list(nums)
-        self.n = math.ceil(len(self.arr) / (len(self.arr)) ** 0.5)
-        self.block = [0] * self.n
-        for i in range(len(self.arr)):
-            self.block[i // self.n] += self.arr[i]
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        # 11:31 4/28/21
 
-    def update(self, i: int, val: int) -> None:
-        idx = i // self.n
-        self.block[idx] += val - self.arr[i]
-        self.arr[i] = val
+        n = len(coins)
+        coins.sort()
 
-    def sumRange(self, i: int, j: int) -> int:
-        sums = 0
-        lt_block, rt_block = i // self.n, j // self.n
-        if lt_block == rt_block:
-            for k in range(i, j + 1):
-                sums += self.arr[i]
-        else:
-            for k in range(i, (lt_block + 1) * self.n):
-                sums += self.arr[k]
-            for m_block in range(lt_block + 1, rt_block):
-                sums += self.block[m_block]
+        dp = [-1] * (amount + 1)
+        dp[0] = 0
 
-            for k in range((rt_block) * self.n, j + 1):
-                sums += self.arr[k]
+        for i in range(1, amount + 1):
+            for j in range(n):
+                if coins[j] <= i and dp[i - coins[j]] != -1:
+                    if dp[i] == -1:
+                        dp[i] = dp[i - coins[j]] + 1
+                    else:
+                        dp[i] = min(dp[i - coins[j]] + 1, dp[i])
 
-        return sums
+        return dp[amount]
