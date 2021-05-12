@@ -101,3 +101,5 @@ r = requests.get(url)
 print(r.from_cache) # First time False
 # 2nd time run, return True
 
+5/4/21
+# Virtual Machines

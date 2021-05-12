@@ -1,5 +1,22 @@
 import operator
 import copy
+
+
+arr = []
+
+# b = "abc"
+# arr += b
+# print(arr)
+
+def helper(arr):
+    b = [1,2,3]
+    arr = b
+
+helper(arr)
+print(arr)  # []
+
+
+
 # reverse() vs reversed()
 # sort() vs sorted()
 # nums.reverse()
@@ -66,7 +83,14 @@ print(c)
 
 d = list(range(10))
 print(d) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+##
 
+arr = ['a']
+arr += 'b'
+
+arr += ['c', ['d']]
+# arr = arr + "M" # TypeError: can only concatenate list (not "str") to list
+arr += "M" # OK
 
 #
 n = 3

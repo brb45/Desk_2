@@ -1,19 +1,12 @@
-class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        # 11:31 4/28/21
+def maximumSum(self, arr: List[int]) -> int:
+    # 3:34 --> 3:56 --> 3:58 --> 9/11/20
 
-        n = len(coins)
-        coins.sort()
-
-        dp = [-1] * (amount + 1)
-        dp[0] = 0
-
-        for i in range(1, amount + 1):
-            for j in range(n):
-                if coins[j] <= i and dp[i - coins[j]] != -1:
-                    if dp[i] == -1:
-                        dp[i] = dp[i - coins[j]] + 1
-                    else:
-                        dp[i] = min(dp[i - coins[j]] + 1, dp[i])
-
-        return dp[amount]
+    n = len(arr)
+    max_ending_here0 = n * [arr[0]]  # no deletion
+    max_ending_here1 = n * [arr[0]]  # at most 1 deletion
+    for i in range(1, n):
+        max_ending_here0[i] = max(max_ending_here0[i - 1] + arr[i], arr[i])
+        max_ending_here1[i] = max(max_ending_here1[i - 1] + arr[i], arr[i])
+        if i >= 2:
+            max_ending_here1[i] = max(max_ending_here1[i], max_ending_here0[i - 2] + arr[i])
+    return max(max_ending_here1)
