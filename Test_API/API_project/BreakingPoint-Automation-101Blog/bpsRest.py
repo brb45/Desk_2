@@ -9,6 +9,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.poolmanager import PoolManager
 import ssl
 
+#disable_warnings
 requests.packages.urllib3.disable_warnings()
 
 class TlsAdapter(HTTPAdapter):

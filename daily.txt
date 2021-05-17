@@ -103,3 +103,6 @@ print(r.from_cache) # First time False
 
 5/4/21
 # Virtual Machines
+5/15
+python exception
+pytho regular expression
