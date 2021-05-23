@@ -19,3 +19,5 @@ def test_a(x, y, expected):
     """Demo approx()."""
     sum_ = x + y
     assert sum_ == approx(expected)
+
+# @pytest.mark.parametrize

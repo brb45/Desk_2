@@ -1,5 +1,6 @@
 """Demo fixture scope."""
-11/22/20
+# 11/22/20
+# 5/20/21
 import pytest
 
 
@@ -49,7 +50,8 @@ class TestSomething():
         print("Class Test--> test_4 Starts")
 
 
-# test_scope.py::test_1
+# pytest test_scope_fixture.py::test_1 -v -s
+# test_scope_fixture.py::test_1
 # (sess_scope) starts
 #
 # [[mod_scope]] starts

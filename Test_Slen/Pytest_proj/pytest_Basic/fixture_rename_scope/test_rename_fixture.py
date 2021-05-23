@@ -2,7 +2,7 @@
 
 import pytest
 
-
+# use fixture to pass parameters
 @pytest.fixture(name='const')
 def data_constant():
     """Return ultimate answer."""
