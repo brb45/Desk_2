@@ -1,3 +1,14 @@
+nums = [1,3,4,5,0, -1 , -5]
+# sort incremental
+nums.sort()
+print(nums)
+# [-5, -1, 0, 1, 3, 4, 5]
+# sort decremental
+nums.sort(key=lambda x: -x)
+print(nums)
+# [5, 4, 3, 1, 0, -1, -5]
+
+
 import operator
 import copy
 

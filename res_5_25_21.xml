@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="1" hostname="jsun-mbpw10" name="pytest" skipped="0" tests="3" time="0.086" timestamp="2021-05-25T16:22:24.364799"><testcase classname="log_test1" name="test_greater" time="0.001"><failure message="assert 100 &gt; 100">@pytest.mark.great
+    def test_greater():
+       num = 100
+&gt;      assert num &gt; 100
+E      assert 100 &gt; 100
+
+log_test1.py:24: AssertionError</failure></testcase><testcase classname="log_test1" name="test_greater_equal" time="0.001" /><testcase classname="log_test1" name="test_less" time="0.001" /></testsuite></testsuites>

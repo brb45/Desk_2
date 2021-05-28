@@ -1,38 +1,23 @@
-def shortestPathBinaryMatrix(grid):
-    # 2:20 5/12/21
+import pytest
+class MissingCoordException(Exception):
+    """Exception raised when X or Y is not present in the data."""
 
-    from collections import deque
-    n = len(grid)
-    step = 1
-    visited = set([(0, 0)])
-    dq = deque([(0, 0)])
-    target = (n - 1, n - 1)
 
-    if grid[0][0]:
-        return -1
+class MissingBothCoordException(Exception):
+    """Exception raised when both X and Y are not present in the data."""
 
-    dirs = [(0, -1), (0, 1), (1, 0), (-1, 0), (-1, -1), (1, 1), (-1, 1), (1, -1)]
 
-    while dq:
-        n = len(dq)
-        for i in range(n):
-            top = dq.popleft()
-            # if top == target:
-            if top[0] == target[0] and top[1] == target[1]:
-                return step
+def sum_x_y(data: dict) -> str:
+    if "x" not in data and "y" not in data and "extra" not in data:
+        raise MissingBothCoordException("Both X and Y coord missing.")
+    if "x" not in data:
+        raise MissingCoordException("The Y coordinate is not present in the data.")
+    if "y" not in data:
+        raise MissingCoordException("The Y coordinate is not present in the data.")
+    return data["x"] + data["y"]
 
-            for r, c in dirs:
-                row, col = top[0] + r, top[1] + c
-                if 0 <= row < n and 0 <= col < n:
-                    if grid[row][col] == 0 and (row, col) not in visited:
-                        visited.add((row, col))
-                        dq.append((row, col))
-        step += 1
-
-    return -1
-
-grid = [[0,1],[1,0]]
-
-print(shortestPathBinaryMatrix(grid))
-
-print(len(grid), len(grid[0]))
+def test_sum_x_y_has_x_missing_coord():
+    data = {"extra": 1, "y": 2}
+    with pytest.raises(MissingCoordException) as exc:
+        sum_x_y(data)
+    # assert "The X coordinate is not present in the data." in str(exc.value)

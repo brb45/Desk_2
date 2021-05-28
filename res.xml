@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="2" failures="1" hostname="jsun-mbpw10" name="pytest" skipped="0" tests="5" time="0.096" timestamp="2021-05-25T18:29:11.631180"><testcase classname="log_test1" name="test_greater" time="0.001"><failure message="assert 100 &gt; 100">@pytest.mark.great
+    def test_greater():
+       num = 100
+&gt;      assert num &gt; 100
+E      assert 100 &gt; 100
+
+log_test1.py:7: AssertionError</failure></testcase><testcase classname="log_test1" name="test_greater_equal" time="0.001" /><testcase classname="log_test1" name="test_less" time="0.001" /><testcase classname="log_test1" name="test_country[US]" time="0.001"><error message="failed on setup with &quot;AttributeError: 'SubRequest' object has no attribute 'params'&quot;">request = &lt;SubRequest 'country' for &lt;Function test_country[US]&gt;&gt;
+
+    @pytest.fixture(scope='function', params=['US', 'FR'])
+    def country(request):
+&gt;      return request.params
+E      AttributeError: 'SubRequest' object has no attribute 'params'
+
+log_test1.py:21: AttributeError</error></testcase><testcase classname="log_test1" name="test_country[FR]" time="0.001"><error message="failed on setup with &quot;AttributeError: 'SubRequest' object has no attribute 'params'&quot;">request = &lt;SubRequest 'country' for &lt;Function test_country[FR]&gt;&gt;
+
+    @pytest.fixture(scope='function', params=['US', 'FR'])
+    def country(request):
+&gt;      return request.params
+E      AttributeError: 'SubRequest' object has no attribute 'params'
+
+log_test1.py:21: AttributeError</error></testcase></testsuite></testsuites>
