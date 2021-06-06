@@ -20,7 +20,8 @@ import logging
 # from log_parse import otherMod2
 import os
 
-
+# logging levels
+# DEBUG < INFO < WARNING < ERROR < CRITICAL
 # ----------------------------------------------------------------------
 def main():
     #logger setup
@@ -28,7 +29,7 @@ def main():
     logger.setLevel(logging.DEBUG)
 
     # create the logging file handler
-    fh = logging.FileHandler("logging_1.log")
+    fh = logging.FileHandler("logging_1_1.log")
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     fh.setFormatter(formatter)
 

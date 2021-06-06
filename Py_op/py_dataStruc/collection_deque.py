@@ -1,5 +1,5 @@
 # 12/12/20
-# 2/23/21
+# 2/23/21, 6/4/21
 from collections import deque
 
 # 1. input : iterable or empty deque
