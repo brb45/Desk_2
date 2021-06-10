@@ -1,0 +1,59 @@
+{
+  "uid" : "3ff7c3daa32555a5",
+  "name" : "test_a[Han Meimei-25]",
+  "fullName" : "test_log.Testmethod#test_a",
+  "historyId" : "97ef7e316b6bd820cafecec36e422e9b",
+  "time" : {
+    "start" : 1623269893746,
+    "stop" : 1623269893746,
+    "duration" : 0
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_log"
+  }, {
+    "name" : "subSuite",
+    "value" : "Testmethod"
+  }, {
+    "name" : "host",
+    "value" : "jsun-mbpw10"
+  }, {
+    "name" : "thread",
+    "value" : "29844-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_log"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "age",
+    "value" : "25"
+  }, {
+    "name" : "name",
+    "value" : "'Han Meimei'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "3ff7c3daa32555a5.json",
+  "parameterValues" : [ "25", "'Han Meimei'" ]
+}

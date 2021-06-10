@@ -9,6 +9,23 @@ dic = OrderedDict([('a', 1), ('h', 2), ('b', 3), ('f', 100)])
 print(dic)
 # OrderedDict([('a', 1), ('h', 2), ('b', 3), ('f', 100)])
 
+dic = OrderedDict({'a':1, 'b': 2})
+print(dic)
+OrderedDict([('a', 1), ('b', 2)])
+
+k = ['a', 'b', 'c']
+v = [1, 2, 3]
+
+pre_dic = zip(k,v)
+dic = OrderedDict(pre_dic)
+print(dic)
+OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+
+pre_dic = zip(k,v)
+dic = dict(pre_dic)
+print(dic)
+{'a': 1, 'b': 2, 'c': 3}
+
 # Finally, OrderedDict also provides .fromkeys(), which creates a new dictionary
 # from an iterable of keys and sets all its values to a common value:
 
@@ -22,8 +39,8 @@ print(dic)
 # If you delete an item from an existing ordered dictionary and insert that same item again,
 # then the new instance of the item is placed at the end of the dictionary:
 
-# If you reassign or update the value of an existing key-value pair in an OrderedDict object,
-# then the key maintains its position but gets a new value:
+# If you update the value of an existing key-value pair in an OrderedDict object,
+# the key maintains its position but gets a new value:
 
 # Another important feature that OrderedDict has provided since Python 3.5 is that its items, keys,
 # and values support reverse iteration using reversed().
@@ -36,7 +53,8 @@ for key in reversed(dic):
 # two
 # one
 
-# .move_to_end() move an existing item either to the end or to the beginning of the dictionary.
+# .move_to_end()
+# move an existing item either to the end or to the beginning of the dictionary.
 # last holds a Boolean value that defines to which end of the dictionary you want to move the item at hand.
 # It defaults to True, which means that the item will be moved to the end, or right side, of the dictionary.
 # False means that the item will be moved to the front, or left side, of the ordered dictionary
@@ -51,7 +69,8 @@ print(dic)
 # OrderedDict([('two', 0), ('one', 0), ('three', 0)])
 
 
-# .popitem() is an enhanced variation of its dict.popitem() counterpart that
+# .popitem()
+# is an enhanced variation of its dict.popitem() counterpart that
 # allows you to remove and return an item from either the end or the beginning of the underlying ordered dictionary.
 # By default, it removes the last one
 # In OrderedDict, however, .popitem() also accepts a Boolean argument called last, which defaults to True.

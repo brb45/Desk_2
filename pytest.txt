@@ -1,0 +1,9 @@
+[pytest]
+
+#addopts= -s -v --html=MyReport.html
+#testpaths = C:\\Users\\jsun\\Documents\\Desk_2\\WebD
+#python_files= log_test.py
+python_classes= Test*
+python_functions= test*
+
+
