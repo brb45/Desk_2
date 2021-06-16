@@ -1,0 +1,41 @@
+[ {
+  "uid" : "4270a840fbada246",
+  "name" : "test_a[Han Meimei-25]",
+  "time" : {
+    "start" : 1623269893746,
+    "stop" : 1623269893746,
+    "duration" : 0
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c64edbb627522573",
+  "name" : "test_login",
+  "time" : {
+    "start" : 1623269893690,
+    "stop" : 1623269893736,
+    "duration" : 46
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c412250066fc1249",
+  "name" : "test_a[Li Lei-20]",
+  "time" : {
+    "start" : 1623269893742,
+    "stop" : 1623269893742,
+    "duration" : 0
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "3139ff0194820950",
+  "name" : "test_a[Xiao Ming-18]",
+  "time" : {
+    "start" : 1623269893738,
+    "stop" : 1623269893739,
+    "duration" : 1
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

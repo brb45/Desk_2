@@ -1,5 +1,5 @@
 {
-  "uid" : "ae3c67e448205cc0",
+  "uid" : "c64edbb627522573",
   "name" : "test_login",
   "fullName" : "log_test#test_login",
   "historyId" : "76e4cc391d5001201ab9bef9ace2100c",
@@ -63,45 +63,45 @@
                 "name" : "password",
                 "value" : "123456"
               } ],
-              "stepsCount" : 0,
-              "hasContent" : true,
+              "attachmentsCount" : 0,
               "shouldDisplayMessage" : false,
-              "attachmentsCount" : 0
+              "stepsCount" : 0,
+              "hasContent" : true
             } ],
             "attachments" : [ ],
             "parameters" : [ ],
-            "stepsCount" : 1,
-            "hasContent" : true,
+            "attachmentsCount" : 0,
             "shouldDisplayMessage" : false,
-            "attachmentsCount" : 0
+            "stepsCount" : 1,
+            "hasContent" : true
           } ],
           "attachments" : [ ],
           "parameters" : [ ],
-          "stepsCount" : 2,
-          "hasContent" : true,
+          "attachmentsCount" : 0,
           "shouldDisplayMessage" : false,
-          "attachmentsCount" : 0
+          "stepsCount" : 2,
+          "hasContent" : true
         } ],
         "attachments" : [ ],
         "parameters" : [ ],
-        "stepsCount" : 3,
-        "hasContent" : true,
+        "attachmentsCount" : 0,
         "shouldDisplayMessage" : false,
-        "attachmentsCount" : 0
+        "stepsCount" : 3,
+        "hasContent" : true
       } ],
       "attachments" : [ ],
       "parameters" : [ ],
-      "stepsCount" : 4,
-      "hasContent" : true,
+      "attachmentsCount" : 0,
       "shouldDisplayMessage" : false,
-      "attachmentsCount" : 0
+      "stepsCount" : 4,
+      "hasContent" : true
     } ],
     "attachments" : [ ],
     "parameters" : [ ],
-    "stepsCount" : 5,
-    "hasContent" : true,
+    "attachmentsCount" : 0,
     "shouldDisplayMessage" : false,
-    "attachmentsCount" : 0
+    "stepsCount" : 5,
+    "hasContent" : true
   },
   "afterStages" : [ ],
   "labels" : [ {
@@ -136,6 +136,6 @@
     "categories" : [ ],
     "tags" : [ ]
   },
-  "source" : "ae3c67e448205cc0.json",
+  "source" : "c64edbb627522573.json",
   "parameterValues" : [ ]
 }

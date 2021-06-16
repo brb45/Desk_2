@@ -4,12 +4,12 @@
     "uid" : "06e86fccff9396e47042aebe845001c4",
     "name" : "test_log",
     "statistic" : {
-      "failed" : 0,
+      "failed" : 1,
       "broken" : 0,
       "skipped" : 0,
-      "passed" : 3,
+      "passed" : 1,
       "unknown" : 0,
-      "total" : 3
+      "total" : 2
     }
   }, {
     "uid" : "a8dd0030bb36231f852277d037b3ee40",

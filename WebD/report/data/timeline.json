@@ -1,0 +1,65 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "jsun-mbpw10",
+    "children" : [ {
+      "name" : "29844-MainThread",
+      "children" : [ {
+        "name" : "test_login",
+        "uid" : "c64edbb627522573",
+        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1623269893690,
+          "stop" : 1623269893736,
+          "duration" : 46
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_a[Xiao Ming-18]",
+        "uid" : "3139ff0194820950",
+        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1623269893738,
+          "stop" : 1623269893739,
+          "duration" : 1
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'18'", "'Xiao Ming'" ]
+      }, {
+        "name" : "test_a[Li Lei-20]",
+        "uid" : "c412250066fc1249",
+        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1623269893742,
+          "stop" : 1623269893742,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'20'", "'Li Lei'" ]
+      }, {
+        "name" : "test_a[Han Meimei-25]",
+        "uid" : "4270a840fbada246",
+        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1623269893746,
+          "stop" : 1623269893746,
+          "duration" : 0
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "25", "'Han Meimei'" ]
+      } ],
+      "uid" : "43b66720f461da20da0af17b013c9f7b"
+    } ],
+    "uid" : "ecc3ea929e0bf9450c07b27cbfadded3"
+  } ]
+}

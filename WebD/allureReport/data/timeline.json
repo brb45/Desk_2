@@ -3,61 +3,48 @@
   "children" : [ {
     "name" : "jsun-mbpw10",
     "children" : [ {
-      "name" : "29844-MainThread",
+      "name" : "12104-MainThread",
       "children" : [ {
-        "name" : "test_a[Li Lei-20]",
-        "uid" : "179acdac9cfadd63",
-        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "name" : "test_case_02",
+        "uid" : "73b8698e354c8979",
+        "parentUid" : "1b275b27bbf5049ae53b5e570eecc837",
         "status" : "passed",
         "time" : {
-          "start" : 1623269893742,
-          "stop" : 1623269893742,
+          "start" : 1623803720541,
+          "stop" : 1623803720541,
           "duration" : 0
         },
         "flaky" : false,
         "newFailed" : false,
-        "parameters" : [ "'20'", "'Li Lei'" ]
+        "parameters" : [ ]
       }, {
-        "name" : "test_a[Han Meimei-25]",
-        "uid" : "3ff7c3daa32555a5",
-        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
-        "status" : "passed",
+        "name" : "test_case_01",
+        "uid" : "5bc1f500d93d4fac",
+        "parentUid" : "1b275b27bbf5049ae53b5e570eecc837",
+        "status" : "failed",
         "time" : {
-          "start" : 1623269893746,
-          "stop" : 1623269893746,
+          "start" : 1623803720530,
+          "stop" : 1623803720530,
           "duration" : 0
         },
         "flaky" : false,
         "newFailed" : false,
-        "parameters" : [ "25", "'Han Meimei'" ]
-      }, {
-        "name" : "test_a[Xiao Ming-18]",
-        "uid" : "2caf925ed7b5c16f",
-        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
-        "status" : "passed",
-        "time" : {
-          "start" : 1623269893738,
-          "stop" : 1623269893739,
-          "duration" : 1
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ "'18'", "'Xiao Ming'" ]
+        "parameters" : [ ]
       }, {
         "name" : "test_login",
-        "uid" : "ae3c67e448205cc0",
-        "parentUid" : "43b66720f461da20da0af17b013c9f7b",
+        "uid" : "54759f175d3051a4",
+        "parentUid" : "1b275b27bbf5049ae53b5e570eecc837",
         "status" : "passed",
         "time" : {
-          "start" : 1623269893690,
-          "stop" : 1623269893736,
-          "duration" : 46
+          "start" : 1623803720492,
+          "stop" : 1623803720528,
+          "duration" : 36
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
-      "uid" : "43b66720f461da20da0af17b013c9f7b"
+      "uid" : "1b275b27bbf5049ae53b5e570eecc837"
     } ],
     "uid" : "ecc3ea929e0bf9450c07b27cbfadded3"
   } ],

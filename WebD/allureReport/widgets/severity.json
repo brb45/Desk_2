@@ -1,41 +1,31 @@
 [ {
-  "uid" : "2caf925ed7b5c16f",
-  "name" : "test_a[Xiao Ming-18]",
+  "uid" : "73b8698e354c8979",
+  "name" : "test_case_02",
   "time" : {
-    "start" : 1623269893738,
-    "stop" : 1623269893739,
-    "duration" : 1
+    "start" : 1623803720541,
+    "stop" : 1623803720541,
+    "duration" : 0
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "ae3c67e448205cc0",
+  "uid" : "54759f175d3051a4",
   "name" : "test_login",
   "time" : {
-    "start" : 1623269893690,
-    "stop" : 1623269893736,
-    "duration" : 46
+    "start" : 1623803720492,
+    "stop" : 1623803720528,
+    "duration" : 36
   },
   "status" : "passed",
   "severity" : "normal"
 }, {
-  "uid" : "3ff7c3daa32555a5",
-  "name" : "test_a[Han Meimei-25]",
+  "uid" : "5bc1f500d93d4fac",
+  "name" : "test_case_01",
   "time" : {
-    "start" : 1623269893746,
-    "stop" : 1623269893746,
+    "start" : 1623803720530,
+    "stop" : 1623803720530,
     "duration" : 0
   },
-  "status" : "passed",
-  "severity" : "normal"
-}, {
-  "uid" : "179acdac9cfadd63",
-  "name" : "test_a[Li Lei-20]",
-  "time" : {
-    "start" : 1623269893742,
-    "stop" : 1623269893742,
-    "duration" : 0
-  },
-  "status" : "passed",
+  "status" : "failed",
   "severity" : "normal"
 } ]
