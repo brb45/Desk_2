@@ -56,7 +56,8 @@ for key in reversed(dic):
 # .move_to_end()
 # move an existing item either to the end or to the beginning of the dictionary.
 # last holds a Boolean value that defines to which end of the dictionary you want to move the item at hand.
-# It defaults to True, which means that the item will be moved to the end, or right side, of the dictionary.
+
+# last defaults to True, which means that the item will be moved to the end, or right side, of the dictionary.
 # False means that the item will be moved to the front, or left side, of the ordered dictionary
 print(dic)
 # OrderedDict([('one', 0), ('two', 0), ('three', 0)])

@@ -1,5 +1,5 @@
 # 12/12/20
-# 2/23/21, 6/4/21
+# 2/23/21, 6/4/21, 6/16/21
 from collections import deque
 
 # 1. input : iterable or empty deque
@@ -10,8 +10,6 @@ dq = deque()
 dq = deque([200])
 print(dq[0], dq[-1]) # 200 200
 
-print(dq.count(100)) # 0
-print(dq.count(200)) # 1
 # 2. basic functions
 s = "a"
 dq.append(s)
