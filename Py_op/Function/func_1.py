@@ -10,7 +10,6 @@
 # In practice, when working
 # with explicit positional parameters along with * args and ** kwargs, your function would look like this:
 #
-#
 # def example(arg_1, arg_2, *args, **kwargs):
 #     ...
 # And, when working
@@ -64,7 +63,7 @@ def addition(a, b, *args, option=True):
    result = 0
    if option:
       for i in args:
-      result += i
+        result += i
       return a + b + result
    else:
       return result

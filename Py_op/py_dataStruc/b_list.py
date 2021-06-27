@@ -8,6 +8,30 @@ nums.sort(key=lambda x: -x)
 print(nums)
 # [5, 4, 3, 1, 0, -1, -5]
 
+def my_arr(arr):
+    arr[0] = 199
+
+arr = list(range(5))
+
+# print(arr)
+
+# my_arr(arr)
+# print(arr)
+
+def y_arr(arr):
+    def change_arr(arr):
+        arr[0] = 100
+
+print(arr)
+
+y_arr(arr)
+
+print(arr)
+
+[0, 1, 2, 3, 4]
+[0, 1, 2, 3, 4]
+
+
 
 import operator
 import copy
