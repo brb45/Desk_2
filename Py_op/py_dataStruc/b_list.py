@@ -1,55 +1,125 @@
-nums = [1,3,4,5,0, -1 , -5]
-# sort incremental
-nums.sort()
-print(nums)
+#------------------------------------
 # [-5, -1, 0, 1, 3, 4, 5]
 # sort decremental
 nums.sort(key=lambda x: -x)
 print(nums)
 # [5, 4, 3, 1, 0, -1, -5]
 
+#------------------------------------
+ss = "this is a test"
+list_from_str = list(ss)
+back_to_str = "".join(list_from_str)
+print(f"list_from_str is {list_from_str}")
+print(f"back_to_str is {back_to_str}")
+# list_from_str is ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'a', ' ', 't', 'e', 's', 't']
+# back_to_str is this is a test
+
+#-----------------------------------------------------
+# convert string to a list or a tuple
+tuple("Test")
+# ('T', 'e', 's', 't')
+list("Station")
+# ['S', 't', 'a', 't', 'i', 'o', 'n']
+
+tuple(50,)
+# TypeError: 'int' object is not iterable
+list(50)
+# TypeError: 'int' object is not iterable
+#-----------------------------------------------------
+import copy
+
+shifts = [3,5,9]
+tmp = shifts[:]
+print(tmp) # [3, 5, 9]
+
+copy_shallow = shifts.copy()
+copy_shallow_1 = copy.copy(shifts)
+copy_deep = copy.deepcopy(shifts)
+
+print(copy_shallow)
+print(copy_shallow)
+print(copy_deep)
+# [3, 5, 9]
+# [3, 5, 9]
+# [3, 5, 9]
+
+#------------------------------------------------------
+a = []
+b = 1
+a += [b]
+print(a) # [1]
+
+# a+= 10 # error
+# print(a)
+# Traceback (most recent call last):
+#   File "C:/Users/jsun/Documents/Desk_2/log_test.py", line 53, in <module>
+#     a+= 10
+# TypeError: 'int' object is not iterable
+
+#------------------------------------------------------
+# arr is reference to a resource : 13325416
+arr = [] # 13325416
+def helper(arr): # here arr is another pointer pointing to the same resource  13325416
+    print(id(arr)) # 13325416
+    b = [1,2,3]
+    arr = b
+    print(id(arr)) # 13286416
+
+print(id(arr)) # 13325416
+helper(arr)
+print(arr)  # []
+b = [1,2,3]
+print(f"id(b) is {id(b)}") # id(b) is 13286416
+arr=b
+print(id(arr)) # 13286416
+print(arr) # [1, 2, 3]
+
+a = b = [1]
+print(f"{id(a)}, {id(b)}") # 34034872, 34034872
+
+a = [1]
+b = [1]
+print(f"{id(a)}, {id(b)}") # 25140240, 25140120
+
+#------------------------------------
 def my_arr(arr):
     arr[0] = 199
 
 arr = list(range(5))
+print(arr) # [199, 1, 2, 3, 4]
+my_arr(arr)
+print(arr) # [199, 1, 2, 3, 4]
 
-# print(arr)
-
-# my_arr(arr)
-# print(arr)
-
+#------------------------------------
+arr = list(range(5))
 def y_arr(arr):
     def change_arr(arr):
         arr[0] = 100
+    change_arr(arr)
 
-print(arr)
-
+print(arr) # [0, 1, 2, 3, 4]
 y_arr(arr)
+print(arr) # [100, 1, 2, 3, 4]
 
-print(arr)
-
-[0, 1, 2, 3, 4]
-[0, 1, 2, 3, 4]
-
-
-
-import operator
-import copy
-
+#------------------------------------
+arr = []
+b = "abc"
+arr += b
+print(arr) # ['a', 'b', 'c']
 
 arr = []
+b = "abc"
+arr.extend(b)
+print(arr) # ['a', 'b', 'c']
 
-# b = "abc"
-# arr += b
-# print(arr)
-
+#------------------------------------
+arr = []
 def helper(arr):
     b = [1,2,3]
     arr = b
 
 helper(arr)
 print(arr)  # []
-
 
 
 # reverse() vs reversed()
@@ -65,10 +135,11 @@ print(arr)  # []
 # s_sorted = sorted(s_arr, key = len)
 # s_sorted = sorted(s_arr, key = str.lower)
 # (sorted(strs, key=str.upper)
-
+arr = [0,0,1,2,4,8, -1,-2,-4,-8]
+nums = sorted(arr, key=abs)
+print(nums) # [0, 0, 1, -1, 2, -2, 4, -4, 8, -8]
+#-----------------------------------------
 n = 5
-
-
 dp1 = [[1, 1] for i in range(n)]
 dp = [[1, 1]] * n  # [max_len, cnt]
 
@@ -76,20 +147,62 @@ dp1[0][0] = 100
 dp[0][0] = 100
 print(dp1) # [[100, 1], [1, 1], [1, 1], [1, 1], [1, 1]]
 print(dp) # [[100, 1], [100, 1], [100, 1], [100, 1], [100, 1]]
+#-----------------------------------------
+dp2 = [[1, 1]] * 5  # [max_len, cnt]
 
+for i in range(5):
+    print(id(dp2[i]))
+# 35953560
+# 35953560
+# 35953560
+# 35953560
+# 35953560
+#-----------------------------------------
+dp3 = [[1,1] for _ in range(5)]
+for i in range(5):
+    print(id(dp3[i]))
+# 37067312
+# 37067232
+# 37067072
+# 35582640
+# 35582320
+#-----------------------------------------
+for i in range(5):
+    print(id(dp2[i]))
+# 35953560
+# 35953560
+# 35953560
+# 35953560
+# 35953560
+
+dp2 = [1] * 5  # [max_len, cnt]
+dp2[0] = 10
+for i in range(5):
+    print(id(dp2[i]))
+print(dp2)
+# 1742068032
+# 1742067888
+# 1742067888
+# 1742067888
+# 1742067888
+# [10, 1, 1, 1, 1]
+#-----------------------------------------
+dp4 = [[1, 1]] * 5
+dp4[0] = [2,2]
+for i in range(5):
+    print(id(dp4[i]))
+# 23304792
+# 23305032
+# 23305032
+# 23305032
+# 23305032
 #-----------------------------------------
 arr = [0,0,1,2,4,8, -1,-2,-4,-8]
-
-nums = sorted(arr, key=abs)
-print(nums) # [0, 0, 1, -1, 2, -2, 4, -4, 8, -8]
-
-arr = [0,0,1,2,4,8, -1,-2,-4,-8]
-
 s = 'abcd'
 arr.extend(s)
-
 print(arr) #[0, 0, 1, 2, 4, 8, -1, -2, -4, -8, 'a', 'b', 'c', 'd']
 
+#-----------------------------------------
 import copy
 dic = {'a': 0, 'b': 1}
 dic_copy = dic.copy()
@@ -108,9 +221,9 @@ print(dq_deepCopy)
 # deque([1, 2, 3, 4, 5])
 # deque([1, 2, 3, 4, 5])
 
+#-----------------------------------------
 a = (1,2)
 b = (3,4)
-
 c = a + b
 print(c)
 # (1, 2, 3, 4)
@@ -119,7 +232,7 @@ print(c)
 d = list(range(10))
 print(d) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ##
-
+#-----------------------------------------
 arr = ['a']
 arr += 'b'
 
@@ -127,30 +240,37 @@ arr += ['c', ['d']]
 # arr = arr + "M" # TypeError: can only concatenate list (not "str") to list
 arr += "M" # OK
 
-#
+#-----------------------------------------
 n = 3
 arr = [[[-1, 0]] for _ in range(n)]
 
 from pprint import pprint
-
 pprint(arr)
-[[[-1, 0]], [[-1, 0]], [[-1, 0]]]
-#
+# [[[-1, 0]], [[-1, 0]], [[-1, 0]]]
+#-----------------------------------------
 arr = [1,2,3]
-
+def change_arr(arr):
+    brr = arr + [100]
+    arr[0] = 100
+    print(brr)
+change_arr(arr) # [1, 2, 3, 100]
+print(arr) # [100, 2, 3]
+#-----------------------------------------
+arr = [1,2,3]
 def change_arr(arr):
     arr = [4,5,6]
 
 change_arr((arr))
 print(arr)
 # [1, 2, 3]
-
+#-----------------------------------------
 def change_arr_1(arr):
     arr[:] = [4,5,6,6]
 
 change_arr_1(arr)
 print(arr)
 # [4, 5, 6, 6]
+#-----------------------------------------
 #ADD
 #list.append(elem) -- adds a single element to the end of the list.
 # does not return the new list, just modifies the original.
@@ -159,7 +279,6 @@ print(arr)
 
 #list.insert(index, elem) -- inserts the element at the given index, shifting elements to the right.
 #list.extend(list2)--list2 must be a list or iterable; adds the elements in list2 to the end of the list.
-
 
 #search
 #list.index(elem) -- searches the given element and returns its index.
@@ -171,7 +290,7 @@ print(arr)
 #list.sort() -- sorts the list in place (does not return it). (The sorted() function shown below is preferred.)
 #list.reverse() -- reverses the list in place (does not return it)
 
-##
+## Delete
 #list.remove(elem) -- searches for the first instance of the given element and removes it (throws ValueError)
 ##list.pop(index) -- removes and returns the element at the given index.
 #list.pop() -- remove the last element, and return the element being removed
@@ -240,16 +359,26 @@ squares = [1, 4, 9, 16]
 print(sum(squares))         #   30
 print(sum(squares, 1000))   #   1030
 
+#------------------------------------------------------
+print(sum(1000,9)) # wrong syntax
+# Traceback (most recent call last):
+#   File "C:/Users/jsun/Documents/Desk_2/log_test.py", line 41, in <module>
+#     print(sum(1000,9))
+# TypeError: 'int' object is not iterable
+
 ## 4.
+#------------------------------------------------------
 a_tuple = ([1,2],3)
 print(type(a_tuple), a_tuple) # <class 'tuple'> ([1, 2], 3)
 
 a_tuple[0].append(100)
 print(a_tuple) #    ([1, 2, 100], 3)
 
+#------------------------------------------------------
 # a_set = {[1,2],3}  TypeError: unhashable type: 'list'
 # print(type(a_set), a_set)
 
+#------------------------------------------------------
 ## 5. List Sorting with lambda
 s_arr = ['ab', 'abc', 'Cba', 'ddf', 'Dh', 'Ag']
 
@@ -268,8 +397,10 @@ cnt_list = []
 for letter in cnt_dict.items():  # letter is of type tuple
     print(letter, end=", ")
     cnt_list.append(letter)
-
+#------------------------------------------------------
 cnt_order_list = sorted(cnt_list, key=lambda x: (x[1],x[0]), reverse=True)
+
+
 # reverse=True apply to both x[1] and x[0]
 print(type(letter))                     # < class 'tuple' >
 print(f"cnt_list is {cnt_list}")
@@ -295,6 +426,13 @@ print(sorted(wd_cnt_lst, key=lambda x: x[1]))
 print(sorted(wd_cnt_lst, key=lambda x: x[0], reverse=True))
 # [('c', 15), ('c', 12), ('b', 5), ('b', 3), ('a', 10), ('a', 5), ('a', 7)]
 
+# reverse same as -x[0]
+wd_cnt_lst = [('a', 10), ('b', 5), ('a', 5), ('a', 7), ('c', 15), ('b', 3), ('c', 12)]
+print(sorted(wd_cnt_lst, key= lambda x: (-x[1], -ord(x[0]))))
+print(sorted(wd_cnt_lst, key=lambda x: (x[1], x[0]), reverse=True))
+# [('c', 15), ('c', 12), ('a', 10), ('a', 7), ('b', 5), ('a', 5), ('b', 3)]
+# [('c', 15), ('c', 12), ('a', 10), ('a', 7), ('b', 5), ('a', 5), ('b', 3)]
+
 ##5.3
 str_lst = [("abc", 4),  ("cd", 4), ("avdk", 10),
            ("ab", 5), ("helf", 12), ("aaaa", 8)]
@@ -318,7 +456,7 @@ str_list = ["abc", "aaa", "def", "ab", "ba", "cd", "fhef", "kdfj", "efgh"]
 print(sorted(str_list, key=(len, lambda x: x[0]))) # TypeError: 'tuple' object is not callable
 
 print(sorted(str_list, key=lambda x: (len(x), x)))
-['ab', 'ba', 'cd', 'aaa', 'abc', 'def', 'efgh', 'fhef', 'kdfj']
+# ['ab', 'ba', 'cd', 'aaa', 'abc', 'def', 'efgh', 'fhef', 'kdfj']
 
 str1_list = ["abc", "Aaa", "def", "ab", "Ba", "cd", "fhef", "Kdfj", "efgh"]
 print(sorted(str1_list, key=len))
@@ -441,21 +579,6 @@ tuple[2]  # hi
 
 # tuple[2] = 'bye'  # NO, tuples cannot be changed
 
-#@@ 15
-def all_indices(value, qlist):
-    indices = []
-    idx = -1
-    while True:
-        try:
-            idx = qlist.index(value, idx+1)
-            indices.append(idx)
-        except ValueError:
-            break
-    return indices
-
-all_indices("testID", ["testID","testr","station","testID"])
-
-
 #@@ 17
 #Shallow copy
 ls = [[1,2,3],"wifi","bt","tk"]
@@ -477,17 +600,21 @@ nums[0][0] = 1000
 print("nums is {}".format(nums))
 print("new_nums is {}".format(new_nums))
 print("new_new is {}".format(new_new))
-nums is [[1000, 2], 1, 100]
-new_nums is [[1000, 2], 1, 100]
-new_new is [[1, 2], 1, 100]
+# nums is [[1000, 2], 1, 100]
+# new_nums is [[1000, 2], 1, 100]
+# new_new is [[1, 2], 1, 100]
 
-#@@ 18
-a = ["foo","bar","baz",'bar','any','much']
-indexes = [index for index in range(len(a)) if a[index] == 'bar']
+#---------------------------------------------------------------
+ls = [[1,2,3],"wifi","bt","tk"]
+cp = ls.copy()
 
-rst = [i for i,j in enumerate(a) if j == 'bar']
-print(rst)
+ls[0][0]=[1,23]
 
+print(id(cp), id(ls))
+# 15972712 15972792
+print(id(cp[0]), ", ", id(ls[0]))
+# 10591088 ,  10591088
+#---------------------------------------------------------------
 #@@ 20
 # list.extend(1)  #TypeError: 'int' object is not iterable
 test = ["wifi", "bt",'ac',"11ax","ad"]
@@ -525,7 +652,8 @@ if len(arr) == 0: # True
 if arr == None: # False
     print("arr == None")
 
-#@@ 24
+#@@ 24 Matrix ops
+#----------------------------------------------------------------
 matrix = [[]] # matrix is NOT empty
 if not matrix: # False
     print("empty row")
@@ -535,7 +663,6 @@ else: # num of row in matrix len(matrix) is  1
 if not matrix[0]: # True
     print("empty column")  # empty column
     print(len(matrix[0]))  # 0
-    
 
 arr2 = [[1]*3 for _ in range(5)]
 print(" num of row: {}\n num of column: {}".format(len(arr2), len(arr2[0])))
@@ -566,34 +693,12 @@ mm = [[] for _ in range(5)]
 
 print(len(mm), len(mm[0]))  # 5 0
 
-#@@ 26
-#
-
 #@@ 27
 ltr_str = "abcd"
 ltr_list = ltr_str.split("") # ValueError: empty separator
 
 #@@ 28
-ss = "this is a test"
-list_from_str = list(ss)
-back_to_str = "".join(list_from_str)
-print(f"list_from_str is {list_from_str}")
-print(f"back_to_str is {back_to_str}")
-# list_from_str is ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'a', ' ', 't', 'e', 's', 't']
-# back_to_str is this is a test
 
-# _______________________________
-# convert string to a list or a tuple
-tuple("Test")
-# ('T', 'e', 's', 't')
-
-list("Station")
-# ['S', 't', 'a', 't', 'i', 'o', 'n']
-
-tuple(50,)
-# TypeError: 'int' object is not iterable
-list(50)
-# TypeError: 'int' object is not iterable
 
 
 ## passing a list _________________________________________________________________________________________
@@ -615,8 +720,11 @@ str_list_2 = str.split()     #  ['this', 'is', 'a', 'good', 'book']
 
 ## 4.
 # arr is a list
-# func(arr): pass arr as an argument, it is like pass a reference arr, any changes to arr in func, will actually change arr.
-# func(arr[1:5]): complete different!. arr[1:5] is a new list, which is a shallow copy of arr's 2nd through 6th elements
+# func(arr): arr is a pointer, to a resource. It can change a resource or
+# switch and change to a different resource
+
+# func(arr[1:5]): complete different!.
+# arr[1:5] is a new list, which is a shallow copy of arr's 2nd through 6th elements
 ##
 arr = [[1, 2, 3], [4, 5, 6], 10]
 # new_list_1 is shallow copy of arr, Not completely independent of new_list
@@ -626,23 +734,21 @@ new_list_2 = arr + [8] # arr + [8] does Not modify arr
 
 arr = [[1, 2, 3], [4, 5, 6], 10]
 new_list_1 = arr + [99]
-# print(f"new_list_1 is {new_list_1}") # new_list_1 is [[1, 2, 3], [4, 5, 6], 10, 99]
-# print(f"arr is {arr}") # arr is [[1, 2, 3], [4, 5, 6], 10]
+# print(f"new_list_1 is {new_list_1}")
+# new_list_1 is [[1, 2, 3], [4, 5, 6], 10, 99]
+# print(f"arr is {arr}")
+# arr is not changed
+# arr is [[1, 2, 3], [4, 5, 6], 10]
 
 new_list_1[0][0] = 999
 # new_list_1 is [[999, 2, 3], [4, 5, 6], 10, 99]
 print(f"new_list_1 is {new_list_1}")
-print(f"arr is {arr}")  # arr is [[999, 2, 3], [4, 5, 6], 10]
-## 6.
-#shallow copy: shifts[:] is same as copy.copy(shifts)
-import copy
+print(f"arr is {arr}")
+# arr is also changed
+# arr is [[999, 2, 3], [4, 5, 6], 10]
 
-shifts = [3,5,9]
-tmp = shifts[:]
-# tmp = copy.copy(shifts)
+## 6.------------------------------------------------------
 
-tmp[0] = 100
-# print(shifts) [3, 5, 9]
 
 #@@1.0
 # shallow copy of list
@@ -682,45 +788,5 @@ change_list(arr)  #  arr is  arr, not  a shallow copy of arr
 print(f"arr is {arr}") # arr is [[20000, 200], 999, 3, 4, 5]
 
 #-----------------------------------------------------------------------------------------
-# python list
 
-# Slicing?
-a = []
-len_a = len(a)
-print(f"len a is {len_a}")
-b = 1
 
-a += [b]
-print(a)
-
-a.append(10)
-print(a)
-
-a.insert(1,5) # insert at loc=1
-print(a)
-
-# search
-res = a.index(5)
-print(res)
-res = a.index(10,1)
-print(res)
-
-# sort
-a.sort(reverse=True)
-print(a)
-
-#
-a[1:2] = [3, 9, 6]
-print(a)
-
-#
-a.pop()
-print(a)
-a.remove(10)
-print(a)
-del a[1]
-print(a)
-
-#
-print(type(a[:-1]))
-print(a[:-1])

@@ -35,37 +35,15 @@ S= "123456579"
 (ans, res) = Solution().splitIntoFibonacci(S)
 print(f"res is {res}")   # res is ['123', '456', '579']
 print(f"ans is  {ans}")  # ans is  ['123', '456', '579']
-
+print("************************************************")
 ###
 
+ 
 
-class Solution:
 
-    def __init__(self):
-        pass
 
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        # 11:31 4/28/21
-        # 3:12 6/25/21
-        # DFS
 
-        def helper(coins, i, cnt, amount):  # coins, i=0, cnt = [0], amount
-            if amount == 0:
-                return True
-            for i, v in enumerate(coins):
-                if amount - v >= 0:
-                    cnt[0] += 1
-                    # if helper(coins[i:], 0, cnt, amount-v ):
-                    if helper(coins, 0, cnt, amount - v):
-                        return True
-                    cnt[0] -= 1
-                # else:
-                #     break
-            return False
 
-        coins.sort(reverse=True)
-        cnt = [0]
-        if helper(coins, 0, cnt, amount):
-            return cnt[0]
-        return -1
+
+
 

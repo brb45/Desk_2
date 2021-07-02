@@ -1,15 +1,20 @@
+6/29/21
+def int_to_binary_str(num):
+    res = ""
+    while num > 0:
+        res = str(num % 2) + res
+        num //= 2
 
+    if len(res) < 8:
+        to_add = '0' * (8 - len(res))
+        res = to_add + res
 
+    elif len(res) > 8:
+        res = res[len(res) - 8:]
+    return res
 
-class Solution:
-    def rob(self, nums: list) :
-#         dp[i] stands for largest value can be robbed from houses[:i+1]. It's max(dp[i-1], dp[i-2]+houses[i]) since robber can't rob house[i] if it robbed houses[i-1].
-# We only use dp[i-1] and dp[i-2] to update dp[i] , so we can replace dp array by rolling two variables prev and curr.
-        prev = curr = 0
-        for x in nums:
-            curr, prev = max(curr, prev+x), curr
-        return curr
+num = 145
+print(int_to_binary_str(num))
 
-nums = [10,20]
-
-print(Solution().rob(nums))
+bin_rep = format(num, '#010b')[-8:]
+print(bin_rep)

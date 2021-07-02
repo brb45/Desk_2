@@ -58,7 +58,15 @@ print(type(b_list)) # <class 'list'>
 print(nums) # [2, 5, 3, 1000, 6, 8, 7]
 a_list = heapq.nlargest(3, nums)
 print(a_list) # [1000, 8, 7]
+#----------------------------------------------------------
+import heapq
 
+arr = [(3,1,2), (4,2,2), (4,3,1), (4,1,3), (5, 2,3), (6, 5,1)]
+heapq.heapify(arr)
+
+b = heapq.nsmallest(4,arr)
+print(b)
+# [(3, 1, 2), (4, 1, 3), (4, 2, 2), (4, 3, 1)]
 #----------------------------------------------------------
 # heapq.merge(*iterables, key=None, reverse=False)
 # Merge multiple sorted inputs into a single sorted output
