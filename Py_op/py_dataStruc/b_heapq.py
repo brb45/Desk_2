@@ -15,6 +15,7 @@ import heapq
 
 # nlargest(k, iterable, key = fun)
 # nsmallest(k, iterable, key = fun), return a list
+# b_list = heapq.nsmallest(3, nums) # return a list
 
 #---------------------------------------------------------------------------
 # Build heapq from an empty list
@@ -73,31 +74,26 @@ print(b)
 # Returns an iterator over the sorted values.
 
 # Create sorted sequences
-
 sequence1 = [1, 2, 3]  # A list
 sequence2 = (5, 7, 9)  # A tuple
 sequence3 = [6, 8, 10]
-
+import heapq
 # Merge the sequences
-merged = heapq.merge(sequence1, sequence2, sequence3)
-# heapq.heappush(merged, 1000)
-# TypeError: heap argument must be a list
+merged = (heapq.merge(sequence1, sequence2, sequence3))
+# type of merged is <class 'generator'>
+merged = list(merged)
+heapq.heappush(merged, 0) # merged needs to be a list
+print((merged))
+# [0, 1, 3, 5, 2, 7, 8, 9, 10, 6]
 
 # Print the merged sequences
 print(f"type of merged is {type(merged)}")
-# type of merged is <class 'generator'>
-# print(list(merged)) # [1, 2, 3, 5, 6, 7, 8, 9, 10]
-for i in merged:
-    print(i, end=", ")
-print("\ndone Merging")
-# 1, 2, 3, 5, 6, 7, 8, 9, 10,
 
 # push then pop
 print(nums) # [3, 5, 7, 1000, 6, 8]
 pop_val = heapq.heappushpop(nums, 999)
 print(pop_val) # 3
 print(nums) # [5, 6, 7, 1000, 999, 8]
-
 
 # Push item on the heap, then pop and return the smallest item from the heap.
 # The combined action runs more efficiently than heappush() followed by a separate call to heappop().
