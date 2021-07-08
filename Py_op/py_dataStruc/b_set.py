@@ -61,3 +61,12 @@ len_t = len(t_set)
 # print(len_t)  3
 # empty a set
 t_set.clear() # len(t_set) = 0
+
+a = set(((1,1),))
+print(a) # {(1, 1)}
+
+a = set(((1,1)))
+print(a) # {1}
+
+a = set((1,1))
+print(a) # {1}
